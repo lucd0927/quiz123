@@ -23,15 +23,15 @@ class JCFbase {
   String by({required String name}) =>
       FirebaseRemoteConfig.instance.getString(name);
 
-  Future<void> initFirebase() async {
+  Future<void> chushi() async {
     // auto patch 904
     // if (Platform.isAndroid) {
     //   return;
     // }
     try {
-      pbLog("==PBFireBbbbbb==initFirebase====");
+      jcRizhi("==PBFireBbbbbb==initFirebase====");
       FirebaseApp firebaseApp = await Firebase.initializeApp();
-      pbLog(
+      jcRizhi(
         "==PBFireBbbbbb==initFirebase===firebaseApp:${firebaseApp.toString()}=",
       );
       FlutterError.onError =
@@ -44,23 +44,23 @@ class JCFbase {
       // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
       FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
         await FirebaseRemoteConfig.instance.activate();
-        pbLog(
+        jcRizhi(
           "===PBFireBbbbbb.instance.onConfigUpdated.listen=====$event=",
         );
         // Use the new huanjing values here.
       });
-      await _remote();
+      await _yuancheng();
     } catch (e) {
-      pbLog("==PBFireBbbbbb==initFirebase===error:$e");
+      jcRizhi("==PBFireBbbbbb==initFirebase===error:$e");
     }
   }
 
-  _remote() async {
+  _yuancheng() async {
     try {
-      pbLog("==PBFireBbbbbb=====remote ensureInitialized");
+      jcRizhi("==PBFireBbbbbb=====remote ensureInitialized");
       await FirebaseRemoteConfig.instance.ensureInitialized();
       // auto patch 99
-      pbLog("==PBFireBbbbbb=====remote fetchAndActivate");
+      jcRizhi("==PBFireBbbbbb=====remote fetchAndActivate");
       await FirebaseRemoteConfig.instance.fetchAndActivate();
       // auto patch 393
       // AbaoUtils().runme();
@@ -68,6 +68,6 @@ class JCFbase {
     } catch (e) {
       // FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     }
-    pbLog("==PBFireBbbbbb=====remote end");
+    jcRizhi("==PBFireBbbbbb=====remote end");
   }
 }

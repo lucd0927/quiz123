@@ -15,40 +15,7 @@
 //   });
 // }
 //
-// enum EnumGetScene {
-//   // daily_treasure(name: "daily treasure"),
-//   quiz(name: "quiz"),
-//   wheel(name: "wheel"),
-//   // water(name: "water"),
-//   // open_launch(name: "open_launch"), // 开屏
-//   // try_again(name: "try_again"), // 开屏
-//   appleCash(name: "appleCash"),
-//   moneyCash(name: "moneyCash"),
-//   unknow(name: "unknow"),
-//   skip_wait(name: "skip_wait");
 //
-//   const EnumGetScene({required this.name});
-//
-//   final String name;
-// }
-//
-// enum EnumAdsPlatform {
-//   max("max"),
-//   topon("topon");
-//
-//   const EnumAdsPlatform(this.name);
-//
-//   final String name;
-// }
-//
-// enum EnumAdsType {
-//   interstitial("interstitial"),
-//   reward("reward");
-//
-//   const EnumAdsType(this.name);
-//
-//   final String name;
-// }
 //
 // class GGCommonJson {
 //   // 哪种方案 A 老方案 B 新方案
@@ -152,3 +119,31 @@
 //
 //   static var local =localB;
 // }
+enum EnumAdsPlatform {
+  max("max"),
+  topon("topon");
+
+  const EnumAdsPlatform(this.name);
+
+  final String name;
+}
+
+enum EnumAdsType {
+  interstitial("interstitial"),
+  reward("reward");
+
+  const EnumAdsType(this.name);
+
+  final String name;
+}
+enum EnumGetScene {
+
+  quiz(name: "quiz"),
+  wheel(name: "wheel"),
+
+  unknow(name: "unknow");
+
+  const EnumGetScene({required this.name});
+
+  final String name;
+}

@@ -286,12 +286,12 @@ class JCNet {
     _netDdd.options.headers['gaid'] = gaid;
     // _dio.options.headers['hair'] = bundle_id;
     var data2 = jsonEncode(dataJson);
-    pbLog("=========installJson:   $data2");
+    jcRizhi("=========installJson:   $data2");
     var response = await _netDdd.postUri(_url, data: dataJson);
 
     var data = response.data;
 
-    pbLog("===install=data:$data=");
+    jcRizhi("===install=data:$data=");
   }
 
   // 前后台切换的时候上报
@@ -306,7 +306,7 @@ class JCNet {
     // var data2 = jsonEncode(dataJson);
     // swPrint("=========sessionJson:   $data2");
     var response = await post("", data: sessionJson);
-    pbLog("=========sessionJson: response  ${response.toString()}");
+    jcRizhi("=========sessionJson: response  ${response.toString()}");
   }
 
   // format: reward interstitial
@@ -367,12 +367,12 @@ class JCNet {
     // adJson.addAll(stuntJson);
     // adJson['scrawny'] = stuntJson;
     var data = jsonEncode(adJson);
-    pbLog("=========adJson:   $data");
+    jcRizhi("=========adJson:   $data");
 
     Response response =  await post("", data: adJson);
     var responseData = response.data;
 
-    pbLog(
+    jcRizhi(
       "==========adJson: 返回结果 ${responseData}",
     );
   }
@@ -411,19 +411,19 @@ class JCNet {
     // _dio.options.headers['hair'] = bundle_id;
     // auto patch 104
     var data = jsonEncode(dataJson);
-    pbLog("=========buryPoint:构造数据   $data");
+    jcRizhi("=========buryPoint:构造数据   $data");
     try {
       Response response = await post("", data: dataJson);
       var responseData = response.data;
 
-      pbLog(
+      jcRizhi(
         "=========buryPoint:  stuntValue:$moistValue ${_netDdd.options.baseUrl}",
       );
-      pbLog(
+      jcRizhi(
         "=========buryPoint:返回结果  stuntValue:$moistValue  ${response.statusCode} $responseData",
       );
     } catch (e) {
-      pbLog("==埋点错误：$e==");
+      jcRizhi("==埋点错误：$e==");
     }
     // dataJson[stuntValue] = {"cloak_user": 0};
   }

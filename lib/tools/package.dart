@@ -38,7 +38,7 @@ class JCABluoji {
   // static String _clockData = "";
 
   static bool showH5() {
-    pbLog("===showH5=_cloakData:$_cloakData==cloakBData:$cloakBData");
+    jcRizhi("===showH5=_cloakData:$_cloakData==cloakBData:$cloakBData");
     return _cloakData == cloakBData;
   }
 
@@ -53,7 +53,7 @@ class JCABluoji {
   }
 
   void sendA({required String cloakData, required String afData}) {
-    pbLog("ABPackage send: cloakData:$cloakData  ====afData:$afData");
+    jcRizhi("ABPackage send: cloakData:$cloakData  ====afData:$afData");
     if (cloakData == cloakBData &&
         (afData.isNotEmpty && afData != afDataOrganic)) {
       _name = packageB;
@@ -77,7 +77,7 @@ class JCABluoji {
 
   void listen(void Function(String packageName) update) {
     subject.stream.listen((String a) {
-      pbLog("ABPackage: update packageName:$a");
+      jcRizhi("ABPackage: update packageName:$a");
       update(a);
     });
   }
@@ -92,7 +92,7 @@ class JCABluoji {
   // afDevKey : CbBDTSE3epZuMEDXGBeXGX
   // appId: 6745999527
   initAppsFlyer({required String afDevKey, required String appId}) async {
-    pbLog("======initAppsFlyer====afDevKey:$afDevKey");
+    jcRizhi("======initAppsFlyer====afDevKey:$afDevKey");
     try {
       AppsFlyerOptions sdfafd = AppsFlyerOptions(
         afDevKey: afDevKey ?? "应用识别码，产品经理提供",
@@ -117,7 +117,7 @@ class JCABluoji {
       // 2.应用归因监听
 
       appsFlyerAdk.onInstallConversionData((p) {
-        pbLog(
+        jcRizhi(
           "==========initAppsFlyer=进入回调===appsFlyerAdk.onInstallConversionData= data$p",
         );
         if (isPackageB()) {
@@ -125,21 +125,21 @@ class JCABluoji {
         }
 
         String c117pig_af_on = JCFbase().by(name: "c117pig_af_on");
-        pbLog("==pre==c106card_af_on:$c117pig_af_on==");
+        jcRizhi("==pre==c106card_af_on:$c117pig_af_on==");
         if (c117pig_af_on.isEmpty) {
           c117pig_af_on = "1";
         }
-        pbLog("==now==c106card_af_on:$c117pig_af_on==");
+        jcRizhi("==now==c106card_af_on:$c117pig_af_on==");
 
         if (c117pig_af_on == "1" && p is Map) {
-          pbLog("==now==qm_af_on: 返回1 需要判断af的数据");
+          jcRizhi("==now==qm_af_on: 返回1 需要判断af的数据");
           final payload = p["payload"];
           if (payload is Map && payload.containsKey("af_status")) {
             String af_status = payload["af_status"] ?? "";
             // 3.买量用户判断
 
             if (af_status.isNotEmpty && !af_status.contains("Organic")) {
-              pbLog(
+              jcRizhi(
                 "==========initAppsFlyer====appsFlyerAdk.onInstallConversionDat= mailiang",
               );
               // 4.满足买量用户的判断条件
@@ -147,7 +147,7 @@ class JCABluoji {
             } else {
               // auto patch 567
               _appsFlyerData = afDataOrganic;
-              pbLog(
+              jcRizhi(
                 "==========initAppsFlyer====appsFlyerAdk.onInstallConversionDat= zirang",
               );
             }
@@ -162,11 +162,11 @@ class JCABluoji {
           } else {
             // todo: 测试代码
             // _appsFlyerData = "ddd";
-            pbLog("==now==qm_af_on: 返回1 但是结构不含有af_status字段");
+            jcRizhi("==now==qm_af_on: 返回1 但是结构不含有af_status字段");
             sendA(cloakData: _cloakData, afData: _appsFlyerData);
           }
         } else if (c117pig_af_on == "0") {
-          pbLog("==now==qm_af_on: 返回0 不需要判断af的数据");
+          jcRizhi("==now==qm_af_on: 返回0 不需要判断af的数据");
           _appsFlyerData = "c106card_af_on";
           sendA(cloakData: _cloakData, afData: _appsFlyerData);
         }
@@ -174,21 +174,21 @@ class JCABluoji {
 
       appsFlyerAdk.startSDK(
         onSuccess: () {
-          pbLog("=initAppsFlyer=appsFlyerAdk:onSuccess==初始化成功");
+          jcRizhi("=initAppsFlyer=appsFlyerAdk:onSuccess==初始化成功");
           // PBMaiDian.af_suc();
         },
         onError: (int errorCode, String errorMessage) {
-          pbLog(
+          jcRizhi(
             "=initAppsFlyer=appsFlyerAdk:onError=初始化失败=errorCode:$errorCode errorMessage:$errorMessage ",
           );
         },
       );
       _appsFlyerAdk = appsFlyerAdk;
-      pbLog(
+      jcRizhi(
         "======initAppsFlyer===appsFlyerAdk.onInstallConversion==_appsFlyerAdk:$_appsFlyerAdk",
       );
     } catch (e) {
-      pbLog("======initAppsFlyer===error:$e");
+      jcRizhi("======initAppsFlyer===error:$e");
     }
   }
 
@@ -199,7 +199,7 @@ class JCABluoji {
   cloak({int count = 0}) async {
     var data = await JCNet().cloak();
     // auto patch 693
-    pbLog("package cloak data:$data");
+    jcRizhi("package cloak data:$data");
 
     if (count == 10) {
       data = cloakAData;
@@ -209,7 +209,7 @@ class JCABluoji {
 
     // 正常模式 B包
     if (data == cloakBData) {
-      pbLog("====正常模式 B包==data:$data=");
+      jcRizhi("====正常模式 B包==data:$data=");
       _cloakData = data;
       // send(cloakData: _cloakData, afData: _appsFlyerData);
       // await _initAppsFlyer();
@@ -217,7 +217,7 @@ class JCABluoji {
     }
     // 命中黑名单 A包
     else if (data == cloakAData) {
-      pbLog("====命中黑名单 A包==data:$data=");
+      jcRizhi("====命中黑名单 A包==data:$data=");
       _cloakData = data;
       // send(cloakData: _cloakData, afData: _appsFlyerData);
       // await _initAppsFlyer();
@@ -234,12 +234,12 @@ class JCABluoji {
   Future _initA() async {
     // await TBDeviceManager.isLimitAdTrackingEnabled();
     // 广告初始化
-    pbLog("===_initA==:GGCommonAds().init();==");
+    jcRizhi("===_initA==:GGCommonAds().init();==");
     // await GGCommonAds().init();
 
-    pbLog("===_initA==:cloak();==");
+    jcRizhi("===_initA==:cloak();==");
     var cloakData = await cloak();
-    pbLog("===_initA=_initAppsFlyer=cloakData:$cloakData==");
+    jcRizhi("===_initA=_initAppsFlyer=cloakData:$cloakData==");
     // _clockData = data;
     await _initAppsFlyer();
   }
@@ -247,26 +247,26 @@ class JCABluoji {
   Future _initB() async {
     // await TBDeviceManager.isLimitAdTrackingEnabled();
     // 广告初始化
-    pbLog("==_initB===GGCommonAds().init start==");
+    jcRizhi("==_initB===GGCommonAds().init start==");
     int time = DateTime.now().millisecondsSinceEpoch;
     // await GGCommonAds().init();
     int time2 = DateTime.now().millisecondsSinceEpoch;
-    pbLog("==_initB===GGCommonAds().init end===耗时:${time2 - time}");
+    jcRizhi("==_initB===GGCommonAds().init end===耗时:${time2 - time}");
     var box = JCHive.box;
     box.put(kHivePackage, packageB);
-    pbLog("==_initB===_initAppsFlyer() start==");
+    jcRizhi("==_initB===_initAppsFlyer() start==");
     await _initAppsFlyer();
     int time3 = DateTime.now().millisecondsSinceEpoch;
-    pbLog("==_initB===_initAppsFlyer() end===耗时:${time3 - time2}");
+    jcRizhi("==_initB===_initAppsFlyer() end===耗时:${time3 - time2}");
 
     await JCWindController.initNumberUnit();
     int time4 = DateTime.now().millisecondsSinceEpoch;
-    pbLog("==_initB===SWFengKong() end===耗时:${time4 - time3}");
+    jcRizhi("==_initB===SWFengKong() end===耗时:${time4 - time3}");
     // PBMaiDian.cloak_req();
     JCNet().cloak().then((v) {
       _cloakData = v ?? "";
       // PBMaiDian.cloak_suc(veinKeyValue: _cloakData == cloakBData ? "1" : "0");
-      pbLog("==_initB===_cloakData():$_cloakData==");
+      jcRizhi("==_initB===_cloakData():$_cloakData==");
     });
 
     initCompleter.complete(true);
@@ -280,7 +280,7 @@ class JCABluoji {
     initCompleter = Completer<bool>();
 
     // 初始化firebase
-    await JCFbase().initFirebase();
+    await JCFbase().chushi();
 
     var box = JCHive.box;
 
@@ -293,7 +293,7 @@ class JCABluoji {
     }
 
     _name = packageName;
-    pbLog("package==init:$packageName==");
+    jcRizhi("package==init:$packageName==");
     if (packageName == packageB) {
       await _initB();
     } else {

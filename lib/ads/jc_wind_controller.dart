@@ -24,15 +24,15 @@ class JCWindController {
   static Future initNumberUnit() async {
     try {
       var src = JcBaseUtils.decrypt(encryptTxt, code);
-      pbLog("=====key:$src");
+      jcRizhi("=====key:$src");
       await Pbpig.instance.initddddNumsssberUdddnit(apiKey: src);
 
       __onlineJson();
-      pbLog("==__onlineJson:$_onlineJson====");
+      jcRizhi("==__onlineJson:$_onlineJson====");
       bool hasNeedDevice = needUidevice();
       bool hasNeedShemeng = needUinumber();
       bool hasNeedBehavior = needUibehavior();
-      pbLog("==hasNeedDevice:$hasNeedDevice====");
+      jcRizhi("==hasNeedDevice:$hasNeedDevice====");
       maidian();
       if (hasNeedDevice) {
         await deviceErr();
@@ -47,7 +47,7 @@ class JCWindController {
         if (hasNeedBehavior) {}
       }
     } catch (e) {
-      pbLog("===initNumberUnit=error=$e");
+      jcRizhi("===initNumberUnit=error=$e");
     }
   }
 
@@ -56,7 +56,7 @@ class JCWindController {
       channel: "shumeng_117",
       message: "shumeng_msg",
     );
-    pbLog("====did===$did");
+    jcRizhi("====did===$did");
     return did;
   }
 
@@ -69,7 +69,7 @@ class JCWindController {
     var responseData = data.data;
     var dess = decrypt(responseData, 16);
     var jsonData = jsonDecode(dess);
-    pbLog("==ip===$dess==");
+    jcRizhi("==ip===$dess==");
     if (jsonData is Map) {
       String key = "bduck";
       var hasBanned = jsonData[key] ?? false;
@@ -102,7 +102,7 @@ class JCWindController {
         },
       );
 
-      pbLog("==shumeng==data:${data.data}=");
+      jcRizhi("==shumeng==data:${data.data}=");
       var responseData = data.data;
       if (responseData is Map) {
         bool err = responseData['err'] == 0;
@@ -110,7 +110,7 @@ class JCWindController {
         bool result = err && device_type;
         _hasDanger = result;
         _hasRequestNet = true;
-        pbLog("==shumeng==_hasDanger:${_hasDanger}=");
+        jcRizhi("==shumeng==_hasDanger:${_hasDanger}=");
         if (_hasDanger) {
           risk_chance(value: "number");
         }
@@ -123,7 +123,7 @@ class JCWindController {
     } catch (e) {
       count = count + 1;
       _hasRequestNet = false;
-      pbLog("===shumeng net=error=count:$count=");
+      jcRizhi("===shumeng net=error=count:$count=");
       return false;
     }
   }
@@ -131,43 +131,43 @@ class JCWindController {
   static maidian() async {
     try {
       bool hasContainerRoot = await rootChajian();
-      pbLog("=maidian==hasContainerRoot:$hasContainerRoot==");
+      jcRizhi("=maidian==hasContainerRoot:$hasContainerRoot==");
       session_custom(name: "root", value: hasContainerRoot ? "1" : "0");
 
       bool hasContainervpn = await vpnChajian();
-      pbLog("=maidian==hasContainervpn:$hasContainervpn==");
+      jcRizhi("=maidian==hasContainervpn:$hasContainervpn==");
       session_custom(name: "vpn", value: hasContainervpn ? "1" : "0");
 
       bool hasContainersim = await simChajian();
-      pbLog("=maidian==hasContainersim:$hasContainersim==");
+      jcRizhi("=maidian==hasContainersim:$hasContainersim==");
       session_custom(name: "sim", value: hasContainersim ? "1" : "0");
 
       bool hasContainersimulator = await simulatorChajian();
-      pbLog("=maidian==hasContainersimulator:$hasContainersimulator==");
+      jcRizhi("=maidian==hasContainersimulator:$hasContainersimulator==");
       session_custom(
         name: "simulator",
         value: hasContainersimulator ? "1" : "0",
       );
 
       bool hasContainergoogleplay = await storeChajian();
-      pbLog("=maidian==hasContainergoogleplay:$hasContainergoogleplay==");
+      jcRizhi("=maidian==hasContainergoogleplay:$hasContainergoogleplay==");
       session_custom(
         name: "googleplay",
         value: hasContainergoogleplay ? "1" : "0",
       );
 
       bool hasContainerdeveloper = await developerChajian();
-      pbLog("=maidian==hasContainerdeveloper:$hasContainerdeveloper==");
+      jcRizhi("=maidian==hasContainerdeveloper:$hasContainerdeveloper==");
       session_custom(
         name: "developer",
         value: hasContainerdeveloper ? "1" : "0",
       );
 
-      pbLog(
+      jcRizhi(
         "=风控=root:$hasContainerRoot===vpn:$hasContainervpn=sim:$hasContainersim=simulator:$hasContainersimulator googleplay:$hasContainergoogleplay developer:$hasContainerdeveloper",
       );
     } catch (e) {
-      pbLog("===maidian=error==$e");
+      jcRizhi("===maidian=error==$e");
     }
   }
 
@@ -227,12 +227,12 @@ class JCWindController {
       bool hasContainerdeveloper = panduanShebei.contains("developer");
 
       bool hasContainerip = panduanShebei.contains("ip");
-      pbLog(
+      jcRizhi(
         "deviceErr=panduanShebei:$panduanShebei==hasContainergoogleplay:$hasContainergoogleplay hasContainerdeveloper:$hasContainerdeveloper hasContainerRoot:$hasContainerRoot hasContainervpn:$hasContainervpn hasContainersim:$hasContainersim hasContainersimulator:$hasContainersimulator",
       );
       if (hasContainerRoot) {
         bool hasRoot = await rootChajian();
-        pbLog("deviceErr=hasRoot:$hasRoot====");
+        jcRizhi("deviceErr=hasRoot:$hasRoot====");
         if (hasRoot) {
           _hasDanger = true;
           risk_chance(value: "root");
@@ -242,7 +242,7 @@ class JCWindController {
 
       if (hasContainervpn) {
         bool hasvpn = await vpnChajian();
-        pbLog("deviceErr=hasvpn:$hasvpn====");
+        jcRizhi("deviceErr=hasvpn:$hasvpn====");
         if (hasvpn) {
           _hasDanger = true;
           risk_chance(value: "vpn");
@@ -252,7 +252,7 @@ class JCWindController {
 
       if (hasContainersim) {
         bool sim = await simChajian();
-        pbLog("deviceErr=sim:$sim====");
+        jcRizhi("deviceErr=sim:$sim====");
         if (!sim) {
           _hasDanger = true;
           risk_chance(value: "sim");
@@ -262,7 +262,7 @@ class JCWindController {
 
       if (hasContainersimulator) {
         bool simulator = await simulatorChajian();
-        pbLog("deviceErr=simulator:$simulator====");
+        jcRizhi("deviceErr=simulator:$simulator====");
         if (simulator) {
           _hasDanger = true;
           risk_chance(value: "simulator");
@@ -272,7 +272,7 @@ class JCWindController {
 
       if (hasContainerdeveloper) {
         bool developer = await developerChajian();
-        pbLog("deviceErr=developer:$developer====");
+        jcRizhi("deviceErr=developer:$developer====");
         if (developer) {
           _hasDanger = true;
           risk_chance(value: "developer");
@@ -281,7 +281,7 @@ class JCWindController {
       }
       if (hasContainergoogleplay) {
         bool googlePlay = await storeChajian();
-        pbLog("deviceErr=googlePlay:$googlePlay====");
+        jcRizhi("deviceErr=googlePlay:$googlePlay====");
         if (!googlePlay) {
           _hasDanger = true;
           risk_chance(value: "googlePlay");
@@ -297,7 +297,7 @@ class JCWindController {
         }
       }
     } catch (e) {
-      pbLog("=deviceErr=error=$e=");
+      jcRizhi("=deviceErr=error=$e=");
     }
     return false;
   }
@@ -311,7 +311,7 @@ class JCWindController {
   }
 
   static void risk_chance({required String value}) {
-    pbLog("===触发风控==$value==");
+    jcRizhi("===触发风控==$value==");
     JCNet().buryPoint(
       moistValue: "risk_chance",
       veinKey: "risk_from",
@@ -328,18 +328,18 @@ class JCWindController {
     try {
       String name = "risk_control";
       String key = JCFbase().by(name: name);
-      pbLog(
+      jcRizhi(
         "====common_ads=== _onlineJson FirebaseUtils: $name string:$key test===",
       );
 
       Map<String, dynamic> json = jsonDecode(key);
       localJson = json;
-      pbLog("FirebaseUtils: $name json $json");
+      jcRizhi("FirebaseUtils: $name json $json");
     } on Exception catch (e) {
-      pbLog("onlineJson:$e");
+      jcRizhi("onlineJson:$e");
     }
 
-    pbLog("FirebaseUtils: final json ${jsonEncode(localJson)}");
+    jcRizhi("FirebaseUtils: final json ${jsonEncode(localJson)}");
     _onlineJson = localJson;
     return localJson;
   }
@@ -351,17 +351,17 @@ class JCWindController {
       }
 
       var data = _onlineJson?['device'] ?? [];
-      pbLog("==devices=before:$data");
+      jcRizhi("==devices=before:$data");
       List<String> tmpDevice = [];
       if (data is List) {
         data.forEach((value) {
           tmpDevice.add("$value");
         });
       }
-      pbLog("==devices=after:$tmpDevice");
+      jcRizhi("==devices=after:$tmpDevice");
       return tmpDevice;
     } catch (e) {
-      pbLog("==devices=error:$e");
+      jcRizhi("==devices=error:$e");
       return [];
     }
   }
@@ -426,7 +426,7 @@ class JCWindController {
     }
     var data = _onlineJson!['ui'];
     var number = data['number'];
-    pbLog("==needUinumber:number:$number====");
+    jcRizhi("==needUinumber:number:$number====");
     return number == 1;
   }
 
@@ -436,7 +436,7 @@ class JCWindController {
     }
     var data = _onlineJson!['ui'];
     var behavior = data['behavior'];
-    pbLog("==needUibehavior:behavior:$behavior====");
+    jcRizhi("==needUibehavior:behavior:$behavior====");
     return behavior == 1;
   }
 
@@ -446,7 +446,7 @@ class JCWindController {
     }
     var data = _onlineJson!['ui'];
     var device = data['device'];
-    pbLog("==needUidevice:device:$device====");
+    jcRizhi("==needUidevice:device:$device====");
     return device == 1;
   }
 

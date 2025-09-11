@@ -1,0 +1,286 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:ui' as ui;
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:quiz123/view/jc_text_border.dart';
+
+import '../../tools/package.dart';
+import '../../tools/rizhi.dart';
+import '../../yy_gj/jc_luy.dart';
+
+double scale = 2;
+
+class JCKaiping extends StatefulWidget {
+  const JCKaiping({super.key});
+
+  @override
+  State<JCKaiping> createState() => _JCKaipingState();
+}
+
+class _JCKaipingState extends State<JCKaiping> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initFrames();
+  }
+
+  initFrames(){
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // AssetImage assetImage = AssetImage(Assets.imgB.cardBg.path);
+      // precacheImage(assetImage, context);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
+    Locale yuyan = ui.window.locale;
+
+    jcRizhi("======国家：$yuyan。${"update_language".tr}");
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+      child: Material(
+        color: Colors.white,
+        child: Stack(
+          children: [
+            // Image.asset(
+            //   Assets.tupian.splash.path,
+            //   width: double.infinity,
+            //   height: double.infinity,
+            //   fit: BoxFit.fill,
+            // ),
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.amber,
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 144.h * scale,
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 478.w,
+                      height: 403.w,
+                      // child: Image.asset(
+                      //   Assets.tupian.splashIcon.path,
+                      //   width: double.infinity,
+                      //   height: double.infinity,
+                      //   fit: BoxFit.contain,
+                      // ),
+                    ),
+                    SizedBox(height: 30.h),
+                  ],
+                ),
+              ),
+            ),
+
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 648.h * scale,
+              child: Center(
+                child: Column(
+                  children: [
+                    SplashProgress(),
+                    SizedBox(height: 30.h),
+                    SizedBox(
+                      width: 462.w,
+                      height: 36.h,
+                      // child: Image.asset(
+                      //   Assets.imgB.splashDes.path,
+                      //   width: double.infinity,
+                      //   height: double.infinity,
+                      //   fit: BoxFit.contain,
+                      // ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SplashProgress extends StatefulWidget {
+  const SplashProgress({super.key});
+
+  @override
+  State<SplashProgress> createState() => _SplashProgressState();
+}
+
+class _SplashProgressState extends State<SplashProgress> {
+  double startTime = 0.0;
+  late Timer _timer;
+  final Duration _delayTime = Duration(milliseconds: _oneTime);
+  double _allTime = 2000;
+  static const int _oneTime = 100;
+  bool canGoToMain = true;
+  Timer? _delayTimer;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+
+      jcRizhi("======= _allTime: $_allTime");
+      double count = _allTime / _oneTime;
+      _timer = Timer.periodic(_delayTime, (time) {
+        // ggPrint("time:${time.tick} =========count:$count");
+        int tick = time.tick;
+
+        if (tick > count + 1) {
+          _timer.cancel();
+
+          jcRizhi("======= _allTime:$_allTime 计时器: to home");
+          canGoToMain = false;
+          xiayigeyemina();
+        } else {
+          setState(() {
+            startTime = tick * _oneTime / _allTime;
+            if (startTime >= 1) {
+              startTime = 1.0;
+            }
+          });
+        }
+      });
+      // abInit();
+      aaabbbbChushi();
+    });
+  }
+
+
+  aaabbbbChushi() async {
+    // int time = DateTime.now().millisecondsSinceEpoch;
+    // jcRizhi("==PBABLogic().init start====");
+    // // // // 5 ab包逻辑
+    // bool result = await jcRizhiicAB().init();
+    // await PBCommonAds().init();
+    //
+    // int time2 = DateTime.now().millisecondsSinceEpoch;
+    // jcRizhi(
+    //   "==PBABLogic().init end==canGoToMain:$canGoToMain=result:$result=耗时:${time2 - time}",
+    // );
+    // // await Future.delayed(Duration(milliseconds: 3000));
+    // _timer.cancel();
+    // if (canGoToMain) {
+    //   jcRizhi("==PBABLogic().init 等待进入main page====");
+    //   setState(() {
+    //     startTime = 1.0;
+    //   });
+    //   await Future.delayed(Duration(milliseconds: _oneTime * 2));
+    //
+    //   xiayigeyemina();
+    // }
+  }
+
+  xiayigeyemina() {
+    Get.offNamed(JcLuy.zhuye);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        JCTextBorder(
+          text: "${(startTime * 100.toInt()).toStringAsFixed(0)}%",
+          foreground: Color(0xff3D100E),
+          fontWeight: FontWeight.w700,
+          fontSize: 42.sp,
+          fontColor: Color(0xffF9F7ED),
+        ),
+        SizedBox(
+          width: 650.w,
+          height: 30.w,
+          child: AnimatedGradientProgressBar(
+            value: startTime, // 表示 60%
+            gradientColors: [
+              Color(0xffEFFF04),
+              Color(0xffF9B821),
+              Color(0xffF7AA0C),
+              Color(0xffFBD107),
+            ],
+            height: 30.w,
+            borderRadius: BorderRadius.circular(30.w),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _timer.cancel();
+    _delayTimer?.cancel();
+  }
+}
+
+class AnimatedGradientProgressBar extends StatelessWidget {
+  final BorderRadius borderRadius;
+  final double value; // 当前进度 0.0 ~ 1.0
+  final double height;
+  final Duration duration;
+  final List<Color> gradientColors;
+
+  const AnimatedGradientProgressBar({
+    super.key,
+    required this.value,
+    this.height = 8.0,
+    this.duration = const Duration(milliseconds: 100),
+    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
+    this.gradientColors = const [Colors.blue, Colors.purple],
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TweenAnimationBuilder<double>(
+      tween: Tween<double>(begin: 0.0, end: value.clamp(0.0, 1.0)),
+      duration: duration,
+      curve: Curves.linear,
+      builder: (context, animatedValue, child) {
+        return ClipRRect(
+          borderRadius: borderRadius,
+          child: Container(
+            height: height,
+            decoration: BoxDecoration(color: Color(0xff633836)),
+            child: FractionallySizedBox(
+              alignment: Alignment.centerLeft,
+              widthFactor: animatedValue,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: gradientColors,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  border: Border.all(color: Color(0xff421614), width: 2.w),
+                  borderRadius: BorderRadius.circular(height),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

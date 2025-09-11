@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../jichu_kuang/jichu_kuang.dart';
 
-import '../../wangluo/event_report.dart';
+import '../../wangluo/shijian_baogao.dart';
 
 showAdLimitDialog(
   BuildContext context, {

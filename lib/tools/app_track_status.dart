@@ -36,7 +36,7 @@ class JCAppTrackStatus {
       firstLogin = true;
     }
     _hasDiyiLaunchToday = firstLogin;
-    pbLog(
+    jcRizhi(
       "todayUtcString:$todayUtcString lastLoginDate:$lastLoginDate isFirstLoginToday:$firstLogin",
     );
 // auto patch 415
@@ -50,8 +50,6 @@ class JCAppTrackStatus {
     if (firstLogin) {
       day = day + 1;
     }
-
-    pbLog("======launchDay:$day isFirstLoginToday:$isFirstLoginToday");
     box.put(_launchDay, day);
     return day;
   }
@@ -68,7 +66,7 @@ class JCAppTrackStatus {
 
     count = count + 1;
     box.put(_launchCount, count);
-    pbLog("initLaunchCount:$count  isFirstLoginToday:$isFirstLoginToday");
+    jcRizhi("initLaunchCount:$count  isFirstLoginToday:$isFirstLoginToday");
     return count;
   }
 
@@ -78,7 +76,7 @@ class JCAppTrackStatus {
   // 启动了多少次
   static int launchNum() {
     int count = box.get(_launchCount) ?? 1;
-    pbLog("======GGLoginTracker===launchCount:$count");
+    jcRizhi("======GGLoginTracker===launchCount:$count");
     return count;
   }
 
