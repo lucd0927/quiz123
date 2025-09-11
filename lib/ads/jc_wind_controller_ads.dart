@@ -5,7 +5,7 @@ import '../../hive/jc_hive.dart';
 import '../../tools/app_track_status.dart';
 import '../../tools/rizhi.dart';
 import 'jc_wind_controller.dart';
-import 'kuangkuang/guanggao_limit.dart';
+import 'kuang//guanggao_limit.dart';
 
 class FKAds {
   static final FKAds _instance = FKAds._();

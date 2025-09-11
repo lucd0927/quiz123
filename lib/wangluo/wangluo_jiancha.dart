@@ -1,155 +1,155 @@
-// 🛠️ modified by obfuscator tool at 2025-07-09 11:08:44.317805
-import 'dart:async';
-import 'dart:io';
-
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:get/get.dart';
-
-
-import '../ads/jc_common_config.dart';
-import '../ads/kuangkuang/no_net.dart';
-import '../hive/jc_hive.dart';
-import '../tools/rizhi.dart';
-
-JCNetJiancha pbWangluoCheck = JCNetJiancha();
-
-class JCNetJiancha {
-  StreamSubscription<List<ConnectivityResult>>? _dingyue;
-
-  report() {
-    _report_no_internet_popup();
-    // _report_no_internet_ack();
-    // _report_no_internet_close();
-  }
-
-  init() {
-    _dingyue = Connectivity().onConnectivityChanged.listen((
-      List<ConnectivityResult> connectivityResult,
-    ) async {
-      // This condition is for demo purposes only to explain every connection type.
-      // Use conditions which work for your requirements.
-      if (connectivityResult.contains(ConnectivityResult.mobile)) {
-        // Mobile network available.
-
-        bool result = await isOnline();
-        if (result) {
-          report();
-        }
-        print("移动网络连接 result:$result");
-      } else if (connectivityResult.contains(ConnectivityResult.wifi)) {
-        // Wi-fi is available.
-        // Note for Android:
-        // When both mobile and Wi-Fi are turned on system will return Wi-Fi only as active network type
-        bool result = await isOnline();
-        if (result) {
-          report();
-        }
-        print("📡 WiFi 网络连接 result:$result");
-      } else if (connectivityResult.contains(ConnectivityResult.ethernet)) {
-        // Ethernet connection available.
-      } else if (connectivityResult.contains(ConnectivityResult.vpn)) {
-        // Vpn connection active.
-        // Note for iOS and macOS:
-        // There is no separate network interface type for [vpn].
-        // It returns [other] on any device (also simulator)
-      } else if (connectivityResult.contains(ConnectivityResult.bluetooth)) {
-        // Bluetooth connection available.
-      } else if (connectivityResult.contains(ConnectivityResult.other)) {
-        // Connected to a network which is not in the above mentioned networks.
-      } else if (connectivityResult.contains(ConnectivityResult.none)) {
-        // No available network types
-        print("没有网络连接");
-        if (Get.context != null) {
-          showMeiwangDialog(Get.context!, onBtn: () {}, onClose: () {});
-          recordCountPop(EnumGetScene.unknow);
-        }
-      }
-
-      // if (result == ConnectivityResult.none) {
-      //   print("🚫 没有网络连接");
-      // } else if (result == ConnectivityResult.mobile) {
-      //   print("📶 移动网络连接");
-      // } else if (result == ConnectivityResult.wifi) {
-      //   print("📡 WiFi 网络连接");
-      // }   // Received changes in available connectivity types!
-    });
-  }
-
-  Future<bool> isOnline() async {
-    try {
-      final asdfasfd = await InternetAddress.lookup('www.google.com');
-      bool net2 = asdfasfd.isNotEmpty && asdfasfd[0].rawAddress.isNotEmpty;
-      final asdfasfdwer = await InternetAddress.lookup('www.youtube.com');
-
-      bool net = asdfasfdwer.isNotEmpty && asdfasfdwer[0].rawAddress.isNotEmpty;
-      print("ping youtube wangluo:$net ;ping google wangluo:$net2");
-      return net || net2;
-    } catch (_) {
-      return false;
-    }
-  }
-
-  dispose() {
-    _dingyue?.cancel();
-  }
-}
-
-const h_no_network_pop = "fhdfh";
-const h_no_network_pop_ack = "fghjfghj";
-const h_no_network_pop_close = "erytyurtasdfa";
-
-void _record(String key, EnumGetScene scene) {
-  try {
-    var dataScene = JCHive.box.get(key) ?? {};
-    String name = scene.name;
-    dataScene[name] = name;
-    JCHive.box.put(key, dataScene);
-  } catch (e) {
-    pbLog("==_record==error:$e");
-  }
-}
-
-void recordCountPop(EnumGetScene scene) {
-  _record(h_no_network_pop, scene);
-}
-
-void recordCountAck(EnumGetScene scene) {
-  _record(h_no_network_pop_ack, scene);
-}
-
-void recordCountClose(EnumGetScene scene) {
-  _record(h_no_network_pop_close, scene);
-}
-
-_report_no_internet_popup() {
-  String key = h_no_network_pop;
-  var dataScene = JCHive.box.get(key) ?? {};
-  if (dataScene is Map) {
-    dataScene.forEach((key, value) {
-      // PBMaiDian.no_network_pop();
-    });
-  }
-  JCHive.box.put(key, null);
-}
-
-_report_no_internet_ack() {
-  String key = h_no_network_pop_ack;
-  var dataScene = JCHive.box.get(key) ?? {};
-  if (dataScene is Map) {
-    dataScene.forEach((key, value) {
-      // GGEventReport.no_internet_ack(veinKeyValue: "$key");
-    });
-  }
-  JCHive.box.put(key, null);
-}
-
-_report_no_internet_close() {
-  String key = h_no_network_pop_close;
-  var dataScene = JCHive.box.get(key) ?? {};
-  if (dataScene is Map) {
-    dataScene.forEach((key, value) {
-      // GGEventReport.no_internet_close(veinKeyValue: "$key");
-    });
-  }
-  JCHive.box.put(key, null);
-}
+// // 🛠️ modified by obfuscator tool at 2025-07-09 11:08:44.317805
+// import 'dart:async';
+// import 'dart:io';
+//
+// import 'package:connectivity_plus/connectivity_plus.dart';
+// import 'package:get/get.dart';
+//
+//
+// import '../ads/jc_common_config.dart';
+// import '../ads/kuang/no_net.dart';
+// import '../hive/jc_hive.dart';
+// import '../tools/rizhi.dart';
+//
+// JCNetJiancha pbWangluoCheck = JCNetJiancha();
+//
+// class JCNetJiancha {
+//   StreamSubscription<List<ConnectivityResult>>? _dingyue;
+//
+//   report() {
+//     _report_no_internet_popup();
+//     // _report_no_internet_ack();
+//     // _report_no_internet_close();
+//   }
+//
+//   init() {
+//     _dingyue = Connectivity().onConnectivityChanged.listen((
+//       List<ConnectivityResult> connectivityResult,
+//     ) async {
+//       // This condition is for demo purposes only to explain every connection type.
+//       // Use conditions which work for your requirements.
+//       if (connectivityResult.contains(ConnectivityResult.mobile)) {
+//         // Mobile network available.
+//
+//         bool result = await isOnline();
+//         if (result) {
+//           report();
+//         }
+//         print("移动网络连接 result:$result");
+//       } else if (connectivityResult.contains(ConnectivityResult.wifi)) {
+//         // Wi-fi is available.
+//         // Note for Android:
+//         // When both mobile and Wi-Fi are turned on system will return Wi-Fi only as active network type
+//         bool result = await isOnline();
+//         if (result) {
+//           report();
+//         }
+//         print("📡 WiFi 网络连接 result:$result");
+//       } else if (connectivityResult.contains(ConnectivityResult.ethernet)) {
+//         // Ethernet connection available.
+//       } else if (connectivityResult.contains(ConnectivityResult.vpn)) {
+//         // Vpn connection active.
+//         // Note for iOS and macOS:
+//         // There is no separate network interface type for [vpn].
+//         // It returns [other] on any device (also simulator)
+//       } else if (connectivityResult.contains(ConnectivityResult.bluetooth)) {
+//         // Bluetooth connection available.
+//       } else if (connectivityResult.contains(ConnectivityResult.other)) {
+//         // Connected to a network which is not in the above mentioned networks.
+//       } else if (connectivityResult.contains(ConnectivityResult.none)) {
+//         // No available network types
+//         print("没有网络连接");
+//         if (Get.context != null) {
+//           showMeiwangDialog(Get.context!, onBtn: () {}, onClose: () {});
+//           recordCountPop(EnumGetScene.unknow);
+//         }
+//       }
+//
+//       // if (result == ConnectivityResult.none) {
+//       //   print("🚫 没有网络连接");
+//       // } else if (result == ConnectivityResult.mobile) {
+//       //   print("📶 移动网络连接");
+//       // } else if (result == ConnectivityResult.wifi) {
+//       //   print("📡 WiFi 网络连接");
+//       // }   // Received changes in available connectivity types!
+//     });
+//   }
+//
+//   Future<bool> isOnline() async {
+//     try {
+//       final asdfasfd = await InternetAddress.lookup('www.google.com');
+//       bool net2 = asdfasfd.isNotEmpty && asdfasfd[0].rawAddress.isNotEmpty;
+//       final asdfasfdwer = await InternetAddress.lookup('www.youtube.com');
+//
+//       bool net = asdfasfdwer.isNotEmpty && asdfasfdwer[0].rawAddress.isNotEmpty;
+//       print("ping youtube wangluo:$net ;ping google wangluo:$net2");
+//       return net || net2;
+//     } catch (_) {
+//       return false;
+//     }
+//   }
+//
+//   dispose() {
+//     _dingyue?.cancel();
+//   }
+// }
+//
+// const h_no_network_pop = "fhdfh";
+// const h_no_network_pop_ack = "fghjfghj";
+// const h_no_network_pop_close = "erytyurtasdfa";
+//
+// void _record(String key, EnumGetScene scene) {
+//   try {
+//     var dataScene = JCHive.box.get(key) ?? {};
+//     String name = scene.name;
+//     dataScene[name] = name;
+//     JCHive.box.put(key, dataScene);
+//   } catch (e) {
+//     pbLog("==_record==error:$e");
+//   }
+// }
+//
+// void recordCountPop(EnumGetScene scene) {
+//   _record(h_no_network_pop, scene);
+// }
+//
+// void recordCountAck(EnumGetScene scene) {
+//   _record(h_no_network_pop_ack, scene);
+// }
+//
+// void recordCountClose(EnumGetScene scene) {
+//   _record(h_no_network_pop_close, scene);
+// }
+//
+// _report_no_internet_popup() {
+//   String key = h_no_network_pop;
+//   var dataScene = JCHive.box.get(key) ?? {};
+//   if (dataScene is Map) {
+//     dataScene.forEach((key, value) {
+//       // PBMaiDian.no_network_pop();
+//     });
+//   }
+//   JCHive.box.put(key, null);
+// }
+//
+// _report_no_internet_ack() {
+//   String key = h_no_network_pop_ack;
+//   var dataScene = JCHive.box.get(key) ?? {};
+//   if (dataScene is Map) {
+//     dataScene.forEach((key, value) {
+//       // GGEventReport.no_internet_ack(veinKeyValue: "$key");
+//     });
+//   }
+//   JCHive.box.put(key, null);
+// }
+//
+// _report_no_internet_close() {
+//   String key = h_no_network_pop_close;
+//   var dataScene = JCHive.box.get(key) ?? {};
+//   if (dataScene is Map) {
+//     dataScene.forEach((key, value) {
+//       // GGEventReport.no_internet_close(veinKeyValue: "$key");
+//     });
+//   }
+//   JCHive.box.put(key, null);
+// }

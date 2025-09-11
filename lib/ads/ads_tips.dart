@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:get/get.dart';
 
 import '../view/jc_ts_kuang.dart';
-import 'kuangkuang/guanggao_failed.dart';
+import 'kuang/guanggao_failed.dart';
 
 
 class JSAdsTips {
