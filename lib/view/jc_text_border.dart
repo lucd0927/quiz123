@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PBFontBorder extends StatelessWidget {
-  const PBFontBorder({
+class JCTextBorder extends StatelessWidget {
+  const JCTextBorder({
     super.key,
     required this.text,
     this.foreground,

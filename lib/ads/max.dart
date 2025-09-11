@@ -4,7 +4,7 @@ import 'package:applovin_max/applovin_max.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../tools/base_utils.dart';
-import '../../tools/log.dart';
+import '../../tools/rizhi.dart';
 
 
 class GGMaxAdsNew {
@@ -27,7 +27,7 @@ class GGMaxAdsNew {
   }) async {
     // _cacheAdsData = cacheAdsData;
 
-    String asdfasfdmaxkey = PBBaseUtils.decrypt(encodeKey,117);
+    String asdfasfdmaxkey = JcBaseUtils.decrypt(encodeKey,117);
     pbLog("====GGMaxAdsNew=initMax====maxkey:$asdfasfdmaxkey");
     // AppLovinMAX.setVerboseLogging(true);
     MaxConfiguration? configuration = await AppLovinMAX.initialize(asdfasfdmaxkey);

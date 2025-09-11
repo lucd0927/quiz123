@@ -2,15 +2,15 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 
-import '../view/pb_tushi.dart';
-import 'kuangkuang/ad_failed.dart';
+import '../view/jc_ts_kuang.dart';
+import 'kuangkuang/guanggao_failed.dart';
 
 
-class GGAdsTips {
+class JSAdsTips {
   static void toast({
     String text = "Ad loading failed, please try again later",
   }) {
-    pbToast(text: text);
+    jcTsDialog(text: text);
   }
 
   static noAds({
@@ -19,10 +19,10 @@ class GGAdsTips {
   }) async {
     showAdFailedDialog(
       Get.context!,
-      onBtn: () {
+      onFunc: () {
         onTryAgain();
       },
-      onClose: () {
+      onFunc2: () {
         onClose();
       },
     );

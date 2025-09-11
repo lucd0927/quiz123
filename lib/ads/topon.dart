@@ -2,7 +2,7 @@
 
 import 'package:thinkup_sdk/at_index.dart';
 
-import '../../tools/log.dart';
+import '../../tools/rizhi.dart';
 
 
 final InitManger = InitTool();

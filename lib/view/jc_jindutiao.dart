@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PBProgress extends StatelessWidget {
-  const PBProgress({
+class JCJingdutiao extends StatelessWidget {
+  const JCJingdutiao({
     super.key,
     required this.height,
     required this.innerHeight,

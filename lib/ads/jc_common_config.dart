@@ -1,13 +1,13 @@
 import 'package:thinkup_sdk/at_index.dart';
 import 'package:applovin_max/applovin_max.dart';
 
-class GGCommonAdsListener {
+class JCCommonAdsListener {
   final InterstitialListener? interstitialListener;
   final RewardedAdListener? rewardedAdListener;
   final void Function(ATRewardResponse)? atRewardResponse;
   final void Function(ATInterstitialResponse)? atInterstitialResponse;
 
-  GGCommonAdsListener({
+  JCCommonAdsListener({
     required this.interstitialListener,
     required this.rewardedAdListener,
     required this.atRewardResponse,

@@ -6,10 +6,10 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 
 
-import '../guanggao/gg_common_config.dart';
-import '../guanggao/kuangkuang/mei_wang.dart';
+import '../ads/jc_common_config.dart';
+import '../ads/kuangkuang/no_net.dart';
 import '../hive/jc_hive.dart';
-import '../tools/log.dart';
+import '../tools/rizhi.dart';
 
 JCNetJiancha pbWangluoCheck = JCNetJiancha();
 

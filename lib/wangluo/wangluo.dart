@@ -7,8 +7,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_tba_info/flutter_tba_info.dart';
 
 // auto patch 457
-import '../peizhi/peizhi.dart';
-import '../tools/log.dart';
+import '../huanjing/peizhi.dart';
+import '../tools/rizhi.dart';
 
 class JCNet {
   late Dio _netDdd;
@@ -16,7 +16,7 @@ class JCNet {
   JCNet({String? url}) {
     _netDdd = Dio(
       BaseOptions(
-        baseUrl: url ?? JCPzHuanjing.instance.baseUrl(),
+        baseUrl: url ?? JCPzHuanjing.instance.jichuU(),
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
         sendTimeout: const Duration(seconds: 30),
@@ -71,7 +71,7 @@ class JCNet {
 
   Future<String> cloak() async {
     try {
-      _netDdd.options.baseUrl = JCPzHuanjing.instance.tttbbbaaaUrl();
+      _netDdd.options.baseUrl = JCPzHuanjing.instance.ccU();
       DateTime dateTime = DateTime.now();
       int client_ts = dateTime.millisecondsSinceEpoch;
       var distinct_id = await FlutterTbaInfo.instance.getDistinctId();
@@ -276,7 +276,7 @@ class JCNet {
 
     dataJson['kudo'] = bismuth;
     // dataJson.addAll(bismuth);
-    final Uri _url = Uri.parse(JCPzHuanjing.instance.baseUrl());
+    final Uri _url = Uri.parse(JCPzHuanjing.instance.jichuU());
 
     // Dio dio = Dio(
     //   BaseOptions(headers: {'nebulae': distinct_id, 'hair': bundle_id}),

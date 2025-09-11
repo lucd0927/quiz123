@@ -3,8 +3,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class PBAnimatedScale extends StatefulWidget {
-  const PBAnimatedScale({
+class JcAnimatedScale extends StatefulWidget {
+  const JcAnimatedScale({
     super.key,
     required this.child,
     this.milliseconds = 1000,
@@ -18,12 +18,12 @@ class PBAnimatedScale extends StatefulWidget {
   final double? maxScale;
 
   @override
-  State<PBAnimatedScale> createState() => _PBAnimatedScaleState();
+  State<JcAnimatedScale> createState() => _JcAnimatedScaleState();
 
 }
 
 
-class _PBAnimatedScaleState extends State<PBAnimatedScale> {
+class _JcAnimatedScaleState extends State<JcAnimatedScale> {
   double scale = 1;
 
   Timer? _timer;

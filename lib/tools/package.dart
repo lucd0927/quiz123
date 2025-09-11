@@ -8,22 +8,22 @@ import 'package:flutter_tba_info/flutter_tba_info.dart';
 
 import 'package:rxdart/rxdart.dart';
 
-import '../guanggao//common_ads.dart';
-import '../guanggao/fengkong.dart';
+import '../ads//jc_ads_tools.dart';
+import '../ads/jc_wind_controller.dart';
 import '../hive/jc_hive.dart';
 import '../wangluo/wangluo.dart';
-import 'firebbbbbb.dart';
-import 'log.dart';
+import 'jc_fbase.dart';
+import 'rizhi.dart';
 
-class PBLogicAB {
-  static final PBLogicAB _instance = PBLogicAB._();
+class JCABluoji {
+  static final JCABluoji _instance = JCABluoji._();
 
   // auto patch 642
-  factory PBLogicAB() {
+  factory JCABluoji() {
     return _instance;
   }
 
-  PBLogicAB._();
+  JCABluoji._();
 
   static const String cloakBData = "whinny";
   static const String cloakAData = "moreover";
@@ -59,7 +59,7 @@ class PBLogicAB {
       _name = packageB;
       var box = JCHive.box;
       box.put(kHivePackage, packageB);
-      PBFk.initNumberUnit();
+      JCWindController.initNumberUnit();
 
       initCompleter.complete(true);
     } else {
@@ -124,7 +124,7 @@ class PBLogicAB {
           return;
         }
 
-        String c117pig_af_on = PBFireBbbbbb().by(name: "c117pig_af_on");
+        String c117pig_af_on = JCFbase().by(name: "c117pig_af_on");
         pbLog("==pre==c106card_af_on:$c117pig_af_on==");
         if (c117pig_af_on.isEmpty) {
           c117pig_af_on = "1";
@@ -259,7 +259,7 @@ class PBLogicAB {
     int time3 = DateTime.now().millisecondsSinceEpoch;
     pbLog("==_initB===_initAppsFlyer() end===耗时:${time3 - time2}");
 
-    await PBFk.initNumberUnit();
+    await JCWindController.initNumberUnit();
     int time4 = DateTime.now().millisecondsSinceEpoch;
     pbLog("==_initB===SWFengKong() end===耗时:${time4 - time3}");
     // PBMaiDian.cloak_req();
@@ -280,7 +280,7 @@ class PBLogicAB {
     initCompleter = Completer<bool>();
 
     // 初始化firebase
-    await PBFireBbbbbb().initFirebase();
+    await JCFbase().initFirebase();
 
     var box = JCHive.box;
 

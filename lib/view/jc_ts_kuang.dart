@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:toastification/toastification.dart';
 
-pbToast({String text = "", Alignment alignment = Alignment.topCenter}) {
+jcTsDialog({String text = "", Alignment alignment = Alignment.topCenter}) {
   toastification.show(
     context: Get.context, // optional if you use ToastificationWrapper
     title: Text(

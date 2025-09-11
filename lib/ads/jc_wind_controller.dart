@@ -6,11 +6,11 @@ import 'package:tuple/tuple.dart';
 
 import '../../wangluo/wangluo.dart';
 import '../../tools/base_utils.dart';
-import '../../tools/firebbbbbb.dart';
-import '../../tools/log.dart';
+import '../../tools/jc_fbase.dart';
+import '../../tools/rizhi.dart';
 import 'sanfangku/pbpig.dart';
 
-class PBFk {
+class JCWindController {
   static bool _hasDanger = false;
 
   static bool get hasDanger => _hasDanger;
@@ -23,7 +23,7 @@ class PBFk {
 
   static Future initNumberUnit() async {
     try {
-      var src = PBBaseUtils.decrypt(encryptTxt, code);
+      var src = JcBaseUtils.decrypt(encryptTxt, code);
       pbLog("=====key:$src");
       await Pbpig.instance.initddddNumsssberUdddnit(apiKey: src);
 
@@ -327,7 +327,7 @@ class PBFk {
     Map<String, dynamic> localJson = local;
     try {
       String name = "risk_control";
-      String key = PBFireBbbbbb().by(name: name);
+      String key = JCFbase().by(name: name);
       pbLog(
         "====common_ads=== _onlineJson FirebaseUtils: $name string:$key test===",
       );

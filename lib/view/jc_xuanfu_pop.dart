@@ -7,57 +7,57 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class JCXuanfuPop {
 
   ///是否真正显示
-  bool get hasShow => _isShowing;
-  bool _isShowing = false;
-  OverlayEntry? _overlay;
+  bool get sfXianshi => _sfXianshiing;
+  bool _sfXianshiing = false;
+  OverlayEntry? _kkkk;
 
 
   void show({required BuildContext context, required Widget child}) {
     // if (_isShowing) return;
-    _overlay = null;
-    _overlay = OverlayEntry(
+    _kkkk = null;
+    _kkkk = OverlayEntry(
       builder: (context) {
-        return AnimatedScrollFloatingWidget(child: child);
+        return DonghuaGundongView(child: child);
       },
     );
-    Overlay.of(context).insert(_overlay!);
-    _isShowing = true;
+    Overlay.of(context).insert(_kkkk!);
+    _sfXianshiing = true;
   }
 
   void close() {
-    _isShowing = false;
-    _overlay?.remove();
-    _overlay = null;
+    _sfXianshiing = false;
+    _kkkk?.remove();
+    _kkkk = null;
   }
 }
 
-class AnimatedScrollFloatingWidget extends StatefulWidget {
-  const AnimatedScrollFloatingWidget({super.key, required this.child});
+class DonghuaGundongView extends StatefulWidget {
+  const DonghuaGundongView({super.key, required this.child});
 
   final Widget child;
 
   @override
-  State<AnimatedScrollFloatingWidget> createState() =>
-      _AnimatedScrollFloatingWidgetState();
+  State<DonghuaGundongView> createState() =>
+      _DonghuaGundongViewState();
 }
 
-class _AnimatedScrollFloatingWidgetState
-    extends State<AnimatedScrollFloatingWidget> {
+class _DonghuaGundongViewState
+    extends State<DonghuaGundongView> {
   late Timer _asdfasftimer;
   final double _xTransformScale = 0.15;
   final double _yTransformScale = 0.2;
-  bool xRightDirection = true;
-  double _width = 0;
-  double _height = 0;
 
+  bool xRightDirection = true;
 
   // 是否向下移动
   bool yDownDirection = true;
   int milliseconds = 2000;
-  double _topsw = 100.h; //悬浮窗距屏幕或父组件顶部的距离
-  double _leftsw = ScreenUtil().screenWidth - 72.h; //悬浮窗距屏幕或父组件左侧的距离
+  double _dingbuSW = 100.h; //悬浮窗距屏幕或父组件顶部的距离
+  double _zuobianSW = ScreenUtil().screenWidth - 72.h; //悬浮窗距屏幕或父组件左侧的距离
 
 
+  double _width = 0;
+  double _height = 0;
 
   // 是否向右移动
 
@@ -66,44 +66,44 @@ class _AnimatedScrollFloatingWidgetState
   void initState() {
     // TODO: implement initState
     super.initState();
-    _topsw = 50+200.h*Random().nextDouble(); //悬浮窗距屏幕或父组件顶部的距离
-    _leftsw = 50+(ScreenUtil().screenWidth - 72.h)*Random().nextDouble(); //悬浮窗距屏幕或父组件左侧的距离
+    _dingbuSW = 50+200.h*Random().nextDouble(); //悬浮窗距屏幕或父组件顶部的距离
+    _zuobianSW = 50+(ScreenUtil().screenWidth - 72.h)*Random().nextDouble(); //悬浮窗距屏幕或父组件左侧的距离
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _update();
+      _gengxin();
       _asdfasftimer = Timer.periodic(Duration(milliseconds: 2000), (timer) {
-        _update();
+        _gengxin();
       });
     });
   }
 
-  _update() {
+  _gengxin() {
     setState(() {
       if (xRightDirection) {
-        _leftsw = _width * _xTransformScale + _leftsw;
-        if (_leftsw >= _width - 50) {
-          _leftsw = _width - 100;
+        _zuobianSW = _width * _xTransformScale + _zuobianSW;
+        if (_zuobianSW >= _width - 50) {
+          _zuobianSW = _width - 100;
 
           xRightDirection = false;
         }
       } else {
-        _leftsw = _leftsw - _width * _xTransformScale;
-        if (_leftsw <= 0) {
-          _leftsw = 0;
+        _zuobianSW = _zuobianSW - _width * _xTransformScale;
+        if (_zuobianSW <= 0) {
+          _zuobianSW = 0;
           xRightDirection = true;
         }
       }
 
       if (yDownDirection) {
-        _topsw = _height * _yTransformScale + _topsw;
+        _dingbuSW = _height * _yTransformScale + _dingbuSW;
 
-        if (_topsw >= _height) {
-          _topsw = _height - 100;
+        if (_dingbuSW >= _height) {
+          _dingbuSW = _height - 100;
           yDownDirection = false;
         }
       } else {
-        _topsw = _topsw - _height * _yTransformScale;
-        if (_topsw <= 0) {
-          _topsw = 0;
+        _dingbuSW = _dingbuSW - _height * _yTransformScale;
+        if (_dingbuSW <= 0) {
+          _dingbuSW = 0;
           yDownDirection = true;
         }
       }
@@ -115,15 +115,15 @@ class _AnimatedScrollFloatingWidgetState
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraint) {
-        double width = constraint.maxWidth;
         double maxHeight = constraint.maxHeight;
+        double width = constraint.maxWidth;
         _width = width;
         _height = maxHeight;
         return Stack(
           children: [
             AnimatedPositioned(
-              left: _leftsw,
-              top: _topsw,
+              left: _zuobianSW,
+              top: _dingbuSW,
               duration: Duration(milliseconds: milliseconds + 500),
               curve: Curves.linear,
               child: widget.child,

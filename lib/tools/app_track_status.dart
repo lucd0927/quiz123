@@ -3,23 +3,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 
 import '../hive/jc_hive.dart';
-import 'log.dart';
+import 'rizhi.dart';
 
-class PBLoginGenzhong {
-  static const String _lastLoginKey = 'last_login_utc_date';
+class JCAppTrackStatus {
+  static const String _lastLoginKey = 'rgqerwreqwerqwfasdf';
 
   // 启动了多少天
-  static const String _launchDay = 'hive_launchDay';
+  static const String _launchDay = 'xxxadsfafd';
 
   // 启动了多少次
-  static const String _launchCount = 'hive_launchCount';
+  static const String _launchCount = 'qweqertsdfsdfg';
 
   static Box get box => JCHive.box;
 
   static void init() {
     _jianchaDenglu();
     _jisuanqidongCishu();
-    jisuanqidongduoshaoDay();
+    _tongjiQiDongDays();
   }
 
   /// 检查是否是当天第一次登录（基于 UTC 时间）
@@ -35,7 +35,7 @@ class PBLoginGenzhong {
       box.put(_lastLoginKey, todayUtcString);
       firstLogin = true;
     }
-    _isFirstLoginTodayasdfas = firstLogin;
+    _hasDiyiLaunchToday = firstLogin;
     pbLog(
       "todayUtcString:$todayUtcString lastLoginDate:$lastLoginDate isFirstLoginToday:$firstLogin",
     );
@@ -44,15 +44,7 @@ class PBLoginGenzhong {
   }
 
 
-  // 启动了多少天
-  static int qidongduoshaoDay() {
-    int day = box.get(_launchDay) ?? 1;
-
-    // ggPrint("======launchDay:$day isFirstLoginToday:$isFirstLoginToday");
-    return day;
-  }
-
-  static int jisuanqidongduoshaoDay() {
+  static int _tongjiQiDongDays() {
     bool firstLogin = isFirstLoginToday;
     int day = box.get(_launchDay) ?? 0;
     if (firstLogin) {
@@ -80,17 +72,27 @@ class PBLoginGenzhong {
     return count;
   }
 
+  static bool _hasDiyiLaunchToday = false;
+
+
   // 启动了多少次
-  static int qiduoCishu() {
+  static int launchNum() {
     int count = box.get(_launchCount) ?? 1;
     pbLog("======GGLoginTracker===launchCount:$count");
     return count;
   }
 
   /// 检查是否是当天第一次登录（基于 UTC 时间）
-  static bool get isFirstLoginToday => _isFirstLoginTodayasdfas;
+  static bool get isFirstLoginToday => _hasDiyiLaunchToday;
 
-  static bool _isFirstLoginTodayasdfas = false;
+  // 启动了多少天
+  static int howManyDays() {
+    int day = box.get(_launchDay) ?? 1;
+
+    // ggPrint("======launchDay:$day isFirstLoginToday:$isFirstLoginToday");
+    return day;
+  }
+
 
 
 

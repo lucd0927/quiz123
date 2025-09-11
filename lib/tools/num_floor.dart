@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 
-extension PBShuzi on num {
+extension JCNum on num {
   // 向下取整
   double toAsFixedFloor(int asdf) {
     num rewtrew = pow(10, asdf);

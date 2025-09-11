@@ -3,14 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../jichu_kuang/jichu_kuang.dart';
 
-showAdFailedDialog(
+
+showMeiwangDialog(
   BuildContext context, {
   required VoidCallback onBtn,
   required VoidCallback onClose,
 }) {
   return zhanshiJiChuKuang(
     context: context,
-    child: AdFailedWidget(
+    child: NoNetView(
       onClose: () {
         onClose();
       },
@@ -21,17 +22,17 @@ showAdFailedDialog(
   );
 }
 
-class AdFailedWidget extends StatefulWidget {
-  const AdFailedWidget({super.key, required this.onClose, required this.onBtn});
+class NoNetView extends StatefulWidget {
+  const NoNetView({super.key, required this.onClose, required this.onBtn});
 
   final VoidCallback onClose;
   final VoidCallback onBtn;
 
   @override
-  State<AdFailedWidget> createState() => _AdFailedWidgetState();
+  State<NoNetView> createState() => _NoNetViewState();
 }
 
-class _AdFailedWidgetState extends State<AdFailedWidget> {
+class _NoNetViewState extends State<NoNetView> {
   int index = 0;
   bool showStep2 = false;
 
@@ -93,7 +94,7 @@ class _AdFailedWidgetState extends State<AdFailedWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Ad loading failed",
+                      "No network currently",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color(0xffffffff),
@@ -112,7 +113,7 @@ class _AdFailedWidgetState extends State<AdFailedWidget> {
                     Navigator.pop(context);
                     widget.onClose();
                   },
-                  child: Icon(Icons.close, size: 40.h, color: Colors.white),
+                  child:Icon(Icons.close, size: 40.h, color: Colors.white),
                 ),
               ),
             ],
@@ -132,7 +133,7 @@ class _AdFailedWidgetState extends State<AdFailedWidget> {
                     SizedBox(height: 150.h),
                     Stack(
                       children: [
-                        Icon(Icons.add_chart_outlined,size: 288.h,),
+                        Icon(Icons.close, size: 288.h, color: Colors.white),
                       ],
                     ),
 

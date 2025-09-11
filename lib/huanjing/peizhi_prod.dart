@@ -5,17 +5,17 @@ import 'peizhi.dart';
 
 class PBPeizhiProd implements JCPzHuanjing{
   @override
-  String baseUrl() {
+  String jichuU() {
     // TODO: implement baseUrl
-    return "https://hug.piggybankboostreward.com/squaw/mulligan/borate";
+    return "";
   }
 
   @override
-  String tttbbbaaaUrl() {
+  String ccU() {
 // auto patch 793
     // TODO: implement cloakUrl
 // auto patch 79
-    return "https://sikorsky.piggybankboostreward.com/forget/cheyenne";
+    return "";
   }
 
 }    

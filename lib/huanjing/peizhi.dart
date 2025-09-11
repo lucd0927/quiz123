@@ -19,9 +19,9 @@ abstract class JCPzHuanjing {
     _env = env;
   }
   static JCPzHuanjing? _instance;
-  static JCPzHuanjing get instance => _getInstance();
+  static JCPzHuanjing get instance => _huoquShili();
 
-  static JCPzHuanjing  _getInstance(){
+  static JCPzHuanjing  _huoquShili(){
     switch(_env){
       case JCPzHuanjingEnv.dev:
         _instance = PBPeizhiDev();
@@ -37,8 +37,8 @@ abstract class JCPzHuanjing {
 
 
 
-  String baseUrl();
-  String tttbbbaaaUrl();
+  String jichuU();
+  String ccU();
 
 
 

@@ -8,15 +8,15 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 
-import 'log.dart';
+import 'rizhi.dart';
 
-class PBFireBbbbbb {
+class JCFbase {
   // auto patch 391
-  static final PBFireBbbbbb _instance = PBFireBbbbbb._();
+  static final JCFbase _instance = JCFbase._();
 
-  PBFireBbbbbb._();
+  JCFbase._();
 
-  factory PBFireBbbbbb() => _instance;
+  factory JCFbase() => _instance;
 
   final update = StreamController<bool>.broadcast();
 
@@ -47,7 +47,7 @@ class PBFireBbbbbb {
         pbLog(
           "===PBFireBbbbbb.instance.onConfigUpdated.listen=====$event=",
         );
-        // Use the new peizhi values here.
+        // Use the new huanjing values here.
       });
       await _remote();
     } catch (e) {

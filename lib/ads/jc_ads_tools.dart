@@ -11,30 +11,30 @@ import 'package:loader_overlay/loader_overlay.dart';
 
 import 'package:tuple/tuple.dart';
 
-import '../view/pb_tushi.dart';
+import '../view/jc_ts_kuang.dart';
 import 'ads_tips.dart';
 
-import 'fengkong.dart';
-import 'fengkong_ads.dart';
-import 'gg_common_config.dart';
+import 'jc_wind_controller.dart';
+import 'jc_wind_controller_ads.dart';
+import 'jc_common_config.dart';
 import 'max.dart';
-import 'model/ads_json_model.dart';
+import 'model/guanggao_model.dart';
 import 'topon.dart';
 import '../../hive/jc_hive.dart';
 import '../../wangluo/wangluo.dart';
-import '../../tools/denglugengzhong.dart';
+import '../../tools/app_track_status.dart';
 import '../../tools/package.dart';
-import '../../tools/firebbbbbb.dart';
-import '../../tools/log.dart';
+import '../../tools/jc_fbase.dart';
+import '../../tools/rizhi.dart';
 
-class PBCommonAds {
-  static final PBCommonAds _instance = PBCommonAds._();
+class JCAdsTools {
+  static final JCAdsTools _instance = JCAdsTools._();
 
-  factory PBCommonAds() {
+  factory JCAdsTools() {
     return _instance;
   }
 
-  PBCommonAds._();
+  JCAdsTools._();
 
   var box = JCHive.box;
 
@@ -58,12 +58,12 @@ class PBCommonAds {
 
   // key:rvone       item1: adid
   //                 item2: platform
-  //                 item3: guanggao type
+  //                 item3: ads type
   //                 item4: time out
   // var interstitialData = {};
   // var rewardData = {};
 
-  GGCommonAdsListener? _ggCommonAdsListener;
+  JCCommonAdsListener? _ggCommonAdsListener;
   static const String kSWlvac = "kSWlvac";
 
   static void addAdEndCount() {
@@ -139,7 +139,7 @@ class PBCommonAds {
     );
     if (mediationNetwork.isEmpty) return;
 
-    AppsflyerSdk? appsflyerSdk = PBLogicAB.appsflyerSdk();
+    AppsflyerSdk? appsflyerSdk = JCABluoji.appsflyerSdk();
     pbLog(
       "==logRevenue ===network:$network currency:$currency value:$value source:$source   appsflyerSdk:$appsflyerSdk",
     );
@@ -250,7 +250,7 @@ class PBCommonAds {
   void loadAdWithAdsId(EnumAdsType adsType, String adsId) {
     pbLog("=====loadAdWithAdsId EnumAdsType:$adsType  adsID:$adsId");
 
-    AdsJsonModel? adsJsonModel;
+    JCGuangGaoModel? adsJsonModel;
     if (adsType == EnumAdsType.reward) {
       adsJsonModel ??= jiliAdsModel[adsId];
     } else {
@@ -402,11 +402,11 @@ class PBCommonAds {
   }
 
   _initListener() {
-    _ggCommonAdsListener = GGCommonAdsListener(
+    _ggCommonAdsListener = JCCommonAdsListener(
       interstitialListener: InterstitialListener(
         onAdLoadedCallback: (ad) {
           pbLog(
-            "插屏initializeInterstitialAds======onAdLoadedCallback guanggao:${ad.adUnitId}",
+            "插屏initializeInterstitialAds======onAdLoadedCallback ads:${ad.adUnitId}",
           );
           onAdLoadedCallback(EnumAdsPlatform.max, EnumAdsType.interstitial, ad);
         },
@@ -452,7 +452,7 @@ class PBCommonAds {
       rewardedAdListener: RewardedAdListener(
         onAdLoadedCallback: (ad) {
           pbLog(
-            "激励initializeRewardedAd======onAdLoadedCallback guanggao:${ad.adUnitId}",
+            "激励initializeRewardedAd======onAdLoadedCallback ads:${ad.adUnitId}",
           );
           onAdLoadedCallback(EnumAdsPlatform.max, EnumAdsType.reward, ad);
         },
@@ -739,7 +739,7 @@ class PBCommonAds {
     pbLog("====init==end:$jiliAdsModel");
   }
 
-  _loadAd(AdsJsonModel? tuple4) {
+  _loadAd(JCGuangGaoModel? tuple4) {
     pbLog("==_loadAd===tuple4:$tuple4=");
     if (tuple4 == null) {
       return;
@@ -792,7 +792,7 @@ class PBCommonAds {
     return result;
   }
 
-  Future<Tuple2> _hasReady(AdsJsonModel? rvOne) async {
+  Future<Tuple2> _hasReady(JCGuangGaoModel? rvOne) async {
     pbLog("======_hasReady==Tuple4:$rvOne=");
     if (rvOne == null) {
       return Tuple2(false, "");
@@ -819,7 +819,7 @@ class PBCommonAds {
     return Tuple2(isReady, adsId);
   }
 
-  _showAd(AdsJsonModel? tuple4) {
+  _showAd(JCGuangGaoModel? tuple4) {
     pbLog("=====_showAd===tuple4:$tuple4");
     if (tuple4 == null) {
       return;
@@ -846,7 +846,7 @@ class PBCommonAds {
 
   Future<bool> _showAdLogic({
     required String adPosId,
-    required Map<String, AdsJsonModel> adIdWithJsonModel,
+    required Map<String, JCGuangGaoModel> adIdWithJsonModel,
     required List<String> curAdTypeIds,
     required EnumAdsType adsType,
     Completer<bool>? outCompleter,
@@ -866,7 +866,7 @@ class PBCommonAds {
     if (showFkDanger) {
       _hasDisplayAd = false;
       // todo:
-      pbToast(text: "Something went wrong,Please try later");
+      jcTsDialog(text: "Something went wrong,Please try later");
       if (outCompleter != null) {
         outCompleter.complete(false);
       }
@@ -896,7 +896,7 @@ class PBCommonAds {
     }
 
     bool isReady = false;
-    AdsJsonModel? tupe4;
+    JCGuangGaoModel? tupe4;
     String? firstRequestAdsId;
     pbLog(
       "$text=======adPosId:$adPosId _scheme:$_scheme adsModel:$adIdWithJsonModel",
@@ -913,7 +913,7 @@ class PBCommonAds {
           }
         }
 
-        AdsJsonModel? adsJsonModel = adIdWithJsonModel[adsId];
+        JCGuangGaoModel? adsJsonModel = adIdWithJsonModel[adsId];
         Tuple2 rvOne1 = await _hasReady(adsJsonModel);
         isReady = rvOne1.item1;
         pbLog(
@@ -989,7 +989,7 @@ class PBCommonAds {
       pbLog("$text=======调用显示广告 失败count:$count canTryAgain:$canTryAgain");
       _hasDisplayAd = false;
       if (count < 1 && canTryAgain) {
-        GGAdsTips.noAds(
+        JSAdsTips.noAds(
           onTryAgain: () async {
             _hasDisplayAd = false;
             adIdWithJsonModel.forEach((key, value) {
@@ -1016,7 +1016,7 @@ class PBCommonAds {
           },
         );
       } else {
-        GGAdsTips.toast();
+        JSAdsTips.toast();
         _hasDisplayAd = false;
         completer.complete(false);
       }
@@ -1032,7 +1032,7 @@ class PBCommonAds {
       // GGAdsTips.noAds();
 
       if (firstRequestAdsId != null) {
-        AdsJsonModel? adsJsonModel = adIdWithJsonModel[firstRequestAdsId];
+        JCGuangGaoModel? adsJsonModel = adIdWithJsonModel[firstRequestAdsId];
         String? ad_platform = adsJsonModel?.adsPlatform;
         pbLog(
           "$text=====回调成功 显示广告 失败：adid:$firstRequestAdsId reason:$_loadFailReason ad_platform:$ad_platform",
@@ -1074,7 +1074,7 @@ class PBCommonAds {
     Map<String, dynamic> localJson = GGCommonJson.local;
     try {
       String name = "cdyun_ad_config";
-      String key = PBFireBbbbbb().by(name: name);
+      String key = JCFbase().by(name: name);
       pbLog(
         "====common_ads=== _onlineJson FirebaseUtils: $name string:$key test===",
       );
@@ -1092,16 +1092,16 @@ class PBCommonAds {
   }
 
   // key: adsId value:AdsJsonModel
-  Map<String, AdsJsonModel> chapingAdsModel = {};
+  Map<String, JCGuangGaoModel> chapingAdsModel = {};
 
   // key: adsId value:AdsJsonModel
-  Map<String, AdsJsonModel> jiliAdsModel = {};
+  Map<String, JCGuangGaoModel> jiliAdsModel = {};
 
   _interstitialAdsModel() {
     var data = firebaseJson[GGCommonJson.k_out_int];
     if (data is List && data.isNotEmpty) {
       for (var element in data) {
-        AdsJsonModel adsJsonModel = _initAdsJsonModel(element);
+        JCGuangGaoModel adsJsonModel = _initAdsJsonModel(element);
         String adsId = adsJsonModel.adsId ?? "";
 
         chapingAdsModel[adsId] = adsJsonModel;
@@ -1115,7 +1115,7 @@ class PBCommonAds {
     var data = firebaseJson[GGCommonJson.k_out_rv];
     if (data is List && data.isNotEmpty) {
       for (var element in data) {
-        AdsJsonModel adsJsonModel = _initAdsJsonModel(element);
+        JCGuangGaoModel adsJsonModel = _initAdsJsonModel(element);
         String adsId = adsJsonModel.adsId ?? "";
 
         jiliAdsModel[adsId] = adsJsonModel;
@@ -1125,13 +1125,13 @@ class PBCommonAds {
     }
   }
 
-  AdsJsonModel _initAdsJsonModel(Map<String, dynamic> json) {
+  JCGuangGaoModel _initAdsJsonModel(Map<String, dynamic> json) {
     // var ad_id = json[GGCommonJson.k_ads_id];
     // var ad_platform = json[GGCommonJson.k_platfrom];
     // var time_out = json[GGCommonJson.k_time_out];
     // var ad_type = json[GGCommonJson.k_ad_type];
 
-    return AdsJsonModel.fromJson(json);
+    return JCGuangGaoModel.fromJson(json);
   }
 }
 

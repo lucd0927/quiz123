@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 
-class PBEventBus {
+class JCEventBus {
   static final EventBus eventBus = EventBus();
 
   static void fire(dynamic event) {
@@ -11,8 +11,8 @@ class PBEventBus {
   }
 }
 
-mixin PBEventBusMixin<T extends StatefulWidget> on State<T> {
-  EventBus get eventBus => PBEventBus.eventBus;
+mixin JCEventBusMixin<T extends StatefulWidget> on State<T> {
+  EventBus get eventBus => JCEventBus.eventBus;
 
   final Map<String, StreamSubscription?> _eventMapStreams = {};
 
@@ -58,8 +58,8 @@ mixin PBEventBusMixin<T extends StatefulWidget> on State<T> {
   }
 }
 
-mixin PBEventBusMixin2 {
-  EventBus get eventBus => PBEventBus.eventBus;
+mixin JCEventBusMixin2 {
+  EventBus get eventBus => JCEventBus.eventBus;
 
   final Map<String, StreamSubscription?> _eventMapStreams = {};
 

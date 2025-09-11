@@ -1,44 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-
 import '../../../jichu_kuang/jichu_kuang.dart';
 
-import '../../wangluo/event_report.dart';
-
-showAdLimitDialog(
+showAdFailedDialog(
   BuildContext context, {
-  required VoidCallback onBtn,
-  required VoidCallback onClose,
+  required VoidCallback onFunc,
+  required VoidCallback onFunc2,
 }) {
-
   return zhanshiJiChuKuang(
     context: context,
-    child: AdCishuLimit(
+    child: GuangGaoFailView(
       onClose: () {
-        onClose();
+        onFunc2();
       },
       onBtn: () {
-        onBtn();
+        onFunc();
       },
     ),
   );
 }
 
-class AdCishuLimit extends StatefulWidget {
-  const AdCishuLimit({super.key, required this.onClose, required this.onBtn});
+class GuangGaoFailView extends StatefulWidget {
+  const GuangGaoFailView({super.key, required this.onClose, required this.onBtn});
 
   final VoidCallback onClose;
   final VoidCallback onBtn;
 
   @override
-  State<AdCishuLimit> createState() => _AdCishuLimitState();
+  State<GuangGaoFailView> createState() => _GuangGaoFailViewState();
 }
 
-class _AdCishuLimitState extends State<AdCishuLimit> {
+class _GuangGaoFailViewState extends State<GuangGaoFailView> {
   int index = 0;
-  bool showStep2 = false;
 
   @override
   void initState() {
@@ -98,7 +92,7 @@ class _AdCishuLimitState extends State<AdCishuLimit> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Ad Limit reached",
+                      "Ad loading failed",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color(0xffffffff),
@@ -134,24 +128,13 @@ class _AdCishuLimitState extends State<AdCishuLimit> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 80.h),
+                    SizedBox(height: 150.h),
                     Stack(
                       children: [
-                        Icon(Icons.close, size: 288.h, color: Colors.white),
+                        Icon(Icons.add_chart_outlined,size: 288.h,),
                       ],
                     ),
-                    SizedBox(height: 40.h),
-                    Center(
-                      child: Text(
-                        "You've watched all available ads for today. Try again tomorrow.",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 30.sp,
-                          color: Color(0xff992D2D),
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+
                     Expanded(
                       child: Center(
                         child: GestureDetector(
@@ -174,7 +157,7 @@ class _AdCishuLimitState extends State<AdCishuLimit> {
                               children: [
                                 Center(
                                   child: Text(
-                                    "Get",
+                                    "Try Again",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 42.sp,

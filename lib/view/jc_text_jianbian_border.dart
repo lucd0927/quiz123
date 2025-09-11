@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PBGradientBorderText extends StatelessWidget {
+class JCTextJianbianBorder extends StatelessWidget {
 
   final Color? fontColor;
   final Gradient? gradient;
@@ -13,7 +13,7 @@ class PBGradientBorderText extends StatelessWidget {
   final double fontSize;
   final Color strokeColor;
 
-  const PBGradientBorderText({
+  const JCTextJianbianBorder({
     super.key,
     required this.text,
     this.gradient,

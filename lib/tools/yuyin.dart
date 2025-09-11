@@ -3,7 +3,7 @@
 //
 //
 // import '../hive/jc_hive.dart';
-// import 'log.dart';
+// import 'rizhi.dart';
 //
 // const qianzhui = "assets/";
 // // SWAudioPlayer bgGGAudioPlayer = SWAudioPlayer(

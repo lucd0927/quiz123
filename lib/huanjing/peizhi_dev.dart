@@ -3,18 +3,18 @@ import 'peizhi.dart';
 
 class PBPeizhiDev implements JCPzHuanjing{
   @override
-  String baseUrl() {
+  String jichuU() {
     // TODO: implement baseUrl
-    return "https://test-hug.piggybankboostreward.com/lifeboat/oratoric";
+    return "";
 // auto patch 3
   }
 
   @override
-  String tttbbbaaaUrl() {
+  String ccU() {
 
 // auto patch 490
     // TODO: implement cloakUrl
-    return "https://sikorsky.piggybankboostreward.com/forget/cheyenne";
+    return "";
   }
 
 }    

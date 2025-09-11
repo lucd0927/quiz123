@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
+
 import '../../../jichu_kuang/jichu_kuang.dart';
 
+import '../../wangluo/event_report.dart';
 
-showMeiwangDialog(
+showAdLimitDialog(
   BuildContext context, {
   required VoidCallback onBtn,
   required VoidCallback onClose,
 }) {
+
   return zhanshiJiChuKuang(
     context: context,
-    child: MeiwangWidget(
+    child: GuangGaoXianzhiView(
       onClose: () {
         onClose();
       },
@@ -23,17 +26,17 @@ showMeiwangDialog(
   );
 }
 
-class MeiwangWidget extends StatefulWidget {
-  const MeiwangWidget({super.key, required this.onClose, required this.onBtn});
+class GuangGaoXianzhiView extends StatefulWidget {
+  const GuangGaoXianzhiView({super.key, required this.onClose, required this.onBtn});
 
   final VoidCallback onClose;
   final VoidCallback onBtn;
 
   @override
-  State<MeiwangWidget> createState() => _MeiwangWidgetState();
+  State<GuangGaoXianzhiView> createState() => _GuangGaoXianzhiViewState();
 }
 
-class _MeiwangWidgetState extends State<MeiwangWidget> {
+class _GuangGaoXianzhiViewState extends State<GuangGaoXianzhiView> {
   int index = 0;
   bool showStep2 = false;
 
@@ -95,7 +98,7 @@ class _MeiwangWidgetState extends State<MeiwangWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "No network currently",
+                      "Ad Limit reached",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color(0xffffffff),
@@ -114,7 +117,7 @@ class _MeiwangWidgetState extends State<MeiwangWidget> {
                     Navigator.pop(context);
                     widget.onClose();
                   },
-                  child:Icon(Icons.close, size: 40.h, color: Colors.white),
+                  child: Icon(Icons.close, size: 40.h, color: Colors.white),
                 ),
               ),
             ],
@@ -131,13 +134,24 @@ class _MeiwangWidgetState extends State<MeiwangWidget> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 150.h),
+                    SizedBox(height: 80.h),
                     Stack(
                       children: [
                         Icon(Icons.close, size: 288.h, color: Colors.white),
                       ],
                     ),
-
+                    SizedBox(height: 40.h),
+                    Center(
+                      child: Text(
+                        "You've watched all available ads for today. Try again tomorrow.",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 30.sp,
+                          color: Color(0xff992D2D),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                     Expanded(
                       child: Center(
                         child: GestureDetector(
@@ -160,7 +174,7 @@ class _MeiwangWidgetState extends State<MeiwangWidget> {
                               children: [
                                 Center(
                                   child: Text(
-                                    "Try Again",
+                                    "Get",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 42.sp,

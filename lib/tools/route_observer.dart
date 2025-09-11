@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package.dart';
 
-PBRouteObserver globalRouteObserver = PBRouteObserver();
+JCLuyouObserver globalRouteObserver = JCLuyouObserver();
 
-class PBRouteObserver extends RouteObserver<PageRoute<dynamic>> {
+class JCLuyouObserver extends RouteObserver<PageRoute<dynamic>> {
 
   String routeName = "";
 
@@ -13,7 +13,7 @@ class PBRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   void didPush(Route route, Route? previousRoute) {
     super.didPush(route, previousRoute);
     routeName = route.settings.name??"";
-    if(PBLogicAB.isPackageB()){
+    if(JCABluoji.isPackageB()){
 
     }
     print('📌 ==routeName:$routeName ${globalRouteObserver.routeName} didPush: ${route.settings.name} previousRoute:${previousRoute?.settings.name}');
@@ -23,7 +23,7 @@ class PBRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   void didPop(Route route, Route? previousRoute) {
     super.didPop(route, previousRoute);
     routeName = previousRoute?.settings.name??"";
-    if(PBLogicAB.isPackageB()){
+    if(JCABluoji.isPackageB()){
 
     }
     print('📌 ==routeName:$routeName didPop: ${route.settings.name} previousRoute:${previousRoute?.settings.name}');

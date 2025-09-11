@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../gg_common_config.dart';
+import '../jc_common_config.dart';
 
 
 
@@ -11,15 +11,15 @@ T? asT<T>(dynamic value) {
   return null;
 }
 
-class AdsJsonModel {
-  AdsJsonModel({
+class JCGuangGaoModel {
+  JCGuangGaoModel({
     required this.adsId,
     required this.adsPlatform,
     required this.adsType,
     required this.timeout,
   });
 
-  AdsJsonModel.fromJson(Map<String, dynamic> json)
+  JCGuangGaoModel.fromJson(Map<String, dynamic> json)
     : adsId = asT<String>(json[GGCommonJson.k_ads_id]) ?? "",
       adsPlatform = asT<String>(json[GGCommonJson.k_platfrom]) ?? "",
       adsType = asT<String>(json[GGCommonJson.k_ad_type]) ?? "",
