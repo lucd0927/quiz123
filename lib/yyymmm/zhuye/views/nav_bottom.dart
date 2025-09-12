@@ -36,18 +36,21 @@ class _JCDibuNavState extends State<JCDibuNav> {
       width: ScreenUtil().screenWidth,
       height: bottomNavHeight,
       fit: BoxFit.fill,
+      gaplessPlayback: true,
     ),
     Image.asset(
       Assets.ttt.navQuiz.path,
       width: ScreenUtil().screenWidth,
       height: bottomNavHeight,
       fit: BoxFit.fill,
+      gaplessPlayback: true,
     ),
     Image.asset(
       Assets.ttt.navMetal.path,
       width: ScreenUtil().screenWidth,
       height: bottomNavHeight,
       fit: BoxFit.fill,
+      gaplessPlayback: true,
     ),
   ];
 

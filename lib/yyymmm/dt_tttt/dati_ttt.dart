@@ -244,6 +244,7 @@ class _DtPageState extends State<DtPage> {
               width: double.infinity,
               height: double.infinity,
               fit: BoxFit.fill,
+              gaplessPlayback: true,
             ),
             Positioned(
               left: 15.w,

@@ -17,6 +17,34 @@ class $AssetsTttGen {
   /// File path: assets/ttt/gesture.png
   AssetGenImage get gesture => const AssetGenImage('assets/ttt/gesture.png');
 
+  /// File path: assets/ttt/leixing_item_animal.png
+  AssetGenImage get leixingItemAnimal =>
+      const AssetGenImage('assets/ttt/leixing_item_animal.png');
+
+  /// File path: assets/ttt/leixing_item_bg.png
+  AssetGenImage get leixingItemBg =>
+      const AssetGenImage('assets/ttt/leixing_item_bg.png');
+
+  /// File path: assets/ttt/leixing_item_btn.png
+  AssetGenImage get leixingItemBtn =>
+      const AssetGenImage('assets/ttt/leixing_item_btn.png');
+
+  /// File path: assets/ttt/leixing_item_history.png
+  AssetGenImage get leixingItemHistory =>
+      const AssetGenImage('assets/ttt/leixing_item_history.png');
+
+  /// File path: assets/ttt/leixing_item_math.png
+  AssetGenImage get leixingItemMath =>
+      const AssetGenImage('assets/ttt/leixing_item_math.png');
+
+  /// File path: assets/ttt/leixing_item_nature.png
+  AssetGenImage get leixingItemNature =>
+      const AssetGenImage('assets/ttt/leixing_item_nature.png');
+
+  /// File path: assets/ttt/leixing_item_science.png
+  AssetGenImage get leixingItemScience =>
+      const AssetGenImage('assets/ttt/leixing_item_science.png');
+
   /// File path: assets/ttt/level1.png
   AssetGenImage get level1 => const AssetGenImage('assets/ttt/level1.png');
 
@@ -193,6 +221,13 @@ class $AssetsTttGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     gesture,
+    leixingItemAnimal,
+    leixingItemBg,
+    leixingItemBtn,
+    leixingItemHistory,
+    leixingItemMath,
+    leixingItemNature,
+    leixingItemScience,
     level1,
     level1Big,
     level1BigGrey,

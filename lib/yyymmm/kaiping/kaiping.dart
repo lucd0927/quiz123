@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 
+import '../../gen/assets.gen.dart';
 import '../../tools/package.dart';
 import '../../tools/rizhi.dart';
 import '../../yy_gj/jc_luy.dart';
@@ -33,8 +34,20 @@ class _JCKaipingState extends State<JCKaiping> {
 
   initFrames(){
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // AssetImage assetImage = AssetImage(Assets.imgB.cardBg.path);
-      // precacheImage(assetImage, context);
+
+      AssetImage assetImage = AssetImage(Assets.ttt.quizDaanRightBg.path);
+      precacheImage(assetImage, context);
+
+      AssetImage assetImage2 = AssetImage(Assets.ttt.quizDaanErrorBg.path);
+      precacheImage(assetImage2, context);
+
+      AssetImage assetImage3 = AssetImage(Assets.ttt.navMetal.path);
+      precacheImage(assetImage3, context);
+
+      AssetImage assetImage4 = AssetImage(Assets.ttt.navQuiz.path);
+      precacheImage(assetImage4, context);
+      AssetImage assetImage5 = AssetImage(Assets.ttt.navCategory.path);
+      precacheImage(assetImage5, context);
     });
   }
 

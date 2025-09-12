@@ -7,14 +7,14 @@ import 'package:quiz123/yy_gj/shuju/data.dart';
 import 'package:quiz123/yy_gj/shuju/dati_model.dart';
 import 'package:tuple/tuple.dart';
 
-enum EnumLevelType {
-  level1("1"),
-  level2("2"),
-  level3("3"),
-  level4("4"),
-  level5("5");
+enum EnumLeixinType {
+  animal("Animal"),
+  dailyLife("Daily Life"),
+  science("Science"),
+  math("Math"),
+  nature("Nature");
 
-  const EnumLevelType(this.name);
+  const EnumLeixinType(this.name);
 
   final String name;
 }
