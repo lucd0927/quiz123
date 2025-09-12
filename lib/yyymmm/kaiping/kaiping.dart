@@ -62,7 +62,7 @@ class _JCKaipingState extends State<JCKaiping> {
             Container(
               width: double.infinity,
               height: double.infinity,
-              color: Colors.amber,
+              color: Colors.green,
             ),
             Positioned(
               left: 0,
@@ -90,7 +90,7 @@ class _JCKaipingState extends State<JCKaiping> {
             Positioned(
               left: 0,
               right: 0,
-              top: 648.h * scale,
+              top: 320.h * scale,
               child: Center(
                 child: Column(
                   children: [
@@ -204,12 +204,12 @@ class _SplashProgressState extends State<SplashProgress> {
           text: "${(startTime * 100.toInt()).toStringAsFixed(0)}%",
           foreground: Color(0xff3D100E),
           fontWeight: FontWeight.w700,
-          fontSize: 42.sp,
+          fontSize: 20.sp,
           fontColor: Color(0xffF9F7ED),
         ),
         SizedBox(
-          width: 650.w,
-          height: 30.w,
+          width: 325.w,
+          height: 15.w,
           child: AnimatedGradientProgressBar(
             value: startTime, // 表示 60%
             gradientColors: [
@@ -218,7 +218,7 @@ class _SplashProgressState extends State<SplashProgress> {
               Color(0xffF7AA0C),
               Color(0xffFBD107),
             ],
-            height: 30.w,
+            height: 15.w,
             borderRadius: BorderRadius.circular(30.w),
           ),
         ),

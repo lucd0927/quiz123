@@ -7,7 +7,7 @@ class ZhuyeController extends GetxController {
   final curIndex = 0.obs;
   static const int categoryIndex = 0;
   static const int quizIndex = 1;
-  static const int settingIndex = 2;
+  static const int metalIndex = 2;
   void resetIndex(int index) {
     curIndex.value = index;
 
@@ -15,7 +15,7 @@ class ZhuyeController extends GetxController {
 
     } else if (index == quizIndex) {
 
-    } else if (index == settingIndex) {
+    } else if (index == metalIndex) {
 
     }
   }

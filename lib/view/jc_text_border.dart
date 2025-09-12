@@ -38,11 +38,11 @@ class JCTextBorder extends StatelessWidget {
           style: TextStyle(
             // fontFamily: FontFamily.made,
             fontWeight: fontWeight ?? FontWeight.w700,
-            fontSize: fontSize ?? 22.sp,
+            fontSize: fontSize ?? 16.sp,
             overflow: TextOverflow.visible,
             fontStyle: fontStyle,
 
-            height: height,
+            height: height??1,
             // backgroundColor: TBColor.ffFFFFFF,
             foreground: Paint()
               ..strokeWidth = strokeWidth ?? 4.w
@@ -57,10 +57,10 @@ class JCTextBorder extends StatelessWidget {
           style: TextStyle(
             // fontFamily: FontFamily.made,
             fontWeight: fontWeight ?? FontWeight.w600,
-            fontSize: fontSize ?? 22.sp,
+            fontSize: fontSize ?? 16.sp,
             overflow: TextOverflow.visible,
             color: fontColor ??  Color(0xffffffff),
-            height: height,
+            height: height??1,
             fontStyle: fontStyle,
             // color: TBColor.ff000000,
           ),

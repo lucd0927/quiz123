@@ -6,16 +6,16 @@ import 'package:toastification/toastification.dart';
 jcTsDialog({String text = "", Alignment alignment = Alignment.topCenter}) {
   toastification.show(
     context: Get.context, // optional if you use ToastificationWrapper
+    backgroundColor:Colors.black.withValues(alpha: 0.7),
+    alignment: alignment,
+    autoCloseDuration: const Duration(seconds: 3),
     title: Text(
       text,
       style: TextStyle(
-        fontSize: 24.sp,
+        fontSize: 16.sp,
         color: Colors.white.withValues(alpha: 1),
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w500,
       ),
     ),
-    backgroundColor:Colors.black.withValues(alpha: 0.8),
-    alignment: alignment,
-    autoCloseDuration: const Duration(seconds: 4),
   );
 }
