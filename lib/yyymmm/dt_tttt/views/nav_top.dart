@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/jc_luy.dart';
+import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../gen/assets.gen.dart';
 
@@ -22,32 +23,34 @@ class _NavTopState extends State<NavTop> {
     if (height < 10) {
       height = 50.h;
     }
-    return Container(
-      // height: navTopRealHeight,
-      // color: Colors.amber,
-      width: ScreenUtil().screenWidth,
-      child: Column(
-        children: [
-          SizedBox(height: height),
-          Container(
-            height: 34.h,
-            width: ScreenUtil().screenWidth,
-            // color: Colors.red,
-            child: Row(
-              children: [
-                SizedBox(width: 8.w),
-                coinWidgetA(),
-                SizedBox(width: 8.w),
-                starWidgetA(),
-                Spacer(),
-                shezhiWidget(),
-                SizedBox(width: 8.w),
-              ],
+    return Obx(() {
+      return Container(
+        // height: navTopRealHeight,
+        // color: Colors.amber,
+        width: ScreenUtil().screenWidth,
+        child: Column(
+          children: [
+            SizedBox(height: height),
+            Container(
+              height: 34.h,
+              width: ScreenUtil().screenWidth,
+              // color: Colors.red,
+              child: Row(
+                children: [
+                  SizedBox(width: 16.w),
+                  coinWidgetA(),
+                  SizedBox(width: 8.w),
+                  starWidgetA(),
+                  Spacer(),
+                  shezhiWidget(),
+                  SizedBox(width: 16.w),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 
   shezhiWidget() {
@@ -80,14 +83,18 @@ class _NavTopState extends State<NavTop> {
             height: double.infinity,
           ),
           Container(
-            height: 40.h,
+            height: 31.h,
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
             decoration: BoxDecoration(
               color: Color(0xff8D4700),
               // border: Border.all(color: Color(0xff000000),width: 1.h),
               borderRadius: BorderRadius.circular(16.w),
             ),
-            child: Center(child: JCTextBorder(text: "2400")),
+            child: Center(
+              child: JCTextBorder(
+                text: "${DtController.to.curMoney.value.toStringAsFixed(0)}",
+              ),
+            ),
           ),
         ],
       ),
@@ -97,7 +104,7 @@ class _NavTopState extends State<NavTop> {
   starWidgetA() {
     return Container(
       height: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
       decoration: BoxDecoration(
         color: Color(0xffFFC850),
         border: Border.all(color: Color(0xff000000), width: 1.h),
@@ -118,7 +125,12 @@ class _NavTopState extends State<NavTop> {
               // border: Border.all(color: Color(0xff000000),width: 1.h),
               borderRadius: BorderRadius.circular(16.w),
             ),
-            child: Center(child: JCTextBorder(text: "4/10")),
+            child: Center(
+              child: JCTextBorder(
+                text:
+                    "${DtController.to.curStar.value.toStringAsFixed(0)}/${DtController.initStarNum}",
+              ),
+            ),
           ),
         ],
       ),

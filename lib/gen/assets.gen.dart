@@ -14,12 +14,23 @@ import 'package:flutter/widgets.dart';
 class $AssetsTttGen {
   const $AssetsTttGen();
 
+  /// File path: assets/ttt/gesture.png
+  AssetGenImage get gesture => const AssetGenImage('assets/ttt/gesture.png');
+
   /// File path: assets/ttt/level1.png
   AssetGenImage get level1 => const AssetGenImage('assets/ttt/level1.png');
 
   /// File path: assets/ttt/level1Big.png
   AssetGenImage get level1Big =>
       const AssetGenImage('assets/ttt/level1Big.png');
+
+  /// File path: assets/ttt/level1BigGrey.png
+  AssetGenImage get level1BigGrey =>
+      const AssetGenImage('assets/ttt/level1BigGrey.png');
+
+  /// File path: assets/ttt/level1Grey.png
+  AssetGenImage get level1Grey =>
+      const AssetGenImage('assets/ttt/level1Grey.png');
 
   /// File path: assets/ttt/level2.png
   AssetGenImage get level2 => const AssetGenImage('assets/ttt/level2.png');
@@ -28,12 +39,28 @@ class $AssetsTttGen {
   AssetGenImage get level2Big =>
       const AssetGenImage('assets/ttt/level2Big.png');
 
+  /// File path: assets/ttt/level2BigGrey.png
+  AssetGenImage get level2BigGrey =>
+      const AssetGenImage('assets/ttt/level2BigGrey.png');
+
+  /// File path: assets/ttt/level2Grey.png
+  AssetGenImage get level2Grey =>
+      const AssetGenImage('assets/ttt/level2Grey.png');
+
   /// File path: assets/ttt/level3.png
   AssetGenImage get level3 => const AssetGenImage('assets/ttt/level3.png');
 
   /// File path: assets/ttt/level3Big.png
   AssetGenImage get level3Big =>
       const AssetGenImage('assets/ttt/level3Big.png');
+
+  /// File path: assets/ttt/level3BigGrey.png
+  AssetGenImage get level3BigGrey =>
+      const AssetGenImage('assets/ttt/level3BigGrey.png');
+
+  /// File path: assets/ttt/level3Grey.png
+  AssetGenImage get level3Grey =>
+      const AssetGenImage('assets/ttt/level3Grey.png');
 
   /// File path: assets/ttt/level4.png
   AssetGenImage get level4 => const AssetGenImage('assets/ttt/level4.png');
@@ -42,12 +69,44 @@ class $AssetsTttGen {
   AssetGenImage get level4Big =>
       const AssetGenImage('assets/ttt/level4Big.png');
 
+  /// File path: assets/ttt/level4BigGrey.png
+  AssetGenImage get level4BigGrey =>
+      const AssetGenImage('assets/ttt/level4BigGrey.png');
+
+  /// File path: assets/ttt/level4Grey.png
+  AssetGenImage get level4Grey =>
+      const AssetGenImage('assets/ttt/level4Grey.png');
+
   /// File path: assets/ttt/level5.png
   AssetGenImage get level5 => const AssetGenImage('assets/ttt/level5.png');
 
   /// File path: assets/ttt/level5Big.png
   AssetGenImage get level5Big =>
       const AssetGenImage('assets/ttt/level5Big.png');
+
+  /// File path: assets/ttt/level5BigGrey.png
+  AssetGenImage get level5BigGrey =>
+      const AssetGenImage('assets/ttt/level5BigGrey.png');
+
+  /// File path: assets/ttt/level5Grey.png
+  AssetGenImage get level5Grey =>
+      const AssetGenImage('assets/ttt/level5Grey.png');
+
+  /// File path: assets/ttt/metal_error.png
+  AssetGenImage get metalError =>
+      const AssetGenImage('assets/ttt/metal_error.png');
+
+  /// File path: assets/ttt/metal_level_bg.png
+  AssetGenImage get metalLevelBg =>
+      const AssetGenImage('assets/ttt/metal_level_bg.png');
+
+  /// File path: assets/ttt/metal_right.png
+  AssetGenImage get metalRight =>
+      const AssetGenImage('assets/ttt/metal_right.png');
+
+  /// File path: assets/ttt/metal_time.png
+  AssetGenImage get metalTime =>
+      const AssetGenImage('assets/ttt/metal_time.png');
 
   /// File path: assets/ttt/nav_category.png
   AssetGenImage get navCategory =>
@@ -65,6 +124,22 @@ class $AssetsTttGen {
 
   /// File path: assets/ttt/quiz_coin.png
   AssetGenImage get quizCoin => const AssetGenImage('assets/ttt/quiz_coin.png');
+
+  /// File path: assets/ttt/quiz_daan_error.png
+  AssetGenImage get quizDaanError =>
+      const AssetGenImage('assets/ttt/quiz_daan_error.png');
+
+  /// File path: assets/ttt/quiz_daan_error_bg.png
+  AssetGenImage get quizDaanErrorBg =>
+      const AssetGenImage('assets/ttt/quiz_daan_error_bg.png');
+
+  /// File path: assets/ttt/quiz_daan_right.png
+  AssetGenImage get quizDaanRight =>
+      const AssetGenImage('assets/ttt/quiz_daan_right.png');
+
+  /// File path: assets/ttt/quiz_daan_right_bg.png
+  AssetGenImage get quizDaanRightBg =>
+      const AssetGenImage('assets/ttt/quiz_daan_right_bg.png');
 
   /// File path: assets/ttt/quiz_level_bg.png
   AssetGenImage get quizLevelBg =>
@@ -117,21 +192,40 @@ class $AssetsTttGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    gesture,
     level1,
     level1Big,
+    level1BigGrey,
+    level1Grey,
     level2,
     level2Big,
+    level2BigGrey,
+    level2Grey,
     level3,
     level3Big,
+    level3BigGrey,
+    level3Grey,
     level4,
     level4Big,
+    level4BigGrey,
+    level4Grey,
     level5,
     level5Big,
+    level5BigGrey,
+    level5Grey,
+    metalError,
+    metalLevelBg,
+    metalRight,
+    metalTime,
     navCategory,
     navMetal,
     navQuiz,
     quizAnswerBg,
     quizCoin,
+    quizDaanError,
+    quizDaanErrorBg,
+    quizDaanRight,
+    quizDaanRightBg,
     quizLevelBg,
     quizQuestionBg,
     quizStar,

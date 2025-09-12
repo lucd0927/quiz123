@@ -8,7 +8,7 @@ class JcAnimatedScale extends StatefulWidget {
     super.key,
     required this.child,
     this.milliseconds = 1000,
-    this.maxScale = 1.0,
+    this.maxScale = 1.1,
     this.minScale = 0.8,
   });
 

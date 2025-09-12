@@ -1,5 +1,15 @@
-
+import 'package:auto_size_text_plus/auto_size_text_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:quiz123/view/animated_scale.dart';
+import 'package:quiz123/view/jc_jindutiao.dart';
+import 'package:quiz123/view/jc_text_border.dart';
+import 'package:quiz123/view/jc_text_jianbian_border.dart';
+import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
+
+import '../../gen/assets.gen.dart';
+import '../../yy_gj/shuju/dati_model.dart';
 
 class DtPage extends StatefulWidget {
   const DtPage({super.key});
@@ -11,6 +21,289 @@ class DtPage extends StatefulWidget {
 class _DtPageState extends State<DtPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Obx(() {
+      return Padding(
+        padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 12.h),
+        child: Column(
+          children: [
+            SizedBox(height: 10.h),
+            levelView(),
+            SizedBox(height: 10.h),
+            datiView(),
+            SizedBox(height: 10.h),
+            Expanded(child: answerWidget()),
+            // SizedBox(height: 10.h),
+          ],
+        ),
+      );
+    });
+  }
+
+  answerWidget() {
+    DatiModel tmpDatiModel = DtController.to.datiModel;
+    String a = tmpDatiModel.a ?? "";
+    String b = tmpDatiModel.b ?? "";
+    return Column(
+      children: [
+        answerView(answer: "A", answerContent: a),
+        SizedBox(height: 10.h),
+        answerView(answer: "B", answerContent: b),
+      ],
+    );
+  }
+
+  levelView() {
+    return Container(
+      width: double.infinity,
+      height: 72.h,
+
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Image.asset(
+            Assets.ttt.quizLevelBg.path,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.fill,
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 12.h,
+            top: 0,
+            child: Container(
+              color: Colors.green.withValues(alpha: 0.0),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 35.h,
+                      // color: Colors.amber,
+                      child: Row(
+                        children: [
+                          JCTextBorder(
+                            text: "Level ${DtController.to.curLevel.value}",
+                            foreground: Color(0xff801E11),
+                            fontColor: Color(0xffFFE100),
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        JCJingdutiao(
+                          height: 11.h,
+                          innerHeight: 6.h,
+                          gradientColors: [
+                            Color(0xffA0FFD6),
+                            Color(0xff00CA11),
+                            Color(0xffA0FFD6),
+                          ],
+                          bgColor: Color(0xff253668),
+                          text:
+                              "${DtController.to.levelNum()}/${DtController.upgradeNum}",
+                          width: 308.w,
+                          progress:
+                              DtController.to.levelNum() /
+                              DtController.upgradeNum,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          Positioned(
+            top: -8.h,
+            right: -4.w,
+            child: Container(
+              width: 32.h,
+              height: 32.h,
+              child: Stack(
+                children: [
+                  Image.asset(
+                    Assets.ttt.quizTime.path,
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.fill,
+                  ),
+                  Center(
+                    child: Obx(() {
+                      return JCTextBorder(
+                        text: "${DtController.to.curShengyuDatiTime.value}s",
+                        foreground: Color(0xff5A0000),
+                        fontSize: 12.sp,
+                      );
+                    }),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  datiView() {
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 320.h,
+          child: Stack(
+            children: [
+              Image.asset(
+                Assets.ttt.quizQuestionBg.path,
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              ),
+              Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 66.h,
+                    color: Colors.green.withValues(alpha: 0.0),
+                    child: Center(
+                      child: JCTextJianbianBorder(
+                        text: "${DtController.to.curLeixing.value}",
+                        fontSize: 22.sp,
+                        strokeColor: Color(0xff801E11),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+
+                  Container(
+                    width: double.infinity,
+                    height: 210.h,
+                    color: Colors.green.withValues(alpha: 0.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 32.w,
+                      vertical: 16.h,
+                    ),
+                    child: Center(
+                      child: AutoSizeText(
+                        "${DtController.to.datiModel.question}",
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          color: Color(0xff6A0000),
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  answerView({required String answer, required String answerContent}) {
+    DatiModel tmpDatiModel = DtController.to.datiModel;
+    String rightAnswer = tmpDatiModel.answer?.toUpperCase() ?? "9999";
+    String clickAnswer = DtController.to.curClickAnswer.value;
+    bool showIcon = answer == clickAnswer;
+
+    bool selectRight = rightAnswer == answer;
+    String answerIcon = selectRight
+        ? Assets.ttt.quizDaanRight.path
+        : Assets.ttt.quizDaanError.path;
+
+    bool showG = DtController.to.curShowGesture.value;
+    String icon = Assets.ttt.quizAnswerBg.path;
+    if(showIcon){
+      icon = selectRight
+          ? Assets.ttt.quizDaanRightBg.path
+          : Assets.ttt.quizDaanErrorBg.path;
+    }
+    return GestureDetector(
+      onTap: () {
+        DtController.to.onDianji(click: answer, right: rightAnswer.toUpperCase());
+      },
+      child: Container(
+        width: 298.w,
+        height: 74.h,
+
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Image.asset(
+              icon,
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.fill,
+            ),
+            Positioned(
+              left: 15.w,
+              // right: 0,
+              top: 0,
+              bottom: 10.h,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(10.w),
+                  child: JCTextBorder(
+                    text: "$answer",
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
+                    foreground: Color(0xff7E1D00),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 30.w,
+              right: 30.w,
+              top: 0,
+              bottom: 10.h,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(10.w),
+                  child: JCTextBorder(
+                    text: "$answerContent",
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
+                    foreground: Color(0xff7E1D00),
+                  ),
+                ),
+              ),
+            ),
+
+            if (showIcon)
+              Positioned(
+                top: 0,
+                bottom: 10.h,
+                right: 20.w,
+                child: Image.asset(answerIcon, width: 24.w, height: 24.w),
+              ),
+
+            if (showG && selectRight)
+              Positioned(
+                top: 10.h,
+                // bottom: 0,
+                right: 0.w,
+                child: JcAnimatedScale(
+                  child: Image.asset(
+                    Assets.ttt.gesture.path,
+                    width: 70.w,
+                    height: 70.w,
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
   }
 }

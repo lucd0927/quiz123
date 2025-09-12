@@ -64,7 +64,9 @@ class MyApp extends StatelessWidget {
               );
               return Overlay();
             },
-            // theme: ThemeData(fontFamily: FontFamily.rubik),
+            theme: ThemeData(
+
+            ),
             getPages: JcLuy.pages,
             locale: ui.window.locale,
             // translations: FanyiTools(),

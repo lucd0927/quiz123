@@ -1,7 +1,7 @@
 // 🛠️ modified by obfuscator tool at 2025-07-09 11:08:44.332684
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:auto_size_text_plus/auto_size_text_plus.dart';
 class JCTextBorder extends StatelessWidget {
   const JCTextBorder({
     super.key,
@@ -33,7 +33,7 @@ class JCTextBorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Text(
+        AutoSizeText(
           text,
           style: TextStyle(
             // fontFamily: FontFamily.made,
@@ -45,13 +45,15 @@ class JCTextBorder extends StatelessWidget {
             height: height??1,
             // backgroundColor: TBColor.ffFFFFFF,
             foreground: Paint()
-              ..strokeWidth = strokeWidth ?? 4.w
+              ..strokeWidth = strokeWidth ?? 2.w
               ..style = PaintingStyle.stroke
               ..color = foreground ?? Colors.black,
           ),
           textAlign: TextAlign.center,
+          minFontSize: 7.sp,
+          stepGranularity: 7.sp,
         ),
-        Text(
+        AutoSizeText(
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -64,6 +66,8 @@ class JCTextBorder extends StatelessWidget {
             fontStyle: fontStyle,
             // color: TBColor.ff000000,
           ),
+          minFontSize: 7.sp,
+          stepGranularity: 7.sp,
         ),
       ],
     );

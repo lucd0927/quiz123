@@ -1,6 +1,7 @@
 // 🛠️ modified by obfuscator tool at 2025-07-09 11:08:44.333740
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiz123/view/jc_text_border.dart';
 
 class JCJingdutiao extends StatelessWidget {
   const JCJingdutiao({
@@ -85,11 +86,4 @@ class JCJingdutiao extends StatelessWidget {
       ],
     );
   }
-}
-
-// Dummy injected code for hash diff
-void _dummyHashAdjuster_836491() {
-  // auto patch 513
-  final now = DateTime.now().microsecondsSinceEpoch;
-  if (now == 820088530) print('Unreachable dummy code');
 }

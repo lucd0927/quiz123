@@ -5,8 +5,13 @@ import 'package:quiz123/yyymmm/dt_tttt/dati_ttt.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../gen/assets.gen.dart';
+import '../dt_tttt/dt_controller.dart';
+import '../fenlei/fenlei_controller.dart';
+import '../fenlei/fenlei_page.dart';
+import '../metal/metal_controller.dart';
+import '../metal/metal_page.dart';
 import 'views/nav_bottom.dart';
-import 'views/nav_top.dart';
+import '../dt_tttt/views/nav_top.dart';
 
 class Zhuye extends StatefulWidget {
   const Zhuye({super.key});
@@ -21,10 +26,13 @@ class _ZhuyeState extends State<Zhuye> {
     // TODO: implement initState
     super.initState();
     Get.put(ZhuyeController());
+    Get.put(DtController());
+    Get.put(FenleiController());
+    Get.put(MetalController());
   }
 
   List<Widget> pages() {
-    return [DtPage(), DtPage(), DtPage()];
+    return [FenleiPage(), DtPage(), MetalPage()];
   }
 
   @override

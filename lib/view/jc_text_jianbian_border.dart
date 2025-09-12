@@ -17,7 +17,7 @@ class JCTextJianbianBorder extends StatelessWidget {
     super.key,
     required this.text,
     this.gradient,
-    this.fontSize = 30,
+    this.fontSize = 14,
     this.strokeColor = const Color(0xffFFFAD7),
     this.strokeWidth = 2,
     this.fontWeight = FontWeight.bold,
@@ -32,10 +32,10 @@ class JCTextJianbianBorder extends StatelessWidget {
         gradient ??
         LinearGradient(
           colors: [
-            Color(0xffFFFA65),
-            Color(0xffFFED59),
-            Color(0xffFA820D),
-            Color(0xffFCFFD0),
+            Color(0xffFFF565),
+            Color(0xffFFE0A7),
+            Color(0xffFFFE100),
+            Color(0xffFFF9AA),
             Color(0xffFDDE51),
           ],
           end: Alignment.bottomCenter,

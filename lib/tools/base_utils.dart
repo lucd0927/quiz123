@@ -25,13 +25,13 @@ class JcBaseUtils {
     return utf8.decode(xorList);
   }
 
-}    
+}
 
 
 void main(){
-  String max = JcBaseUtils.encrypt("MWJzhnEPtKqxLKRLAlVrTyQfO2VxWZWtVx_SzTWC_MgoZL7kTKNt9t3M_OgIZ24nBXRXxVd9ogQEp7616TWf3C", 117);
-  String fengkong = JcBaseUtils.encrypt("MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMYl4KczbxQYcRCOgSH0lzRtfuI/jffXOXpHUXRVm3CRiyNL4M5U0Vy3qC+HO64/a1ZZ2FFcKLG69oOvUkCuMr0CAwEAAQ==", 117);
-  print("==encrypt=:$fengkong");
-  String dd = JcBaseUtils.decrypt(fengkong,117);
-  print("==decrypt=:$dd");
+  // String max = JcBaseUtils.encrypt("MWJzhnEPtKqxLKRLAlVrTyQfO2VxWZWtVx_SzTWC_MgoZL7kTKNt9t3M_OgIZ24nBXRXxVd9ogQEp7616TWf3C", 117);
+  // String fengkong = JcBaseUtils.encrypt("MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMYl4KczbxQYcRCOgSH0lzRtfuI/jffXOXpHUXRVm3CRiyNL4M5U0Vy3qC+HO64/a1ZZ2FFcKLG69oOvUkCuMr0CAwEAAQ==", 117);
+  // print("==encrypt=:$fengkong");
+  // String dd = JcBaseUtils.decrypt(fengkong,117);
+  // print("==decrypt=:$dd");
 }
