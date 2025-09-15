@@ -84,7 +84,7 @@ class _DtPageState extends State<DtPage> {
                       child: Row(
                         children: [
                           JCTextBorder(
-                            text: "Level ${DtController.to.curLevel.value}",
+                            text: "Level ${DtController.to.curLevel()}",
                             foreground: Color(0xff801E11),
                             fontColor: Color(0xffFFE100),
                             fontSize: 18.sp,
@@ -136,7 +136,7 @@ class _DtPageState extends State<DtPage> {
                   Center(
                     child: Obx(() {
                       return JCTextBorder(
-                        text: "${DtController.to.curShengyuDatiTime.value}s",
+                        text: "${DtController.to.curDaTiTime.value}s",
                         foreground: Color(0xff5A0000),
                         fontSize: 12.sp,
                       );

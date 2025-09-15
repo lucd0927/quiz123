@@ -4,6 +4,7 @@ import 'package:quiz123/view/jc_text_border.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../jichu_kuang/jichu_kuang.dart';
+import '../dt_controller.dart';
 
 showDatiNextLevel(
   BuildContext context, {
@@ -182,16 +183,20 @@ class _DatiNextLevelState extends State<DatiNextLevel> {
   }
 
   answerStates() {
+    int all = DtController.to.curAllDatiNum.value;
+    int right = DtController.to.curRightNum.value;
+    int error = all - right;
+    int time = DtController.to.curAllDatiTime.value;
     return Row(
       children: [
         Image.asset(Assets.ttt.metalRight.path, width: 34.h, height: 34.h),
-        JCTextBorder(text: "50/50"),
+        JCTextBorder(text: "$right/$all"),
         Spacer(),
         Image.asset(Assets.ttt.metalError.path, width: 34.h, height: 34.h),
-        JCTextBorder(text: "50/50"),
+        JCTextBorder(text: "$error/$all"),
         Spacer(),
         Image.asset(Assets.ttt.metalTime.path, width: 34.h, height: 34.h),
-        JCTextBorder(text: "50s"),
+        JCTextBorder(text: "${time}s"),
       ],
     );
   }

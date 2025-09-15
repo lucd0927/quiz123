@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class JCTextJianbianBorder extends StatelessWidget {
-
   final Color? fontColor;
   final Gradient? gradient;
 
@@ -12,6 +12,7 @@ class JCTextJianbianBorder extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color strokeColor;
+  final bool showShadow;
 
   const JCTextJianbianBorder({
     super.key,
@@ -24,6 +25,7 @@ class JCTextJianbianBorder extends StatelessWidget {
     this.fontStyle,
     this.fontColor = Colors.white,
     this.height = 1,
+    this.showShadow = false,
   });
 
   @override
@@ -34,7 +36,7 @@ class JCTextJianbianBorder extends StatelessWidget {
           colors: [
             Color(0xffFFF565),
             Color(0xffFFE0A7),
-            Color(0xffFFFE100),
+            Color(0xffFFFE10),
             Color(0xffFFF9AA),
             Color(0xffFDDE51),
           ],
@@ -49,6 +51,21 @@ class JCTextJianbianBorder extends StatelessWidget {
           textAlign: TextAlign.center,
 
           style: TextStyle(
+            shadows: showShadow
+                ? [
+                    // Shadow(color: Colors.black,offset: Offset(2, 2),blurRadius: 5),
+                    Shadow(
+                      color: strokeColor,
+                      offset: Offset(-1.sp, 3.sp),
+                      blurRadius: 0,
+                    ),
+                    Shadow(
+                      color: strokeColor,
+                      offset: Offset(1.sp, 3.sp),
+                      blurRadius: 0,
+                    ),
+                  ]
+                : null,
             fontWeight: fontWeight,
             height: height,
             fontSize: fontSize,

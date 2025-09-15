@@ -17,6 +17,34 @@ class $AssetsTttGen {
   /// File path: assets/ttt/close.png
   AssetGenImage get close => const AssetGenImage('assets/ttt/close.png');
 
+  /// File path: assets/ttt/dati_error_bg.png
+  AssetGenImage get datiErrorBg =>
+      const AssetGenImage('assets/ttt/dati_error_bg.png');
+
+  /// File path: assets/ttt/dati_error_btn.png
+  AssetGenImage get datiErrorBtn =>
+      const AssetGenImage('assets/ttt/dati_error_btn.png');
+
+  /// File path: assets/ttt/dati_error_emoji.png
+  AssetGenImage get datiErrorEmoji =>
+      const AssetGenImage('assets/ttt/dati_error_emoji.png');
+
+  /// File path: assets/ttt/dati_error_title.png
+  AssetGenImage get datiErrorTitle =>
+      const AssetGenImage('assets/ttt/dati_error_title.png');
+
+  /// File path: assets/ttt/dati_right_btn.png
+  AssetGenImage get datiRightBtn =>
+      const AssetGenImage('assets/ttt/dati_right_btn.png');
+
+  /// File path: assets/ttt/dati_right_coin.png
+  AssetGenImage get datiRightCoin =>
+      const AssetGenImage('assets/ttt/dati_right_coin.png');
+
+  /// File path: assets/ttt/dati_right_title.png
+  AssetGenImage get datiRightTitle =>
+      const AssetGenImage('assets/ttt/dati_right_title.png');
+
   /// File path: assets/ttt/gesture.png
   AssetGenImage get gesture => const AssetGenImage('assets/ttt/gesture.png');
 
@@ -247,6 +275,13 @@ class $AssetsTttGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     close,
+    datiErrorBg,
+    datiErrorBtn,
+    datiErrorEmoji,
+    datiErrorTitle,
+    datiRightBtn,
+    datiRightCoin,
+    datiRightTitle,
     gesture,
     leixingItemAnimal,
     leixingItemBg,
