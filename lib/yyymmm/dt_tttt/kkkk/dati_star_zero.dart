@@ -5,7 +5,7 @@ import 'package:quiz123/view/jc_text_border.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../jichu_kuang/jichu_kuang.dart';
 
-showDatiErro(
+showDatiStarZero(
   BuildContext context, {
   required VoidCallback onBtn,
   required VoidCallback onClose,

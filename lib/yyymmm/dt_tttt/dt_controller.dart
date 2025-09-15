@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:get/get.dart';
 import 'package:quiz123/hive/jc_hive.dart';
@@ -8,7 +9,9 @@ import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/yy_gj/shuju/daily_life.dart';
 import 'package:quiz123/yy_gj/shuju/data.dart';
 import 'package:quiz123/yy_gj/shuju/dati_model.dart';
-import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_erro.dart';
+import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_error.dart';
+import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_star_zero.dart';
+import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_right.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../gen/assets.gen.dart';
@@ -38,12 +41,16 @@ class DtController extends GetxController {
   static const String hCurRightNum = "lierilnmndfam";
   static const String hCurAllNum = "lewrhtifdknmnfa";
 
-  static const int upgradeNum = 10;
+  static const int upgradeNum = 5;
   static const int initStarNum = 5;
   static const int datiMaxTime = 10;
 
   String get hCurLeixingIndex {
-    return "xxafagsdfg_${curLeixing.value}";
+    return _leixingKey(curLeixing.value);
+  }
+
+  String _leixingKey(String leixingType) {
+    return "leixingType_${leixingType}";
   }
 
   var box = JCHive.box;
@@ -85,24 +92,25 @@ class DtController extends GetxController {
     return tmpA;
   }
 
-  int curLevel(){
+  int curLevel() {
     int tmpRightNum = curRightNum.value;
     int tmpA = tmpRightNum ~/ upgradeNum;
-    return tmpA;
+    if (tmpA == 0) {}
+    return tmpA + 1;
   }
 
-  String levelIcon(){
+  String levelIcon() {
     String icon = Assets.ttt.level1Big.path;
     int tmplevel = curLevel();
-    if(tmplevel == 1){
+    if (tmplevel == 1) {
       icon = Assets.ttt.level1Big.path;
-    }else if(tmplevel == 2){
+    } else if (tmplevel == 2) {
       icon = Assets.ttt.level2Big.path;
-    }else if(tmplevel == 3){
+    } else if (tmplevel == 3) {
       icon = Assets.ttt.level3Big.path;
-    }else if(tmplevel == 4){
+    } else if (tmplevel == 4) {
       icon = Assets.ttt.level4Big.path;
-    }else{
+    } else {
       icon = Assets.ttt.level5Big.path;
     }
     return icon;
@@ -112,6 +120,17 @@ class DtController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    resetAllDataA();
+  }
+
+  changeLeixing(EnumLeixinType leixingType) {
+    String leixing = leixingType.name;
+    curLeixing.value = leixing;
+    box.put(hLeixing, leixing);
+    resetAllDataA();
+  }
+
+  resetAllDataA() {
     _initDataA();
 
     String leixing = box.get(hLeixing) ?? EnumLeixinType.dailyLife.name;
@@ -146,6 +165,22 @@ class DtController extends GetxController {
     _timerChange();
   }
 
+  int datiLeixingIndex(EnumLeixinType leixingType) {
+    String key = _leixingKey(leixingType.name);
+    int index = box.get(key) ?? 0;
+    return index;
+  }
+
+  int datiLeixingAllLengt(EnumLeixinType leixingType) {
+    var tmpData = DaTiShuju.data;
+    String curCategory = leixingType.name;
+    var categoryData = tmpData[curCategory];
+    if (categoryData is List) {
+      return categoryData.length;
+    }
+    return 1;
+  }
+
   _initDataA() {
     var tmpData = DaTiShuju.data;
     String curCategory = curLeixing.value;
@@ -169,6 +204,12 @@ class DtController extends GetxController {
     if (tmpClick.isNotEmpty) {
       return;
     }
+
+    int tmpstar = curStar.value;
+    if (tmpstar <= 0) {
+      showDatiStarZero(Get.context!, onBtn: () {}, onClose: () {});
+      return;
+    }
     curClickAnswer.value = click;
     curShowGesture.value = false;
     _curCurLeixingDatiLeftTimer?.cancel();
@@ -176,14 +217,69 @@ class DtController extends GetxController {
     // showDatiNextLevel(Get.context!, onBtn: (){}, onClose: (){});
 
     if (click == right) {
-      addDatiRightNum();
-      addDatiCoin();
+      double tmpcoin = _getCoin() * 1.0;
+
+      showDatiRight(
+        Get.context!,
+        onBtn: () {
+          addDatiCoin(tmpcoin);
+          _onNext(hasClickRight: true);
+        },
+        onClose: () {
+          _onNext(hasClickRight: true);
+        },
+        money: tmpcoin,
+      );
     } else {
-      subStar();
+      showDatiError(
+        Get.context!,
+        onBtn: () {
+          subStar();
+          _onNext(showTryAgain: true, hasClickRight: false);
+        },
+        onClose: () {
+          _onNext(hasClickRight: false);
+        },
+      );
     }
-    addDatiAllNum();
+  }
+
+  _onShowUpgrade({required VoidCallback onNext}) {
+    int num = addDatiRightNum();
+    int level = num % upgradeNum;
+    if (level == 0) {
+      showDatiNextLevel(
+        Get.context!,
+        onBtn: () {
+          onNext();
+        },
+        onClose: () {
+          onNext();
+        },
+      );
+    } else {
+      onNext();
+    }
+  }
+
+  _onNext({bool showTryAgain = false, required bool hasClickRight}) {
+    if (showTryAgain) {
+    } else {
+      addDatiAllNum();
+      addNextLeixingIndex();
+    }
+
+    if (hasClickRight) {
+      _onShowUpgrade(onNext: (){
+        __onNext();
+      });
+    } else {
+      __onNext();
+    }
+  }
+
+  __onNext() {
     curClickAnswer.value = "";
-    addNextLeixingIndex();
     _timerChange();
   }
 
@@ -193,7 +289,7 @@ class DtController extends GetxController {
     jcRizhi("=subStar:$tmpAll==");
 
     if (tmpAll < 0) {
-      showDatiErro(Get.context!, onBtn: () {}, onClose: () {});
+      showDatiStarZero(Get.context!, onBtn: () {}, onClose: () {});
     }
 
     if (tmpAll <= 0) {
@@ -221,20 +317,23 @@ class DtController extends GetxController {
     box.put(hCurAllNum, tmpAll);
   }
 
-  addDatiRightNum() {
+  int addDatiRightNum() {
     int tmpAll = curRightNum.value;
     tmpAll = tmpAll + 1;
     jcRizhi("=addDatiRightNum:$tmpAll==");
     curRightNum.value = tmpAll;
     box.put(hCurRightNum, tmpAll);
+    return tmpAll;
   }
 
-  addDatiCoin() {
-    double tmpcoin = curMoney.value;
-    int tmpcoin2 = tmpcoin.toInt();
+  int _getCoin() {
     int random = Random().nextInt(1000);
-    tmpcoin2 = tmpcoin2 + 1000 + random;
-    tmpcoin = tmpcoin2 * 1.0;
+    return random + 1000;
+  }
+
+  addDatiCoin(double coin) {
+    double tmpcoin = curMoney.value;
+    tmpcoin = tmpcoin + coin;
     curMoney.value = tmpcoin;
     box.put(hCurMoney, tmpcoin);
   }

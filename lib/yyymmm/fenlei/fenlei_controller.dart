@@ -7,5 +7,6 @@ class FenleiController extends GetxController {
 
   onClick({required EnumLeixinType type}) {
     ZhuyeController.to.resetIndex(ZhuyeController.quizIndex);
+    DtController.to.changeLeixing(type);
   }
 }

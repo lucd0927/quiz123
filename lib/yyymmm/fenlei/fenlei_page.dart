@@ -44,6 +44,11 @@ class _FenleiPageState extends State<FenleiPage> {
     } else if (type == EnumLeixinType.animal) {
       icon = Assets.ttt.leixingItemAnimal.path;
     }
+    int curIndex = DtController.to.datiLeixingIndex(type);
+    int allIndex = DtController.to.datiLeixingAllLengt(type);
+
+    double progress = curIndex / allIndex;
+
     return Container(
       width: double.infinity,
       height: 93.h,
@@ -87,9 +92,9 @@ class _FenleiPageState extends State<FenleiPage> {
                         Color(0xffA0FFD6),
                       ],
                       bgColor: Color(0xffffffff),
-                      text: "1/11",
+                      text: "",
                       width: 308.w,
-                      progress: 0.2,
+                      progress: progress,
                     ),
                   ],
                 ),

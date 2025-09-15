@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/jc_luy.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
+import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../../gen/assets.gen.dart';
 
@@ -67,72 +68,82 @@ class _NavTopState extends State<NavTop> {
   }
 
   coinWidgetA() {
-    return Container(
-      height: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-      decoration: BoxDecoration(
-        color: Color(0xffFFC850),
-        border: Border.all(color: Color(0xff000000), width: 1.h),
-        borderRadius: BorderRadius.circular(8.w),
-      ),
-      child: Row(
-        children: [
-          Image.asset(
-            Assets.ttt.quizCoin.path,
-            width: 31.h,
-            height: double.infinity,
-          ),
-          Container(
-            height: 31.h,
-            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
-            decoration: BoxDecoration(
-              color: Color(0xff8D4700),
-              // border: Border.all(color: Color(0xff000000),width: 1.h),
-              borderRadius: BorderRadius.circular(16.w),
+    return GestureDetector(
+      onTap: () {
+        ZhuyeController.to.resetIndex(ZhuyeController.quizIndex);
+      },
+      child: Container(
+        height: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+        decoration: BoxDecoration(
+          color: Color(0xffFFC850),
+          border: Border.all(color: Color(0xff000000), width: 1.h),
+          borderRadius: BorderRadius.circular(8.w),
+        ),
+        child: Row(
+          children: [
+            Image.asset(
+              Assets.ttt.quizCoin.path,
+              width: 31.h,
+              height: double.infinity,
             ),
-            child: Center(
-              child: JCTextBorder(
-                text: "${DtController.to.curMoney.value.toStringAsFixed(0)}",
+            Container(
+              height: 31.h,
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
+              decoration: BoxDecoration(
+                color: Color(0xff8D4700),
+                // border: Border.all(color: Color(0xff000000),width: 1.h),
+                borderRadius: BorderRadius.circular(16.w),
+              ),
+              child: Center(
+                child: JCTextBorder(
+                  text: "${DtController.to.curMoney.value.toStringAsFixed(0)}",
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   starWidgetA() {
-    return Container(
-      height: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-      decoration: BoxDecoration(
-        color: Color(0xffFFC850),
-        border: Border.all(color: Color(0xff000000), width: 1.h),
-        borderRadius: BorderRadius.circular(8.w),
-      ),
-      child: Row(
-        children: [
-          Image.asset(
-            Assets.ttt.quizStar.path,
-            width: 31.h,
-            height: double.infinity,
-          ),
-          Container(
-            height: 31.h,
-            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
-            decoration: BoxDecoration(
-              color: Color(0xff8D4700),
-              // border: Border.all(color: Color(0xff000000),width: 1.h),
-              borderRadius: BorderRadius.circular(16.w),
+    return GestureDetector(
+      onTap: () {
+        ZhuyeController.to.resetIndex(ZhuyeController.quizIndex);
+      },
+      child: Container(
+        height: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+        decoration: BoxDecoration(
+          color: Color(0xffFFC850),
+          border: Border.all(color: Color(0xff000000), width: 1.h),
+          borderRadius: BorderRadius.circular(8.w),
+        ),
+        child: Row(
+          children: [
+            Image.asset(
+              Assets.ttt.quizStar.path,
+              width: 31.h,
+              height: double.infinity,
             ),
-            child: Center(
-              child: JCTextBorder(
-                text:
-                    "${DtController.to.curStar.value.toStringAsFixed(0)}/${DtController.initStarNum}",
+            Container(
+              height: 31.h,
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
+              decoration: BoxDecoration(
+                color: Color(0xff8D4700),
+                // border: Border.all(color: Color(0xff000000),width: 1.h),
+                borderRadius: BorderRadius.circular(16.w),
+              ),
+              child: Center(
+                child: JCTextBorder(
+                  text:
+                      "${DtController.to.curStar.value.toStringAsFixed(0)}/${DtController.initStarNum}",
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
