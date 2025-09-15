@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:ui' as ui;
 
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -15,9 +15,6 @@ import 'package:toastification/toastification.dart';
 
 import 'hive/jc_hive.dart';
 import 'yy_gj/jc_luy.dart';
-
-
-
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -51,22 +48,26 @@ class MyApp extends StatelessWidget {
             // main: MyHomePage(title: '1'),
             title: "QuizSpark",
             initialRoute: JcLuy.splash,
-            builder: (BuildContext context, Widget? child){
-              return  Overlay(
-                initialEntries: <OverlayEntry>[
-                  OverlayEntry(
-                    builder: (BuildContext ctx) {
-
-                      return child!;
-                    },
-                  ),
-                ],
+            builder: (BuildContext context, Widget? child) {
+              return AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle(
+                  statusBarColor: Colors.transparent,
+                  statusBarBrightness:Brightness.dark,
+                  statusBarIconBrightness: Brightness.light,
+                ),
+                child: Overlay(
+                  initialEntries: <OverlayEntry>[
+                    OverlayEntry(
+                      builder: (BuildContext ctx) {
+                        return child!;
+                      },
+                    ),
+                  ],
+                ),
               );
               return Overlay();
             },
-            theme: ThemeData(
-
-            ),
+            theme: ThemeData(),
             getPages: JcLuy.pages,
             locale: ui.window.locale,
             // translations: FanyiTools(),

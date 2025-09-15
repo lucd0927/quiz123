@@ -54,13 +54,14 @@ class _JCKaipingState extends State<JCKaiping> {
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
-    Locale yuyan = ui.window.locale;
-
-    jcRizhi("======国家：$yuyan。${"update_language".tr}");
+    // Locale yuyan = ui.window.locale;
+    //
+    // jcRizhi("======国家：$yuyan。${"update_language".tr}");
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.light,
       ),
       child: Material(
         color: Colors.white,

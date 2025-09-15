@@ -5,7 +5,10 @@ import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/yy_gj/shuju/daily_life.dart';
 import 'package:quiz123/yy_gj/shuju/data.dart';
 import 'package:quiz123/yy_gj/shuju/dati_model.dart';
+import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_erro.dart';
 import 'package:tuple/tuple.dart';
+
+import 'kkkk/dati_next_level.dart';
 
 enum EnumLeixinType {
   animal("Animal"),
@@ -124,5 +127,8 @@ class DtController extends GetxController {
   onDianji({required String click, required String right}) {
     jcRizhi("=====click:$click  right:$right");
     curClickAnswer.value = click;
+
+    showDatiNextLevel(Get.context!, onBtn: (){}, onClose: (){});
+
   }
 }
