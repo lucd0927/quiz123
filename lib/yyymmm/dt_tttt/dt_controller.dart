@@ -116,16 +116,26 @@ class DtController extends GetxController {
     return icon;
   }
 
+  bool _hasLoadInit = false;
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+
+
     resetAllDataA();
+    _hasLoadInit = true;
   }
 
   changeLeixing(EnumLeixinType leixingType) {
     String leixing = leixingType.name;
+    _changeLeixing(leixing);
+  }
+
+  _changeLeixing(String leixing) {
     curLeixing.value = leixing;
+    curClickAnswer.value = "";
     box.put(hLeixing, leixing);
     resetAllDataA();
   }
@@ -149,7 +159,7 @@ class DtController extends GetxController {
     curMoney = tmpMoney.obs;
 
     int tmpStar = box.get(hCurStar) ?? initStarNum;
-    if (JCAppTrackStatus.isFirstLoginToday) {
+    if (JCAppTrackStatus.isFirstLoginToday && !_hasLoadInit) {
       if (tmpStar < initStarNum) {
         tmpStar = initStarNum;
       }
@@ -165,15 +175,19 @@ class DtController extends GetxController {
     _timerChange();
   }
 
-  int datiLeixingIndex(EnumLeixinType leixingType) {
+  int? datiLeixingIndex(EnumLeixinType leixingType) {
     String key = _leixingKey(leixingType.name);
-    int index = box.get(key) ?? 0;
+    int? index = box.get(key);
     return index;
   }
 
   int datiLeixingAllLengt(EnumLeixinType leixingType) {
+    return _huoquLeixingData(leixingType.name);
+  }
+
+  _huoquLeixingData(String key) {
     var tmpData = DaTiShuju.data;
-    String curCategory = leixingType.name;
+    String curCategory = key;
     var categoryData = tmpData[curCategory];
     if (categoryData is List) {
       return categoryData.length;
@@ -238,6 +252,7 @@ class DtController extends GetxController {
           _onNext(showTryAgain: true, hasClickRight: false);
         },
         onClose: () {
+          subStar();
           _onNext(hasClickRight: false);
         },
       );
@@ -263,22 +278,31 @@ class DtController extends GetxController {
   }
 
   _onNext({bool showTryAgain = false, required bool hasClickRight}) {
-    if (showTryAgain) {
-    } else {
-      addDatiAllNum();
-      addNextLeixingIndex();
-    }
-
+    jcRizhi("===_onNext==");
     if (hasClickRight) {
-      _onShowUpgrade(onNext: (){
-        __onNext();
-      });
+      _onShowUpgrade(
+        onNext: () {
+          __onNext(showTryAgain: showTryAgain);
+        },
+      );
     } else {
-      __onNext();
+      __onNext(showTryAgain: showTryAgain);
     }
   }
 
-  __onNext() {
+  __onNext({required bool showTryAgain}) {
+    if (showTryAgain) {
+    } else {
+      addDatiAllNum();
+      bool hasNextLeixing = addNextLeixingIndex();
+      jcRizhi("=__onNext=hasNextLeixing:$hasNextLeixing=");
+      if (hasNextLeixing) {
+        String nextLeixing = DaTiShuju.xiayigeLeixing(curLeixing.value);
+        jcRizhi("=__onNext=nextLeixing:$nextLeixing=");
+        _changeLeixing(nextLeixing);
+        return;
+      }
+    }
     curClickAnswer.value = "";
     _timerChange();
   }
@@ -301,12 +325,23 @@ class DtController extends GetxController {
     return tmpAll;
   }
 
-  addNextLeixingIndex() {
+  bool addNextLeixingIndex() {
+    bool hasNextLeixing = false;
     int tmpAll = curLeixingIndex.value;
     tmpAll = tmpAll + 1;
-    jcRizhi("=addNextLeixingIndex:$tmpAll==");
+    String tmpCurLeixing = curLeixing.value;
+    int tmpAllaaa = _huoquLeixingData(tmpCurLeixing);
+
+    jcRizhi("==tmpLeixingIndex:$tmpAll===tmpAllaaa:$tmpAllaaa=");
+
+    if (tmpAll >= tmpAllaaa) {
+      tmpAll = tmpAllaaa;
+      hasNextLeixing = true;
+    }
+    jcRizhi("=addNextLeixingIndex2:$tmpAll==tmpAllaaa：$tmpAllaaa");
     curLeixingIndex.value = tmpAll;
     box.put(hCurLeixingIndex, tmpAll);
+    return hasNextLeixing;
   }
 
   addDatiAllNum() {

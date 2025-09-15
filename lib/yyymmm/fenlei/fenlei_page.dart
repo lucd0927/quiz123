@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/jc_jindutiao.dart';
 import 'package:quiz123/yyymmm/fenlei/fenlei_controller.dart';
 
@@ -44,9 +45,14 @@ class _FenleiPageState extends State<FenleiPage> {
     } else if (type == EnumLeixinType.animal) {
       icon = Assets.ttt.leixingItemAnimal.path;
     }
-    int curIndex = DtController.to.datiLeixingIndex(type);
+    int? curIndex = DtController.to.datiLeixingIndex(type);
+    if (curIndex == null) {
+      curIndex = 0;
+    } else {
+      curIndex = curIndex + 1;
+    }
     int allIndex = DtController.to.datiLeixingAllLengt(type);
-
+    jcRizhi("=typeL$type==curIndex:$curIndex=allIndex:$allIndex");
     double progress = curIndex / allIndex;
 
     return Container(
@@ -93,7 +99,7 @@ class _FenleiPageState extends State<FenleiPage> {
                       ],
                       bgColor: Color(0xffffffff),
                       text: "",
-                      width: 308.w,
+                      width: 154.w,
                       progress: progress,
                     ),
                   ],
@@ -101,7 +107,7 @@ class _FenleiPageState extends State<FenleiPage> {
               ),
               SizedBox(width: 10.w),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   FenleiController.to.onClick(type: type);
                 },
                 child: Container(
