@@ -9,7 +9,7 @@ showMeiwangDialog(
   required VoidCallback onBtn,
   required VoidCallback onClose,
 }) {
-  return zhanshiJiChuKuang(
+  return jcKuang(
     context: context,
     child: NoNetView(
       onClose: () {

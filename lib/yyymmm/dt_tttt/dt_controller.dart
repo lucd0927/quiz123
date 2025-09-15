@@ -9,7 +9,7 @@ import 'package:tuple/tuple.dart';
 
 enum EnumLeixinType {
   animal("Animal"),
-  dailyLife("Daily Life"),
+  dailyLife("DailyLife"),
   science("Science"),
   math("Math"),
   nature("Nature");
@@ -42,7 +42,7 @@ class DtController extends GetxController {
   var box = JCHive.box;
 
   //
-  var curLeixing = DailyLife.category.obs;
+  var curLeixing = EnumLeixinType.dailyLife.name.obs;
   var curLevel = 1.obs;
   var curLeixingIndex = 0.obs;
   var curAllDatiTime = 0.obs;
@@ -61,6 +61,7 @@ class DtController extends GetxController {
   DatiModel get datiModel {
     int curIndex = curLeixingIndex.value;
     int maxLength = _datiDatas.length;
+    jcRizhi("=curIndex:$curIndex==maxLength:$maxLength=");
     if (curIndex < maxLength) {
       return _datiDatas[curIndex];
     }
@@ -79,13 +80,13 @@ class DtController extends GetxController {
     super.onInit();
     _initDataA();
 
-    String leixing = box.get(hLeixing) ?? DailyLife.category;
+    String leixing = box.get(hLeixing) ?? EnumLeixinType.dailyLife.name;
     curLeixing = leixing.obs;
 
     int dengji = box.get(hCurDengji) ?? 1;
     curLevel = dengji.obs;
 
-    int tmpLeixingIndex = box.get(hCurLeixingIndex) ?? 1;
+    int tmpLeixingIndex = box.get(hCurLeixingIndex) ?? 0;
     curLeixingIndex = tmpLeixingIndex.obs;
 
     int tmpDatiTime = box.get(hCurAllTime) ?? 0;
@@ -117,6 +118,7 @@ class DtController extends GetxController {
       }
     }
     _datiDatas = tmpDatiModels;
+    jcRizhi("=====tmpDatiModels:${tmpDatiModels.length}  ");
   }
 
   onDianji({required String click, required String right}) {

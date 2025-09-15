@@ -13,7 +13,7 @@ showAdLimitDialog(
   required VoidCallback onClose,
 }) {
 
-  return zhanshiJiChuKuang(
+  return jcKuang(
     context: context,
     child: GuangGaoXianzhiView(
       onClose: () {

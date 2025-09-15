@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsTttGen {
   const $AssetsTttGen();
 
+  /// File path: assets/ttt/close.png
+  AssetGenImage get close => const AssetGenImage('assets/ttt/close.png');
+
   /// File path: assets/ttt/gesture.png
   AssetGenImage get gesture => const AssetGenImage('assets/ttt/gesture.png');
 
@@ -120,6 +123,16 @@ class $AssetsTttGen {
   AssetGenImage get level5Grey =>
       const AssetGenImage('assets/ttt/level5Grey.png');
 
+  /// File path: assets/ttt/level_bg.png
+  AssetGenImage get levelBg => const AssetGenImage('assets/ttt/level_bg.png');
+
+  /// File path: assets/ttt/level_btn.png
+  AssetGenImage get levelBtn => const AssetGenImage('assets/ttt/level_btn.png');
+
+  /// File path: assets/ttt/level_congratulation.png
+  AssetGenImage get levelCongratulation =>
+      const AssetGenImage('assets/ttt/level_congratulation.png');
+
   /// File path: assets/ttt/metal_error.png
   AssetGenImage get metalError =>
       const AssetGenImage('assets/ttt/metal_error.png');
@@ -215,11 +228,25 @@ class $AssetsTttGen {
   AssetGenImage get settingTerm =>
       const AssetGenImage('assets/ttt/setting_term.png');
 
+  /// File path: assets/ttt/star_bg.png
+  AssetGenImage get starBg => const AssetGenImage('assets/ttt/star_bg.png');
+
+  /// File path: assets/ttt/star_ok.png
+  AssetGenImage get starOk => const AssetGenImage('assets/ttt/star_ok.png');
+
+  /// File path: assets/ttt/star_sorry.png
+  AssetGenImage get starSorry =>
+      const AssetGenImage('assets/ttt/star_sorry.png');
+
+  /// File path: assets/ttt/star_star.png
+  AssetGenImage get starStar => const AssetGenImage('assets/ttt/star_star.png');
+
   /// File path: assets/ttt/zhuye_bg.png
   AssetGenImage get zhuyeBg => const AssetGenImage('assets/ttt/zhuye_bg.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    close,
     gesture,
     leixingItemAnimal,
     leixingItemBg,
@@ -248,6 +275,9 @@ class $AssetsTttGen {
     level5Big,
     level5BigGrey,
     level5Grey,
+    levelBg,
+    levelBtn,
+    levelCongratulation,
     metalError,
     metalLevelBg,
     metalRight,
@@ -273,6 +303,10 @@ class $AssetsTttGen {
     settingItemBg,
     settingNext,
     settingTerm,
+    starBg,
+    starOk,
+    starSorry,
+    starStar,
     zhuyeBg,
   ];
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-zhanshiJiChuKuang({
+jcKuang({
   required BuildContext context,
   required Widget child,
   Color? barrierColor,

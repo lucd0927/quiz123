@@ -23,7 +23,7 @@ class JCWindController {
 
   static Future initNumberUnit() async {
     try {
-      var src = JcBaseUtils.decrypt(encryptTxt, code);
+      var src = JCJiamiU.decrypt(encryptTxt, code);
       jcRizhi("=====key:$src");
       await Pbpig.instance.initddddNumsssberUdddnit(apiKey: src);
 

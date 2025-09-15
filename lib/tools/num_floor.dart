@@ -6,8 +6,8 @@ import 'package:flutter/cupertino.dart';
 extension JCNum on num {
   // 向下取整
   double toAsFixedFloor(int asdf) {
-    num rewtrew = pow(10, asdf);
-    double sdfgsdfg = (this * rewtrew).floor() / rewtrew;
-    return sdfgsdfg;
+    num weagdsfg = pow(10, asdf);
+    double rtewtrewtfgghj = (this * weagdsfg).floor() / weagdsfg;
+    return rtewtrewtfgghj;
   }
 }    

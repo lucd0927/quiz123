@@ -8,7 +8,7 @@ showAdFailedDialog(
   required VoidCallback onFunc,
   required VoidCallback onFunc2,
 }) {
-  return zhanshiJiChuKuang(
+  return jcKuang(
     context: context,
     child: GuangGaoFailView(
       onClose: () {

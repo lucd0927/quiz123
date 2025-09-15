@@ -1,26 +1,26 @@
 import 'dart:convert';
 
-class JcBaseUtils {
+class JCJiamiU {
 
 
 
   //加密：“data”：原始字符串；“code”：需求文档标题前的项目编号
   static String encrypt(String data, int code) {
-    final dataBytes = utf8.encode(data);
+    final ziji = utf8.encode(data);
     List<int> xorList = [];
-    for (int i = 0; i < dataBytes.length; i++) {
-      xorList.add(dataBytes[i] ^ code);
+    for (int i = 0; i < ziji.length; i++) {
+      xorList.add(ziji[i] ^ code);
     }
     return base64.encode(xorList);
   }
 
   //解密：“data”：加密字符串；“code”：需求文档标题前的项目编号
   static String decrypt(String data, int code) {
-    final decode = base64.decode(data);
-    final decode2 = decode.toList();
+    final decccccc = base64.decode(data);
+    final decccccc2 = decccccc.toList();
     List<int> xorList = [];
-    for (int i = 0; i < decode2.length; i++) {
-      xorList.add(decode2[i] ^ code);
+    for (int i = 0; i < decccccc2.length; i++) {
+      xorList.add(decccccc2[i] ^ code);
     }
     return utf8.decode(xorList);
   }
