@@ -189,14 +189,15 @@ class _DatiNextLevelState extends State<DatiNextLevel> {
     int time = DtController.to.curAllDatiTime.value;
     return Row(
       children: [
+        Spacer(),
         Image.asset(Assets.ttt.metalRight.path, width: 34.h, height: 34.h),
         JCTextBorder(text: "$right/$all"),
         Spacer(),
         Image.asset(Assets.ttt.metalError.path, width: 34.h, height: 34.h),
         JCTextBorder(text: "$error/$all"),
         Spacer(),
-        Image.asset(Assets.ttt.metalTime.path, width: 34.h, height: 34.h),
-        JCTextBorder(text: "${time}s"),
+        // Image.asset(Assets.ttt.metalTime.path, width: 34.h, height: 34.h),
+        // JCTextBorder(text: "${time}s"),
       ],
     );
   }

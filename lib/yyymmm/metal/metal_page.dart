@@ -148,7 +148,7 @@ class _MetalPageState extends State<MetalPage> {
   levelStatesItem({required String icon, required int level}) {
     int curLevel = DtController.to.curLevel();
     bool hasSelect = curLevel == level;
-    if (level >= 5) {
+    if (curLevel >= 5) {
       hasSelect = true;
     }
     var gradient = hasSelect
@@ -156,7 +156,7 @@ class _MetalPageState extends State<MetalPage> {
             colors: [
               Color(0xffFFF565),
               Color(0xffFFE0A7),
-              Color(0xffFFFE100),
+              Color(0xffFFFE10),
               Color(0xffFFF9AA),
               Color(0xffFDDE51),
             ],
