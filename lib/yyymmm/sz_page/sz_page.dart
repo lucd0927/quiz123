@@ -51,7 +51,7 @@ class _SzPageState extends State<SzPage> {
                 icon: Assets.ttt.settingAbout.path,
                 text: "Privacy Policy",
                 onTap: () {
-                  Uri uri = Uri.parse('https://www.google.com');
+                  Uri uri = Uri.parse('https://quizsparkitem.com/privacy/');
                   qidongU(uri);
                 },
               ),
@@ -59,13 +59,13 @@ class _SzPageState extends State<SzPage> {
                 icon: Assets.ttt.settingTerm.path,
                 text: "Term Of User",
                 onTap: () {
-                  Uri uri = Uri.parse('https://www.google.com');
+                  Uri uri = Uri.parse('https://quizsparkitem.com/terms/');
                   qidongU(uri);
                 },
               ),
               settingItem(
                 icon: Assets.ttt.settingContact.path,
-                text: "Contact us",
+                text: "Contact Us",
                 onTap: () {
                   qidongE();
                 },
