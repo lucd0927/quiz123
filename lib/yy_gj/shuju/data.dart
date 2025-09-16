@@ -11,21 +11,21 @@ class DaTiShuju {
   static const kCategory = "category";
   static const kData = "data";
 
-  static Map<String, dynamic> data = {
-    EnumLeixinType.dailyLife.name: testData(),
-    EnumLeixinType.nature.name: testData(),
-    EnumLeixinType.science.name: testData(),
-    EnumLeixinType.math.name: testData(),
-    EnumLeixinType.animal.name:testData(),
-  };
-
   // static Map<String, dynamic> data = {
-  //   EnumLeixinType.dailyLife.name: DailyLife.dataA(),
-  //   EnumLeixinType.nature.name: Nature.dataA(),
-  //   EnumLeixinType.science.name: Science.dataA(),
-  //   EnumLeixinType.math.name: Math.dataA(),
-  //   EnumLeixinType.animal.name: Animal.dataA(),
+  //   EnumLeixinType.dailyLife.name: testData(),
+  //   EnumLeixinType.nature.name: testData(),
+  //   EnumLeixinType.science.name: testData(),
+  //   EnumLeixinType.math.name: testData(),
+  //   EnumLeixinType.animal.name:testData(),
   // };
+
+  static Map<String, dynamic> data = {
+    EnumLeixinType.dailyLife.name: DailyLife.dataA(),
+    EnumLeixinType.nature.name: Nature.dataA(),
+    EnumLeixinType.science.name: Science.dataA(),
+    EnumLeixinType.math.name: Math.dataA(),
+    EnumLeixinType.animal.name: Animal.dataA(),
+  };
   //
   static dynamic testData(){
     return [
@@ -41,7 +41,14 @@ class DaTiShuju {
         "b": "Giraffe",
         "answer": "a",
       },
+      // {
+      //   "question": "What is the largest land animal in the world?",
+      //   "a": "Dog",
+      //   "b": "Elephant",
+      //   "answer": "b",
+      // },
     ];
+
   }
 
   static List<String> dataKeys = data.keys.toList();

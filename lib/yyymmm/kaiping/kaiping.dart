@@ -67,35 +67,35 @@ class _JCKaipingState extends State<JCKaiping> {
         color: Colors.white,
         child: Stack(
           children: [
-            // Image.asset(
-            //   Assets.tupian.splash.path,
-            //   width: double.infinity,
-            //   height: double.infinity,
-            //   fit: BoxFit.fill,
-            // ),
-            Container(
+            Image.asset(
+              Assets.ttt.zhuyeBg.path,
               width: double.infinity,
               height: double.infinity,
-              color: Colors.green,
+              fit: BoxFit.fill,
             ),
+            // Container(
+            //   width: double.infinity,
+            //   height: double.infinity,
+            //   color: Colors.green,
+            // ),
             Positioned(
               left: 0,
               right: 0,
-              top: 144.h * scale,
+              top: 144.h ,
               child: Center(
                 child: Column(
                   children: [
                     SizedBox(
-                      width: 478.w,
-                      height: 403.w,
-                      // child: Image.asset(
-                      //   Assets.tupian.splashIcon.path,
-                      //   width: double.infinity,
-                      //   height: double.infinity,
-                      //   fit: BoxFit.contain,
-                      // ),
+                      width: 205.w,
+                      height: 229.w,
+                      child: Image.asset(
+                        Assets.ttt.splshLogo.path,
+                        width: double.infinity,
+                        height: double.infinity,
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                    SizedBox(height: 30.h),
+                    // SizedBox(height: 30.h),
                   ],
                 ),
               ),
@@ -221,6 +221,7 @@ class _SplashProgressState extends State<SplashProgress> {
           fontSize: 20.sp,
           fontColor: Color(0xffF9F7ED),
         ),
+        SizedBox(height: 5.h,),
         SizedBox(
           width: 325.w,
           height: 15.w,

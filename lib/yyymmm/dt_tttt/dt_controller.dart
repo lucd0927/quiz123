@@ -279,18 +279,6 @@ class DtController extends GetxController {
 
   _onNext({bool showTryAgain = false, required bool hasClickRight}) {
     jcRizhi("===_onNext==");
-    if (hasClickRight) {
-      _onShowUpgrade(
-        onNext: () {
-          __onNext(showTryAgain: showTryAgain);
-        },
-      );
-    } else {
-      __onNext(showTryAgain: showTryAgain);
-    }
-  }
-
-  __onNext({required bool showTryAgain}) {
     if (showTryAgain) {
     } else {
       addDatiAllNum();
@@ -303,6 +291,19 @@ class DtController extends GetxController {
         return;
       }
     }
+    if (hasClickRight) {
+      _onShowUpgrade(
+        onNext: () {
+          __onNext(showTryAgain: showTryAgain);
+        },
+      );
+    } else {
+      __onNext(showTryAgain: showTryAgain);
+    }
+  }
+
+  __onNext({required bool showTryAgain}) {
+
     curClickAnswer.value = "";
     _timerChange();
   }
@@ -335,7 +336,7 @@ class DtController extends GetxController {
     jcRizhi("==tmpLeixingIndex:$tmpAll===tmpAllaaa:$tmpAllaaa=");
 
     if (tmpAll >= tmpAllaaa) {
-      tmpAll = tmpAllaaa;
+      tmpAll = tmpAllaaa-1;
       hasNextLeixing = true;
     }
     jcRizhi("=addNextLeixingIndex2:$tmpAll==tmpAllaaa：$tmpAllaaa");

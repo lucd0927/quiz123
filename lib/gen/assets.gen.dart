@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsTttGen {
   const $AssetsTttGen();
 
+  /// File path: assets/ttt/app_logo.png
+  AssetGenImage get appLogo => const AssetGenImage('assets/ttt/app_logo.png');
+
   /// File path: assets/ttt/close.png
   AssetGenImage get close => const AssetGenImage('assets/ttt/close.png');
 
@@ -256,6 +259,10 @@ class $AssetsTttGen {
   AssetGenImage get settingTerm =>
       const AssetGenImage('assets/ttt/setting_term.png');
 
+  /// File path: assets/ttt/splsh_logo.png
+  AssetGenImage get splshLogo =>
+      const AssetGenImage('assets/ttt/splsh_logo.png');
+
   /// File path: assets/ttt/star_bg.png
   AssetGenImage get starBg => const AssetGenImage('assets/ttt/star_bg.png');
 
@@ -274,6 +281,7 @@ class $AssetsTttGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    appLogo,
     close,
     datiErrorBg,
     datiErrorBtn,
@@ -338,6 +346,7 @@ class $AssetsTttGen {
     settingItemBg,
     settingNext,
     settingTerm,
+    splshLogo,
     starBg,
     starOk,
     starSorry,

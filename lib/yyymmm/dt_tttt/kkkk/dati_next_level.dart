@@ -141,7 +141,7 @@ class _DatiNextLevelState extends State<DatiNextLevel> {
                     ),
                     Center(
                       child: Image.asset(
-                        Assets.ttt.level1Big.path,
+                        DtController.to.levelIcon(),
                         width: 100.w,
                         height: 100.w,
                         fit: BoxFit.contain,
