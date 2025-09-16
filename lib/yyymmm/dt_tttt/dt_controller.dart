@@ -41,7 +41,7 @@ class DtController extends GetxController {
   static const String hCurRightNum = "lierilnmndfam";
   static const String hCurAllNum = "lewrhtifdknmnfa";
 
-  static const int upgradeNum = 5;
+  static const int upgradeNum = 10;
   static const int initStarNum = 5;
   static const int datiMaxTime = 10;
 
@@ -387,16 +387,16 @@ class DtController extends GetxController {
   _timerChange() {
     _curCurLeixingDatiLeftTimer?.cancel();
     curShowGesture.value = false;
-    curDaTiTime.value = initStarNum;
+    curDaTiTime.value = datiMaxTime;
     _curCurLeixingDatiLeftTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       int cishu = timer.tick;
       addDatiAllTime();
-      if (cishu >= initStarNum) {
+      if (cishu >= datiMaxTime) {
         curDaTiTime.value = 0;
         curShowGesture.value = true;
         timer.cancel();
       } else {
-        int left = initStarNum - cishu;
+        int left = datiMaxTime - cishu;
         if (left < 0) {
           left = 0;
         }

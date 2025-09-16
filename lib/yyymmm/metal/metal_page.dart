@@ -137,7 +137,7 @@ class _MetalPageState extends State<MetalPage> {
             children: [
               levelStatesItem(icon: icon4, level: 4),
               levelStatesItem(icon: icon5, level: 5),
-              SizedBox(width: 72.h,),
+              SizedBox(width: 72.h),
             ],
           ),
         ],
@@ -148,6 +148,9 @@ class _MetalPageState extends State<MetalPage> {
   levelStatesItem({required String icon, required int level}) {
     int curLevel = DtController.to.curLevel();
     bool hasSelect = curLevel == level;
+    if (level >= 5) {
+      hasSelect = true;
+    }
     var gradient = hasSelect
         ? LinearGradient(
             colors: [
@@ -161,10 +164,7 @@ class _MetalPageState extends State<MetalPage> {
             begin: Alignment.topCenter,
           )
         : LinearGradient(
-            colors: [
-              Color(0xff989EC1),
-              Color(0xff989EC1),
-            ],
+            colors: [Color(0xff989EC1), Color(0xff989EC1)],
             end: Alignment.bottomCenter,
             begin: Alignment.topCenter,
           );
@@ -177,7 +177,7 @@ class _MetalPageState extends State<MetalPage> {
             // foreground: Color(0xff801E11),
             // fontColor: Color(0xffFFE100),
             fontSize: 18.sp,
-            strokeColor: hasSelect?Color(0xff801E11):Color(0xff040A2F),
+            strokeColor: hasSelect ? Color(0xff801E11) : Color(0xff040A2F),
             fontWeight: FontWeight.w700,
             showShadow: true,
             gradient: gradient,
