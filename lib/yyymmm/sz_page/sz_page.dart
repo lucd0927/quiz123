@@ -89,7 +89,7 @@ class _SzPageState extends State<SzPage> {
   Future<void> qidongE() async {
     final Uri emial = Uri(
       scheme: 'mailto',
-      path: 'fmmkelxf5522@gmail.com',
+      path: 'fmmkelxf5522@outlook.com',
       queryParameters: {'subject': '', 'body': ''},
     );
 
