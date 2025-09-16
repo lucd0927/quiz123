@@ -61,6 +61,7 @@ dependencies:
   permission_handler: ^12.0.1
   rxdart: ^0.28.0
   event_bus: ^2.0.1
+  shiny_striped_progress_bar: ^1.1.0
 #  applovin_max: ^4.5.2
 #  thinkup_sdk:
 #    path: ./sanfangku/thinkup_sdk-1.0.7/

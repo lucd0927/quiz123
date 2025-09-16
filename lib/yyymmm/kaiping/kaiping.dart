@@ -9,6 +9,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/view/jc_text_border.dart';
+import 'package:shiny_striped_progress_bar/shiny_striped_progress_bar.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../tools/package.dart';
@@ -32,9 +33,8 @@ class _JCKaipingState extends State<JCKaiping> {
     initFrames();
   }
 
-  initFrames(){
+  initFrames() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-
       AssetImage assetImage = AssetImage(Assets.ttt.quizDaanRightBg.path);
       precacheImage(assetImage, context);
 
@@ -81,7 +81,7 @@ class _JCKaipingState extends State<JCKaiping> {
             Positioned(
               left: 0,
               right: 0,
-              top: 144.h ,
+              top: 144.h,
               child: Center(
                 child: Column(
                   children: [
@@ -153,8 +153,6 @@ class _SplashProgressState extends State<SplashProgress> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-
-
       jcRizhi("======= _allTime: $_allTime");
       double count = _allTime / _oneTime;
       _timer = Timer.periodic(_delayTime, (time) {
@@ -180,7 +178,6 @@ class _SplashProgressState extends State<SplashProgress> {
       aaabbbbChushi();
     });
   }
-
 
   aaabbbbChushi() async {
     // int time = DateTime.now().millisecondsSinceEpoch;
@@ -221,11 +218,11 @@ class _SplashProgressState extends State<SplashProgress> {
           fontSize: 20.sp,
           fontColor: Color(0xffF9F7ED),
         ),
-        SizedBox(height: 5.h,),
+        SizedBox(height: 15.h),
         SizedBox(
           width: 325.w,
           height: 15.w,
-          child: AnimatedGradientProgressBar(
+          child: AnimatedGradientProgressBar2(
             value: startTime, // 表示 60%
             gradientColors: [
               Color(0xffEFFF04),
@@ -247,6 +244,65 @@ class _SplashProgressState extends State<SplashProgress> {
     super.dispose();
     _timer.cancel();
     _delayTimer?.cancel();
+  }
+}
+
+class AnimatedGradientProgressBar2 extends StatelessWidget {
+  final BorderRadius borderRadius;
+  final double value; // 当前进度 0.0 ~ 1.0
+  final double height;
+  final Duration duration;
+  final List<Color> gradientColors;
+
+  const AnimatedGradientProgressBar2({
+    super.key,
+    required this.value,
+    this.height = 8.0,
+    this.duration = const Duration(milliseconds: 100),
+    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
+    this.gradientColors = const [Colors.blue, Colors.purple],
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TweenAnimationBuilder<double>(
+      tween: Tween<double>(begin: 0.0, end: value.clamp(0.0, 1.0)),
+      duration: duration,
+      curve: Curves.linear,
+      builder: (context, animatedValue, child) {
+        return ClipRRect(
+          borderRadius: borderRadius,
+          child: Container(
+            height: height,
+            decoration: BoxDecoration(color: Color(0xff691904)),
+            child: FractionallySizedBox(
+              alignment: Alignment.centerLeft,
+              widthFactor: animatedValue,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: gradientColors,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  border: Border.all(color: Color(0xffFDA560), width: 2.w),
+                  borderRadius: BorderRadius.circular(height),
+                ),
+                child: ShinyStripedProgressBar(
+                  targetProgress: 1,
+                  // height: 15.w,
+                  duration: Duration(microseconds: 100),
+                  progressColor: Color(0xff2EA610),
+                  borderRadius: BorderRadius.all(Radius.circular(15.w)),
+                  stripeAngle: StripeAngle.angle45,
+                  stripeColor: Color(0xff44EA3E),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 

@@ -385,6 +385,7 @@ class DtController extends GetxController {
   Timer? _curCurLeixingDatiLeftTimer;
 
   _timerChange() {
+    _curCurLeixingDatiLeftTimer?.cancel();
     curShowGesture.value = false;
     curDaTiTime.value = initStarNum;
     _curCurLeixingDatiLeftTimer = Timer.periodic(Duration(seconds: 1), (timer) {

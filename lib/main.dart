@@ -25,7 +25,11 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox(JCHive.hKeyBox);
   await initSpineFlutter(enableMemoryDebugging: false);
-  //
+  // 设置只允许竖屏
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    // DeviceOrientation.portraitDown, // 可选：允许上下颠倒的竖屏
+  ]);
   JCAppTrackStatus.init();
   pbWangluoCheck.isOnline();
   pbWangluoCheck.init();
