@@ -12,24 +12,28 @@ class JCJingdutiao extends StatelessWidget {
     required this.gradientColors,
     // required this.progressColor,
     required this.bgColor,
+    this.txtColor,
     required this.text,
     required this.width,
     required this.progress,
     this.border,
   });
+
   final String text;
   final Color bgColor;
+  final Color? txtColor;
   final double width;
   final double height;
+
   // final Color progressColor;
   final List<Color> gradientColors;
 
   final double innerHeight;
 
-
   // auto patch 368
   final double progress;
   final BoxBorder? border;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -76,9 +80,12 @@ class JCJingdutiao extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(
-                color: Colors.white,
+                color: txtColor ?? Colors.white,
                 fontSize: height - 2,
                 height: 1,
+                shadows: [
+                  Shadow(color: Colors.black,offset: Offset(0, 0.1),blurRadius: 1)
+                ]
               ),
             ),
           ),

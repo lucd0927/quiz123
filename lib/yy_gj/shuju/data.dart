@@ -26,7 +26,7 @@ class DaTiShuju {
     EnumLeixinType.math.name: Math.dataA(),
     EnumLeixinType.animal.name: Animal.dataA(),
   };
-  //
+
   static dynamic testData(){
     return [
       {
@@ -35,18 +35,7 @@ class DaTiShuju {
         "b": "Elephant",
         "answer": "b",
       },
-      {
-        "question": "What animal has a long trunk?",
-        "a": "Elephant",
-        "b": "Giraffe",
-        "answer": "a",
-      },
-      // {
-      //   "question": "What is the largest land animal in the world?",
-      //   "a": "Dog",
-      //   "b": "Elephant",
-      //   "answer": "b",
-      // },
+
     ];
 
   }
