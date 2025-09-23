@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:get/get.dart';
+import 'package:quiz123/view/jc_ts_kuang.dart';
 
-import '../view/jc_ts_kuang.dart';
 import 'kuang/guanggao_failed.dart';
 
 

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/ads/jc_ads_tools.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:shiny_striped_progress_bar/shiny_striped_progress_bar.dart';
 
@@ -142,7 +143,7 @@ class _SplashProgressState extends State<SplashProgress> {
   double startTime = 0.0;
   late Timer _timer;
   final Duration _delayTime = Duration(milliseconds: _oneTime);
-  double _allTime = 2000;
+  double _allTime = 10000;
   static const int _oneTime = 100;
   bool canGoToMain = true;
   Timer? _delayTimer;
@@ -180,27 +181,27 @@ class _SplashProgressState extends State<SplashProgress> {
   }
 
   aaabbbbChushi() async {
-    // int time = DateTime.now().millisecondsSinceEpoch;
-    // jcRizhi("==PBABLogic().init start====");
-    // // // // 5 ab包逻辑
-    // bool result = await jcRizhiicAB().init();
-    // await PBCommonAds().init();
-    //
-    // int time2 = DateTime.now().millisecondsSinceEpoch;
-    // jcRizhi(
-    //   "==PBABLogic().init end==canGoToMain:$canGoToMain=result:$result=耗时:${time2 - time}",
-    // );
-    // // await Future.delayed(Duration(milliseconds: 3000));
-    // _timer.cancel();
-    // if (canGoToMain) {
-    //   jcRizhi("==PBABLogic().init 等待进入main page====");
-    //   setState(() {
-    //     startTime = 1.0;
-    //   });
-    //   await Future.delayed(Duration(milliseconds: _oneTime * 2));
-    //
-    //   xiayigeyemina();
-    // }
+    int time = DateTime.now().millisecondsSinceEpoch;
+    jcRizhi("==JCABluoji().init start====");
+    // // // 5 ab包逻辑
+    bool result = await JCABluoji().init();
+    await JCAdsTools().init();
+
+    int time2 = DateTime.now().millisecondsSinceEpoch;
+    jcRizhi(
+      "==JCABluoji().init end==canGoToMain:$canGoToMain=result:$result=耗时:${time2 - time}",
+    );
+    // await Future.delayed(Duration(milliseconds: 3000));
+    _timer.cancel();
+    if (canGoToMain) {
+      jcRizhi("==JCABluoji().init 等待进入main page====");
+      setState(() {
+        startTime = 1.0;
+      });
+      await Future.delayed(Duration(milliseconds: _oneTime * 2));
+
+      xiayigeyemina();
+    }
   }
 
   xiayigeyemina() {

@@ -24,10 +24,7 @@ class JCFbase {
       FirebaseRemoteConfig.instance.getString(name);
 
   Future<void> chushi() async {
-    // auto patch 904
-    // if (Platform.isAndroid) {
-    //   return;
-    // }
+
     try {
       jcRizhi("==PBFireBbbbbb==initFirebase====");
       FirebaseApp firebaseApp = await Firebase.initializeApp();

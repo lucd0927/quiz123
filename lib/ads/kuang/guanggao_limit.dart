@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiz123/jichu_kuang/jichu_kuang.dart';
 
 
 
-import '../../../jichu_kuang/jichu_kuang.dart';
 
-import '../../wangluo/shijian_baogao.dart';
 
 showAdLimitDialog(
   BuildContext context, {

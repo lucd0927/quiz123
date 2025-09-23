@@ -11,6 +11,46 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsBbbGen {
+  const $AssetsBbbGen();
+
+  /// File path: assets/bbb/quiz_btn.png
+  AssetGenImage get quizBtn => const AssetGenImage('assets/bbb/quiz_btn.png');
+
+  /// File path: assets/bbb/quiz_float_money.png
+  AssetGenImage get quizFloatMoney =>
+      const AssetGenImage('assets/bbb/quiz_float_money.png');
+
+  /// File path: assets/bbb/quiz_gift_open.png
+  AssetGenImage get quizGiftOpen =>
+      const AssetGenImage('assets/bbb/quiz_gift_open.png');
+
+  /// File path: assets/bbb/quiz_gift_wheel.png
+  AssetGenImage get quizGiftWheel =>
+      const AssetGenImage('assets/bbb/quiz_gift_wheel.png');
+
+  /// File path: assets/bbb/quiz_help.png
+  AssetGenImage get quizHelp => const AssetGenImage('assets/bbb/quiz_help.png');
+
+  /// File path: assets/bbb/quiz_tips.png
+  AssetGenImage get quizTips => const AssetGenImage('assets/bbb/quiz_tips.png');
+
+  /// File path: assets/bbb/quiz_xuanguang.png
+  AssetGenImage get quizXuanguang =>
+      const AssetGenImage('assets/bbb/quiz_xuanguang.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    quizBtn,
+    quizFloatMoney,
+    quizGiftOpen,
+    quizGiftWheel,
+    quizHelp,
+    quizTips,
+    quizXuanguang,
+  ];
+}
+
 class $AssetsTttGen {
   const $AssetsTttGen();
 
@@ -358,6 +398,7 @@ class $AssetsTttGen {
 class Assets {
   const Assets._();
 
+  static const $AssetsBbbGen bbb = $AssetsBbbGen();
   static const $AssetsTttGen ttt = $AssetsTttGen();
 }
 

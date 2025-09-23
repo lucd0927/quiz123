@@ -2,6 +2,7 @@ import 'package:auto_size_text_plus/auto_size_text_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/tools/package.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/view/jc_jindutiao.dart';
 import 'package:quiz123/view/jc_text_border.dart';
@@ -21,6 +22,33 @@ class DtPage extends StatefulWidget {
 class _DtPageState extends State<DtPage> {
   @override
   Widget build(BuildContext context) {
+    bool b = JCABluoji.isPackageB();
+    if(b){
+      return viewB();
+    }
+    return viewA();
+  }
+
+  Widget viewB(){
+    return Obx(() {
+      return Padding(
+        padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 12.h),
+        child: Column(
+          children: [
+            SizedBox(height: 10.h),
+            levelView(),
+            SizedBox(height: 10.h),
+            datiView(),
+            SizedBox(height: 10.h),
+            Expanded(child: answerWidget()),
+            // SizedBox(height: 10.h),
+          ],
+        ),
+      );
+    });
+  }
+
+  Widget viewA() {
     return Obx(() {
       return Padding(
         padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 12.h),
@@ -223,14 +251,17 @@ class _DtPageState extends State<DtPage> {
 
     bool showG = DtController.to.curShowGesture.value;
     String icon = Assets.ttt.quizAnswerBg.path;
-    if(showIcon){
+    if (showIcon) {
       icon = selectRight
           ? Assets.ttt.quizDaanRightBg.path
           : Assets.ttt.quizDaanErrorBg.path;
     }
     return GestureDetector(
       onTap: () {
-        DtController.to.onDianji(click: answer, right: rightAnswer.toUpperCase());
+        DtController.to.onDianji(
+          click: answer,
+          right: rightAnswer.toUpperCase(),
+        );
       },
       child: Container(
         width: 298.w,
