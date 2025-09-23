@@ -8,6 +8,7 @@ import 'package:quiz123/view/jc_jindutiao.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/view/jc_text_jianbian_border.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
+import 'package:quiz123/yyymmm/dt_tttt/views_b/dati_gift.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/dati_top.dart';
 
 import '../../gen/assets.gen.dart';
@@ -34,14 +35,16 @@ class _DtPageState extends State<DtPage> {
     return Obx(() {
       return Column(
         children: [
-          SizedBox(height: 42.h),
+          SizedBox(height: 38.h),
           Row(children: [
             SizedBox(width: 40.w,),
             Expanded(child: DatiTop(),)
           ],),
-          SizedBox(height: 10.h),
-          datiView(),
-          SizedBox(height: 10.h),
+          // SizedBox(height: 10.h),
+          DatiGift(),
+          // SizedBox(height: 10.h),
+          Padding(padding: EdgeInsets.symmetric(horizontal: 16.w),child: datiView(),),
+          SizedBox(height: 5.h),
           Expanded(child: answerWidget()),
           // SizedBox(height: 10.h),
         ],

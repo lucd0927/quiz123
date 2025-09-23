@@ -39,6 +39,10 @@ class $AssetsBbbGen {
   AssetGenImage get quizGiftBox2 =>
       const AssetGenImage('assets/bbb/quiz_gift_box2.png');
 
+  /// File path: assets/bbb/quiz_gift_box_tips.png
+  AssetGenImage get quizGiftBoxTips =>
+      const AssetGenImage('assets/bbb/quiz_gift_box_tips.png');
+
   /// File path: assets/bbb/quiz_gift_open.png
   AssetGenImage get quizGiftOpen =>
       const AssetGenImage('assets/bbb/quiz_gift_open.png');
@@ -74,6 +78,7 @@ class $AssetsBbbGen {
     quizFloatMoney,
     quizGiftBox,
     quizGiftBox2,
+    quizGiftBoxTips,
     quizGiftOpen,
     quizGiftWheel,
     quizGiftWheel2,
