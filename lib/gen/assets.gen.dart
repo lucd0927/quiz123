@@ -14,12 +14,30 @@ import 'package:flutter/widgets.dart';
 class $AssetsBbbGen {
   const $AssetsBbbGen();
 
+  /// File path: assets/bbb/main_cash.png
+  AssetGenImage get mainCash => const AssetGenImage('assets/bbb/main_cash.png');
+
+  /// File path: assets/bbb/main_quiz.png
+  AssetGenImage get mainQuiz => const AssetGenImage('assets/bbb/main_quiz.png');
+
+  /// File path: assets/bbb/main_setting.png
+  AssetGenImage get mainSetting =>
+      const AssetGenImage('assets/bbb/main_setting.png');
+
   /// File path: assets/bbb/quiz_btn.png
   AssetGenImage get quizBtn => const AssetGenImage('assets/bbb/quiz_btn.png');
 
   /// File path: assets/bbb/quiz_float_money.png
   AssetGenImage get quizFloatMoney =>
       const AssetGenImage('assets/bbb/quiz_float_money.png');
+
+  /// File path: assets/bbb/quiz_gift_box.png
+  AssetGenImage get quizGiftBox =>
+      const AssetGenImage('assets/bbb/quiz_gift_box.png');
+
+  /// File path: assets/bbb/quiz_gift_box2.png
+  AssetGenImage get quizGiftBox2 =>
+      const AssetGenImage('assets/bbb/quiz_gift_box2.png');
 
   /// File path: assets/bbb/quiz_gift_open.png
   AssetGenImage get quizGiftOpen =>
@@ -29,8 +47,16 @@ class $AssetsBbbGen {
   AssetGenImage get quizGiftWheel =>
       const AssetGenImage('assets/bbb/quiz_gift_wheel.png');
 
+  /// File path: assets/bbb/quiz_gift_wheel2.png
+  AssetGenImage get quizGiftWheel2 =>
+      const AssetGenImage('assets/bbb/quiz_gift_wheel2.png');
+
   /// File path: assets/bbb/quiz_help.png
   AssetGenImage get quizHelp => const AssetGenImage('assets/bbb/quiz_help.png');
+
+  /// File path: assets/bbb/quiz_money.png
+  AssetGenImage get quizMoney =>
+      const AssetGenImage('assets/bbb/quiz_money.png');
 
   /// File path: assets/bbb/quiz_tips.png
   AssetGenImage get quizTips => const AssetGenImage('assets/bbb/quiz_tips.png');
@@ -41,11 +67,18 @@ class $AssetsBbbGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    mainCash,
+    mainQuiz,
+    mainSetting,
     quizBtn,
     quizFloatMoney,
+    quizGiftBox,
+    quizGiftBox2,
     quizGiftOpen,
     quizGiftWheel,
+    quizGiftWheel2,
     quizHelp,
+    quizMoney,
     quizTips,
     quizXuanguang,
   ];

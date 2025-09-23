@@ -6,7 +6,7 @@ import 'package:quiz123/yyymmm/zhuye/zhuye.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../../gen/assets.gen.dart';
-
+import '../../../tools/package.dart';
 
 double bottomTopHeight = 0.h;
 double bottomNavHeight = 94.h;
@@ -53,6 +53,29 @@ class _JCDibuNavState extends State<JCDibuNav> {
       gaplessPlayback: true,
     ),
   ];
+  List<Widget> bg_b = [
+    Image.asset(
+      Assets.bbb.mainCash.path,
+      width: ScreenUtil().screenWidth,
+      height: bottomNavHeight,
+      fit: BoxFit.fill,
+      gaplessPlayback: true,
+    ),
+    Image.asset(
+      Assets.bbb.mainQuiz.path,
+      width: ScreenUtil().screenWidth,
+      height: bottomNavHeight,
+      fit: BoxFit.fill,
+      gaplessPlayback: true,
+    ),
+    Image.asset(
+      Assets.bbb.mainSetting.path,
+      width: ScreenUtil().screenWidth,
+      height: bottomNavHeight,
+      fit: BoxFit.fill,
+      gaplessPlayback: true,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +92,7 @@ class _JCDibuNavState extends State<JCDibuNav> {
                 children: [
                   IndexedStack(
                     index: ZhuyeController.to.curIndex.value,
-                    children: bg,
+                    children: JCABluoji.isPackageB() ? bg_b : bg,
                   ),
                   Row(
                     children: [

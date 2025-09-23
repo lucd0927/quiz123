@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/tools/package.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dati_ttt.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
@@ -55,7 +56,7 @@ class _ZhuyeState extends State<Zhuye> {
               Positioned.fill(
                 child: Column(
                   children: [
-                    NavTop(),
+                    JCABluoji.isPackageB() ? const SizedBox() : NavTop(),
                     Expanded(
                       child: IndexedStack(index: curIndex, children: pages()),
                     ),

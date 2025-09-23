@@ -96,7 +96,7 @@ class JCABluoji {
     try {
       AppsFlyerOptions sdfafd = AppsFlyerOptions(
         afDevKey: afDevKey ?? "应用识别码，产品经理提供",
-        // appId: appId ?? "iOS平台的 app id （10位数字），产品经理提供，Android应用不传",
+        appId: appId ?? "iOS平台的 app id （10位数字），产品经理提供，Android应用不传",
         showDebug: true,
         manualStart: true,
         timeToWaitForATTUserAuthorization: 10,
@@ -258,10 +258,12 @@ class JCABluoji {
     await _initAppsFlyer();
     int time3 = DateTime.now().millisecondsSinceEpoch;
     jcRizhi("==_initB===_initAppsFlyer() end===耗时:${time3 - time2}");
+    if(Platform.isAndroid){
+      await JCWindController.initNumberUnit();
+      int time4 = DateTime.now().millisecondsSinceEpoch;
+      jcRizhi("==_initB===SWFengKong() end===耗时:${time4 - time3}");
+    }
 
-    await JCWindController.initNumberUnit();
-    int time4 = DateTime.now().millisecondsSinceEpoch;
-    jcRizhi("==_initB===SWFengKong() end===耗时:${time4 - time3}");
     // PBMaiDian.cloak_req();
     JCNet().cloak().then((v) {
       _cloakData = v ?? "";
@@ -303,12 +305,12 @@ class JCABluoji {
   _initAppsFlyer() async {
     if (!isInitAppsFlyer) {
       isInitAppsFlyer = true;
-      String afKey ="dadfa";
+      String afKey ="XM9ua37BHJWBKq8jTYg74a";
       if (afKey.isEmpty) {
         return;
       }
 
-      await initAppsFlyer(afDevKey: afKey, appId: "");
+      await initAppsFlyer(afDevKey: afKey, appId: "id6752763599");
     }
   }
 }

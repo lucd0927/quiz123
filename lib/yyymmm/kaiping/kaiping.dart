@@ -36,6 +36,14 @@ class _JCKaipingState extends State<JCKaiping> {
 
   initFrames() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      AssetImage assetImage6 = AssetImage(Assets.bbb.mainCash.path);
+      precacheImage(assetImage6, context);
+
+      AssetImage assetImage7 = AssetImage(Assets.bbb.mainQuiz.path);
+      precacheImage(assetImage7, context);
+      AssetImage assetImage8 = AssetImage(Assets.bbb.mainSetting.path);
+      precacheImage(assetImage8, context);
+
       AssetImage assetImage = AssetImage(Assets.ttt.quizDaanRightBg.path);
       precacheImage(assetImage, context);
 
@@ -185,7 +193,7 @@ class _SplashProgressState extends State<SplashProgress> {
     jcRizhi("==JCABluoji().init start====");
     // // // 5 ab包逻辑
     bool result = await JCABluoji().init();
-    await JCAdsTools().init();
+    // await JCAdsTools().init();
 
     int time2 = DateTime.now().millisecondsSinceEpoch;
     jcRizhi(
