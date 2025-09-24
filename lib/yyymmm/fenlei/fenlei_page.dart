@@ -52,7 +52,7 @@ class _FenleiPageState extends State<FenleiPage> {
       curIndex = curIndex + 1;
     }
     int allIndex = DtController.to.datiLeixingAllLengt(type);
-    jcRizhi("=typeL$type==curIndex:$curIndex=allIndex:$allIndex");
+    // jcRizhi("=typeL$type==curIndex:$curIndex=allIndex:$allIndex");
     double progress = curIndex / allIndex;
 
     return Container(

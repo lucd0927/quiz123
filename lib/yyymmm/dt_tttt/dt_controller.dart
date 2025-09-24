@@ -8,8 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/tools/app_track_status.dart';
+import 'package:quiz123/tools/package.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/jc_text_border.dart';
+import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
 import 'package:quiz123/yy_gj/shuju/daily_life.dart';
 import 'package:quiz123/yy_gj/shuju/data.dart';
 import 'package:quiz123/yy_gj/shuju/dati_model.dart';
@@ -21,6 +23,7 @@ import 'package:spine_flutter/spine_flutter_bindings_generated.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../yy_gj/bbbb/shuzhishuju.dart';
 import 'kkkk/dati_next_level.dart';
 
 enum EnumLeixinType {
@@ -49,7 +52,7 @@ class DtController extends GetxController {
 
   static const int upgradeNum = 10;
   static const int initStarNum = 5;
-  static const int datiMaxTime = 10;
+  static int datiMaxTime = JCABluoji.isPackageB() ? 5 : 10;
 
   String get hCurLeixingIndex {
     return _leixingKey(curLeixing.value);
@@ -218,6 +221,11 @@ class DtController extends GetxController {
   }
 
   onDianji({required String click, required String right}) async {
+    if (JCABluoji.isPackageB()) {
+      onDianjiB(click: click, right: right);
+      return;
+    }
+
     jcRizhi("=====click:$click  right:$right");
     String tmpClick = curClickAnswer.value;
     if (tmpClick.isNotEmpty) {
@@ -296,7 +304,7 @@ class DtController extends GetxController {
         return;
       }
     }
-    if (hasClickRight) {
+    if (hasClickRight && !JCABluoji.isPackageB()) {
       _onShowUpgrade(
         onNext: () {
           __onNext(showTryAgain: showTryAgain);
@@ -381,7 +389,7 @@ class DtController extends GetxController {
   addDatiAllTime() {
     int tmpAll = curAllDatiTime.value;
     tmpAll = tmpAll + 1;
-    jcRizhi("=addDatiAllTime:$tmpAll==");
+    // jcRizhi("=addDatiAllTime:$tmpAll==");
     curAllDatiTime.value = tmpAll;
     box.put(hCurAllTime, tmpAll);
   }
@@ -414,13 +422,16 @@ class DtController extends GetxController {
 
   showXaunfu() {
     _qXuanfu.close();
+
+    double tmpXuanfu = ShuzhiShuju.float_prize();
+
     _qXuanfu.show(
       context: Get.context!,
 
       child: Material(
         color: Colors.transparent,
         child: GestureDetector(
-          onTap:() async {
+          onTap: () async {
             _qXuanfu.close();
             await Future.delayed(Duration(milliseconds: 2000));
             showXaunfu();
@@ -442,7 +453,7 @@ class DtController extends GetxController {
                   bottom: 0,
                   child: Center(
                     child: JCTextBorder(
-                      text: "\$23",
+                      text: "\$$tmpXuanfu",
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w700,
                       fontColor: Color(0xff22FF26),
@@ -456,5 +467,49 @@ class DtController extends GetxController {
         ),
       ),
     );
+  }
+
+  double minWithdrawJine = ShuzhiShuju.eq_range()[0];
+
+  onDianjiB({required String click, required String right}) async {
+    jcRizhi("=====click:$click  right:$right");
+    String tmpClick = curClickAnswer.value;
+    if (tmpClick.isNotEmpty) {
+      return;
+    }
+
+    curClickAnswer.value = click;
+    curShowGesture.value = false;
+    _curCurLeixingDatiLeftTimer?.cancel();
+    await Future.delayed(Duration(milliseconds: 1500));
+    // showDatiNextLevel(Get.context!, onBtn: (){}, onClose: (){});
+
+    if (click == right) {
+      double tmpcoin = ShuzhiShuju.quiz_prize();
+
+      // showDatiRight(
+      //   Get.context!,
+      //   onBtn: () {
+      //     addDatiCoin(tmpcoin);
+      //     _onNext(hasClickRight: true);
+      //   },
+      //   onClose: () {
+      //     _onNext(hasClickRight: true);
+      //   },
+      //   money: tmpcoin,
+      // );
+      MoneyCcc().show(
+        context: Get.context!,
+        money: tmpcoin,
+        onClaimDouble: (data) {
+          _onNext(hasClickRight: true);
+        },
+        onClaim: (data) {
+          _onNext(hasClickRight: true);
+        },
+      );
+    } else {
+      _onNext(hasClickRight: false);
+    }
   }
 }

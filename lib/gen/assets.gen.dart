@@ -14,8 +14,18 @@ import 'package:flutter/widgets.dart';
 class $AssetsBbbGen {
   const $AssetsBbbGen();
 
+  /// File path: assets/bbb/ad.png
+  AssetGenImage get ad => const AssetGenImage('assets/bbb/ad.png');
+
+  /// File path: assets/bbb/btn.png
+  AssetGenImage get btn => const AssetGenImage('assets/bbb/btn.png');
+
   /// File path: assets/bbb/close.png
   AssetGenImage get close => const AssetGenImage('assets/bbb/close.png');
+
+  /// File path: assets/bbb/congratulations.png
+  AssetGenImage get congratulations =>
+      const AssetGenImage('assets/bbb/congratulations.png');
 
   /// File path: assets/bbb/main_cash.png
   AssetGenImage get mainCash => const AssetGenImage('assets/bbb/main_cash.png');
@@ -26,6 +36,9 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/main_setting.png
   AssetGenImage get mainSetting =>
       const AssetGenImage('assets/bbb/main_setting.png');
+
+  /// File path: assets/bbb/money.png
+  AssetGenImage get money => const AssetGenImage('assets/bbb/money.png');
 
   /// File path: assets/bbb/quiz_btn.png
   AssetGenImage get quizBtn => const AssetGenImage('assets/bbb/quiz_btn.png');
@@ -96,6 +109,10 @@ class $AssetsBbbGen {
   AssetGenImage get tixianSelect =>
       const AssetGenImage('assets/bbb/tixian_select.png');
 
+  /// File path: assets/bbb/xuanguang.png
+  AssetGenImage get xuanguang =>
+      const AssetGenImage('assets/bbb/xuanguang.png');
+
   /// File path: assets/bbb/zp_bg.png
   AssetGenImage get zpBg => const AssetGenImage('assets/bbb/zp_bg.png');
 
@@ -108,10 +125,14 @@ class $AssetsBbbGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    ad,
+    btn,
     close,
+    congratulations,
     mainCash,
     mainQuiz,
     mainSetting,
+    money,
     quizBtn,
     quizFloatMoney,
     quizGiftBox,
@@ -130,10 +151,18 @@ class $AssetsBbbGen {
     tixianPagbank,
     tixianPaypal,
     tixianSelect,
+    xuanguang,
     zpBg,
     zpLucky,
     zpZhizhen,
   ];
+}
+
+class $AssetsSssGen {
+  const $AssetsSssGen();
+
+  /// Directory path: assets/sss/lihua
+  $AssetsSssLihuaGen get lihua => const $AssetsSssLihuaGen();
 }
 
 class $AssetsTttGen {
@@ -480,10 +509,28 @@ class $AssetsTttGen {
   ];
 }
 
+class $AssetsSssLihuaGen {
+  const $AssetsSssLihuaGen();
+
+  /// File path: assets/sss/lihua/fly_poker.atlas
+  String get flyPokerAtlas => 'assets/sss/lihua/fly_poker.atlas';
+
+  /// File path: assets/sss/lihua/fly_poker.json
+  String get flyPokerJson => 'assets/sss/lihua/fly_poker.json';
+
+  /// File path: assets/sss/lihua/fly_poker.png
+  AssetGenImage get flyPokerPng =>
+      const AssetGenImage('assets/sss/lihua/fly_poker.png');
+
+  /// List of all assets
+  List<dynamic> get values => [flyPokerAtlas, flyPokerJson, flyPokerPng];
+}
+
 class Assets {
   const Assets._();
 
   static const $AssetsBbbGen bbb = $AssetsBbbGen();
+  static const $AssetsSssGen sss = $AssetsSssGen();
   static const $AssetsTttGen ttt = $AssetsTttGen();
 }
 

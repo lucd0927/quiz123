@@ -98,8 +98,11 @@ class _DatiGiftState extends State<DatiGift> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       int tmpRightNum = _innerRightCount;
       int index = (tmpRightNum / jumpCount).toInt();
-
-      Future.delayed(Duration(milliseconds: 1000), () {
+      index = index - 1;
+      if(index <= 0){
+        index = 0;
+      }
+      Future.delayed(Duration(milliseconds: 1200), () {
         gundongTo(index);
       });
     });
@@ -189,7 +192,7 @@ class _DatiGiftState extends State<DatiGift> {
         int count = curData[i];
         EnumLiwuLeixing category = EnumLiwuLeixing.box;
         int tmpCategory = (count - 2) % 9;
-        jcRizhi("=====tmpCategory:$tmpCategory count:$count");
+        // jcRizhi("=====tmpCategory:$tmpCategory count:$count");
         if (tmpCategory == 6) {
           category = EnumLiwuLeixing.wheel;
         } else {
@@ -237,7 +240,7 @@ class _DatiGiftState extends State<DatiGift> {
         child: Stack(
           children: [
             Positioned(
-              top: 10.h,
+              top: 20.h,
               right: 10.w,
               left: 10.w,
               bottom: 0.h,
@@ -303,7 +306,7 @@ class _DatiGiftState extends State<DatiGift> {
     double innerHeight = 10.h;
     double borderRadius = innerHeight;
     double leftDistance = (outHeight - innerHeight) / 2;
-    double top = 48.h;
+    double top = 56.h;
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -389,7 +392,7 @@ class _DatiGiftState extends State<DatiGift> {
       fontWeight: FontWeight.w700,
       fontSize: 12.sp,
     );
-    jcRizhi("==giftCategory:$liwuType==index:$index=");
+    // jcRizhi("==giftCategory:$liwuType==index:$index=");
     bool heziLeixing = liwuType == EnumLiwuLeixing.box;
     String icon = heziLeixing
         ? Assets.bbb.quizGiftBox.path
@@ -473,13 +476,23 @@ class _DatiGiftState extends State<DatiGift> {
                             height: double.infinity,
                             fit: BoxFit.fill,
                           ),
-                          Center(
-                            child: Text(
-                              "Max \$29",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 12.sp,
-                                color: Color(0xffA63617),
+                          Positioned(
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 6.h,
+                            child: Container(
+                              color: Colors.red.withValues(alpha: 0.0),
+                              child: Center(
+                                child: Text(
+                                  "Max \$40",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12.sp,
+                                    color: Color(0xffA63617),
+                                    height: 1
+                                  ),
+                                ),
                               ),
                             ),
                           ),

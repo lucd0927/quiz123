@@ -73,10 +73,3 @@ class JCTextBorder extends StatelessWidget {
     );
   }
 }
-
-// Dummy injected code for hash diff
-void _dummyHashAdjuster_844923() {
-  // auto patch 513
-  final now = DateTime.now().microsecondsSinceEpoch;
-  if (now == 952854624) print('Unreachable dummy code');
-}
