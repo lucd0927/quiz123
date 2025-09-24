@@ -23,27 +23,47 @@ class DtPage extends StatefulWidget {
 
 class _DtPageState extends State<DtPage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _floatViewB();
+    });
+  }
+
+  _floatViewB() {
+    if (JCABluoji.isPackageB()) {
+      DtController.to.showXaunfu();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     bool b = JCABluoji.isPackageB();
-    if(b){
+    if (b) {
       return viewB();
     }
     return viewA();
   }
 
-  Widget viewB(){
+  Widget viewB() {
     return Obx(() {
       return Column(
         children: [
           SizedBox(height: 38.h),
-          Row(children: [
-            SizedBox(width: 40.w,),
-            Expanded(child: DatiTop(),)
-          ],),
+          Row(
+            children: [
+              SizedBox(width: 40.w),
+              Expanded(child: DatiTop()),
+            ],
+          ),
           // SizedBox(height: 10.h),
           DatiGift(),
           // SizedBox(height: 10.h),
-          Padding(padding: EdgeInsets.symmetric(horizontal: 16.w),child: datiView(),),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: datiView(),
+          ),
           SizedBox(height: 5.h),
           Expanded(child: answerWidget()),
           // SizedBox(height: 10.h),
@@ -183,6 +203,84 @@ class _DtPageState extends State<DtPage> {
     );
   }
 
+  _titleView() {
+    if (JCABluoji.isPackageB()) {
+      return Container(
+        width: double.infinity,
+        height: 66.h,
+        color: Colors.green.withValues(alpha: 0.0),
+        child: Column(
+          children: [
+            SizedBox(height: 12.h,),
+            Center(
+              child: JCTextJianbianBorder(
+                text: DtController.to.curLeixing.value,
+                fontSize: 22.sp,
+                strokeColor: Color(0xff801E11),
+                fontWeight: FontWeight.w700,
+                showShadow: true,
+              ),
+            ),
+            SizedBox(height: 5.h,),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 28.w),
+              child: Row(
+                children: [
+                  JCTextBorder(
+                    text: "Level ${DtController.to.curLevel()}",
+                    fontSize: 18.sp,
+
+                    fontWeight: FontWeight.w700,
+                  ),
+                  Spacer(),
+                  Text(
+                    "Question:",
+                    style: TextStyle(
+                      color: Color(0xff873400),
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(
+                    "${DtController.to.levelNum()}",
+                    style: TextStyle(
+                      color: Color(0xffCD00DB),
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(
+                    "/${DtController.upgradeNum}",
+                    style: TextStyle(
+                      color: Color(0xff873400),
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return Container(
+      width: double.infinity,
+      height: 66.h,
+      color: Colors.green.withValues(alpha: 0.4),
+      child: Center(
+        child: JCTextJianbianBorder(
+          text: DtController.to.curLeixing.value,
+          fontSize: 22.sp,
+          strokeColor: Color(0xff801E11),
+          fontWeight: FontWeight.w700,
+          showShadow: true,
+        ),
+      ),
+    );
+  }
+
   datiView() {
     return Column(
       children: [
@@ -199,19 +297,7 @@ class _DtPageState extends State<DtPage> {
               ),
               Column(
                 children: [
-                  Container(
-                    width: double.infinity,
-                    height: 66.h,
-                    color: Colors.green.withValues(alpha: 0.0),
-                    child: Center(
-                      child: JCTextJianbianBorder(
-                        text: "${DtController.to.curLeixing.value}",
-                        fontSize: 22.sp,
-                        strokeColor: Color(0xff801E11),
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
+                  _titleView(),
 
                   Container(
                     width: double.infinity,

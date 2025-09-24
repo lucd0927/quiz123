@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsBbbGen {
   const $AssetsBbbGen();
 
+  /// File path: assets/bbb/close.png
+  AssetGenImage get close => const AssetGenImage('assets/bbb/close.png');
+
   /// File path: assets/bbb/main_cash.png
   AssetGenImage get mainCash => const AssetGenImage('assets/bbb/main_cash.png');
 
@@ -69,8 +72,43 @@ class $AssetsBbbGen {
   AssetGenImage get quizXuanguang =>
       const AssetGenImage('assets/bbb/quiz_xuanguang.png');
 
+  /// File path: assets/bbb/tixian_amazon.png
+  AssetGenImage get tixianAmazon =>
+      const AssetGenImage('assets/bbb/tixian_amazon.png');
+
+  /// File path: assets/bbb/tixian_cashapp.png
+  AssetGenImage get tixianCashapp =>
+      const AssetGenImage('assets/bbb/tixian_cashapp.png');
+
+  /// File path: assets/bbb/tixian_mastercard.png
+  AssetGenImage get tixianMastercard =>
+      const AssetGenImage('assets/bbb/tixian_mastercard.png');
+
+  /// File path: assets/bbb/tixian_pagbank.png
+  AssetGenImage get tixianPagbank =>
+      const AssetGenImage('assets/bbb/tixian_pagbank.png');
+
+  /// File path: assets/bbb/tixian_paypal.png
+  AssetGenImage get tixianPaypal =>
+      const AssetGenImage('assets/bbb/tixian_paypal.png');
+
+  /// File path: assets/bbb/tixian_select.png
+  AssetGenImage get tixianSelect =>
+      const AssetGenImage('assets/bbb/tixian_select.png');
+
+  /// File path: assets/bbb/zp_bg.png
+  AssetGenImage get zpBg => const AssetGenImage('assets/bbb/zp_bg.png');
+
+  /// File path: assets/bbb/zp_lucky.png
+  AssetGenImage get zpLucky => const AssetGenImage('assets/bbb/zp_lucky.png');
+
+  /// File path: assets/bbb/zp_zhizhen.png
+  AssetGenImage get zpZhizhen =>
+      const AssetGenImage('assets/bbb/zp_zhizhen.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
+    close,
     mainCash,
     mainQuiz,
     mainSetting,
@@ -86,6 +124,15 @@ class $AssetsBbbGen {
     quizMoney,
     quizTips,
     quizXuanguang,
+    tixianAmazon,
+    tixianCashapp,
+    tixianMastercard,
+    tixianPagbank,
+    tixianPaypal,
+    tixianSelect,
+    zpBg,
+    zpLucky,
+    zpZhizhen,
   ];
 }
 

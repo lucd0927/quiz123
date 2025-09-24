@@ -19,7 +19,7 @@ class JCCommonAdsListener {
 
 class GGCommonJson {
   // 哪种方案 A 老方案 B 新方案
-  static const String k_which_scheme = "cdyun_switch";
+  static const String k_which_scheme = "kwsbc_switch";
   static const bool scheme_A = false;
   static const bool scheme_B = true;
 
@@ -32,14 +32,14 @@ class GGCommonJson {
   // static const String k_rv_two_name = "glgns_rv_two";
 
   // 广告id
-  static const String k_ads_id = "lhewiloc";
+  static const String k_ads_id = "swxklbap";
 
   // 广告平台 max topon
-  static const String k_platfrom = "vvmmyknm";
+  static const String k_platfrom = "ggatjmdl";
 
   // 广告类型 【interstitial为插屏类型，native为原生类型，reward为激励视频类型】
-  static const String k_ad_type = "jpburjoz";
-  static const String k_time_out = "nohbmlex";
+  static const String k_ad_type = "swyhrkjr";
+  static const String k_time_out = "mzfedhwo";
 
 
   static const String k_ecpm = "ecpm";
@@ -64,58 +64,38 @@ class GGCommonJson {
   static Map<String, dynamic> changeLocal(Map<String, dynamic> online) {
     Map<String, dynamic> newLocal = {};
 
-    newLocal['doubqzaq'] = online['mbmrjbys'];
-    newLocal['ddixmpdd'] = online['ddixmpdd'];
+    newLocal['cblhygrw'] = online['cblhygrw'];
+    newLocal['hjioqwvw'] = online['hjioqwvw'];
     newLocal[k_which_scheme] = online[k_which_scheme];
-    newLocal[k_out_int] = online['cdyun_int'];
+    newLocal[k_out_int] = online['kwsbc_int'];
 
-    newLocal[k_out_rv] = online['cdyun_rv'];
+    newLocal[k_out_rv] = online['kwsbc_rv'];
     return newLocal;
   }
 
   static var localB = {
-    "doubqzaq": 100,
-    "ddixmpdd": 100,
-    "cdyun_switch": true,
-    "cdyun_int": [
+    "cblhygrw": 100,
+    "hjioqwvw": 100,
+    "kwsbc_switch": false,
+    "kwsbc_int": [
       {
-        "lhewiloc": "60354d12187f2a18",
-        "vvmmyknm": "max",
-        "jpburjoz": "interstitial",
-        "nohbmlex": 3000
+        "swxklbap": "8cf1af50d7596ca5",
+        "ggatjmdl": "max",
+        "swyhrkjr": "interstitial",
+        "mzfedhwo": 3000
       }
     ],
-    "cdyun_rv": [
+    "kwsbc_rv": [
       {
-        "lhewiloc": "c2a563b0c30d67c5",
-        "vvmmyknm": "max",
-        "jpburjoz": "reward",
-        "nohbmlex": 3000
+        "swxklbap": "2894e29f5834cdf9",
+        "ggatjmdl": "max",
+        "swyhrkjr": "reward",
+        "mzfedhwo": 3000
       }
     ]
   };
 
-  static var localTest = {
-    "doubqzaq": 100,
-    "ddixmpdd": 100,
-    "cdyun_switch": false,
-    "cdyun_int": [
-      {
-        "lhewiloc": "ded49148b371f12b",
-        "vvmmyknm": "max",
-        "jpburjoz": "interstitial",
-        "nohbmlex": 3000
-      }
-    ],
-    "cdyun_rv": [
-      {
-        "lhewiloc": "510f20dab8d95ad5",
-        "vvmmyknm": "max",
-        "jpburjoz": "reward",
-        "nohbmlex": 3000
-      }
-    ]
-  };
+
 
   static var local =localB;
 }

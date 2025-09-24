@@ -2,16 +2,22 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/tools/app_track_status.dart';
 import 'package:quiz123/tools/rizhi.dart';
+import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/shuju/daily_life.dart';
 import 'package:quiz123/yy_gj/shuju/data.dart';
 import 'package:quiz123/yy_gj/shuju/dati_model.dart';
 import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_error.dart';
 import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_star_zero.dart';
 import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_right.dart';
+import 'package:quiz123/yyymmm/dt_tttt/views_b/animated_float.dart';
+import 'package:spine_flutter/spine_flutter_bindings_generated.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../gen/assets.gen.dart';
@@ -122,7 +128,6 @@ class DtController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-
 
     resetAllDataA();
     _hasLoadInit = true;
@@ -303,7 +308,6 @@ class DtController extends GetxController {
   }
 
   __onNext({required bool showTryAgain}) {
-
     curClickAnswer.value = "";
     _timerChange();
   }
@@ -336,7 +340,7 @@ class DtController extends GetxController {
     jcRizhi("==tmpLeixingIndex:$tmpAll===tmpAllaaa:$tmpAllaaa=");
 
     if (tmpAll >= tmpAllaaa) {
-      tmpAll = tmpAllaaa-1;
+      tmpAll = tmpAllaaa - 1;
       hasNextLeixing = true;
     }
     jcRizhi("=addNextLeixingIndex2:$tmpAll==tmpAllaaa：$tmpAllaaa");
@@ -405,9 +409,52 @@ class DtController extends GetxController {
     });
   }
 
-
-
   ///--------------------------------------------bbbbbb---------------------------------------------
+  QXuanfu _qXuanfu = QXuanfu();
 
+  showXaunfu() {
+    _qXuanfu.close();
+    _qXuanfu.show(
+      context: Get.context!,
 
+      child: Material(
+        color: Colors.transparent,
+        child: GestureDetector(
+          onTap:() async {
+            _qXuanfu.close();
+            await Future.delayed(Duration(milliseconds: 2000));
+            showXaunfu();
+          },
+          child: Container(
+            width: 62.w,
+            height: 62.w,
+            child: Stack(
+              children: [
+                Image.asset(
+                  Assets.bbb.quizFloatMoney.path,
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.fill,
+                ),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Center(
+                    child: JCTextBorder(
+                      text: "\$23",
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w700,
+                      fontColor: Color(0xff22FF26),
+                      foreground: Color(0xff003305),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

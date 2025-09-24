@@ -1075,7 +1075,7 @@ class JCAdsTools {
   _onlineJson() {
     Map<String, dynamic> localJson = GGCommonJson.local;
     try {
-      String name = "cdyun_ad_config";
+      String name = "kwsbc_ad_config";
       String key = JCFbase().by(name: name);
       jcRizhi(
         "====common_ads=== _onlineJson FirebaseUtils: $name string:$key test===",

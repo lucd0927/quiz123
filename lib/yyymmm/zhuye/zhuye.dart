@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/tools/package.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dati_ttt.dart';
+import 'package:quiz123/yyymmm/sz_page/sz_page.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../gen/assets.gen.dart';
@@ -33,7 +34,15 @@ class _ZhuyeState extends State<Zhuye> {
   }
 
   List<Widget> pages() {
+    if(JCABluoji.isPackageB()){
+      return pagesBBB();
+    }
+
     return [FenleiPage(), DtPage(), MetalPage()];
+  }
+
+  List<Widget> pagesBBB() {
+    return [FenleiPage(), DtPage(), SzPage(showBack: false,)];
   }
 
   @override

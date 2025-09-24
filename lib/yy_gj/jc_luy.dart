@@ -6,8 +6,6 @@ import 'package:quiz123/yyymmm/sz_page/sz_page.dart';
 import '../yyymmm/kaiping/kaiping.dart';
 import '../yyymmm/zhuye/zhuye.dart';
 
-
-
 class JcLuy {
   static const splash = "/splash";
   static const zhuye = "/zhuye";
@@ -15,13 +13,11 @@ class JcLuy {
   static const wwvv = "/vvwwvv";
   static const shezhi = "/asdfasdfasdf";
 
-
   // static const quiz_cash = "/quiz_cash";
 
   static List<GetPage> pages = [
     GetPage(name: splash, page: () => JCKaiping()),
     GetPage(name: zhuye, page: () => Zhuye()),
-    GetPage(name: shezhi, page: () => SzPage()),
-
+    GetPage(name: shezhi, page: () => SzPage(showBack: true)),
   ];
 }

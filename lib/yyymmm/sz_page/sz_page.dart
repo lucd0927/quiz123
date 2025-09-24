@@ -5,7 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../gen/assets.gen.dart';
 
 class SzPage extends StatefulWidget {
-  const SzPage({super.key});
+  const SzPage({super.key, required this.showBack});
+
+  final bool showBack;
 
   @override
   State<SzPage> createState() => _SzPageState();
@@ -14,67 +16,70 @@ class SzPage extends StatefulWidget {
 class _SzPageState extends State<SzPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            Assets.ttt.zhuyeBg.path,
-            width: ScreenUtil().screenWidth,
-            height: ScreenUtil().screenHeight,
-          ),
-          Column(
-            children: [
-              Container(
-                height: 100.h,
-                child: Column(
-                  children: [
-                    SizedBox(height: 50.h),
-                    Row(
-                      children: [
-                        SizedBox(width: 16.w),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Image.asset(
-                            Assets.ttt.settingBack.path,
-                            width: 34.h,
-                            height: 34.h,
-                          ),
+    Widget child = Stack(
+      children: [
+        Image.asset(
+          Assets.ttt.zhuyeBg.path,
+          width: ScreenUtil().screenWidth,
+          height: ScreenUtil().screenHeight,
+          fit: BoxFit.fill,
+        ),
+        Column(
+          children: [
+         widget.showBack?   Container(
+              height: 100.h,
+              child: Column(
+                children: [
+                  SizedBox(height: 50.h),
+                  Row(
+                    children: [
+                      SizedBox(width: 16.w),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset(
+                          Assets.ttt.settingBack.path,
+                          width: 34.h,
+                          height: 34.h,
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              settingItem(
-                icon: Assets.ttt.settingAbout.path,
-                text: "Privacy Policy",
-                onTap: () {
-                  Uri uri = Uri.parse('https://quizsparkitem.com/privacy/');
-                  qidongU(uri);
-                },
-              ),
-              settingItem(
-                icon: Assets.ttt.settingTerm.path,
-                text: "Term Of User",
-                onTap: () {
-                  Uri uri = Uri.parse('https://quizsparkitem.com/terms/');
-                  qidongU(uri);
-                },
-              ),
-              settingItem(
-                icon: Assets.ttt.settingContact.path,
-                text: "Contact Us",
-                onTap: () {
-                  qidongE();
-                },
-              ),
-            ],
-          ),
-        ],
-      ),
+            ):Container(height: 80.h,),
+            settingItem(
+              icon: Assets.ttt.settingAbout.path,
+              text: "Privacy Policy",
+              onTap: () {
+                Uri uri = Uri.parse('https://quizsparkitem.com/privacy/');
+                qidongU(uri);
+              },
+            ),
+            settingItem(
+              icon: Assets.ttt.settingTerm.path,
+              text: "Term Of User",
+              onTap: () {
+                Uri uri = Uri.parse('https://quizsparkitem.com/terms/');
+                qidongU(uri);
+              },
+            ),
+            settingItem(
+              icon: Assets.ttt.settingContact.path,
+              text: "Contact Us",
+              onTap: () {
+                qidongE();
+              },
+            ),
+          ],
+        ),
+      ],
     );
+    if (widget.showBack) {
+      return child;
+    }
+    return Scaffold(body: child);
   }
 
   Future<void> qidongU(
@@ -95,7 +100,7 @@ class _SzPageState extends State<SzPage> {
 
     if (await canLaunchUrl(emial)) {
       await launchUrl(emial);
-    }else{
+    } else {
       jcTsDialog(text: "No Mail app can be opened");
     }
   }

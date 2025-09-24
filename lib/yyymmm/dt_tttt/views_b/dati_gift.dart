@@ -7,8 +7,10 @@ import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/jc_text_border.dart';
+import 'package:quiz123/view/jc_ts_kuang.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/animated_up_down.dart';
+import 'package:quiz123/yyymmm/dt_tttt/views_b/zhuanpan.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../view/animated_scale.dart';
@@ -219,7 +221,7 @@ class _DatiGiftState extends State<DatiGift> {
 
         Widget gift = liwuBgView(
           width: itemWidth,
-          giftCategory: category,
+          liwuType: category,
           hasLastOpened: hasLastOpened,
           count: count,
           index: i,
@@ -372,7 +374,7 @@ class _DatiGiftState extends State<DatiGift> {
   liwuBgView({
     required double width,
     bool hasLastOpened = false, // 是否是进度条已经打开的最后一个
-    required EnumLiwuLeixing giftCategory,
+    required EnumLiwuLeixing liwuType,
     required int count,
     required int index,
   }) {
@@ -387,8 +389,8 @@ class _DatiGiftState extends State<DatiGift> {
       fontWeight: FontWeight.w700,
       fontSize: 12.sp,
     );
-    jcRizhi("==giftCategory:$giftCategory==index:$index=");
-    bool heziLeixing = giftCategory == EnumLiwuLeixing.box;
+    jcRizhi("==giftCategory:$liwuType==index:$index=");
+    bool heziLeixing = liwuType == EnumLiwuLeixing.box;
     String icon = heziLeixing
         ? Assets.bbb.quizGiftBox.path
         : Assets.bbb.quizGiftWheel.path;
@@ -426,7 +428,7 @@ class _DatiGiftState extends State<DatiGift> {
     return Center(
       child: GestureDetector(
         onTap: () {
-          _onBox(canClick: canOpen, index: index);
+          _onBox(canClick: canOpen, index: index,liwu: liwuType);
         },
         child: Stack(
           clipBehavior: Clip.none,
@@ -455,13 +457,13 @@ class _DatiGiftState extends State<DatiGift> {
                 right: -18.w,
                 top: -5.h,
                 child: Container(
-                  width: 64.w,
-                  height: 26.h,
+                  width: 68.w,
+                  height: 28.h,
 
                   child: AnimatedUpDown(
                     child: Container(
-                      width: 64.w,
-                      height: 26.h,
+                      width: 68.w,
+                      height: 28.h,
                       // color: Colors.green,
                       child: Stack(
                         children: [
@@ -515,10 +517,39 @@ class _DatiGiftState extends State<DatiGift> {
   }
 
   // giftCategory: 1 可以打开的，2 广告，3 普通礼物
-  _onBox({required bool canClick, required int index}) {
+  _onBox({
+    required EnumLiwuLeixing liwu,
+    required bool canClick,
+    required int index,
+  }) {
     jcRizhi("===canClick:$canClick==index:$index");
-    setWeizhiJson(index: index, hasOpen: true, money: 0);
-    setState(() {});
+    bool sfDakai = hasIndexOpen(index);
+
+
+    ZhuanpanOverlay().show(context: context,);
+
+    if(sfDakai){
+      jcTsDialog(text: "it is already open");
+      return;
+    }
+
+    if (curAnswerCount >= index) {
+      setWeizhiJson(index: index, hasOpen: true, money: 0);
+      if(liwu == EnumLiwuLeixing.wheel){
+
+
+
+      }
+
+
+
+
+
+      setState(() {});
+
+
+
+    }
   }
 
   // giftC
