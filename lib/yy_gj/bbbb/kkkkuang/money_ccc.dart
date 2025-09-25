@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/jc_text_border.dart';
+import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../gen/assets.gen.dart';
@@ -36,26 +37,22 @@ class MoneyCcc {
                 },
                 money: data,
               );
-
-
             },
             onBtn2: (data) {
               close();
-              if(data is num && data > 0){
-
+              if (data is num && data > 0) {
                 MoneyDdd().show(
                   context: context,
                   onClose: (data) {
                     DtController.to.addDatiCoin(data);
                     onClaim(data);
                   },
-                  money: data*1.0,
+                  money: data * 1.0,
                 );
-              }else{
+              } else {
                 DtController.to.addDatiCoin(data);
                 onClaim(data);
               }
-
             },
             money: money,
           ),
@@ -167,6 +164,17 @@ class _QianKuangState extends State<QianKuang> {
 
   _btnClaim() {
     double money = widget.money * 2;
+
+    return JcBtn(
+      text: "Claim",
+      showVideo: true,
+      money: money,
+      onBtn: (d) {
+        jcRizhi("===_btnClaim====");
+        widget.onBtn(money);
+      },
+    );
+
     return GestureDetector(
       onTap: () {
         jcRizhi("===_btnClaim====");

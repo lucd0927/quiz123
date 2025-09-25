@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
 
 import '../../../gen/assets.gen.dart';
 
@@ -14,13 +15,16 @@ class ZhuanpanOverlay {
     _xuanfu = null;
     _xuanfu = OverlayEntry(
       builder: (context) {
-        return Zhuanpan(
-          onClose: () {
-            close();
-          },
-          onSpin: () {
-            close();
-          },
+        return Material(
+          color: Colors.transparent,
+          child: Zhuanpan(
+            onClose: () {
+              close();
+            },
+            onSpin: () {
+              close();
+            },
+          ),
         );
       },
     );
@@ -96,6 +100,10 @@ class _ZhuanpanState extends State<Zhuanpan> {
 
           Container(width: 282.w, height: 44.h),
           zhuanpan(context),
+          SizedBox(height: 20.w,),
+          JcBtn(text: "Spin", showVideo: false, onBtn: (d){
+            _onSpin();
+          })
         ],
       ),
     );
@@ -107,8 +115,19 @@ class _ZhuanpanState extends State<Zhuanpan> {
       height: 336.w,
       color: Colors.amber.withValues(alpha: 0),
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
           // _test(),
+         Positioned(
+           left: -80.w,
+           right: -80.w,
+           top: -80.h,
+           bottom:-80.h,
+           child:  Image.asset(
+           Assets.bbb.xuanguang.path,
+           width: double.infinity,
+           height: double.infinity,
+         ),),
           AnimatedRotation(
             key: _zpVK,
             turns: angle,

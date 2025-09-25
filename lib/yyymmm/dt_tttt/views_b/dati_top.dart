@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/tools/num_floor.dart';
+import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_count.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ddd.dart';
@@ -23,8 +24,9 @@ class _DatiTopState extends State<DatiTop> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      double curMoney = DtController.to.curMoney.value;
 
+      double curMoney = DtController.to.curMoney.value;
+      // jcRizhi("==_DatiTopState==curMoney:$curMoney===");
       return Container(
         width: double.infinity,
         height: 58.h,

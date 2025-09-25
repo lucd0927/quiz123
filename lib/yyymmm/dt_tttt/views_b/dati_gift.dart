@@ -175,9 +175,7 @@ class _DatiGiftState extends State<DatiGift> {
       List<Widget> giftWidgets = [];
       curAnswerCount = _innerRightCount;
       int curIndex = curMaxIndex();
-      jcRizhi(
-        "=====_GiftProgressState====curRightAnswerCount:$curAnswerCount curIndex:$curIndex",
-      );
+      // jcRizhi("=====_GiftProgressState====curRightAnswerCount:$curAnswerCount curIndex:$curIndex",);
       for (int i = 0; i < curData.length; i++) {
         bool hasFirst = false;
         bool hasLast = false;

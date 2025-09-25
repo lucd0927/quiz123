@@ -304,12 +304,17 @@ class DtController extends GetxController {
         return;
       }
     }
-    if (hasClickRight && !JCABluoji.isPackageB()) {
-      _onShowUpgrade(
-        onNext: () {
-          __onNext(showTryAgain: showTryAgain);
-        },
-      );
+    if (hasClickRight) {
+      if (JCABluoji.isPackageB()) {
+        addDatiRightNum();
+        __onNext(showTryAgain: showTryAgain);
+      } else {
+        _onShowUpgrade(
+          onNext: () {
+            __onNext(showTryAgain: showTryAgain);
+          },
+        );
+      }
     } else {
       __onNext(showTryAgain: showTryAgain);
     }
@@ -433,8 +438,12 @@ class DtController extends GetxController {
         child: GestureDetector(
           onTap: () async {
             _qXuanfu.close();
-            await Future.delayed(Duration(milliseconds: 2000));
-            showXaunfu();
+            _onShowMoneyCcc(money: tmpXuanfu,onEnd: ()async{
+              await Future.delayed(Duration(milliseconds: 2000));
+              showXaunfu();
+            });
+
+
           },
           child: Container(
             width: 62.w,
@@ -486,30 +495,24 @@ class DtController extends GetxController {
 
     if (click == right) {
       double tmpcoin = ShuzhiShuju.quiz_prize();
-
-      // showDatiRight(
-      //   Get.context!,
-      //   onBtn: () {
-      //     addDatiCoin(tmpcoin);
-      //     _onNext(hasClickRight: true);
-      //   },
-      //   onClose: () {
-      //     _onNext(hasClickRight: true);
-      //   },
-      //   money: tmpcoin,
-      // );
-      MoneyCcc().show(
-        context: Get.context!,
-        money: tmpcoin,
-        onClaimDouble: (data) {
-          _onNext(hasClickRight: true);
-        },
-        onClaim: (data) {
-          _onNext(hasClickRight: true);
-        },
-      );
+      _onShowMoneyCcc(money: tmpcoin);
     } else {
       _onNext(hasClickRight: false);
     }
+  }
+
+  _onShowMoneyCcc({required double money,VoidCallback? onEnd}) {
+    MoneyCcc().show(
+      context: Get.context!,
+      money: money,
+      onClaimDouble: (data) {
+        _onNext(hasClickRight: true);
+        onEnd?.call();
+      },
+      onClaim: (data) {
+        _onNext(hasClickRight: true);
+        onEnd?.call();
+      },
+    );
   }
 }
