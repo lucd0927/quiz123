@@ -14,7 +14,13 @@ showNewUserDialog(BuildContext context, {required VoidCallback onBtn}) {
     child: NewUser(
       onOpen: () {
         double money = ShuzhiShuju.new_prize();
-        showNewUserClaimDialog(context, onBtn: () {}, money: money);
+        showNewUserClaimDialog(
+          context,
+          onBtn: () {
+            onBtn();
+          },
+          money: money,
+        );
       },
     ),
   );

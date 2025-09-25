@@ -9,12 +9,14 @@ import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ddd.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/hhhero.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
+import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/guide_right2.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/new_user.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../../gen/assets.gen.dart';
 import 'kkkuang/guide_withdraw.dart';
 import 'kkkuang/new_user_claim.dart';
+import 'zhuanpan.dart';
 
 class DatiTop extends StatefulWidget {
   const DatiTop({super.key});
@@ -27,7 +29,6 @@ class _DatiTopState extends State<DatiTop> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-
       double curMoney = DtController.to.curMoney.value;
       // jcRizhi("==_DatiTopState==curMoney:$curMoney===");
       return Container(
@@ -78,11 +79,7 @@ class _DatiTopState extends State<DatiTop> {
                         Spacer(),
                         GestureDetector(
                           onTap: () {
-
-
                             onWithDraw();
-
-
                           },
                           child: Container(
                             width: 75.w,
@@ -123,7 +120,7 @@ class _DatiTopState extends State<DatiTop> {
 
                         quizmoney.targetContext = context;
                         return child;
-                      }
+                      },
                     ),
                   ),
                 ],
@@ -140,7 +137,7 @@ class _DatiTopState extends State<DatiTop> {
     double minWithdraw = DtController.to.minWithdrawJine;
     double curMoney = DtController.to.curMoney.value;
     double left = minWithdraw - curMoney;
-    if(left <= 0){
+    if (left <= 0) {
       left = 0.0;
     }
     left = left.toAsFixedFloor(2);
@@ -171,11 +168,24 @@ class _DatiTopState extends State<DatiTop> {
                     TextSpan(
                       text: 'Earn',
                       children: [
-                        TextSpan(
-                          text: " \$${left}",
-                          // text: " 1000.00",
-                          style: TextStyle(color: Color(0xffFF003D)),
+                        WidgetSpan(
+                          child: JCAnimatedCount(
+                            value: left,
+                            prefix: " \$",
+                            fractionDigits: 2,
+                            textStyle: TextStyle(
+                              color: Color(0xffFF003D),
+                              fontSize: 9.sp,
+                              height: 1.2,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
                         ),
+                        // TextSpan(
+                        //   text: " \$${left}",
+                        //   // text: " 1000.00",
+                        //   style: TextStyle(color: Color(0xffFF003D)),
+                        // ),
                         TextSpan(text: " MoreTo Withdraw "),
                         TextSpan(
                           text: "\$${minWithdraw.toStringAsFixed(0)}",
@@ -207,7 +217,10 @@ class _DatiTopState extends State<DatiTop> {
 
     // MoneyDdd().show(context: context, money: 20, onClose: (d){});
     // showNewUserDialog(context, onBtn: (){});
-    showGuideWithdrawDialog(context, onBtn: (){},money: 20);
+    // showGuideWithdrawDialog(context, onBtn: (){},money: 20);
     // showNewUserClaimDialog(context, onBtn: (){},money: 100);
+
+    // GuideRight2().show();
+    ZhuanpanOverlay().show(context: context);
   }
 }

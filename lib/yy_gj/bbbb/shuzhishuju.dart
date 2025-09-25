@@ -192,6 +192,37 @@ class ShuzhiShuju {
     return tmp;
   }
 
+  static double _ineer_point(String key){
+    double tmpasdjalsjdf = 5.0;
+
+    _onlineJson();
+    _lastdata ??= _bendiData;
+    var data = _lastdata!["wheel_point"];
+
+    var point = data['$key'] ?? tmpasdjalsjdf;
+    tmpasdjalsjdf = point;
+    return tmpasdjalsjdf;
+  }
+  static double point_5(){
+    return 5.0;
+  }
+
+  static double point_10(){
+    return 10.0;
+  }
+
+  static double point_20(){
+    return 20.0;
+  }
+
+  static double point_50(){
+    return 50.0;
+  }
+
+  static double point_80(){
+    return 80.0;
+  }
+
   static double wheel_point() {
     double tmpasdjalsjdf = 5.0;
 
@@ -199,24 +230,25 @@ class ShuzhiShuju {
     _lastdata ??= _bendiData;
     var data = _lastdata!["wheel_point"];
 
-    var point_5 = data['point_5'];
-    var point_10 = data['point_10'];
-    var point_20 = data['point_20'];
-    var point_50 = data['point_50'];
-    var point_80 = data['point_80'];
+    var _point_5 = data['point_5'];
+    var _point_10 = data['point_10'];
+    var _point_20 = data['point_20'];
+    var _point_50 = data['point_50'];
+    var _point_80 = data['point_80'];
     int max = 100;
     int random = Random().nextInt(max);
-    if (random > (max - point_5)) {
-      tmpasdjalsjdf = 5.0;
-    } else if (random > (max - point_5 - point_10)) {
-      tmpasdjalsjdf = 10.0;
-    } else if (random > (max - point_5 - point_10 - point_20)) {
-      tmpasdjalsjdf = 20.0;
-    } else if (random > (max - point_5 - point_10 - point_20 - point_50)) {
-      tmpasdjalsjdf = 50.0;
-    } else if (random >
-        (max - point_5 - point_10 - point_20 - point_50 - point_80)) {
-      tmpasdjalsjdf = 80.0;
+    jcRizhi("=wheelpoint==random:$random===");
+    if (random >= (max - _point_5)) {
+      tmpasdjalsjdf = point_5();
+    } else if (random >= (max - _point_5 - _point_10)) {
+      tmpasdjalsjdf = point_10();
+    } else if (random >= (max - _point_5 - _point_10 - _point_20)) {
+      tmpasdjalsjdf = point_20();
+    } else if (random >= (max - _point_5 - _point_10 - _point_20 - _point_50)) {
+      tmpasdjalsjdf = point_50();
+    } else if (random >=
+        (max - _point_5 - _point_10 - _point_20 - _point_50 - _point_80)) {
+      tmpasdjalsjdf = point_80();
     }
 
     return tmpasdjalsjdf;

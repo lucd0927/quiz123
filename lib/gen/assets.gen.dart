@@ -17,6 +17,9 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/ad.png
   AssetGenImage get ad => const AssetGenImage('assets/bbb/ad.png');
 
+  /// File path: assets/bbb/box_open.png
+  AssetGenImage get boxOpen => const AssetGenImage('assets/bbb/box_open.png');
+
   /// File path: assets/bbb/btn.png
   AssetGenImage get btn => const AssetGenImage('assets/bbb/btn.png');
 
@@ -26,6 +29,29 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/congratulations.png
   AssetGenImage get congratulations =>
       const AssetGenImage('assets/bbb/congratulations.png');
+
+  /// File path: assets/bbb/daily_add.png
+  AssetGenImage get dailyAdd => const AssetGenImage('assets/bbb/daily_add.png');
+
+  /// File path: assets/bbb/daily_bg.png
+  AssetGenImage get dailyBg => const AssetGenImage('assets/bbb/daily_bg.png');
+
+  /// File path: assets/bbb/daily_btn.png
+  AssetGenImage get dailyBtn => const AssetGenImage('assets/bbb/daily_btn.png');
+
+  /// File path: assets/bbb/daily_check.png
+  AssetGenImage get dailyCheck =>
+      const AssetGenImage('assets/bbb/daily_check.png');
+
+  /// File path: assets/bbb/daily_top.png
+  AssetGenImage get dailyTop => const AssetGenImage('assets/bbb/daily_top.png');
+
+  /// File path: assets/bbb/daily_zp.png
+  AssetGenImage get dailyZp => const AssetGenImage('assets/bbb/daily_zp.png');
+
+  /// File path: assets/bbb/guide_tips.png
+  AssetGenImage get guideTips =>
+      const AssetGenImage('assets/bbb/guide_tips.png');
 
   /// File path: assets/bbb/main_cash.png
   AssetGenImage get mainCash => const AssetGenImage('assets/bbb/main_cash.png');
@@ -172,9 +198,17 @@ class $AssetsBbbGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     ad,
+    boxOpen,
     btn,
     close,
     congratulations,
+    dailyAdd,
+    dailyBg,
+    dailyBtn,
+    dailyCheck,
+    dailyTop,
+    dailyZp,
+    guideTips,
     mainCash,
     mainQuiz,
     mainSetting,

@@ -5,17 +5,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import 'package:quiz123/hive/jc_hive.dart';
+import 'package:quiz123/tools/event_bus.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/view/jc_ts_kuang.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/shake.dart';
+import 'package:quiz123/yy_gj/event_bus.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/animated_up_down.dart';
+import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/guide_right2.dart';
+import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/money_box.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/zhuanpan.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../view/animated_scale.dart';
+import '../../../yy_gj/bbbb/shuzhishuju.dart';
 import '../../../yy_gj/bbbb/vvvv/rotate.dart';
+import 'kkkuang/guide_right8.dart';
 
 enum EnumLiwuLeixing { box, wheel }
 
@@ -29,7 +35,7 @@ class DatiGift extends StatefulWidget {
   static const int xiangChaNum = 3;
 }
 
-class _DatiGiftState extends State<DatiGift> {
+class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
   late ScrollController _liwuPro;
   late ScrollController _liwuBg;
   late LinkedScrollControllerGroup _lianjieC;
@@ -109,6 +115,18 @@ class _DatiGiftState extends State<DatiGift> {
       });
     });
     shengchengShuju();
+
+    register<LiwuEvent>(_onLiwuEvent);
+  }
+
+  _onLiwuEvent(LiwuEvent event) {
+    EnumLiwuEvent type = event.type;
+    jcRizhi("====EnumLiwuEvent=type:$type=");
+    if (type == EnumLiwuEvent.updateRight2) {
+      _onBox(liwu: EnumLiwuLeixing.box, canClick: true, index: 0);
+    }if (type == EnumLiwuEvent.updateRight8) {
+      _onBox(liwu: EnumLiwuLeixing.wheel, canClick: true, index: 2);
+    }
   }
 
   int get _innerRightCount => DtController.to.curRightNum.value;
@@ -393,9 +411,7 @@ class _DatiGiftState extends State<DatiGift> {
       fontSize: 12.sp,
     );
     bool hasCurLastIndex = index == curMaxIndex();
-    jcRizhi(
-      "==giftCategory:$liwuType=count:$count=index:$index=${curMaxIndex()}",
-    );
+    // jcRizhi("==giftCategory:$liwuType=count:$count=index:$index=${curMaxIndex()}",);
     bool heziLeixing = liwuType == EnumLiwuLeixing.box;
     String icon = heziLeixing
         ? Assets.bbb.quizGiftBox.path
@@ -412,6 +428,18 @@ class _DatiGiftState extends State<DatiGift> {
     Widget tmpImage = Stack(
       clipBehavior: Clip.none,
       children: [
+        if (canOpen && !hasOpened)
+          Positioned(
+            right: -10.w,
+            top: -10.h,
+            child: RotateWidget(
+              child: Image.asset(
+                Assets.bbb.quizXuanguang.path,
+                width: 60.w,
+                height: 60.h,
+              ),
+            ),
+          ),
         gift,
 
         Positioned(
@@ -422,7 +450,59 @@ class _DatiGiftState extends State<DatiGift> {
         ),
       ],
     );
+    if (count == 2 || count == 8) {
+      tmpImage = Builder(
+        builder: (context) {
+          Widget child = Stack(
+            clipBehavior: Clip.none,
+            children: [
+              if (canOpen && !hasOpened)
+                Positioned(
+                  right: -10.w,
+                  top: -10.h,
+                  child: RotateWidget(
+                    child: Image.asset(
+                      Assets.bbb.quizXuanguang.path,
+                      width: 60.w,
+                      height: 60.h,
+                    ),
+                  ),
+                ),
+              gift,
+            ],
+          );
+          Widget child2 = Stack(
+            clipBehavior: Clip.none,
+            children: [
+              child,
+              Positioned(
+                bottom: -14.h,
+                right: 0,
+                left: 0,
+                child: Center(child: answerCountItem),
+              ),
+            ],
+          );
+          if (count == 2) {
+            GuideRight2.guideChild = child;
+            GuideRight2.guideContext = context;
+          } else if (count == 8) {
+            GuideRight8.guideChild = child;
+            GuideRight8.guideContext = context;
+          }
 
+          // if(!DtController.to.hasGuideRight2()){
+          //   GuideRight2.guideChild = child;
+          //   GuideRight2.guideContext = context;
+          // }else{
+          //   GuideRight8.guideChild = child;
+          //   GuideRight8.guideContext = context;
+          // }
+
+          return child2;
+        },
+      );
+    }
     Widget gesture = IgnorePointer(
       child: JcAnimatedScale(
         minScale: 0.8,
@@ -440,27 +520,18 @@ class _DatiGiftState extends State<DatiGift> {
           clipBehavior: Clip.none,
           children: [
             Container(
-              // color: index % 2 == 0 ?Colors.red.withValues(alpha: 0.4):Colors.green.withValues(alpha: 0.4),
+              // color: index % 2 == 0
+              //     ? Colors.red.withValues(alpha: 0.4)
+              //     : Colors.green.withValues(alpha: 0.4),
               width: width,
               height: height,
               // decoration: BoxDecoration(color: Colors.red),
             ),
-            if (canOpen && !hasOpened)
-              Positioned(
-                right: -14.w,
-                top: 14.h,
-                child: RotateWidget(
-                  child: Image.asset(
-                    Assets.bbb.quizXuanguang.path,
-                    width: 60.w,
-                    height: 60.h,
-                  ),
-                ),
-              ),
+
             Positioned(
               top: 24.h,
               right: -2.w,
-              child: hasCurLastIndex
+              child: hasCurLastIndex && canOpen && !hasOpened
                   ? ShakeWidget(
                       mode: ShakeMode.rotate,
                       offset: 8,
@@ -550,10 +621,8 @@ class _DatiGiftState extends State<DatiGift> {
     required bool canClick,
     required int index,
   }) {
-    jcRizhi("===canClick:$canClick==index:$index");
+    jcRizhi("===canClick:$canClick==index:$index curAnswerCount:$curAnswerCount");
     bool sfDakai = hasIndexOpen(index);
-
-    ZhuanpanOverlay().show(context: context);
 
     if (sfDakai) {
       String text = "Today’s treasure chest reward has been collected";
@@ -564,9 +633,19 @@ class _DatiGiftState extends State<DatiGift> {
       return;
     }
 
-    if (curAnswerCount >= index) {
+    if (canClick) {
       setWeizhiJson(index: index, hasOpen: true, money: 0);
-      if (liwu == EnumLiwuLeixing.wheel) {}
+      if (liwu == EnumLiwuLeixing.wheel) {
+        ZhuanpanOverlay().show(context: context);
+      } else {
+        double money = ShuzhiShuju.box_prize();
+        MoneyBox().show(
+          context: context,
+          money: money,
+          onClaimDouble: (value) {},
+          onClaim: (value) {},
+        );
+      }
 
       setState(() {});
     }

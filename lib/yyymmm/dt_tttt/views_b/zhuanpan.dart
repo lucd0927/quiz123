@@ -4,10 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/tools/rizhi.dart';
+import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
+import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
+import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../yy_gj/bbbb/vvvv/rotate.dart';
+
+enum EnumZhuanpanTTTT { old, gift_zp }
 
 class ZhuanpanOverlay {
   OverlayEntry? _xuanfu;
@@ -22,8 +28,11 @@ class ZhuanpanOverlay {
             onClose: () {
               close();
             },
-            onSpin: () {
+            onSpin: (money) {
               close();
+              DtController.to.onShowMoneyCcc(money: money);
+
+
             },
           ),
         );
@@ -42,7 +51,7 @@ class Zhuanpan extends StatefulWidget {
   const Zhuanpan({super.key, required this.onClose, required this.onSpin});
 
   final VoidCallback onClose;
-  final VoidCallback onSpin;
+  final DynamicCallback onSpin;
 
   @override
   State<Zhuanpan> createState() => _ZhuanpanState();
@@ -221,27 +230,47 @@ class _ZhuanpanState extends State<Zhuanpan> {
     }
     sfDianji = false;
 
-    // double tmpAngle = pi / 2.3 + pi; // 3
-    // double tmpAngle = pi / 3.3 + pi; // 2
-    // double tmpAngle = pi / 3.1 + pi; // 2
-    // double tmpAngle = pi / 3.15 + pi; // 2
-    double tmpAngle = pi / 2 + pi; // tixian bag
+    // double tmpAngle = pi / 2.5 + pi; // 20
+    // double tmpAngle = pi / 3.5 + pi; // 80
+    // double tmpAngle = pi / 3.2 + pi; // 20 zuihao
+    // double tmpAngle = pi / 3.6 + pi; // 80 zuihao
+    // double tmpAngle = pi / 3.7 + pi; // 80
+    // double tmpAngle = pi / 4.05 + pi; // 5
+    // double tmpAngle = pi / 4.1 + pi; // 5
+    // double tmpAngle = pi / 4.2 + pi; // 5   zuihao
+    // double tmpAngle = pi / 5.1 + pi; // 10 zuihao
+    double tmpAngle = pi / 4.2 + pi; // 50 zuihao
 
-    List<double> tmp = [2.0, 2.2, 4.5];
-    int random = Random().nextInt(3);
-    double tmp2 = tmp[random];
-    tmpAngle = pi / tmp2 + pi; // money
+    double money = ShuzhiShuju.wheel_point();
+    double point_5 = ShuzhiShuju.point_5();
+    double point_10 = ShuzhiShuju.point_10();
+    double point_20 = ShuzhiShuju.point_20();
+    double point_50 = ShuzhiShuju.point_50();
+    double point_80 = ShuzhiShuju.point_80();
+
+    if (money == point_5) {
+      tmpAngle = pi / 4.2 + pi; // 5
+    } else if (money == point_10) {
+      tmpAngle = pi / 5.1 + pi; // 10 zuihao
+    } else if (money == point_20) {
+      tmpAngle = pi / 3.2 + pi; // 20 zuihao
+    } else if (money == point_50) {
+      tmpAngle = pi / 9.1 + pi; // 50 zuihao
+    } else if (money == point_80) {
+      tmpAngle = pi / 3.6 + pi; // 80 zuihao
+    }
+    jcRizhi("=zp=money:$money====");
     setState(() {
       angle = tmpAngle;
     });
 
-    await Future.delayed(Duration(milliseconds: milliseconds + 1000));
+    await Future.delayed(Duration(milliseconds: milliseconds + 1500));
     setState(() {
       sfDianji = true;
       angle = 0;
       _zpVK = ValueKey("${DateTime.now().millisecondsSinceEpoch}");
     });
 
-    widget.onSpin();
+    widget.onSpin(money);
   }
 }

@@ -19,12 +19,14 @@ import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_error.dart';
 import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_star_zero.dart';
 import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_right.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/animated_float.dart';
+import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/guide_right2.dart';
 import 'package:spine_flutter/spine_flutter_bindings_generated.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../yy_gj/bbbb/shuzhishuju.dart';
 import 'kkkk/dati_next_level.dart';
+import 'views_b/kkkuang/guide_right8.dart';
 import 'views_b/kkkuang/guide_withdraw.dart';
 import 'views_b/kkkuang/new_user.dart';
 
@@ -428,15 +430,18 @@ class DtController extends GetxController {
   ///--------------------------------------------bbbbbb---------------------------------------------
   static const String hkNewUser = "asdfagsdrtru";
   static const String hkWithdrawGuide = "ireoijflkdjlkdfjslkjg";
+  static const String hkGuideRight2 = "oiweruuoiewruo";
+  static const String hkGuideRight8 = "opidlknslkn";
 
   initB() {
     var tmpNewUser = box.get(hkNewUser);
-
-    if (tmpNewUser == null ) {
+    jcRizhi("==tmpNewUser:$tmpNewUser===");
+    if (tmpNewUser == null) {
       Future.delayed(Duration(milliseconds: 200), () {
         showNewUserDialog(
           Get.context!,
           onBtn: () {
+            jcRizhi("==tmpNewUser:save 1===");
             box.put(hkNewUser, 1);
           },
         );
@@ -548,6 +553,18 @@ class DtController extends GetxController {
       money: money,
       onClaimDouble: (data) {
         _onNext(hasClickRight: true);
+
+        int curNum = curRightNum.value;
+        if (curNum == 2) {
+          Future.delayed(Duration(milliseconds: 1000),(){
+            GuideRight2().show();
+          });
+        } else if (curNum == 8) {
+          Future.delayed(Duration(milliseconds: 1000),(){
+            GuideRight8().show();
+          });
+        }
+
         onEnd?.call();
       },
       onClaim: (data) {
@@ -555,5 +572,13 @@ class DtController extends GetxController {
         onEnd?.call();
       },
     );
+  }
+
+  hasGuideRight2() {
+    return box.get(hkGuideRight2) != null;
+  }
+
+  hasGuideRight8() {
+    return box.get(hkGuideRight8) != null;
   }
 }
