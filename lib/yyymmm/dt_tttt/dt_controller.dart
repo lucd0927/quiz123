@@ -25,6 +25,8 @@ import 'package:tuple/tuple.dart';
 import '../../gen/assets.gen.dart';
 import '../../yy_gj/bbbb/shuzhishuju.dart';
 import 'kkkk/dati_next_level.dart';
+import 'views_b/kkkuang/guide_withdraw.dart';
+import 'views_b/kkkuang/new_user.dart';
 
 enum EnumLeixinType {
   animal("Animal"),
@@ -133,6 +135,7 @@ class DtController extends GetxController {
     super.onInit();
 
     resetAllDataA();
+    initB();
     _hasLoadInit = true;
   }
 
@@ -423,6 +426,24 @@ class DtController extends GetxController {
   }
 
   ///--------------------------------------------bbbbbb---------------------------------------------
+  static const String hkNewUser = "asdfagsdrtru";
+  static const String hkWithdrawGuide = "ireoijflkdjlkdfjslkjg";
+
+  initB() {
+    var tmpNewUser = box.get(hkNewUser);
+
+    if (tmpNewUser == null ) {
+      Future.delayed(Duration(milliseconds: 200), () {
+        showNewUserDialog(
+          Get.context!,
+          onBtn: () {
+            box.put(hkNewUser, 1);
+          },
+        );
+      });
+    }
+  }
+
   QXuanfu _qXuanfu = QXuanfu();
 
   showXaunfu() {
@@ -438,12 +459,13 @@ class DtController extends GetxController {
         child: GestureDetector(
           onTap: () async {
             _qXuanfu.close();
-            _onShowMoneyCcc(money: tmpXuanfu,onEnd: ()async{
-              await Future.delayed(Duration(milliseconds: 2000));
-              showXaunfu();
-            });
-
-
+            onShowMoneyCcc(
+              money: tmpXuanfu,
+              onEnd: () async {
+                await Future.delayed(Duration(milliseconds: 2000));
+                showXaunfu();
+              },
+            );
           },
           child: Container(
             width: 62.w,
@@ -495,13 +517,32 @@ class DtController extends GetxController {
 
     if (click == right) {
       double tmpcoin = ShuzhiShuju.quiz_prize();
-      _onShowMoneyCcc(money: tmpcoin);
+      var sfTixiGuide = box.get(hkWithdrawGuide);
+
+      // sfTixiGuide = null;
+      if (sfTixiGuide != null) {
+        onShowMoneyCcc(money: tmpcoin);
+      } else {
+        onShowWithdrawGuide();
+      }
     } else {
       _onNext(hasClickRight: false);
     }
   }
 
-  _onShowMoneyCcc({required double money,VoidCallback? onEnd}) {
+  onShowWithdrawGuide() {
+    double tmpcoin = ShuzhiShuju.quiz_prize();
+    showGuideWithdrawDialog(
+      Get.context!,
+      onBtn: () {
+        box.put(hkWithdrawGuide, 1);
+        _onNext(hasClickRight: true);
+      },
+      money: tmpcoin,
+    );
+  }
+
+  onShowMoneyCcc({required double money, VoidCallback? onEnd}) {
     MoneyCcc().show(
       context: Get.context!,
       money: money,

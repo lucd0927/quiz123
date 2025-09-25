@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
 
 import '../../../gen/assets.gen.dart';
+import '../../../yy_gj/bbbb/vvvv/rotate.dart';
 
 class ZhuanpanOverlay {
   OverlayEntry? _xuanfu;
@@ -62,48 +63,76 @@ class _ZhuanpanState extends State<Zhuanpan> {
       width: double.infinity,
       height: double.infinity,
       color: Colors.black.withValues(alpha: 0.8),
-      child: Column(
+      child: Stack(
         children: [
-          SizedBox(height: 100.h,),
-          Container(
-            width: double.infinity,
-            height: 97.h,
-            child: Stack(
+          Positioned.fill(
+            child: Column(
               children: [
-                Center(
-                  child: Container(
-                    // color: Colors.red,
-                    child: Image.asset(
-                      Assets.bbb.zpLucky.path,
-                      width: 188.h,
-                      height: 97.h,
-                    ),
+                SizedBox(height: 100.h),
+                Container(
+                  width: double.infinity,
+                  height: 97.h,
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Container(
+                          // color: Colors.red,
+                          child: Image.asset(
+                            Assets.bbb.zpLucky.path,
+                            width: 188.h,
+                            height: 97.h,
+                          ),
+                        ),
+                      ),
+
+                      Positioned(
+                        right: 16.w,
+                        child: GestureDetector(
+                          onTap: () {
+                            widget.onClose();
+                          },
+                          child: Image.asset(
+                            Assets.bbb.close.path,
+                            width: 20.w,
+                            height: 20.w,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                SizedBox(height: 20.w),
+                Container(
+                  width: 282.w,
+                  height: 44.h,
+                  child: Image.asset(Assets.bbb.zpWithdraw2000.path),
+                ),
+                SizedBox(height: 20.w),
 
-                Positioned(
-                  right: 16.w,
-                  child: GestureDetector(
-                    onTap: () {
-                      widget.onClose();
-                    },
-                    child: Image.asset(
-                      Assets.bbb.close.path,
-                      width: 20.w,
-                      height: 20.w,
-                    ),
-                  ),
+                zhuanpan(context),
+                SizedBox(height: 20.w),
+                JcBtn(
+                  text: "Spin",
+                  showVideo: false,
+                  onBtn: (d) {
+                    _onSpin();
+                  },
                 ),
               ],
             ),
           ),
 
-          Container(width: 282.w, height: 44.h),
-          zhuanpan(context),
-          SizedBox(height: 20.w,),
-          JcBtn(text: "Spin", showVideo: false, onBtn: (d){
-            _onSpin();
-          })
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0.w,
+            child: Image.asset(
+              Assets.bbb.zpBttom.path,
+              width: 375.w,
+              height: 78.w,
+              fit: BoxFit.fill,
+            ),
+          ),
         ],
       ),
     );
@@ -118,16 +147,18 @@ class _ZhuanpanState extends State<Zhuanpan> {
         clipBehavior: Clip.none,
         children: [
           // _test(),
-         Positioned(
-           left: -80.w,
-           right: -80.w,
-           top: -80.h,
-           bottom:-80.h,
-           child:  Image.asset(
-           Assets.bbb.xuanguang.path,
-           width: double.infinity,
-           height: double.infinity,
-         ),),
+          Positioned(
+            left: -80.w,
+            right: -80.w,
+            top: -80.h,
+            bottom: -80.h,
+            child: Image.asset(
+              Assets.bbb.xuanguang.path,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+          ),
+
           AnimatedRotation(
             key: _zpVK,
             turns: angle,
@@ -136,12 +167,17 @@ class _ZhuanpanState extends State<Zhuanpan> {
             child: Stack(
               children: [
                 Image.asset(
-                  Assets.bbb.zpBg.path,
+                  Assets.bbb.zpMoneyDetail.path,
                   width: double.infinity,
                   height: double.infinity,
                 ),
               ],
             ),
+          ),
+          Image.asset(
+            Assets.bbb.zpCycle.path,
+            width: double.infinity,
+            height: double.infinity,
           ),
 
           Positioned(
@@ -207,6 +243,5 @@ class _ZhuanpanState extends State<Zhuanpan> {
     });
 
     widget.onSpin();
-
   }
 }

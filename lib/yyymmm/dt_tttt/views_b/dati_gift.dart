@@ -8,12 +8,14 @@ import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/view/jc_ts_kuang.dart';
+import 'package:quiz123/yy_gj/bbbb/vvvv/shake.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/animated_up_down.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/zhuanpan.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../view/animated_scale.dart';
+import '../../../yy_gj/bbbb/vvvv/rotate.dart';
 
 enum EnumLiwuLeixing { box, wheel }
 
@@ -99,7 +101,7 @@ class _DatiGiftState extends State<DatiGift> {
       int tmpRightNum = _innerRightCount;
       int index = (tmpRightNum / jumpCount).toInt();
       index = index - 1;
-      if(index <= 0){
+      if (index <= 0) {
         index = 0;
       }
       Future.delayed(Duration(milliseconds: 1200), () {
@@ -390,7 +392,10 @@ class _DatiGiftState extends State<DatiGift> {
       fontWeight: FontWeight.w700,
       fontSize: 12.sp,
     );
-    // jcRizhi("==giftCategory:$liwuType==index:$index=");
+    bool hasCurLastIndex = index == curMaxIndex();
+    jcRizhi(
+      "==giftCategory:$liwuType=count:$count=index:$index=${curMaxIndex()}",
+    );
     bool heziLeixing = liwuType == EnumLiwuLeixing.box;
     String icon = heziLeixing
         ? Assets.bbb.quizGiftBox.path
@@ -429,7 +434,7 @@ class _DatiGiftState extends State<DatiGift> {
     return Center(
       child: GestureDetector(
         onTap: () {
-          _onBox(canClick: canOpen, index: index,liwu: liwuType);
+          _onBox(canClick: canOpen, index: index, liwu: liwuType);
         },
         child: Stack(
           clipBehavior: Clip.none,
@@ -443,14 +448,26 @@ class _DatiGiftState extends State<DatiGift> {
             if (canOpen && !hasOpened)
               Positioned(
                 right: -14.w,
-                top: 12.h,
-                child: Image.asset(
-                  Assets.bbb.quizXuanguang.path,
-                  width: 60.w,
-                  height: 60.h,
+                top: 14.h,
+                child: RotateWidget(
+                  child: Image.asset(
+                    Assets.bbb.quizXuanguang.path,
+                    width: 60.w,
+                    height: 60.h,
+                  ),
                 ),
               ),
-            Positioned(top: 26.h, right: -4.w, child: tmpImage),
+            Positioned(
+              top: 24.h,
+              right: -2.w,
+              child: hasCurLastIndex
+                  ? ShakeWidget(
+                      mode: ShakeMode.rotate,
+                      offset: 8,
+                      child: tmpImage,
+                    )
+                  : tmpImage,
+            ),
             if (canOpen && !clickGift && !hasOpened)
               Positioned(bottom: -12.h, right: -40.w, child: gesture),
             if (canOpen && !hasOpened)
@@ -488,7 +505,7 @@ class _DatiGiftState extends State<DatiGift> {
                                     fontWeight: FontWeight.w700,
                                     fontSize: 12.sp,
                                     color: Color(0xffA63617),
-                                    height: 1
+                                    height: 1,
                                   ),
                                 ),
                               ),
@@ -536,30 +553,22 @@ class _DatiGiftState extends State<DatiGift> {
     jcRizhi("===canClick:$canClick==index:$index");
     bool sfDakai = hasIndexOpen(index);
 
+    ZhuanpanOverlay().show(context: context);
 
-    ZhuanpanOverlay().show(context: context,);
-
-    if(sfDakai){
-      jcTsDialog(text: "it is already open");
+    if (sfDakai) {
+      String text = "Today’s treasure chest reward has been collected";
+      if (liwu == EnumLiwuLeixing.wheel) {
+        text = "The wheel reward has been received";
+      }
+      jcTsDialog(text: text);
       return;
     }
 
     if (curAnswerCount >= index) {
       setWeizhiJson(index: index, hasOpen: true, money: 0);
-      if(liwu == EnumLiwuLeixing.wheel){
-
-
-
-      }
-
-
-
-
+      if (liwu == EnumLiwuLeixing.wheel) {}
 
       setState(() {});
-
-
-
     }
   }
 

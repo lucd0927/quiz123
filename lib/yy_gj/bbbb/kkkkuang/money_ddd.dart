@@ -3,14 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quiz123/tools/rizhi.dart';
+import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/hhhero.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/lihua.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../gen/assets.gen.dart';
-
-typedef DynamicCallback = void Function(dynamic data);
+import '../vvvv/rotate.dart';
+import 'money_ccc.dart';
 
 class MoneyDdd {
   OverlayEntry? _xuanfu;
@@ -19,6 +20,7 @@ class MoneyDdd {
     required BuildContext context,
     required double money,
     required DynamicCallback onClose,
+    bool showMoneyHero = true,
   }) {
     _xuanfu = null;
     _xuanfu = OverlayEntry(
@@ -28,16 +30,17 @@ class MoneyDdd {
           child: QianKuangDdd(
             onBtn: (data) {
               close();
-              double scale = 2.3;
-              quizmoney.showWithSize(
-                heroChild: Image.asset(
-                  Assets.bbb.quizMoney.path,
-                  width: 57.w,
-                  height: 36.w,
-                ),
-                childSize: Size(57.w*scale, 36.w*scale),
-
-              );
+              if (showMoneyHero) {
+                double scale = 2.3;
+                quizmoney.showWithSize(
+                  heroChild: Image.asset(
+                    Assets.bbb.quizMoney.path,
+                    width: 57.w,
+                    height: 36.w,
+                  ),
+                  childSize: Size(57.w * scale, 36.w * scale),
+                );
+              }
 
               onClose(money);
             },
@@ -120,18 +123,22 @@ class _QianKuangDddState extends State<QianKuangDdd> {
                           height: 220.w,
                           child: Stack(
                             children: [
-                              Image.asset(
-                                Assets.bbb.xuanguang.path,
-                                width: double.infinity,
-                                height: double.infinity,
-                                fit: BoxFit.fill,
+                              RotateWidget(
+                                child: Image.asset(
+                                  Assets.bbb.xuanguang.path,
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                               Center(
-                                child: Image.asset(
-                                  Assets.bbb.money.path,
-                                  width: 166.w,
-                                  height: 80.w,
-                                  fit: BoxFit.contain,
+                                child: JcAnimatedScale(
+                                  child: Image.asset(
+                                    Assets.bbb.money.path,
+                                    width: 166.w,
+                                    height: 80.w,
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
                               Positioned(

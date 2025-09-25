@@ -69,9 +69,9 @@ class JCHeroView {
   ) {
     _overlay = OverlayEntry(
       builder: (context) {
-        return Material(
-          color: Colors.red.withValues(alpha: 0.0),
-          child: IgnorePointer(
+        return IgnorePointer(
+          child: Material(
+            color: Colors.red.withValues(alpha: 0.0),
             child: ArcFlyAnimation(
               widgets: children,
               start: topLeftPosition,

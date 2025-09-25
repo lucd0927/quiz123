@@ -51,7 +51,7 @@ class _AnimatedUpDownState extends State<AnimatedUpDown>
               updownNum * 2 * pi * _updownC.value,
             );
             return Transform.translate(
-              offset: Offset(0, tmpVv * 8),
+              offset: Offset(0, tmpVv * 5),
               child: child,
             );
           },

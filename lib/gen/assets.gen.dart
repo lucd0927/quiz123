@@ -40,6 +40,38 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/money.png
   AssetGenImage get money => const AssetGenImage('assets/bbb/money.png');
 
+  /// File path: assets/bbb/new_bg.png
+  AssetGenImage get newBg => const AssetGenImage('assets/bbb/new_bg.png');
+
+  /// File path: assets/bbb/new_bg2.png
+  AssetGenImage get newBg2 => const AssetGenImage('assets/bbb/new_bg2.png');
+
+  /// File path: assets/bbb/new_btn.png
+  AssetGenImage get newBtn => const AssetGenImage('assets/bbb/new_btn.png');
+
+  /// File path: assets/bbb/new_gift.png
+  AssetGenImage get newGift => const AssetGenImage('assets/bbb/new_gift.png');
+
+  /// File path: assets/bbb/new_open.png
+  AssetGenImage get newOpen => const AssetGenImage('assets/bbb/new_open.png');
+
+  /// File path: assets/bbb/new_title.png
+  AssetGenImage get newTitle => const AssetGenImage('assets/bbb/new_title.png');
+
+  /// File path: assets/bbb/new_top.png
+  AssetGenImage get newTop => const AssetGenImage('assets/bbb/new_top.png');
+
+  /// File path: assets/bbb/popup_top.png
+  AssetGenImage get popupTop => const AssetGenImage('assets/bbb/popup_top.png');
+
+  /// File path: assets/bbb/quiz_1_btn.png
+  AssetGenImage get quiz1Btn =>
+      const AssetGenImage('assets/bbb/quiz_1_btn.png');
+
+  /// File path: assets/bbb/quiz_1_jinqiandai.png
+  AssetGenImage get quiz1Jinqiandai =>
+      const AssetGenImage('assets/bbb/quiz_1_jinqiandai.png');
+
   /// File path: assets/bbb/quiz_btn.png
   AssetGenImage get quizBtn => const AssetGenImage('assets/bbb/quiz_btn.png');
 
@@ -116,8 +148,22 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/zp_bg.png
   AssetGenImage get zpBg => const AssetGenImage('assets/bbb/zp_bg.png');
 
+  /// File path: assets/bbb/zp_bttom.png
+  AssetGenImage get zpBttom => const AssetGenImage('assets/bbb/zp_bttom.png');
+
+  /// File path: assets/bbb/zp_cycle.png
+  AssetGenImage get zpCycle => const AssetGenImage('assets/bbb/zp_cycle.png');
+
   /// File path: assets/bbb/zp_lucky.png
   AssetGenImage get zpLucky => const AssetGenImage('assets/bbb/zp_lucky.png');
+
+  /// File path: assets/bbb/zp_money_detail.png
+  AssetGenImage get zpMoneyDetail =>
+      const AssetGenImage('assets/bbb/zp_money_detail.png');
+
+  /// File path: assets/bbb/zp_withdraw2000.png
+  AssetGenImage get zpWithdraw2000 =>
+      const AssetGenImage('assets/bbb/zp_withdraw2000.png');
 
   /// File path: assets/bbb/zp_zhizhen.png
   AssetGenImage get zpZhizhen =>
@@ -133,6 +179,16 @@ class $AssetsBbbGen {
     mainQuiz,
     mainSetting,
     money,
+    newBg,
+    newBg2,
+    newBtn,
+    newGift,
+    newOpen,
+    newTitle,
+    newTop,
+    popupTop,
+    quiz1Btn,
+    quiz1Jinqiandai,
     quizBtn,
     quizFloatMoney,
     quizGiftBox,
@@ -153,7 +209,11 @@ class $AssetsBbbGen {
     tixianSelect,
     xuanguang,
     zpBg,
+    zpBttom,
+    zpCycle,
     zpLucky,
+    zpMoneyDetail,
+    zpWithdraw2000,
     zpZhizhen,
   ];
 }

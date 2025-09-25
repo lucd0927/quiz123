@@ -9,9 +9,12 @@ import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ddd.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/hhhero.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
+import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/new_user.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../../gen/assets.gen.dart';
+import 'kkkuang/guide_withdraw.dart';
+import 'kkkuang/new_user_claim.dart';
 
 class DatiTop extends StatefulWidget {
   const DatiTop({super.key});
@@ -202,7 +205,9 @@ class _DatiTopState extends State<DatiTop> {
     //   ZhuyeController.cashIndex,
     // );
 
-    MoneyDdd().show(context: context, money: 20, onClose: (d){});
-
+    // MoneyDdd().show(context: context, money: 20, onClose: (d){});
+    // showNewUserDialog(context, onBtn: (){});
+    showGuideWithdrawDialog(context, onBtn: (){},money: 20);
+    // showNewUserClaimDialog(context, onBtn: (){},money: 100);
   }
 }

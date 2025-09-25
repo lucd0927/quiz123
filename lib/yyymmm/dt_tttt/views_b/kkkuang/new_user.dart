@@ -1,0 +1,118 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiz123/view/animated_scale.dart';
+import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
+
+import '../../../../gen/assets.gen.dart';
+import '../../../../jichu_kuang/jichu_kuang.dart';
+import '../../../../yy_gj/bbbb/vvvv/rotate.dart';
+import 'new_user_claim.dart';
+
+showNewUserDialog(BuildContext context, {required VoidCallback onBtn}) {
+  return jcKuang(
+    context: context,
+    child: NewUser(
+      onOpen: () {
+        double money = ShuzhiShuju.new_prize();
+        showNewUserClaimDialog(context, onBtn: () {}, money: money);
+      },
+    ),
+  );
+}
+
+class NewUser extends StatelessWidget {
+  const NewUser({super.key, required this.onOpen});
+
+  final VoidCallback onOpen;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: ScreenUtil().screenWidth,
+      height: ScreenUtil().screenHeight,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: double.infinity,
+            height: 400.h,
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    SizedBox(height: 10.h),
+                    Center(
+                      child: Image.asset(
+                        Assets.bbb.newBg.path,
+                        width: 300.h,
+                        height: 350.h,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ],
+                ),
+
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  child: Center(
+                    child: Image.asset(
+                      Assets.bbb.newTop.path,
+                      width: 364.w,
+                      height: 88.w,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 10.h,
+                  child: Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                        onOpen();
+                      },
+                      child: Container(
+                        width: 213.h,
+                        height: 66.h,
+                        color: Colors.transparent,
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Image.asset(
+                              Assets.bbb.newBtn.path,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.fill,
+                            ),
+                            Positioned(
+                              right: 10.w,
+                              top: 10.h,
+                              child: IgnorePointer(
+                                child: JcAnimatedScale(
+                                  child: Image.asset(
+                                    Assets.ttt.gesture.path,
+                                    width: 95.h,
+                                    height: 87.h,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

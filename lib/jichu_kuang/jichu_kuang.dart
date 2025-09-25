@@ -5,7 +5,7 @@ jcKuang({
   required Widget child,
   Color? barrierColor,
 }) async {
-  double alpha = 0.6;
+  double alpha = 0.8;
   bool barrierDismissible = false;
   bool useRootNavigator = true;
   bool useSafeArea = false;

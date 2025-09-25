@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
+import 'package:quiz123/yy_gj/bbbb/vvvv/rotate.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../gen/assets.gen.dart';
+import '../../../view/animated_scale.dart';
 import 'money_ddd.dart';
 
 typedef DynamicCallback = void Function(dynamic data);
@@ -108,18 +110,22 @@ class _QianKuangState extends State<QianKuang> {
               height: 270.w,
               child: Stack(
                 children: [
-                  Image.asset(
-                    Assets.bbb.xuanguang.path,
-                    width: double.infinity,
-                    height: double.infinity,
-                    fit: BoxFit.fill,
+                  RotateWidget(
+                    child: Image.asset(
+                      Assets.bbb.xuanguang.path,
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                   Center(
-                    child: Image.asset(
-                      Assets.bbb.money.path,
-                      width: 184.w,
-                      height: 100.w,
-                      fit: BoxFit.contain,
+                    child: JcAnimatedScale(
+                      child: Image.asset(
+                        Assets.bbb.money.path,
+                        width: 184.w,
+                        height: 100.w,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                   Positioned(
