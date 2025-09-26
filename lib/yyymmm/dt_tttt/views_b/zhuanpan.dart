@@ -18,7 +18,11 @@ enum EnumZhuanpanTTTT { old, gift_zp }
 class ZhuanpanOverlay {
   OverlayEntry? _xuanfu;
 
-  void show({required BuildContext context}) {
+  void show({
+    required BuildContext context,
+    required DynamicCallback onSpin,
+    VoidCallback? onClose,
+  }) {
     _xuanfu = null;
     _xuanfu = OverlayEntry(
       builder: (context) {
@@ -27,12 +31,11 @@ class ZhuanpanOverlay {
           child: Zhuanpan(
             onClose: () {
               close();
+              onClose?.call();
             },
             onSpin: (money) {
               close();
-              DtController.to.onShowMoneyCcc(money: money);
-
-
+              onSpin(money);
             },
           ),
         );

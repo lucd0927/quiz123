@@ -636,7 +636,9 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
     if (canClick) {
       setWeizhiJson(index: index, hasOpen: true, money: 0);
       if (liwu == EnumLiwuLeixing.wheel) {
-        ZhuanpanOverlay().show(context: context);
+        ZhuanpanOverlay().show(context: context,onSpin: (money){
+          DtController.to.onShowMoneyCcc(money: money);
+        });
       } else {
         double money = ShuzhiShuju.box_prize();
         MoneyBox().show(

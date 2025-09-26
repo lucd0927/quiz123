@@ -14,3 +14,12 @@ class LiwuEvent extends BaseEvent {
 
   LiwuEvent({required this.type});
 }
+
+
+class DatiFloatEvent extends BaseEvent {
+  @override
+  String name() {
+    return "DatiFloatEvent";
+  }
+
+}

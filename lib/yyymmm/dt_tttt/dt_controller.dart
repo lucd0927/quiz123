@@ -26,6 +26,7 @@ import 'package:tuple/tuple.dart';
 import '../../gen/assets.gen.dart';
 import '../../yy_gj/bbbb/shuzhishuju.dart';
 import 'kkkk/dati_next_level.dart';
+import 'views_b/dati_floating.dart';
 import 'views_b/kkkuang/guide_right8.dart';
 import 'views_b/kkkuang/guide_withdraw.dart';
 import 'views_b/kkkuang/new_user.dart';
@@ -458,50 +459,59 @@ class DtController extends GetxController {
 
     _qXuanfu.show(
       context: Get.context!,
-
-      child: Material(
-        color: Colors.transparent,
-        child: GestureDetector(
-          onTap: () async {
-            _qXuanfu.close();
-            onShowMoneyCcc(
-              money: tmpXuanfu,
-              onEnd: () async {
-                await Future.delayed(Duration(milliseconds: 2000));
-                showXaunfu();
-              },
-            );
-          },
-          child: Container(
-            width: 62.w,
-            height: 62.w,
-            child: Stack(
-              children: [
-                Image.asset(
-                  Assets.bbb.quizFloatMoney.path,
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.fill,
-                ),
-                Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: Center(
-                    child: JCTextBorder(
-                      text: "\$$tmpXuanfu",
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.w700,
-                      fontColor: Color(0xff22FF26),
-                      foreground: Color(0xff003305),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      child: DatiFloating(onMoney: (data)async {
+              _qXuanfu.close();
+              onShowMoneyCcc(
+                money: tmpXuanfu,
+                onEnd: () async {
+                  await Future.delayed(Duration(milliseconds: 2000));
+                  showXaunfu();
+                },
+              );
+      },),
+      // child: Material(
+      //   color: Colors.transparent,
+      //   child: GestureDetector(
+      //     onTap: () async {
+      //       _qXuanfu.close();
+      //       onShowMoneyCcc(
+      //         money: tmpXuanfu,
+      //         onEnd: () async {
+      //           await Future.delayed(Duration(milliseconds: 2000));
+      //           showXaunfu();
+      //         },
+      //       );
+      //     },
+      //     child: Container(
+      //       width: 62.w,
+      //       height: 62.w,
+      //       child: Stack(
+      //         children: [
+      //           Image.asset(
+      //             Assets.bbb.quizFloatMoney.path,
+      //             width: double.infinity,
+      //             height: double.infinity,
+      //             fit: BoxFit.fill,
+      //           ),
+      //           Positioned(
+      //             left: 0,
+      //             right: 0,
+      //             bottom: 0,
+      //             child: Center(
+      //               child: JCTextBorder(
+      //                 text: "\$$tmpXuanfu",
+      //                 fontSize: 15.sp,
+      //                 fontWeight: FontWeight.w700,
+      //                 fontColor: Color(0xff22FF26),
+      //                 foreground: Color(0xff003305),
+      //               ),
+      //             ),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 

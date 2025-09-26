@@ -16,6 +16,7 @@ import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 import '../../../gen/assets.gen.dart';
 import 'kkkuang/guide_withdraw.dart';
 import 'kkkuang/new_user_claim.dart';
+import 'kkkuang/old_user.dart';
 import 'zhuanpan.dart';
 
 class DatiTop extends StatefulWidget {
@@ -186,7 +187,7 @@ class _DatiTopState extends State<DatiTop> {
                         //   // text: " 1000.00",
                         //   style: TextStyle(color: Color(0xffFF003D)),
                         // ),
-                        TextSpan(text: " MoreTo Withdraw "),
+                        TextSpan(text: " More To Withdraw "),
                         TextSpan(
                           text: "\$${minWithdraw.toStringAsFixed(0)}",
                           style: TextStyle(color: Color(0xffFF003D)),
@@ -221,6 +222,7 @@ class _DatiTopState extends State<DatiTop> {
     // showNewUserClaimDialog(context, onBtn: (){},money: 100);
 
     // GuideRight2().show();
-    ZhuanpanOverlay().show(context: context);
+    // ZhuanpanOverlay().show(context: context);
+    showOldUserDialog(context,onBtn: (){});
   }
 }

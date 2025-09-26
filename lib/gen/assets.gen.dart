@@ -23,6 +23,9 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/btn.png
   AssetGenImage get btn => const AssetGenImage('assets/bbb/btn.png');
 
+  /// File path: assets/bbb/btn_spin.png
+  AssetGenImage get btnSpin => const AssetGenImage('assets/bbb/btn_spin.png');
+
   /// File path: assets/bbb/close.png
   AssetGenImage get close => const AssetGenImage('assets/bbb/close.png');
 
@@ -200,6 +203,7 @@ class $AssetsBbbGen {
     ad,
     boxOpen,
     btn,
+    btnSpin,
     close,
     congratulations,
     dailyAdd,
