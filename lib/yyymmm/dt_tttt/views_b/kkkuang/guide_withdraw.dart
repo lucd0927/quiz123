@@ -26,7 +26,7 @@ showGuideWithdrawDialog(
           showMoneyHero: false,
           onClose: (d) {
             DtController.to.addDatiCoin(money);
-            ZhuyeController.to.resetIndex(ZhuyeController.cashIndex);
+            ZhuyeController.to.resetIndex(ZhuyeController.cashIndexB);
             onBtn();
           },
         );

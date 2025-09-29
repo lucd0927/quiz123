@@ -12,6 +12,8 @@ import '../fenlei/fenlei_controller.dart';
 import '../fenlei/fenlei_page.dart';
 import '../metal/metal_controller.dart';
 import '../metal/metal_page.dart';
+import '../xxjj/xj_ddd.dart';
+import '../xxjj/xj_ddd_controller.dart';
 import 'views/nav_bottom.dart';
 import '../dt_tttt/views/nav_top.dart';
 
@@ -31,6 +33,7 @@ class _ZhuyeState extends State<Zhuye> {
     Get.put(DtController());
     Get.put(FenleiController());
     Get.put(MetalController());
+    Get.put(XjDddController());
   }
 
   List<Widget> pages() {
@@ -42,7 +45,7 @@ class _ZhuyeState extends State<Zhuye> {
   }
 
   List<Widget> pagesBBB() {
-    return [FenleiPage(), DtPage(), SzPage(showBack: false,)];
+    return [ DtPage(), XjDdd()];
   }
 
   @override

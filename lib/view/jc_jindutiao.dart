@@ -77,16 +77,19 @@ class JCJingdutiao extends StatelessWidget {
           bottom: 0.h,
           right: 0,
           child: Center(
-            child: Text(
-              text,
-              style: TextStyle(
-                color: txtColor ?? Colors.white,
-                fontSize: height - 2,
-                height: 1,
-                shadows: [
-                  Shadow(color: Colors.black,offset: Offset(0, 0.1),blurRadius: 1)
-                ]
-              ),
+            child: JCTextBorder(
+              text:text,
+              fontSize: height - 3,
+              height: 1,
+              strokeWidth: 1.w,
+              // style: TextStyle(
+              //   color: txtColor ?? Colors.white,
+              //
+              //   height: 1,
+              //   shadows: [
+              //     Shadow(color: Colors.black,offset: Offset(0, 0.1),blurRadius: 1)
+              //   ]
+              // ),
             ),
           ),
         ),

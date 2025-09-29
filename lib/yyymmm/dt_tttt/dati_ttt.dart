@@ -50,7 +50,7 @@ class _DtPageState extends State<DtPage> {
     return Obx(() {
       return Column(
         children: [
-          SizedBox(height: 38.h),
+          SizedBox(height: 42.h),
           Row(
             children: [
               SizedBox(width: 40.w),

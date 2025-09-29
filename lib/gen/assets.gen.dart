@@ -23,6 +23,10 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/btn.png
   AssetGenImage get btn => const AssetGenImage('assets/bbb/btn.png');
 
+  /// File path: assets/bbb/btn_cashout.png
+  AssetGenImage get btnCashout =>
+      const AssetGenImage('assets/bbb/btn_cashout.png');
+
   /// File path: assets/bbb/btn_spin.png
   AssetGenImage get btnSpin => const AssetGenImage('assets/bbb/btn_spin.png');
 
@@ -68,6 +72,12 @@ class $AssetsBbbGen {
 
   /// File path: assets/bbb/money.png
   AssetGenImage get money => const AssetGenImage('assets/bbb/money.png');
+
+  /// File path: assets/bbb/nav_cash.png
+  AssetGenImage get navCash => const AssetGenImage('assets/bbb/nav_cash.png');
+
+  /// File path: assets/bbb/nav_quiz.png
+  AssetGenImage get navQuiz => const AssetGenImage('assets/bbb/nav_quiz.png');
 
   /// File path: assets/bbb/new_bg.png
   AssetGenImage get newBg => const AssetGenImage('assets/bbb/new_bg.png');
@@ -170,6 +180,71 @@ class $AssetsBbbGen {
   AssetGenImage get tixianSelect =>
       const AssetGenImage('assets/bbb/tixian_select.png');
 
+  /// File path: assets/bbb/xj_amazon.png
+  AssetGenImage get xjAmazon => const AssetGenImage('assets/bbb/xj_amazon.png');
+
+  /// File path: assets/bbb/xj_bottom_amazon.png
+  AssetGenImage get xjBottomAmazon =>
+      const AssetGenImage('assets/bbb/xj_bottom_amazon.png');
+
+  /// File path: assets/bbb/xj_bottom_cash.png
+  AssetGenImage get xjBottomCash =>
+      const AssetGenImage('assets/bbb/xj_bottom_cash.png');
+
+  /// File path: assets/bbb/xj_bottom_gpay.png
+  AssetGenImage get xjBottomGpay =>
+      const AssetGenImage('assets/bbb/xj_bottom_gpay.png');
+
+  /// File path: assets/bbb/xj_bottom_mastercard.png
+  AssetGenImage get xjBottomMastercard =>
+      const AssetGenImage('assets/bbb/xj_bottom_mastercard.png');
+
+  /// File path: assets/bbb/xj_bottom_pagbank.png
+  AssetGenImage get xjBottomPagbank =>
+      const AssetGenImage('assets/bbb/xj_bottom_pagbank.png');
+
+  /// File path: assets/bbb/xj_bottom_paypal.png
+  AssetGenImage get xjBottomPaypal =>
+      const AssetGenImage('assets/bbb/xj_bottom_paypal.png');
+
+  /// File path: assets/bbb/xj_bottom_success.png
+  AssetGenImage get xjBottomSuccess =>
+      const AssetGenImage('assets/bbb/xj_bottom_success.png');
+
+  /// File path: assets/bbb/xj_bottom_webmoney.png
+  AssetGenImage get xjBottomWebmoney =>
+      const AssetGenImage('assets/bbb/xj_bottom_webmoney.png');
+
+  /// File path: assets/bbb/xj_cashapp.png
+  AssetGenImage get xjCashapp =>
+      const AssetGenImage('assets/bbb/xj_cashapp.png');
+
+  /// File path: assets/bbb/xj_gpay.png
+  AssetGenImage get xjGpay => const AssetGenImage('assets/bbb/xj_gpay.png');
+
+  /// File path: assets/bbb/xj_mastercard.png
+  AssetGenImage get xjMastercard =>
+      const AssetGenImage('assets/bbb/xj_mastercard.png');
+
+  /// File path: assets/bbb/xj_pagbank.png
+  AssetGenImage get xjPagbank =>
+      const AssetGenImage('assets/bbb/xj_pagbank.png');
+
+  /// File path: assets/bbb/xj_paypal.png
+  AssetGenImage get xjPaypal => const AssetGenImage('assets/bbb/xj_paypal.png');
+
+  /// File path: assets/bbb/xj_processing.png
+  AssetGenImage get xjProcessing =>
+      const AssetGenImage('assets/bbb/xj_processing.png');
+
+  /// File path: assets/bbb/xj_successful.png
+  AssetGenImage get xjSuccessful =>
+      const AssetGenImage('assets/bbb/xj_successful.png');
+
+  /// File path: assets/bbb/xj_webmoney.png
+  AssetGenImage get xjWebmoney =>
+      const AssetGenImage('assets/bbb/xj_webmoney.png');
+
   /// File path: assets/bbb/xuanguang.png
   AssetGenImage get xuanguang =>
       const AssetGenImage('assets/bbb/xuanguang.png');
@@ -203,6 +278,7 @@ class $AssetsBbbGen {
     ad,
     boxOpen,
     btn,
+    btnCashout,
     btnSpin,
     close,
     congratulations,
@@ -217,6 +293,8 @@ class $AssetsBbbGen {
     mainQuiz,
     mainSetting,
     money,
+    navCash,
+    navQuiz,
     newBg,
     newBg2,
     newBtn,
@@ -245,6 +323,23 @@ class $AssetsBbbGen {
     tixianPagbank,
     tixianPaypal,
     tixianSelect,
+    xjAmazon,
+    xjBottomAmazon,
+    xjBottomCash,
+    xjBottomGpay,
+    xjBottomMastercard,
+    xjBottomPagbank,
+    xjBottomPaypal,
+    xjBottomSuccess,
+    xjBottomWebmoney,
+    xjCashapp,
+    xjGpay,
+    xjMastercard,
+    xjPagbank,
+    xjPaypal,
+    xjProcessing,
+    xjSuccessful,
+    xjWebmoney,
     xuanguang,
     zpBg,
     zpBttom,

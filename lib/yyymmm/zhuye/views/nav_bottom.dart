@@ -55,26 +55,26 @@ class _JCDibuNavState extends State<JCDibuNav> {
   ];
   List<Widget> bg_b = [
     Image.asset(
-      Assets.bbb.mainCash.path,
+      Assets.bbb.navQuiz.path,
       width: ScreenUtil().screenWidth,
       height: bottomNavHeight,
       fit: BoxFit.fill,
       gaplessPlayback: true,
     ),
     Image.asset(
-      Assets.bbb.mainQuiz.path,
+      Assets.bbb.navCash.path,
       width: ScreenUtil().screenWidth,
       height: bottomNavHeight,
       fit: BoxFit.fill,
       gaplessPlayback: true,
     ),
-    Image.asset(
-      Assets.bbb.mainSetting.path,
-      width: ScreenUtil().screenWidth,
-      height: bottomNavHeight,
-      fit: BoxFit.fill,
-      gaplessPlayback: true,
-    ),
+    // Image.asset(
+    //   Assets.bbb.mainSetting.path,
+    //   width: ScreenUtil().screenWidth,
+    //   height: bottomNavHeight,
+    //   fit: BoxFit.fill,
+    //   gaplessPlayback: true,
+    // ),
   ];
 
   @override
@@ -95,11 +95,16 @@ class _JCDibuNavState extends State<JCDibuNav> {
                     children: JCABluoji.isPackageB() ? bg_b : bg,
                   ),
                   Row(
-                    children: [
-                      _itemView(index: ZhuyeController.categoryIndex),
-                      _itemView(index: ZhuyeController.quizIndex),
-                      _itemView(index: ZhuyeController.metalIndex),
-                    ],
+                    children: JCABluoji.isPackageB()
+                        ? [
+                            _itemView(index: ZhuyeController.quizIndexB),
+                            _itemView(index: ZhuyeController.cashIndexB),
+                          ]
+                        : [
+                            _itemView(index: ZhuyeController.categoryIndex),
+                            _itemView(index: ZhuyeController.quizIndex),
+                            _itemView(index: ZhuyeController.metalIndex),
+                          ],
                   ),
                 ],
               ),
@@ -116,7 +121,7 @@ class _JCDibuNavState extends State<JCDibuNav> {
   }
 
   _itemView({required int index}) {
-    int length = 3;
+    int length = JCABluoji.isPackageB()?2:3;
     double maxWidth = screenWidth / length;
     final int curIndex = ZhuyeController.to.curIndex.value;
     bool select = index == curIndex;
