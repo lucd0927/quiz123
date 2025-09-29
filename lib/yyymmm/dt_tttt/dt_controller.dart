@@ -20,11 +20,13 @@ import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_star_zero.dart';
 import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_right.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/animated_float.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/guide_right2.dart';
+import 'package:quiz123/yyymmm/xxjj/xj_ddd_controller.dart';
 import 'package:spine_flutter/spine_flutter_bindings_generated.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../yy_gj/bbbb/shuzhishuju.dart';
+import '../xxjj/kkkkuang/input_pay_card.dart';
 import 'kkkk/dati_next_level.dart';
 import 'views_b/dati_floating.dart';
 import 'views_b/kkkuang/guide_right8.dart';
@@ -390,11 +392,34 @@ class DtController extends GetxController {
     return random + 1000;
   }
 
+  subDatiCoin(double coin) {
+    double tmpcoin = curMoney.value;
+    tmpcoin = tmpcoin - coin;
+    if (tmpcoin <= 0) {
+      tmpcoin = 0;
+    }
+    curMoney.value = tmpcoin;
+    box.put(hCurMoney, tmpcoin);
+  }
+
   addDatiCoin(double coin) {
     double tmpcoin = curMoney.value;
     tmpcoin = tmpcoin + coin;
     curMoney.value = tmpcoin;
     box.put(hCurMoney, tmpcoin);
+
+    if (JCABluoji.isPackageB() && tmpcoin >= minWithdrawJine) {
+      if (XjDddController.to.hasSsssavePayCardId()) {
+      } else {
+        double money = minWithdrawJine;
+        showInputPayCard(
+          Get.context!,
+          onBtn: () {},
+          onClose: () {},
+          money: money,
+        );
+      }
+    }
   }
 
   addDatiAllTime() {
@@ -459,16 +484,18 @@ class DtController extends GetxController {
 
     _qXuanfu.show(
       context: Get.context!,
-      child: DatiFloating(onMoney: (data)async {
-              _qXuanfu.close();
-              onShowMoneyCcc(
-                money: tmpXuanfu,
-                onEnd: () async {
-                  await Future.delayed(Duration(milliseconds: 2000));
-                  showXaunfu();
-                },
-              );
-      },),
+      child: DatiFloating(
+        onMoney: (data) async {
+          _qXuanfu.close();
+          onShowMoneyCcc(
+            money: tmpXuanfu,
+            onEnd: () async {
+              await Future.delayed(Duration(milliseconds: 2000));
+              showXaunfu();
+            },
+          );
+        },
+      ),
       // child: Material(
       //   color: Colors.transparent,
       //   child: GestureDetector(
@@ -566,11 +593,11 @@ class DtController extends GetxController {
 
         int curNum = curRightNum.value;
         if (curNum == 2) {
-          Future.delayed(Duration(milliseconds: 1000),(){
+          Future.delayed(Duration(milliseconds: 1000), () {
             GuideRight2().show();
           });
         } else if (curNum == 8) {
-          Future.delayed(Duration(milliseconds: 1000),(){
+          Future.delayed(Duration(milliseconds: 1000), () {
             GuideRight8().show();
           });
         }

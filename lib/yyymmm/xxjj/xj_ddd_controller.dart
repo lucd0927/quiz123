@@ -6,9 +6,11 @@ import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yyymmm/xxjj/kkkkuang/input_pay_card.dart';
+import 'package:quiz123/yyymmm/xxjj/kkkkuang/tx_taskkkk.dart';
 import 'package:tuple/tuple.dart';
 
 import 'kkkkuang/bu_zu.dart';
+import 'kkkkuang/rankkkkk.dart';
 
 class XjDddController extends GetxController {
   static XjDddController get to => Get.find();
@@ -18,6 +20,31 @@ class XjDddController extends GetxController {
   var box = JCHive.box;
 
   var curPayCard = "".obs;
+  // 保存的银行卡
+  static const String hksssavePayCardId = "hksssavePayCardId";
+  String get sssavePayCardId {
+    return box.get(hksssavePayCardId) ?? "";
+  }
+  void setSsssavePayCardId(String ccccc) {
+    box.put(hksssavePayCardId, ccccc);
+  }
+  // 保存的哪个银行
+  static const String hksssavePayCarddddd = "hksssavePayCarddddd";
+  String get sssavePayCarddddd {
+    return box.get(hksssavePayCarddddd) ?? "";
+  }
+  void setSssavePayCarddddd() {
+    String ccccc = curPayCard.value;
+    box.put(hksssavePayCarddddd, ccccc);
+  }
+  // 保存的哪个档次money
+  static const String hksssavemoney = "hksssavemoney";
+  double get sssavemoney {
+    return box.get(hksssavePayCardId) ?? 0.0;
+  }
+  void setSssavemoney(double ccccc) {
+    box.put(hksssavePayCardId, ccccc);
+  }
 
   @override
   void onInit() {
@@ -74,7 +101,6 @@ class XjDddController extends GetxController {
     return icon;
   }
 
-
   String curPayCardIdWithBottom() {
     String payName = curPayCard.value;
     String icon = Assets.bbb.xjBottomPaypal.path;
@@ -97,11 +123,37 @@ class XjDddController extends GetxController {
     return icon;
   }
 
+  String curPayCardIdWithPop() {
+    String payName = curPayCard.value;
+    String icon = Assets.bbb.txPopPaypal.path;
+    if (payName == EnumPayType.paypal.name) {
+      icon = Assets.bbb.txPopPaypal.path;
+    } else if (payName == EnumPayType.pagbank.name) {
+      icon = Assets.bbb.txPopPagbank.path;
+    } else if (payName == EnumPayType.cashapp.name) {
+      icon = Assets.bbb.txPopCashapp.path;
+    } else if (payName == EnumPayType.amazon.name) {
+      icon = Assets.bbb.txPopAmazon.path;
+    } else if (payName == EnumPayType.gpay.name) {
+      icon = Assets.bbb.txPopGpay.path;
+    } else if (payName == EnumPayType.webmoney.name) {
+      icon = Assets.bbb.txPopWebmoney.path;
+    } else if (payName == EnumPayType.mastercard.name) {
+      icon = Assets.bbb.txPopMastercard.path;
+    }
+
+    return icon;
+  }
+
+  bool hasSsssavePayCardId() {
+    return sssavePayCardId.isNotEmpty;
+  }
+
   onTxFun({required double money}) {
-
-    showBuzuCard(Get.context!, onBtn: (){}, onClose: (){});
-    // showInputPayCard(Get.context!, onBtn: (){}, onClose: (){});
-
+    // showBuzuCard(Get.context!, onBtn: (){}, onClose: (){});
+    // showInputPayCard(Get.context!, onBtn: () {}, onClose: () {}, money: money);
+    // showTixianPaimingDialog(Get.context!, withdrawMoney: money, );
+    showTxTaskkkkDialog(Get.context!, onBtn: (){});
   }
 
   static const hkXjRenwu = "dshhgsaewrewrew";

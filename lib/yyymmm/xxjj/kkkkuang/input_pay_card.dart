@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/jc_text_border.dart';
+import 'package:quiz123/view/jc_ts_kuang.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
+import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/xxjj/xj_ddd_controller.dart';
 
 import '../../../gen/assets.gen.dart';
@@ -13,14 +15,25 @@ showInputPayCard(
   BuildContext context, {
   required VoidCallback onBtn,
   required VoidCallback onClose,
+  required double money,
 }) {
   return jcKuang(
     context: context,
-    child: InputPayCard(onClose: () {}, onSubmit: (data) {
-      jcRizhi("===cardId:$data===");
+    child: InputPayCard(
+      onClose: () {},
+      onSubmit: (data) {
+        jcRizhi("===cardId:$data===");
+        if (data is String && data.isNotEmpty) {
+          jcTsDialog(text: "Congratulations on your successful withdrawal. Your money has arrived.");
+          XjDddController.to.setSsssavePayCardId(data);
+          XjDddController.to.setSssavemoney(money);
+          XjDddController.to.setSssavePayCarddddd();
+          XjDddController.to.chushiTixianRenwu();
+          DtController.to.subDatiCoin(money);
 
-
-    }),
+        }
+      },
+    ),
   );
 }
 

@@ -12,7 +12,7 @@ jcTsDialog({String text = "", Alignment alignment = Alignment.topCenter}) {
     title: Text(
       text,
       style: TextStyle(
-        fontSize: 16.sp,
+        fontSize: 14.sp,
         color: Colors.white.withValues(alpha: 1),
         fontWeight: FontWeight.w500,
       ),
