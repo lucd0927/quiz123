@@ -5,7 +5,10 @@ import 'package:quiz123/gen/assets.gen.dart';
 import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
+import 'package:quiz123/yyymmm/xxjj/kkkkuang/input_pay_card.dart';
 import 'package:tuple/tuple.dart';
+
+import 'kkkkuang/bu_zu.dart';
 
 class XjDddController extends GetxController {
   static XjDddController get to => Get.find();
@@ -50,6 +53,28 @@ class XjDddController extends GetxController {
     return icon;
   }
 
+  String payIconWithPayName(String payName) {
+    String icon = Assets.bbb.xjPaypal.path;
+    if (payName == EnumPayType.paypal.name) {
+      icon = Assets.bbb.tixianPaypal.path;
+    } else if (payName == EnumPayType.pagbank.name) {
+      icon = Assets.bbb.tixianPagbank.path;
+    } else if (payName == EnumPayType.cashapp.name) {
+      icon = Assets.bbb.tixianCashapp.path;
+    } else if (payName == EnumPayType.amazon.name) {
+      icon = Assets.bbb.tixianAmazon.path;
+    } else if (payName == EnumPayType.gpay.name) {
+      icon = Assets.bbb.tixianGpay.path;
+    } else if (payName == EnumPayType.webmoney.name) {
+      icon = Assets.bbb.tixianWebmoney.path;
+    } else if (payName == EnumPayType.mastercard.name) {
+      icon = Assets.bbb.tixianMastercard.path;
+    }
+
+    return icon;
+  }
+
+
   String curPayCardIdWithBottom() {
     String payName = curPayCard.value;
     String icon = Assets.bbb.xjBottomPaypal.path;
@@ -72,7 +97,12 @@ class XjDddController extends GetxController {
     return icon;
   }
 
-  onTxFun({required double money}) {}
+  onTxFun({required double money}) {
+
+    showBuzuCard(Get.context!, onBtn: (){}, onClose: (){});
+    // showInputPayCard(Get.context!, onBtn: (){}, onClose: (){});
+
+  }
 
   static const hkXjRenwu = "dshhgsaewrewrew";
 

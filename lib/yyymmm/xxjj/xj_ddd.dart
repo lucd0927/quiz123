@@ -93,6 +93,7 @@ class _XjDddState extends State<XjDdd> {
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill,
+                gaplessPlayback: true,
               ),
               Positioned(
                 left: 0,
@@ -178,6 +179,7 @@ class _XjDddState extends State<XjDdd> {
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.fill,
+            gaplessPlayback: true,
           ),
 
           Positioned(
@@ -196,47 +198,53 @@ class _XjDddState extends State<XjDdd> {
             right: 10.w,
             top: 0,
             bottom: 6.w,
-            child: Container(
-              width: 120.w,
-              color: Colors.green.withValues(alpha: 0.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    Assets.bbb.btnCashout.path,
-                    width: 97.w,
-                    height: 36.w,
-                  ),
-                  SizedBox(height: 10.w),
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      JCJingdutiao(
-                        height: 11.h,
-                        innerHeight: 10.h,
-                        gradientColors: [
-                          Color(0xffFF6B09),
-                          Color(0xffFF6B09),
-                          Color(0xffFF6B09),
-                        ],
-                        bgColor: Color(0xffD9DCE5),
-                        text: "${(progress*100).toStringAsFixed(0)}%",
-                        width: 110.w,
-                        progress: progress,
-                        txtColor: Colors.black.withValues(alpha: 0.1),
-                      ),
-                      Positioned(
-                        left: -10.w,
-                        top: -4.h,
-                        child: Image.asset(
-                          Assets.bbb.money.path,
-                          width: 36.w,
-                          height: 22.w,
+            child: GestureDetector(
+              onTap: (){
+                XjDddController.to.onTxFun(money: money);
+              },
+              child: Container(
+                width: 120.w,
+                color: Colors.green.withValues(alpha: 0.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      Assets.bbb.btnCashout.path,
+                      width: 97.w,
+                      height: 36.w,
+                      gaplessPlayback: true,
+                    ),
+                    SizedBox(height: 10.w),
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        JCJingdutiao(
+                          height: 11.h,
+                          innerHeight: 10.h,
+                          gradientColors: [
+                            Color(0xffFF6B09),
+                            Color(0xffFF6B09),
+                            Color(0xffFF6B09),
+                          ],
+                          bgColor: Color(0xffD9DCE5),
+                          text: "${(progress*100).toStringAsFixed(0)}%",
+                          width: 110.w,
+                          progress: progress,
+                          txtColor: Colors.black.withValues(alpha: 0.1),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        Positioned(
+                          left: -10.w,
+                          top: -4.h,
+                          child: Image.asset(
+                            Assets.bbb.money.path,
+                            width: 36.w,
+                            height: 22.w,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
