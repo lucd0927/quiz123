@@ -494,13 +494,27 @@ class DtController extends GetxController {
         onMoney: (data) async {
           _qXuanfu.close();
           XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.qipaoo);
-          onShowMoneyCcc(
+
+          MoneyCcc().show(
+            context: Get.context!,
             money: tmpXuanfu,
-            onEnd: () async {
+            onClaimDouble:(dd) async {
+              await Future.delayed(Duration(milliseconds: 2000));
+              showXaunfu();
+            },
+            onClaim: (data)  async {
               await Future.delayed(Duration(milliseconds: 2000));
               showXaunfu();
             },
           );
+
+          // onShowMoneyCcc(
+          //   money: tmpXuanfu,
+          //   onEnd: () async {
+          //     await Future.delayed(Duration(milliseconds: 2000));
+          //     showXaunfu();
+          //   },
+          // );
         },
       ),
     );

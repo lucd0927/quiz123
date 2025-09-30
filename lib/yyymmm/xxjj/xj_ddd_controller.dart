@@ -634,7 +634,7 @@ class XjDddController extends GetxController {
       if (curCount >= allCount) {
         String lastChar = now_task_name[now_task_name.length - 1];
         int taskCount = (int.tryParse(lastChar) ?? 1) + 1;
-        int maxTaskNum = 5;
+        int maxTaskNum = 9;
         if (taskCount > maxTaskNum) {
           taskCount = maxTaskNum;
           curCount = allCount;
@@ -653,7 +653,7 @@ class XjDddController extends GetxController {
     }
 
     jcRizhi(
-      "recordCashStageTaskProcess ==hive 中存储的提现档位为5：keyData:$saveJieduanShuju ",
+      "recordCashStageTaskProcess ==hive 中存储的提现档位为5：keyData:${saveJieduanShuju['stage_3']} ",
     );
     box.put(key, saveJieduanShuju);
   }

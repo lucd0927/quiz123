@@ -19,6 +19,7 @@ import 'package:quiz123/yyymmm/dt_tttt/views_b/zhuanpan.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../view/animated_scale.dart';
+import '../../../yy_gj/bbbb/kkkkuang/money_ccc.dart';
 import '../../../yy_gj/bbbb/shuzhishuju.dart';
 import '../../../yy_gj/bbbb/vvvv/rotate.dart';
 import '../../xxjj/xj_ddd_controller.dart';
@@ -134,7 +135,7 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
       if (index <= 0) {
         index = 0;
       }
-      gundongTo(index,scrollTime: 500);
+      gundongTo(index, scrollTime: 500);
     }
   }
 
@@ -634,6 +635,8 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
       "===canClick:$canClick==index:$index curAnswerCount:$curAnswerCount",
     );
     bool sfDakai = hasIndexOpen(index);
+    sfDakai = false;
+    canClick = true;
 
     if (sfDakai) {
       String text = "Today’s treasure chest reward has been collected";
@@ -650,17 +653,35 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
         ZhuanpanOverlay().show(
           context: context,
           onSpin: (money) {
-            DtController.to.onShowMoneyCcc(money: money);
+            // DtController.to.onShowMoneyCcc(money: money);
+            MoneyCcc().show(
+              context: Get.context!,
+              money: money,
+              onClaimDouble: (data) {
+
+              },
+              onClaim: (data) {
+
+              },
+            );
           },
         );
       } else {
         double money = ShuzhiShuju.box_prize();
-        XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.bbbbXianggg);
+
         MoneyBox().show(
           context: context,
           money: money,
-          onClaimDouble: (value) {},
-          onClaim: (value) {},
+          onClaimDouble: (value) {
+            XjDddController.to.jiluTxStageRenwuJindu(
+              type: EnumXjjjjLx.bbbbXianggg,
+            );
+          },
+          onClaim: (value) {
+            XjDddController.to.jiluTxStageRenwuJindu(
+              type: EnumXjjjjLx.bbbbXianggg,
+            );
+          },
         );
       }
 
