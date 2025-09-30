@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/tools/package.dart';
+import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/view/jc_jindutiao.dart';
 import 'package:quiz123/view/jc_text_border.dart';
@@ -29,6 +30,8 @@ class _DtPageState extends State<DtPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _floatViewB();
     });
+
+
   }
 
   _floatViewB() {

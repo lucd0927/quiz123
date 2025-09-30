@@ -53,10 +53,12 @@ class JCABluoji {
   }
 
   void sendAAA({required String cloakData, required String afData}) {
-
-    bool entryBBB = cloakData == cloakBData &&
+    bool entryBBB =
+        cloakData == cloakBData &&
         (afData.isNotEmpty && afData != afDataOrganic);
-    jcRizhi("ABPackage send: cloakData:$cloakData  ====afData:$afData entryBBB:$entryBBB");
+    jcRizhi(
+      "ABPackage send: cloakData:$cloakData  ====afData:$afData entryBBB:$entryBBB",
+    );
     if (entryBBB) {
       _name = packageB;
       var box = JCHive.box;
@@ -91,8 +93,8 @@ class JCABluoji {
   // Organic network里是否包含【Organic】字段，如果包含则为自然量用户，并且展示为A包
   String _appsFlyerData = afDataOrganic;
 
-  // afDevKey : CbBDTSE3epZuMEDXGBeXGX
-  // appId: 6745999527
+  // afDevKey : asdasf1122xadfaf
+  // appId: 56564645
   initAppsFlyer({required String afDevKey, required String appId}) async {
     jcRizhi("======initAppsFlyer====afDevKey:$afDevKey appId:$appId");
     try {
@@ -153,9 +155,12 @@ class JCABluoji {
               );
             }
 
-            // todo: 测试代码
-            _appsFlyerData = "ddd";
-            sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
+            int mill = 12000;
+            Future.delayed(Duration(milliseconds: mill), () {
+              // todo: 测试代码
+              _appsFlyerData = "ddd";
+              sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
+            });
           } else {
             // todo: 测试代码
             // _appsFlyerData = "ddd";
@@ -192,12 +197,11 @@ class JCABluoji {
   static AppsflyerSdk? _appsFlyerAdk;
 
   static AppsflyerSdk? appsflyerSdk() => _appsFlyerAdk;
+
   // 仅针对A包
   cloakAAAA({int count = 0}) async {
     var data = await JCNet().cloak();
     jcRizhi("package cloak data:$data count:$count");
-
-
 
     _cloakData = data;
 
@@ -237,7 +241,6 @@ class JCABluoji {
     var cloakData = await cloakAAAA();
     jcRizhi("===_initA=_initAppsFlyer=cloakData:$cloakData==");
     await _chushiAF();
-
   }
 
   Future _initB() async {
@@ -254,7 +257,7 @@ class JCABluoji {
     await _chushiAF();
     int time3 = DateTime.now().millisecondsSinceEpoch;
     jcRizhi("==_initB===_initAppsFlyer() end===耗时:${time3 - time2}");
-    if(Platform.isAndroid){
+    if (Platform.isAndroid) {
       await JCWindController.initNumberUnit();
       int time4 = DateTime.now().millisecondsSinceEpoch;
       jcRizhi("==_initB===SWFengKong() end===耗时:${time4 - time3}");
@@ -301,7 +304,7 @@ class JCABluoji {
   _chushiAF() async {
     if (!sfChushiAF) {
       sfChushiAF = true;
-      String asdkasfdhka ="XM9ua37BHJWBKq8jTYg74a";
+      String asdkasfdhka = "XM9ua37BHJWBKq8jTYg74a";
       if (asdkasfdhka.isEmpty) {
         return;
       }

@@ -193,8 +193,6 @@ class _SplashProgressState extends State<SplashProgress> {
     jcRizhi("==JCABluoji().init start====");
     // // // 5 ab包逻辑
     bool result = await JCABluoji().init();
-    // await JCAdsTools().init();
-
     int time2 = DateTime.now().millisecondsSinceEpoch;
     jcRizhi(
       "==JCABluoji().init end==canGoToMain:$canGoToMain=result:$result=耗时:${time2 - time}",

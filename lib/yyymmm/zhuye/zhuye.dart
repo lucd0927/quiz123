@@ -7,6 +7,7 @@ import 'package:quiz123/yyymmm/sz_page/sz_page.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../tools/rizhi.dart';
 import '../dt_tttt/dt_controller.dart';
 import '../fenlei/fenlei_controller.dart';
 import '../fenlei/fenlei_page.dart';
@@ -34,6 +35,18 @@ class _ZhuyeState extends State<Zhuye> {
     Get.put(FenleiController());
     Get.put(MetalController());
     Get.put(XjDddController());
+
+    JCABluoji().listen((packName){
+      jcRizhi("===JCABluoji().listen==packName:$packName");
+      if(packName == JCABluoji.packageB){
+        ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
+        // setState(() {
+        //
+        // });
+      }
+
+
+    });
   }
 
   List<Widget> pages() {
