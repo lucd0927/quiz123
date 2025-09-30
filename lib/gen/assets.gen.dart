@@ -199,6 +199,9 @@ class $AssetsBbbGen {
   AssetGenImage get tixianWebmoney =>
       const AssetGenImage('assets/bbb/tixian_webmoney.png');
 
+  /// File path: assets/bbb/tx_bbbbox.png
+  AssetGenImage get txBbbbox => const AssetGenImage('assets/bbb/tx_bbbbox.png');
+
   /// File path: assets/bbb/tx_bg.png
   AssetGenImage get txBg => const AssetGenImage('assets/bbb/tx_bg.png');
 
@@ -242,8 +245,17 @@ class $AssetsBbbGen {
   AssetGenImage get txPopWebmoney =>
       const AssetGenImage('assets/bbb/tx_pop_webmoney.png');
 
+  /// File path: assets/bbb/tx_pppop.png
+  AssetGenImage get txPppop => const AssetGenImage('assets/bbb/tx_pppop.png');
+
+  /// File path: assets/bbb/tx_qqquiz.png
+  AssetGenImage get txQqquiz => const AssetGenImage('assets/bbb/tx_qqquiz.png');
+
   /// File path: assets/bbb/tx_rank.png
   AssetGenImage get txRank => const AssetGenImage('assets/bbb/tx_rank.png');
+
+  /// File path: assets/bbb/tx_zzzzp.png
+  AssetGenImage get txZzzzp => const AssetGenImage('assets/bbb/tx_zzzzp.png');
 
   /// File path: assets/bbb/xj_amazon.png
   AssetGenImage get xjAmazon => const AssetGenImage('assets/bbb/xj_amazon.png');
@@ -393,6 +405,7 @@ class $AssetsBbbGen {
     tixianPaypal,
     tixianSelect,
     tixianWebmoney,
+    txBbbbox,
     txBg,
     txCashout,
     txOnelastBg,
@@ -404,7 +417,10 @@ class $AssetsBbbGen {
     txPopPagbank,
     txPopPaypal,
     txPopWebmoney,
+    txPppop,
+    txQqquiz,
     txRank,
+    txZzzzp,
     xjAmazon,
     xjBottomAmazon,
     xjBottomCash,

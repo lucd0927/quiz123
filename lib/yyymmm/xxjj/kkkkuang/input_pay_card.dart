@@ -10,6 +10,7 @@ import 'package:quiz123/yyymmm/xxjj/xj_ddd_controller.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../jichu_kuang/jichu_kuang.dart';
+import 'tx_taskkkk.dart';
 
 showInputPayCard(
   BuildContext context, {
@@ -20,7 +21,9 @@ showInputPayCard(
   return jcKuang(
     context: context,
     child: InputPayCard(
-      onClose: () {},
+      onClose: () {
+        onClose();
+      },
       onSubmit: (data) {
         jcRizhi("===cardId:$data===");
         if (data is String && data.isNotEmpty) {
@@ -30,8 +33,12 @@ showInputPayCard(
           XjDddController.to.setSssavePayCarddddd();
           XjDddController.to.chushiTixianRenwu();
           DtController.to.subDatiCoin(money);
+          Future.delayed(Duration(milliseconds: 300),(){
+            showTxTaskkkkDialog(Get.context!, onBtn: () {});
+          });
 
         }
+        onBtn();
       },
     ),
   );

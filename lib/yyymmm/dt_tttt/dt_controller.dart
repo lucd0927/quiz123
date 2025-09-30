@@ -315,6 +315,7 @@ class DtController extends GetxController {
     if (hasClickRight) {
       if (JCABluoji.isPackageB()) {
         addDatiRightNum();
+        XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.dtQuizzzz);
         __onNext(showTryAgain: showTryAgain);
       } else {
         _onShowUpgrade(

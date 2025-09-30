@@ -21,7 +21,7 @@ class ShuzhiShuju {
     if (tmpData.isEmpty) {
       return [800.0];
     }
-    tmpData.add(200.0);
+    tmpData.add(700.0);
     tmpData.sort((a,b)=>a.compareTo(b));
     return tmpData;
   }

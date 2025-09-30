@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive_ce_flutter/adapters.dart';
+import 'package:quiz123/tools/num_floor.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/xxjj/xj_ddd_controller.dart';
+import 'package:tuple/tuple.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../tools/rizhi.dart';
 import '../../view/jc_jindutiao.dart';
 
 class XjDdd extends StatefulWidget {
@@ -167,7 +170,10 @@ class _XjDddState extends State<XjDdd> {
     if (progress > 1) {
       progress = 1;
     }
-
+    bool showJinnnn = XjDddController.to.showJindu(money: money);
+    if (showJinnnn) {
+      return _txJinduItem(money: money);
+    }
     return Container(
       width: 355.w,
       height: 97.w,
@@ -199,7 +205,7 @@ class _XjDddState extends State<XjDdd> {
             top: 0,
             bottom: 6.w,
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 XjDddController.to.onTxFun(money: money);
               },
               child: Container(
@@ -227,7 +233,7 @@ class _XjDddState extends State<XjDdd> {
                             Color(0xffFF6B09),
                           ],
                           bgColor: Color(0xffD9DCE5),
-                          text: "${(progress*100).toStringAsFixed(0)}%",
+                          text: "${(progress * 100).toStringAsFixed(0)}%",
                           width: 110.w,
                           progress: progress,
                           txtColor: Colors.black.withValues(alpha: 0.1),
@@ -242,6 +248,150 @@ class _XjDddState extends State<XjDdd> {
                           ),
                         ),
                       ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _txJinduItem({required double money}) {
+    int curCount = 0;
+    int allCount = 20;
+    List<String> texts = ["", ""];
+    String icon = Assets.bbb.txQqquiz.path;
+    String now_stage = XjDddController.to.now_stage();
+    if (now_stage == "stage_1") {
+      Tuple4 itemTuple3 = XjDddController.to.stage_1();
+      curCount = itemTuple3.item1;
+      allCount = itemTuple3.item2;
+      texts = itemTuple3.item3;
+    } else if (now_stage == "stage_3") {
+      Tuple4 itemTuple3 = XjDddController.to.stage_2();
+      curCount = itemTuple3.item1;
+      allCount = itemTuple3.item2;
+      texts = itemTuple3.item3;
+    }
+    String des = texts[0];
+    String des2 = "$curCount";
+    String des3 = texts[1];
+    String des4 = "$curCount/$allCount";
+    double progress = 0;
+    progress = curCount / allCount;
+
+    progress = progress.toAsFixedFloor(2);
+    jcRizhi("==now_stage:$now_stage=progress:$progress==");
+    double tmpWidth = 180.w;
+    return Container(
+      width: 355.w,
+      height: 112.w,
+      margin: EdgeInsets.only(bottom: 16.w),
+      child: Stack(
+        children: [
+          Image.asset(
+            Assets.bbb.xjBottomSuccess.path,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.fill,
+            gaplessPlayback: true,
+          ),
+
+          Positioned(
+            left: 10.w,
+            top: 0,
+            bottom: 0,
+            child: Container(
+              color: Colors.indigo.withValues(alpha: 0.0),
+              width: 200.w,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 42.h,
+
+                    child: Row(
+                      children: [
+                        Image.asset(icon, width: 42.h, height: 42.h),
+                        SizedBox(width: 8.w),
+                        JCTextBorder(
+                          text: "\$${money.toStringAsFixed(0)}",
+                          fontWeight: FontWeight.w900,
+                          fontSize: 25.sp,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
+                  SizedBox(
+                    width: tmpWidth,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: Text.rich(
+                            TextSpan(
+                              text: des,
+                              children: [
+                                TextSpan(
+                                  text: " $des4 ",
+                                  style: TextStyle(color: Color(0xffDA3B0A)),
+                                ),
+                                TextSpan(text: des3),
+                              ],
+                            ),
+                            style: TextStyle(
+                              fontSize: 11.sp,
+                              height: 1,
+                              color: Color(0xff242104),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
+                  JCJingdutiao(
+                    width: tmpWidth,
+                    height: 12.w,
+                    innerHeight: 10.w,
+                    text: "",
+                    bgColor: Color(0xff390000),
+                    progress: progress,
+                    border: Border.all(color: Color(0xff000000)),
+                    gradientColors: [
+                      Color(0xffFF6B09),
+                      Color(0xffFF6B09),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            right: 10.w,
+            top: 0,
+            bottom: 6.w,
+            child: GestureDetector(
+              onTap: () {
+                XjDddController.to.onTxFun(money: money);
+              },
+              child: Container(
+                width: 120.w,
+                color: Colors.green.withValues(alpha: 0.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      Assets.bbb.xjProcessing.path,
+                      width: 97.w,
+                      height: 36.w,
+                      gaplessPlayback: true,
                     ),
                   ],
                 ),

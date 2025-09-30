@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:quiz123/gen/assets.gen.dart';
 import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/tools/rizhi.dart';
+import 'package:quiz123/view/jc_ts_kuang.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
+import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/xxjj/kkkkuang/input_pay_card.dart';
 import 'package:quiz123/yyymmm/xxjj/kkkkuang/tx_taskkkk.dart';
 import 'package:tuple/tuple.dart';
@@ -20,30 +22,44 @@ class XjDddController extends GetxController {
   var box = JCHive.box;
 
   var curPayCard = "".obs;
+
   // 保存的银行卡
   static const String hksssavePayCardId = "hksssavePayCardId";
+
   String get sssavePayCardId {
     return box.get(hksssavePayCardId) ?? "";
   }
+
   void setSsssavePayCardId(String ccccc) {
     box.put(hksssavePayCardId, ccccc);
   }
+
+  bool sfSaveCardId() {
+    jcRizhi("==CardId:$sssavePayCardId");
+    return sssavePayCardId.isNotEmpty;
+  }
+
   // 保存的哪个银行
   static const String hksssavePayCarddddd = "hksssavePayCarddddd";
+
   String get sssavePayCarddddd {
     return box.get(hksssavePayCarddddd) ?? "";
   }
+
   void setSssavePayCarddddd() {
     String ccccc = curPayCard.value;
     box.put(hksssavePayCarddddd, ccccc);
   }
+
   // 保存的哪个档次money
   static const String hksssavemoney = "hksssavemoney";
+
   double get sssavemoney {
-    return box.get(hksssavePayCardId) ?? 0.0;
+    return box.get(hksssavemoney) ?? 0.0;
   }
+
   void setSssavemoney(double ccccc) {
-    box.put(hksssavePayCardId, ccccc);
+    box.put(hksssavemoney, ccccc);
   }
 
   @override
@@ -54,6 +70,15 @@ class XjDddController extends GetxController {
     String tmpPayCard = box.get(hkSelectPayCard) ?? EnumPayType.paypal.name;
     curPayCard = tmpPayCard.obs;
   }
+
+  showJindu({required double money}){
+    bool show = false;
+    String saveCardType = sssavePayCarddddd;
+    show = hasSsssavePayCardId() && (curPayCard.value == saveCardType) &&(money ==
+        sssavemoney);
+    return show;
+  }
+
 
   topPayIcon({required EnumPayType payType}) {
     return topPayIconWithPayName(payType.name);
@@ -153,7 +178,43 @@ class XjDddController extends GetxController {
     // showBuzuCard(Get.context!, onBtn: (){}, onClose: (){});
     // showInputPayCard(Get.context!, onBtn: () {}, onClose: () {}, money: money);
     // showTixianPaimingDialog(Get.context!, withdrawMoney: money, );
-    showTxTaskkkkDialog(Get.context!, onBtn: (){});
+    // showTxTaskkkkDialog(Get.context!, onBtn: (){});
+
+    double tmpCurMmmmm = DtController.to.curMoney.value;
+    bool tmpSfSaveCardId = sfSaveCardId();
+    //保存了银行卡
+    if (tmpSfSaveCardId) {
+      bool sfCurPay = curPayCard.value == sssavePayCarddddd;
+      bool sfSaveMmmm = sssavemoney != money;
+      if(!sfCurPay || sfSaveMmmm){
+        jcTsDialog(text: "Please complete the previous withdrawal task");
+        curPayCard.value = sssavePayCarddddd;
+        return;
+      }
+
+
+      String tmpNNNNStage = XjDddController.to.now_stage();
+
+      if (tmpNNNNStage == "stage_1") {
+        showTxTaskkkkDialog(Get.context!, onBtn: () {});
+      } else if (tmpNNNNStage == "stage_2") {
+        showTixianPaimingDialog(Get.context!, withdrawMoney: money);
+      } else if (tmpNNNNStage == "stage_3") {
+        showTxTaskkkkDialog(Get.context!, onBtn: () {});
+      }
+    } else {
+      bool jineMoreMoney = tmpCurMmmmm >= money;
+      if (jineMoreMoney) {
+        showInputPayCard(
+          Get.context!,
+          onBtn: () {},
+          onClose: () {},
+          money: money,
+        );
+      } else {
+        showBuzuCard(Get.context!, onBtn: () {}, onClose: () {});
+      }
+    }
   }
 
   static const hkXjRenwu = "dshhgsaewrewrew";
@@ -354,7 +415,7 @@ class XjDddController extends GetxController {
   }
 
   // 记录不同层次money的进度
-  recordCashStageTaskProcess({required EnumXjjjjLx type}) {
+  jiluTxStageRenwuJindu({required EnumXjjjjLx type}) {
     String key = hkXjRenwu;
 
     var saveJieduanShuju = box.get(key);
