@@ -17,30 +17,34 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../jichu_kuang/jichu_kuang.dart';
 import '../../../view/jc_jindutiao.dart';
 
-showTxTaskkkkDialog(BuildContext context, {required VoidCallback onBtn}) {
+showTxTaskkkkWanchengDialog(
+  BuildContext context, {
+  required VoidCallback onBtn,
+}) {
   return jcKuang(
     context: context,
-    child: TxTaskkkk(onCashhhh: () {
-      ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
-    }, onClose: () {}),
+    child: TxTaskkkkWancheng(
+      onCashhhh: () {
+        ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
+      },
+      onClose: () {},
+    ),
   );
 }
 
-class TxTaskkkk extends StatelessWidget {
-  const TxTaskkkk({super.key, required this.onCashhhh, required this.onClose});
+class TxTaskkkkWancheng extends StatelessWidget {
+  const TxTaskkkkWancheng({
+    super.key,
+    required this.onCashhhh,
+    required this.onClose,
+  });
 
   final VoidCallback onCashhhh;
   final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
-    String tmpNNNStage = XjDddController.to.now_stage();
     String icon = Assets.bbb.txCashout.path;
-    if (tmpNNNStage == "stage_1") {
-      icon = Assets.bbb.txCashout.path;
-    } else if (tmpNNNStage == "stage_3") {
-      icon = Assets.bbb.txOnelastTitle.path;
-    }
     return SizedBox(
       width: ScreenUtil().screenWidth,
       height: ScreenUtil().screenHeight,
@@ -82,7 +86,7 @@ class TxTaskkkk extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.asset(
-                            Assets.bbb.txOnelastBg.path,
+                            Assets.bbb.txWc.path,
                             width: double.infinity,
                             height: double.infinity,
                             fit: BoxFit.fill,
@@ -93,11 +97,31 @@ class TxTaskkkk extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(height: 152.h),
-                                Container(
-                                  width: double.infinity,
-                                  height: 81.h,
-                                  color: Colors.green.withValues(alpha: 0.0),
-                                  child: _centerView(),
+
+                                Text.rich(
+                                  TextSpan(
+                                    text:
+                                        "Your withdrawal amount has been issued and will arrive in",
+                                    children: [
+                                      TextSpan(
+                                        text: " 3-5 ",
+                                        style: TextStyle(
+                                          color: Color(0xff26FF29),
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text:
+                                            "working days. Please check your account",
+                                      ),
+                                    ],
+                                  ),
+                                  style: TextStyle(
+                                    fontSize: 15.sp,
+                                    height: 1.2,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xffffffff),
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
                               ],
                             ),
@@ -180,23 +204,10 @@ class TxTaskkkk extends StatelessWidget {
                           clipBehavior: Clip.none,
                           children: [
                             Image.asset(
-                              Assets.bbb.btnCashout2.path,
+                              Assets.bbb.btnIknow.path,
                               width: double.infinity,
                               height: double.infinity,
                               fit: BoxFit.fill,
-                            ),
-                            Positioned(
-                              right: 10.w,
-                              top: 10.h,
-                              child: IgnorePointer(
-                                child: JcAnimatedScale(
-                                  child: Image.asset(
-                                    Assets.ttt.gesture.path,
-                                    width: 95.h,
-                                    height: 87.h,
-                                  ),
-                                ),
-                              ),
                             ),
                           ],
                         ),
@@ -209,103 +220,6 @@ class TxTaskkkk extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  _centerView({
-    double? width,
-    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
-  }) {
-    return GetBuilder<XjDddController>(
-      builder: (c) {
-        int curCount = 0;
-        int allCount = 20;
-        List<String> texts = ["", ""];
-        String now_stage = XjDddController.to.now_stage();
-        if (now_stage == "stage_1") {
-          Tuple4 itemTuple3 = XjDddController.to.stage_1();
-          curCount = itemTuple3.item1;
-          allCount = itemTuple3.item2;
-          texts = itemTuple3.item3;
-        } else if (now_stage == "stage_3") {
-          Tuple4 itemTuple3 = XjDddController.to.stage_3();
-          curCount = itemTuple3.item1;
-          allCount = itemTuple3.item2;
-          texts = itemTuple3.item3;
-        }
-        String des = texts[0];
-        String des2 = "$curCount";
-        String des3 = texts[1];
-        String des4 = "$curCount/$allCount";
-        double progress = 0;
-        progress = curCount / allCount;
-
-        progress = progress.toAsFixedFloor(2);
-        jcRizhi("==now_stage:$now_stage=progress:$progress==");
-        double tmpWidth = width ?? 240.w;
-        return Container(
-          width: tmpWidth,
-          // color: Colors.red,
-          // margin: EdgeInsets.only(top: 8.h, bottom: 0.h),
-          child: Column(
-            crossAxisAlignment: crossAxisAlignment,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: tmpWidth,
-                child:  Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    JCTextBorder(
-                      text: des,
-                      fontSize: 14.sp,
-                      fontColor: Color(0xffDCE8FF),
-                      foreground: Colors.black,
-                      height: 1,
-                    ),
-
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5.w),
-                      child: JCTextBorder(
-                        text: des4,
-                        fontColor: Color(0xff26FF29),
-                        foreground: Colors.black,
-                        fontSize: 14.sp,
-
-                        height: 1,
-                      ),
-                    ),
-
-                    JCTextBorder(
-                      text: des3,
-                      fontColor: Color(0xffDCE8FF),
-                      foreground: Colors.black,
-                      fontSize: 14.sp,
-
-                      height: 1,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 8.h),
-              JCJingdutiao(
-                width: tmpWidth,
-                height: 12.w,
-                innerHeight: 10.w,
-                text: "",
-                bgColor: Color(0xff390000),
-                progress: progress,
-                border: Border.all(color: Color(0xff000000)),
-                gradientColors: [
-                  Color(0xffFDF009),
-                  Color(0xffFDF009),
-                  Color(0xffFDF009),
-                ],
-              ),
-            ],
-          ),
-        );
-      },
     );
   }
 }

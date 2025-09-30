@@ -21,6 +21,7 @@ import '../../../gen/assets.gen.dart';
 import '../../../view/animated_scale.dart';
 import '../../../yy_gj/bbbb/shuzhishuju.dart';
 import '../../../yy_gj/bbbb/vvvv/rotate.dart';
+import '../../xxjj/xj_ddd_controller.dart';
 import 'kkkuang/guide_right8.dart';
 
 enum EnumLiwuLeixing { box, wheel }
@@ -124,8 +125,16 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
     jcRizhi("====EnumLiwuEvent=type:$type=");
     if (type == EnumLiwuEvent.updateRight2) {
       _onBox(liwu: EnumLiwuLeixing.box, canClick: true, index: 0);
-    }if (type == EnumLiwuEvent.updateRight8) {
+    } else if (type == EnumLiwuEvent.updateRight8) {
       _onBox(liwu: EnumLiwuLeixing.wheel, canClick: true, index: 2);
+    } else if (type == EnumLiwuEvent.scroll) {
+      int tmpRightNum = _innerRightCount;
+      int index = (tmpRightNum / jumpCount).toInt();
+      index = index - 2;
+      if (index <= 0) {
+        index = 0;
+      }
+      gundongTo(index,scrollTime: 500);
     }
   }
 
@@ -146,9 +155,9 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
     curData.addAll(tmpData);
   }
 
-  gundongTo(int weizhi) async {
+  gundongTo(int weizhi, {int? scrollTime}) async {
     double width = weizhi * _itemWidth;
-    int time = 2000;
+    int time = scrollTime ?? 2000;
     if (weizhi > 0) {
       width = width + 6.w;
       if (weizhi == 2) {
@@ -621,7 +630,9 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
     required bool canClick,
     required int index,
   }) {
-    jcRizhi("===canClick:$canClick==index:$index curAnswerCount:$curAnswerCount");
+    jcRizhi(
+      "===canClick:$canClick==index:$index curAnswerCount:$curAnswerCount",
+    );
     bool sfDakai = hasIndexOpen(index);
 
     if (sfDakai) {
@@ -636,11 +647,15 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
     if (canClick) {
       setWeizhiJson(index: index, hasOpen: true, money: 0);
       if (liwu == EnumLiwuLeixing.wheel) {
-        ZhuanpanOverlay().show(context: context,onSpin: (money){
-          DtController.to.onShowMoneyCcc(money: money);
-        });
+        ZhuanpanOverlay().show(
+          context: context,
+          onSpin: (money) {
+            DtController.to.onShowMoneyCcc(money: money);
+          },
+        );
       } else {
         double money = ShuzhiShuju.box_prize();
+        XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.bbbbXianggg);
         MoneyBox().show(
           context: context,
           money: money,

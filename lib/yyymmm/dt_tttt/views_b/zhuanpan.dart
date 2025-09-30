@@ -12,6 +12,7 @@ import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../yy_gj/bbbb/vvvv/rotate.dart';
+import '../../xxjj/xj_ddd_controller.dart';
 
 enum EnumZhuanpanTTTT { old, gift_zp }
 
@@ -36,6 +37,7 @@ class ZhuanpanOverlay {
             onSpin: (money) {
               close();
               onSpin(money);
+              XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.zppppWheeeel);
             },
           ),
         );

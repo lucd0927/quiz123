@@ -13,6 +13,7 @@ import 'package:tuple/tuple.dart';
 
 import 'kkkkuang/bu_zu.dart';
 import 'kkkkuang/rankkkkk.dart';
+import 'kkkkuang/tx_taskkkk_wancheng.dart';
 
 class XjDddController extends GetxController {
   static XjDddController get to => Get.find();
@@ -71,14 +72,15 @@ class XjDddController extends GetxController {
     curPayCard = tmpPayCard.obs;
   }
 
-  showJindu({required double money}){
+  showJindu({required double money}) {
     bool show = false;
     String saveCardType = sssavePayCarddddd;
-    show = hasSsssavePayCardId() && (curPayCard.value == saveCardType) &&(money ==
-        sssavemoney);
+    show =
+        hasSsssavePayCardId() &&
+        (curPayCard.value == saveCardType) &&
+        (money == sssavemoney);
     return show;
   }
-
 
   topPayIcon({required EnumPayType payType}) {
     return topPayIconWithPayName(payType.name);
@@ -186,19 +188,23 @@ class XjDddController extends GetxController {
     if (tmpSfSaveCardId) {
       bool sfCurPay = curPayCard.value == sssavePayCarddddd;
       bool sfSaveMmmm = sssavemoney != money;
-      if(!sfCurPay || sfSaveMmmm){
+      if (!sfCurPay || sfSaveMmmm) {
         jcTsDialog(text: "Please complete the previous withdrawal task");
         curPayCard.value = sssavePayCarddddd;
         return;
       }
 
+      if(hasCompletedAllTask()){
+        showTxTaskkkkWanchengDialog(Get.context!, onBtn: () {});
+        return;
+      }
 
       String tmpNNNNStage = XjDddController.to.now_stage();
 
       if (tmpNNNNStage == "stage_1") {
         showTxTaskkkkDialog(Get.context!, onBtn: () {});
       } else if (tmpNNNNStage == "stage_2") {
-        showTixianPaimingDialog(Get.context!, withdrawMoney: money);
+        showTxRankkkk(Get.context!, withdrawMoney: money);
       } else if (tmpNNNNStage == "stage_3") {
         showTxTaskkkkDialog(Get.context!, onBtn: () {});
       }
@@ -226,7 +232,9 @@ class XjDddController extends GetxController {
     int alskdjflkasjdf = box.get(hkWanchengRenwu) ?? 0;
     alskdjflkasjdf = alskdjflkasjdf + 1;
     box.put(hkWanchengRenwu, alskdjflkasjdf);
-    if (alskdjflkasjdf == 1) {}
+    if (alskdjflkasjdf == 1) {
+      showTxTaskkkkWanchengDialog(Get.context!, onBtn: () {});
+    }
 
     jcRizhi("===resetQuestionProcess===:${box.get(hkXjRenwu)}");
   }
@@ -324,7 +332,85 @@ class XjDddController extends GetxController {
       "now_stage": "stage_1",
     };
 
-    box.put(key, sdfgdsgsdsdf);
+    var testdddd = {
+      // 第一的阶段   - -刮XX张卡
+      "stage_1": {
+        "task_1": {
+          "allCount": 3,
+          "curCount": 0,
+          "type": "pop",
+          "text": ["Answer", "question correctly"],
+        },
+        "now_task": "task_1",
+        "des": "Complete the task, cash out immediately",
+      },
+
+      // 第二阶段       - 提现排队弹窗
+      "stage_2": {
+        "task_1": {
+          "allCount": 388,
+          "curCount": 30,
+          "type": "wheel",
+          "text": ["${"Your Current rank"}: ", ""],
+        },
+        "now_task": "task_1",
+        "des": "Congratulations, You are in the withdrawal approval queue.",
+      },
+      // 第三阶段
+      "stage_3": {
+        "task_1": {
+          "allCount": 2,
+          "curCount": 0,
+          "text": ["Answer", "question right"],
+        },
+        "task_2": {
+          "allCount": 2,
+          "curCount": 0,
+          "text": ["Open", "Gift Box"],
+        },
+        "task_3": {
+          "allCount": 2,
+          "curCount": 0,
+          "text": ["Play", "Spins"],
+        },
+        "task_4": {
+          "allCount": 2,
+          "curCount": 0,
+          "text": ["Collect", "Cash Pops"],
+        },
+        "task_5": {
+          "allCount": 2,
+          "curCount": 0,
+          "text": ["Answer", "question right"],
+        },
+        "task_6": {
+          "allCount": 2,
+          "curCount": 0,
+          "text": ["Open", "Gift Box"],
+        },
+        "task_7": {
+          "allCount": 2,
+          "curCount": 0,
+          "text": ["Play", "Spins"],
+        },
+        "task_8": {
+          "allCount": 2,
+          "curCount": 0,
+          "text": ["Collect", "Cash Pops"],
+        },
+        "task_9": {
+          "allCount": 2,
+          "curCount": 0,
+          "text": ["Answer", "question right"],
+        },
+
+        "now_task": "task_1",
+        "des": "Only one step away from successful withdrawal",
+      },
+      "now_stage": "stage_1",
+    };
+
+    box.put(key, testdddd);
     jcRizhi("initQuestionProcessWithMoneyLevel key:$key");
   }
 
@@ -456,6 +542,10 @@ class XjDddController extends GetxController {
           if (now_task_name == "task_$maxTaskNum") {
             // _hasLastTaskInLastStage = true;
             saveJieduanShuju['now_stage'] = "stage_2";
+            showTxRankkkk(
+              Get.context!,
+              withdrawMoney: XjDddController.to.sssavemoney,
+            );
           }
         }
       }
@@ -503,7 +593,7 @@ class XjDddController extends GetxController {
       }
     }
 
-    if (cur_jieduan == "stage_2") {
+    if (cur_jieduan == "stage_3") {
       String now_task_name = jieduanShuju['now_task'] ?? "task_1";
       jcRizhi(
         "recordCashStageTaskProcess ==hive 中存储的提现档位为4：now_task_name:$now_task_name ",
@@ -544,7 +634,7 @@ class XjDddController extends GetxController {
       if (curCount >= allCount) {
         String lastChar = now_task_name[now_task_name.length - 1];
         int taskCount = (int.tryParse(lastChar) ?? 1) + 1;
-        int maxTaskNum = 9;
+        int maxTaskNum = 5;
         if (taskCount > maxTaskNum) {
           taskCount = maxTaskNum;
           curCount = allCount;

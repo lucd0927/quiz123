@@ -254,6 +254,9 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/tx_rank.png
   AssetGenImage get txRank => const AssetGenImage('assets/bbb/tx_rank.png');
 
+  /// File path: assets/bbb/tx_wc.png
+  AssetGenImage get txWc => const AssetGenImage('assets/bbb/tx_wc.png');
+
   /// File path: assets/bbb/tx_zzzzp.png
   AssetGenImage get txZzzzp => const AssetGenImage('assets/bbb/tx_zzzzp.png');
 
@@ -420,6 +423,7 @@ class $AssetsBbbGen {
     txPppop,
     txQqquiz,
     txRank,
+    txWc,
     txZzzzp,
     xjAmazon,
     xjBottomAmazon,

@@ -172,7 +172,11 @@ class _XjDddState extends State<XjDdd> {
     }
     bool showJinnnn = XjDddController.to.showJindu(money: money);
     if (showJinnnn) {
-      return _txJinduItem(money: money);
+      return GetBuilder<XjDddController>(
+        builder: (c) {
+          return _txJinduItem(money: money);
+        },
+      );
     }
     return Container(
       width: 355.w,
@@ -270,8 +274,13 @@ class _XjDddState extends State<XjDdd> {
       curCount = itemTuple3.item1;
       allCount = itemTuple3.item2;
       texts = itemTuple3.item3;
-    } else if (now_stage == "stage_3") {
+    } else if (now_stage == "stage_2") {
       Tuple4 itemTuple3 = XjDddController.to.stage_2();
+      curCount = itemTuple3.item1;
+      allCount = itemTuple3.item2;
+      texts = itemTuple3.item3;
+    } else if (now_stage == "stage_3") {
+      Tuple4 itemTuple3 = XjDddController.to.stage_3();
       curCount = itemTuple3.item1;
       allCount = itemTuple3.item2;
       texts = itemTuple3.item3;
@@ -282,10 +291,14 @@ class _XjDddState extends State<XjDdd> {
     String des4 = "$curCount/$allCount";
     double progress = 0;
     progress = curCount / allCount;
-
+    if (now_stage == "stage_2") {
+      des4 = "$curCount";
+      progress = (allCount - curCount) / allCount;
+    }
     progress = progress.toAsFixedFloor(2);
     jcRizhi("==now_stage:$now_stage=progress:$progress==");
     double tmpWidth = 180.w;
+    bool tmphasCompletedAllTask = XjDddController.to.hasCompletedAllTask();
     return Container(
       width: 355.w,
       height: 112.w,
@@ -364,10 +377,7 @@ class _XjDddState extends State<XjDdd> {
                     bgColor: Color(0xff390000),
                     progress: progress,
                     border: Border.all(color: Color(0xff000000)),
-                    gradientColors: [
-                      Color(0xffFF6B09),
-                      Color(0xffFF6B09),
-                    ],
+                    gradientColors: [Color(0xffFF6B09), Color(0xffFF6B09)],
                   ),
                 ],
               ),
@@ -388,7 +398,9 @@ class _XjDddState extends State<XjDdd> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      Assets.bbb.xjProcessing.path,
+                      tmphasCompletedAllTask
+                          ? Assets.bbb.xjSuccessful.path
+                          : Assets.bbb.xjProcessing.path,
                       width: 97.w,
                       height: 36.w,
                       gaplessPlayback: true,

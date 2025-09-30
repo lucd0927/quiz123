@@ -120,7 +120,7 @@ class GuideWidget extends StatelessWidget {
 
     var topLeftPosition = box.localToGlobal(Offset.zero);
     return Container(
-      color: Colors.transparent,
+      color: Colors.teal.withValues(alpha: 0),
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -143,10 +143,11 @@ class GuideWidget extends StatelessWidget {
                   ),
                 ),
 
-                Positioned(top: 100.h, right: -100.w, child: step1()),
+
               ],
             ),
           ),
+          Positioned(top: 240.h, left: 40.w, child: step1()),
         ],
       ),
     );

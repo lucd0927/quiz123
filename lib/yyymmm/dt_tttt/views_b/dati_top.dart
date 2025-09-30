@@ -14,6 +14,7 @@ import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/new_user.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../../gen/assets.gen.dart';
+import '../../xxjj/kkkkuang/tx_taskkkk_wancheng.dart';
 import 'kkkuang/guide_withdraw.dart';
 import 'kkkuang/new_user_claim.dart';
 import 'kkkuang/old_user.dart';
@@ -223,6 +224,7 @@ class _DatiTopState extends State<DatiTop> {
 
     // GuideRight2().show();
     // ZhuanpanOverlay().show(context: context);
-    showOldUserDialog(context,onBtn: (){});
+    // showOldUserDialog(context,onBtn: (){});
+    showTxTaskkkkWanchengDialog(context,onBtn: (){});
   }
 }

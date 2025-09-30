@@ -5,224 +5,237 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/jichu_kuang/jichu_kuang.dart';
 import 'package:quiz123/tools/num_floor.dart';
+import 'package:quiz123/view/jc_ts_kuang.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
+import 'package:quiz123/yyymmm/xxjj/kkkkuang/tx_taskkkk.dart';
 import 'package:quiz123/yyymmm/xxjj/xj_ddd_controller.dart';
 
 import 'package:tuple/tuple.dart';
 
 import '../../../gen/assets.gen.dart';
+import '../../../tools/rizhi.dart';
 import '../../../view/animated_count.dart';
+import '../../../view/animated_scale.dart';
+import '../../../view/jc_jindutiao.dart';
+import '../../../view/jc_text_border.dart';
 
-showTixianPaimingDialog(BuildContext context, {required double withdrawMoney}) {
+showTxRankkkk(BuildContext context, {required double withdrawMoney}) {
   return jcKuang(
     context: context,
     child: TixianPaimingWidget(
-      onClose: () {},
-      onBtn: () async {
+      onClose: () {
+      },
+      onCashhhh: () async {
+        XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.rankkkkk);
+        Tuple4 tmpTuple4 = XjDddController.to.stage_2();
+        int curRRRR = tmpTuple4.item1;
+        jcTsDialog(text: "Your current rank: $curRRRR");
+
+        if(curRRRR <= 1){
+          Navigator.pop(Get.context!);
+          Future.delayed(Duration(milliseconds: 300),(){
+            showTxTaskkkkDialog(Get.context!, onBtn: (){});
+          });
+        }
 
       },
-      withdrawMoney: withdrawMoney,
     ),
   );
 }
 
-class TixianPaimingWidget extends StatefulWidget {
+class TixianPaimingWidget extends StatelessWidget {
   const TixianPaimingWidget({
     super.key,
-
+    required this.onCashhhh,
     required this.onClose,
-    required this.onBtn,
-    required this.withdrawMoney,
   });
 
+  final VoidCallback onCashhhh;
   final VoidCallback onClose;
-  final VoidCallback onBtn;
-  final double withdrawMoney;
-
-  @override
-  State<TixianPaimingWidget> createState() => _TixianPaimingWidgetState();
-}
-
-class _TixianPaimingWidgetState extends State<TixianPaimingWidget> {
-  int index = 0;
-  bool showStep2 = false;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+    String tmpNNNStage = XjDddController.to.now_stage();
+    String icon = Assets.bbb.txRank.path;
     return SizedBox(
       width: ScreenUtil().screenWidth,
       height: ScreenUtil().screenHeight,
-      child:  Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // SizedBox(height: 200.h),
-          GetBuilder<XjDddController>(
-            builder: (controller) {
-              return xxxxvvv();
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  xxxxvvv() {
-    double money = DtController.to.curMoney.value;
-    int minWithdrawMoney = widget.withdrawMoney ~/ 1;
-    double shengyu = minWithdrawMoney - money;
-    if (shengyu <= 0) {
-      shengyu = 0.0;
-    }
-    shengyu = shengyu.toAsFixedFloor(2);
-    return Container(
-      width: 678.w,
-      height: 1037.h,
-      decoration: BoxDecoration(
-        color: Color(0xff7983A8),
-        borderRadius: BorderRadius.circular(16.w),
-      ),
-      child: Column(
-        children: [
-          SizedBox(height: 10.h),
-          Stack(
+          Row(
             children: [
-              Container(
-                width: double.infinity,
-                // color: Colors.amber,
-                height: 60.h,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Withdrawal approval",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xffffffff),
-                        fontSize: 34.sp,
-                      ),
-                    ),
-                  ],
+              Spacer(),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                  onClose();
+                },
+                child: Image.asset(
+                  Assets.bbb.close.path,
+                  width: 20.w,
+                  height: 20.w,
                 ),
               ),
-              Positioned(
-                top: 0,
-                right: 20.w,
-                bottom: 0,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                    widget.onClose();
-                  },
-                  child: Image.asset(
-                    Assets.ttt.close.path,
-                    width: 20.h,
-                    height: 20.h,
-                    color: Color(0xffffffff),
-                  ),
-                ),
-              ),
+              SizedBox(width: 20.w),
             ],
           ),
-          Expanded(
-            child: Center(
-              child: Container(
-                width: 640.w,
-                height: 940.h,
-                decoration: BoxDecoration(
-                  color: Color(0xffFBFBFF),
-                  borderRadius: BorderRadius.circular(16.w),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 10.h),
-                    Text(
-                      "paimingCongratulations".tr,
-                      style: TextStyle(
-                        fontSize: 28.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xff3B434C),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Stack(
-                      children: [
-                        Image.asset(
-                          XjDddController.to.curPayCardIdWithPop(),
-                          width: 112.h,
-                          height: 28.h,
-                          fit: BoxFit.contain,
-                        ),
-                        Positioned(
-                          left: 0,
-                          right: 0,
-                          bottom: 50.h,
-                          child: Center(
-                            child: Text(
-                              "${widget.withdrawMoney}",
-                              style: TextStyle(
-                                color: Color(0xff30323A),
-                                fontSize: 60.sp,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
+          Container(
+            width: double.infinity,
+            height: 530.h,
+            color: Colors.green.withValues(alpha: 0.0),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: 40.h,
+                  child: Center(
+                    child: Container(
+                      width: 287.h,
+                      height: 458.h,
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            Assets.bbb.txBg.path,
+                            width: double.infinity,
+                            height: double.infinity,
+                            fit: BoxFit.fill,
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(width: 600.w, child: PbPaihangWidget()),
-                    Expanded(
-                      child: Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            // Navigator.pop(context);
-                            widget.onBtn();
-                          },
-                          child: Container(
-                            width: 353.w,
-                            height: 80.h,
-                            decoration: BoxDecoration(
-                              color: Color(0xffFFE400),
-                              borderRadius: BorderRadius.circular(16.w),
-                            ),
-                            child: Stack(
-                              clipBehavior: Clip.none,
+                          Positioned.fill(
+                            left: 10.w,
+                            right: 10.w,
+                            child: Column(
                               children: [
+                                SizedBox(height: 40.h),
                                 Center(
                                   child: Text(
-                                    "Skip wait".tr,
+                                    "Congratulations, You are in the withdrawal approval queue.",
                                     style: TextStyle(
+                                      fontSize: 14.sp,
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 42.sp,
-                                      // foreground: Color(0xffD0871E),
-                                      color: Color(0xff000000),
+                                      color: Color(0xffffffff),
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                SizedBox(height: 10.h),
+                                Center(
+                                  child: Container(
+                                    width: 112.h,
+                                    height: 62.h,
+                                    child: Stack(
+                                      children: [
+                                        Image.asset(
+                                          XjDddController.to
+                                              .curPayCardIdWithPop(),
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          fit: BoxFit.fill,
+                                        ),
+                                        Positioned(
+                                          left: 0,
+                                          right: 0,
+                                          bottom: 0.h,
+                                          child: Center(
+                                            child: Container(
+                                              height: 26.h,
+                                              color: Colors.teal.withValues(
+                                                alpha: 0.0,
+                                              ),
+                                              child: Center(
+                                                child: JCTextBorder(
+                                                  text:
+                                                      "\$${XjDddController.to.sssavemoney.toStringAsFixed(0)}",
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                                Positioned(
-                                  top: -20.h,
-                                  right: -10.w,
-                                  child: Image.asset(
-                                    Assets.bbb.ad.path,
-                                    width: 33.w,
-                                    height: 25.w,
-                                  ),
+                                SizedBox(height: 10.h),
+                                GetBuilder<XjDddController>(
+                                  builder: (controller) {
+                                    return PbPaihangWidget();
+                                  },
                                 ),
                               ],
                             ),
                           ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: 4.h,
+                  child: Center(
+                    child: Image.asset(
+                      icon,
+                      width: 364.w,
+                      height: 88.w,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0.h,
+                  child: Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        onCashhhh();
+                      },
+                      child: Container(
+                        width: 213.h,
+                        height: 66.h,
+                        color: Colors.teal.withValues(alpha: 0),
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Image.asset(
+                              Assets.bbb.btnSkipwait.path,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.fill,
+                            ),
+                            Positioned(
+                              right: -10.w,
+                              top: -10.h,
+                              child: Image.asset(
+                                Assets.bbb.ad.path,
+                                width: 47.w,
+                                height: 37.w,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            Positioned(
+                              top: 20.h,
+                              right: 0.w,
+                              child: JcAnimatedScale(
+                                child: Image.asset(
+                                  Assets.ttt.gesture.path,
+                                  width: 95.w,
+                                  height: 87.w,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ],
@@ -252,7 +265,7 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Tuple4 itemTuple3 = XjDddController.to.stage_1();
+    Tuple4 itemTuple3 = XjDddController.to.stage_2();
     int curShuling = itemTuple3.item1;
     curPaiming = curShuling;
     int allShuling = itemTuple3.item2;
@@ -264,7 +277,11 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
       var tmp = linshiData[i];
       String id = tmp[kWithdrawId];
       double money = tmp[kWithdraw];
-      Widget item = genwidget(id: id, aaa: i, money: money);
+      Widget item = ashfaskjfhk(
+        Sdfgfsghdfh: id,
+        ertsdgdf: i,
+        hgfjgktrwtry: money,
+      );
       itemsWidget.add(item);
     }
 
@@ -276,18 +293,18 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
             Text(
               "$allShuling",
               style: TextStyle(
-                fontSize: 24.sp,
-                color: Color(0xff07BC29),
+                fontSize: 12.sp,
+                color: Color(0xff47FF53),
                 fontWeight: FontWeight.w700,
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w),
+              padding: EdgeInsets.symmetric(horizontal: 2.w),
               child: Text(
-                "${"rankdes".tr}:",
+                " in queue,Your Current rank: ",
                 style: TextStyle(
-                  fontSize: 24.sp,
-                  color: Color(0xff000000),
+                  fontSize: 12.sp,
+                  color: Color(0xffffffff),
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -295,8 +312,8 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
             Text(
               "$curShuling",
               style: TextStyle(
-                fontSize: 24.sp,
-                color: Color(0xff07BC29),
+                fontSize: 12.sp,
+                color: Color(0xff47FF53),
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -306,7 +323,7 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
         ClipRRect(
           borderRadius: BorderRadius.circular(16.w),
           child: SizedBox(
-            height: 400.h,
+            height: 220.h,
             child: SingleChildScrollView(
               // padding: EdgeInsets.symmetric(horizontal: 48.w),
               child: Column(
@@ -315,16 +332,16 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
-                      fontSize: 32.sp,
+                      fontSize: 14.sp,
                     ),
                     child: Container(
-                      color: Color(0xffE9EEFF),
-                      height: 64.h,
+                      color: Color(0xffF2ECDB),
+                      height: 32.h,
                       child: Row(
                         children: [
-                          Expanded(child: Center(child: Text("User ID".tr))),
-                          Expanded(child: Center(child: Text("Account".tr))),
-                          Expanded(child: Center(child: Text("Money".tr))),
+                          Expanded(child: Center(child: Text("User ID"))),
+                          Expanded(child: Center(child: Text("Account"))),
+                          Expanded(child: Center(child: Text("Money"))),
                         ],
                       ),
                     ),
@@ -358,44 +375,37 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
     return tmp;
   }
 
-  genwidget({required int aaa, required String id, required double money}) {
-    int tmpRank = aaa + 1;
+  ashfaskjfhk({
+    required int ertsdgdf,
+    required String Sdfgfsghdfh,
+    required double hgfjgktrwtry,
+  }) {
+    int tmpRank = ertsdgdf + 1;
     if (tmpRank == curPaiming) {
-      id = "12****54";
+      Sdfgfsghdfh = "12****54";
       String cardId = XjDddController.to.sssavePayCardId;
       int length = cardId.length;
       if (length > 3) {
-        String first = cardId[0];
-        String last2 = cardId.substring(length - 2);
-        id = "$first****$last2";
+        String asdfasfd = cardId[0];
+        String htyuetu = cardId.substring(length - 2);
+        Sdfgfsghdfh = "$asdfasfd****$htyuetu";
       }
 
-      money = XjDddController.to.sssavemoney;
+      hgfjgktrwtry = XjDddController.to.sssavemoney;
       return DefaultTextStyle(
         style: TextStyle(
           fontWeight: FontWeight.w700,
-          color: Colors.red,
-          fontSize: 32.sp,
+          color: Color(0xffF70E0E),
+          fontSize: 14.sp,
         ),
         child: Container(
-          color: Colors.red.withValues(alpha: 0.2),
-          height: 64.h,
+          color:Color(0xffF7D8CC).withValues(alpha: 1),
+          height: 32.h,
           child: Row(
             children: [
-              Expanded(
-                child: Center(
-                  child: Text(
-                    "0${aaa + 1}",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.red,
-                      fontSize: 32.sp,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(child: Center(child: Text(id))),
-              Expanded(child: Center(child: Text("\$$money"))),
+              Expanded(child: Center(child: Text("0${ertsdgdf + 1}"))),
+              Expanded(child: Center(child: Text(Sdfgfsghdfh))),
+              Expanded(child: Center(child: Text("\$$hgfjgktrwtry"))),
             ],
           ),
         ),
@@ -403,13 +413,13 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
     }
 
     return Container(
-      color: aaa % 2 == 0 ? Color(0xffCFD9FF) : Color(0xffE9EEFF),
-      height: 60.h,
+      color: ertsdgdf % 2 == 0 ? Color(0xffFBF7EE) : Color(0xffF2ECDB),
+      height: 32.h,
       child: Row(
         children: [
-          Expanded(child: Center(child: Text("0${aaa + 1}"))),
-          Expanded(child: Center(child: Text(id))),
-          Expanded(child: Center(child: Text("\$$money"))),
+          Expanded(child: Center(child: Text("0${ertsdgdf + 1}"))),
+          Expanded(child: Center(child: Text(Sdfgfsghdfh))),
+          Expanded(child: Center(child: Text("\$$hgfjgktrwtry"))),
         ],
       ),
     );

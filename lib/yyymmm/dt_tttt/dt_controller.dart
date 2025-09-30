@@ -25,7 +25,9 @@ import 'package:spine_flutter/spine_flutter_bindings_generated.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../tools/event_bus.dart';
 import '../../yy_gj/bbbb/shuzhishuju.dart';
+import '../../yy_gj/event_bus.dart';
 import '../xxjj/kkkkuang/input_pay_card.dart';
 import 'kkkk/dati_next_level.dart';
 import 'views_b/dati_floating.dart';
@@ -316,6 +318,9 @@ class DtController extends GetxController {
       if (JCABluoji.isPackageB()) {
         addDatiRightNum();
         XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.dtQuizzzz);
+        JCEventBus.fire(
+          LiwuEvent(type: EnumLiwuEvent.scroll),
+        );
         __onNext(showTryAgain: showTryAgain);
       } else {
         _onShowUpgrade(
@@ -488,6 +493,7 @@ class DtController extends GetxController {
       child: DatiFloating(
         onMoney: (data) async {
           _qXuanfu.close();
+          XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.qipaoo);
           onShowMoneyCcc(
             money: tmpXuanfu,
             onEnd: () async {
@@ -497,49 +503,6 @@ class DtController extends GetxController {
           );
         },
       ),
-      // child: Material(
-      //   color: Colors.transparent,
-      //   child: GestureDetector(
-      //     onTap: () async {
-      //       _qXuanfu.close();
-      //       onShowMoneyCcc(
-      //         money: tmpXuanfu,
-      //         onEnd: () async {
-      //           await Future.delayed(Duration(milliseconds: 2000));
-      //           showXaunfu();
-      //         },
-      //       );
-      //     },
-      //     child: Container(
-      //       width: 62.w,
-      //       height: 62.w,
-      //       child: Stack(
-      //         children: [
-      //           Image.asset(
-      //             Assets.bbb.quizFloatMoney.path,
-      //             width: double.infinity,
-      //             height: double.infinity,
-      //             fit: BoxFit.fill,
-      //           ),
-      //           Positioned(
-      //             left: 0,
-      //             right: 0,
-      //             bottom: 0,
-      //             child: Center(
-      //               child: JCTextBorder(
-      //                 text: "\$$tmpXuanfu",
-      //                 fontSize: 15.sp,
-      //                 fontWeight: FontWeight.w700,
-      //                 fontColor: Color(0xff22FF26),
-      //                 foreground: Color(0xff003305),
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 

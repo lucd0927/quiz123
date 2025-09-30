@@ -2,7 +2,7 @@ abstract class BaseEvent {
   String name();
 }
 
-enum EnumLiwuEvent { updateRight2, updateRight8 }
+enum EnumLiwuEvent { updateRight2, updateRight8, scroll }
 
 class LiwuEvent extends BaseEvent {
   @override
@@ -15,11 +15,9 @@ class LiwuEvent extends BaseEvent {
   LiwuEvent({required this.type});
 }
 
-
 class DatiFloatEvent extends BaseEvent {
   @override
   String name() {
     return "DatiFloatEvent";
   }
-
 }
