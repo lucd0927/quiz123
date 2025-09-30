@@ -23,7 +23,7 @@ class JCNet {
       ),
     );
 
-    // _dio.interceptors.add(LogInterceptor());
+    // _netDdd.interceptors.add(LogInterceptor());
   }
 
   get(
@@ -45,7 +45,7 @@ class JCNet {
     );
   }
 
-  post(
+  Future<Response?> post(
     String path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
@@ -53,18 +53,36 @@ class JCNet {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
+    int retries = 3,
+    Duration delay = const Duration(seconds: 1),
   }) async {
-    Response response = await _netDdd.post(
-      path,
-      data: data,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    // ggPrint("response:${response.data}");
-    return response;
+    int currentRetry = 0;
+    while (currentRetry < retries) {
+      try {
+        Response response = await _netDdd.post(
+          path,
+          data: data,
+          queryParameters: queryParameters,
+          options: options,
+          cancelToken: cancelToken,
+          onReceiveProgress: onReceiveProgress,
+        );
+        return response;
+      } on DioException catch (e) {
+        if (currentRetry < retries - 1) {
+          print(
+            'Connection error, retrying in ${delay.inSeconds} seconds... (Attempt ${currentRetry + 1}/${retries})',
+          );
+          print("=post===error:$e");
+          await Future.delayed(delay);
+          currentRetry++;
+          delay = delay * 2; // Exponential backoff
+        } else {
+          break;
+        }
+      }
+    }
+    return null;
   }
 
   static const String packageId = "com.greengains.fun";
@@ -86,27 +104,26 @@ class JCNet {
       var gaid = await FlutterTbaInfo.instance.getGaid();
       // auto patch 160
 
-      // _dio.options.headers['content-type'] = "application/json";
-      // _dio.options.headers['Content-Encoding'] = "gzip";
-
-      Response data = await post(
-        "",
-        data: {
-          "foote": bundle_id,
-          "u": Platform.isIOS ? "goof" : "teddy",
-          "wingspan": app_version,
-          "guide": distinct_id,
-          "pith": client_ts,
-          "ribosome": device_model,
-          "poesy": os_version,
-          "persuade": idfv,
-          "haploidy": gaid,
-          "swede": android_id,
-          "warmup": idfa,
-        },
+      // _netDdd.options.headers['content-type'] = "application/json";
+      // _netDdd.options.headers['Content-Encoding'] = "gzip";
+      var jsonData = {
+        "downpour": bundle_id,
+        "esmark": Platform.isIOS ? "prong" : "yang",
+        "oleander": app_version,
+        "intrude": distinct_id,
+        "eardrum": client_ts,
+        "casanova": device_model,
+        "bogging": os_version,
+        "blouse": idfv,
+        "chile": gaid,
+        "airstrip": android_id,
+        "ariadne": idfa,
+      };
+      Response? data = await post("", data: jsonData);
+      print(
+        "=========:返回结果\n${_netDdd.options.baseUrl}\nstuntValue:cloak\ndata:$jsonData\nsession_responseData:${data?.data}",
       );
-      print("======cloak data:${data.data}");
-      String cl = data.data?.toString() ?? "";
+      String cl = data?.data?.toString() ?? "";
       return cl;
     } catch (e) {
       print("======cloak () error:${e}");
@@ -284,7 +301,7 @@ class JCNet {
     // auto patch 799
     //
     _netDdd.options.headers['gaid'] = gaid;
-    // _dio.options.headers['hair'] = bundle_id;
+    // _netDdd.options.headers['hair'] = bundle_id;
     var data2 = jsonEncode(dataJson);
     jcRizhi("=========installJson:   $data2");
     var response = await _netDdd.postUri(_url, data: dataJson);
@@ -301,12 +318,14 @@ class JCNet {
     sessionJson['jonas'] = "whitman";
     // var distinct_id = await FlutterTbaInfo.instance.getDistinctId();
     // var bundle_id = await FlutterTbaInfo.instance.getBundleId();
-    // _dio.options.headers['nebulae'] = distinct_id;
-    // _dio.options.headers['hair'] = bundle_id;
+    // _netDdd.options.headers['nebulae'] = distinct_id;
+    // _netDdd.options.headers['hair'] = bundle_id;
     // var data2 = jsonEncode(dataJson);
     // swPrint("=========sessionJson:   $data2");
     var response = await post("", data: sessionJson);
-    jcRizhi("=========sessionJson: response  ${response.toString()}");
+    jcRizhi(
+      "=========:返回结果\n${_netDdd.options.baseUrl}\nstuntValue:ad_permission\ndata:$sessionJson\nsession_responseData:${response?.data}",
+    );
   }
 
   // format: reward interstitial
@@ -369,11 +388,11 @@ class JCNet {
     var data = jsonEncode(adJson);
     jcRizhi("=========adJson:   $data");
 
-    Response response =  await post("", data: adJson);
-    var responseData = response.data;
+    Response? response = await post("", data: adJson);
+    var responseData = response?.data;
 
     jcRizhi(
-      "==========adJson: 返回结果 ${responseData}",
+      "=========:返回结果\n${_netDdd.options.baseUrl}\nstuntValue:ad_permission\ndata:$data\nad_pos_id:$ad_pos_id\nadJson_responseData:$responseData",
     );
   }
 
@@ -407,20 +426,17 @@ class JCNet {
 
     // var distinct_id = await FlutterTbaInfo.instance.getDistinctId();
     // var bundle_id = await FlutterTbaInfo.instance.getBundleId();
-    // _dio.options.headers['nebulae'] = distinct_id;
-    // _dio.options.headers['hair'] = bundle_id;
+    // _netDdd.options.headers['nebulae'] = distinct_id;
+    // _netDdd.options.headers['hair'] = bundle_id;
     // auto patch 104
     var data = jsonEncode(dataJson);
     jcRizhi("=========buryPoint:构造数据   $data");
     try {
-      Response response = await post("", data: dataJson);
-      var responseData = response.data;
+      Response? response = await post("", data: dataJson);
+      var responseData = response?.data;
 
       jcRizhi(
-        "=========buryPoint:  stuntValue:$moistValue ${_netDdd.options.baseUrl}",
-      );
-      jcRizhi(
-        "=========buryPoint:返回结果  stuntValue:$moistValue  ${response.statusCode} $responseData",
+        "====url\n${_netDdd.options.baseUrl}\nstuntValue:$moistValue\ndata:$data\nburyPoint_responseData:$responseData",
       );
     } catch (e) {
       jcRizhi("==埋点错误：$e==");

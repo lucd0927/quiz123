@@ -466,19 +466,22 @@ class DtController extends GetxController {
   static const String hkGuideRight8 = "opidlknslkn";
 
   initB() {
-    var tmpNewUser = box.get(hkNewUser);
-    jcRizhi("==tmpNewUser:$tmpNewUser===");
-    if (tmpNewUser == null) {
-      Future.delayed(Duration(milliseconds: 200), () {
-        showNewUserDialog(
-          Get.context!,
-          onBtn: () {
-            jcRizhi("==tmpNewUser:save 1===");
-            box.put(hkNewUser, 1);
-          },
-        );
-      });
+    if(JCABluoji.isPackageB()){
+      var tmpNewUser = box.get(hkNewUser);
+      jcRizhi("==tmpNewUser:$tmpNewUser===");
+      if (tmpNewUser == null) {
+        Future.delayed(Duration(milliseconds: 200), () {
+          showNewUserDialog(
+            Get.context!,
+            onBtn: () {
+              jcRizhi("==tmpNewUser:save 1===");
+              box.put(hkNewUser, 1);
+            },
+          );
+        });
+      }
     }
+
   }
 
   QXuanfu _qXuanfu = QXuanfu();

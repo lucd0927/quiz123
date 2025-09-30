@@ -284,6 +284,25 @@ class _XjDddState extends State<XjDdd> {
       curCount = itemTuple3.item1;
       allCount = itemTuple3.item2;
       texts = itemTuple3.item3;
+
+      String now_task_name = XjDddController.to.curStageTaskName("stage_3");
+      if (now_task_name == "task_1" ||
+          now_task_name == "task_5" ||
+          now_task_name == "task_9") {
+        icon = Assets.bbb.txQqquiz.path;
+      }else if (now_task_name == "task_2" ||
+          now_task_name == "task_6" ) {
+        icon = Assets.bbb.txBbbbox.path;
+      }else if (now_task_name == "task_3" ||
+          now_task_name == "task_7" ) {
+        icon = Assets.bbb.txZzzzp.path;
+      }else if (now_task_name == "task_4" ||
+          now_task_name == "task_8" ) {
+        icon = Assets.bbb.txPppop.path;
+      }
+
+
+
     }
     String des = texts[0];
     String des2 = "$curCount";

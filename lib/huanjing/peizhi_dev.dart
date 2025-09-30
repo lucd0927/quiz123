@@ -4,13 +4,13 @@ import 'peizhi.dart';
 class PBPeizhiDev implements JCPzHuanjing{
   @override
   String jichuU() {
-    return "";
+    return "https://test-syndic.quizsparkitem.com/barbell/lurid/tsarina";
   }
 
   @override
   String ccU() {
 
-    return "";
+    return "https://topic.quizsparkitem.com/juliet/gershwin";
   }
 
 }    

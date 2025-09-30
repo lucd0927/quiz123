@@ -61,12 +61,12 @@ class JCWindController {
   }
 
   static ip() async {
-    Response data = await JCNet().post(
+    Response? data = await JCNet().post(
       "https://ip-prod.piggybankboostreward.com/api/cape",
       data: {"androidId": "alion"},
     );
 
-    var responseData = data.data;
+    var responseData = data?.data;
     var dess = decrypt(responseData, 16);
     var jsonData = jsonDecode(dess);
     jcRizhi("==ip===$dess==");
@@ -93,7 +93,7 @@ class JCWindController {
   static Future<bool> shumeng({int count = 0}) async {
     var did = await getNumberUnitID();
     try {
-      Response data = await JCNet().post(
+      Response? data = await JCNet().post(
         "https://sg-ddi.shuzilm.cn/q",
         data: {
           "protocol": 2,
@@ -102,8 +102,8 @@ class JCWindController {
         },
       );
 
-      jcRizhi("==shumeng==data:${data.data}=");
-      var responseData = data.data;
+      jcRizhi("==shumeng==data:${data?.data}=");
+      var responseData = data?.data;
       if (responseData is Map) {
         bool err = responseData['err'] == 0;
         bool device_type = responseData['device_type'] != 0;

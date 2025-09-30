@@ -211,7 +211,7 @@ class _DtPageState extends State<DtPage> {
         color: Colors.green.withValues(alpha: 0.0),
         child: Column(
           children: [
-            SizedBox(height: 12.h,),
+            SizedBox(height: 12.h),
             Center(
               child: JCTextJianbianBorder(
                 text: DtController.to.curLeixing.value,
@@ -221,7 +221,7 @@ class _DtPageState extends State<DtPage> {
                 showShadow: true,
               ),
             ),
-            SizedBox(height: 5.h,),
+            SizedBox(height: 5.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 28.w),
               child: Row(
@@ -268,7 +268,7 @@ class _DtPageState extends State<DtPage> {
     return Container(
       width: double.infinity,
       height: 66.h,
-      color: Colors.green.withValues(alpha: 0.4),
+      color: Colors.green.withValues(alpha: 0.0),
       child: Center(
         child: JCTextJianbianBorder(
           text: DtController.to.curLeixing.value,

@@ -20,8 +20,13 @@ class JCFbase {
 
   final update = StreamController<bool>.broadcast();
 
-  String by({required String name}) =>
-      FirebaseRemoteConfig.instance.getString(name);
+  String by({required String name}){
+    try{
+      return FirebaseRemoteConfig.instance.getString(name);
+    }catch(e){
+      return "";
+    }
+  }
 
   Future<void> chushi() async {
 

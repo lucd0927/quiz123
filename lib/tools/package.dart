@@ -25,13 +25,13 @@ class JCABluoji {
 
   JCABluoji._();
 
-  static const String cloakBData = "whinny";
-  static const String cloakAData = "moreover";
+  static const String cloakBData = "chromium";
+  static const String cloakAData = "sprung";
   static const String afDataOrganic = "Organic";
 
-  static const String kHivePackage = "dfsdsfkjdsflkjfdslkj";
-  static const String packageA = "AAAAAAA";
-  static const String packageB = "BBBBBBB";
+  static const String kHivePackage = "kjdsdsfjkghj";
+  static const String packageA = "ppppppA";
+  static const String packageB = "ppppppB";
 
   static String get clockData => _cloakData;
 
@@ -52,10 +52,12 @@ class JCABluoji {
     return packageB == name;
   }
 
-  void sendA({required String cloakData, required String afData}) {
-    jcRizhi("ABPackage send: cloakData:$cloakData  ====afData:$afData");
-    if (cloakData == cloakBData &&
-        (afData.isNotEmpty && afData != afDataOrganic)) {
+  void sendAAA({required String cloakData, required String afData}) {
+
+    bool entryBBB = cloakData == cloakBData &&
+        (afData.isNotEmpty && afData != afDataOrganic);
+    jcRizhi("ABPackage send: cloakData:$cloakData  ====afData:$afData entryBBB:$entryBBB");
+    if (entryBBB) {
       _name = packageB;
       var box = JCHive.box;
       box.put(kHivePackage, packageB);
@@ -92,31 +94,30 @@ class JCABluoji {
   // afDevKey : CbBDTSE3epZuMEDXGBeXGX
   // appId: 6745999527
   initAppsFlyer({required String afDevKey, required String appId}) async {
-    jcRizhi("======initAppsFlyer====afDevKey:$afDevKey");
+    jcRizhi("======initAppsFlyer====afDevKey:$afDevKey appId:$appId");
     try {
-      AppsFlyerOptions sdfafd = AppsFlyerOptions(
+      AppsFlyerOptions dfghdfhdfhg = AppsFlyerOptions(
         afDevKey: afDevKey ?? "应用识别码，产品经理提供",
         appId: appId ?? "iOS平台的 app id （10位数字），产品经理提供，Android应用不传",
         showDebug: true,
         manualStart: true,
         timeToWaitForATTUserAuthorization: 10,
       );
-      AppsflyerSdk appsFlyerAdk = AppsflyerSdk(sdfafd);
+      AppsflyerSdk afSdkkkkkk = AppsflyerSdk(dfghdfhdfhg);
       // PBMaiDian.af_req();
-      await appsFlyerAdk.initSdk(
+      await afSdkkkkkk.initSdk(
         registerOnDeepLinkingCallback: true,
         registerOnAppOpenAttributionCallback: true,
         registerConversionDataCallback: true,
       );
       // auto patch 552
       var distinct_id = await FlutterTbaInfo.instance.getDistinctId();
-      String userId = distinct_id;
 
       // 1.AppsFlyer与TBA平台对接
-      appsFlyerAdk.setCustomerUserId(userId);
+      afSdkkkkkk.setCustomerUserId(distinct_id);
       // 2.应用归因监听
 
-      appsFlyerAdk.onInstallConversionData((p) {
+      afSdkkkkkk.onInstallConversionData((p) {
         jcRizhi(
           "==========initAppsFlyer=进入回调===appsFlyerAdk.onInstallConversionData= data$p",
         );
@@ -124,14 +125,14 @@ class JCABluoji {
           return;
         }
 
-        String c117pig_af_on = JCFbase().by(name: "c117pig_af_on");
-        jcRizhi("==pre==c106card_af_on:$c117pig_af_on==");
-        if (c117pig_af_on.isEmpty) {
-          c117pig_af_on = "1";
+        String qs_af_on123 = JCFbase().by(name: "qs_af_on");
+        jcRizhi("==pre==qs_af_on123:$qs_af_on123==");
+        if (qs_af_on123.isEmpty) {
+          qs_af_on123 = "1";
         }
-        jcRizhi("==now==c106card_af_on:$c117pig_af_on==");
+        jcRizhi("==now==qs_af_on123:$qs_af_on123==");
 
-        if (c117pig_af_on == "1" && p is Map) {
+        if (qs_af_on123 == "1" && p is Map) {
           jcRizhi("==now==qm_af_on: 返回1 需要判断af的数据");
           final payload = p["payload"];
           if (payload is Map && payload.containsKey("af_status")) {
@@ -152,27 +153,23 @@ class JCABluoji {
               );
             }
 
-            // Future.delayed(Duration(seconds: 10), () {
-            //   send(cloakData: _cloakData, afData: _appsFlyerData);
-            // });
-
             // todo: 测试代码
-            // _appsFlyerData = "ddd";
-            sendA(cloakData: _cloakData, afData: _appsFlyerData);
+            _appsFlyerData = "ddd";
+            sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
           } else {
             // todo: 测试代码
             // _appsFlyerData = "ddd";
             jcRizhi("==now==qm_af_on: 返回1 但是结构不含有af_status字段");
-            sendA(cloakData: _cloakData, afData: _appsFlyerData);
+            sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
           }
-        } else if (c117pig_af_on == "0") {
+        } else if (qs_af_on123 == "0") {
           jcRizhi("==now==qm_af_on: 返回0 不需要判断af的数据");
-          _appsFlyerData = "c106card_af_on";
-          sendA(cloakData: _cloakData, afData: _appsFlyerData);
+          _appsFlyerData = "qs_af_on123";
+          sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
         }
       });
 
-      appsFlyerAdk.startSDK(
+      afSdkkkkkk.startSDK(
         onSuccess: () {
           jcRizhi("=initAppsFlyer=appsFlyerAdk:onSuccess==初始化成功");
           // PBMaiDian.af_suc();
@@ -183,7 +180,7 @@ class JCABluoji {
           );
         },
       );
-      _appsFlyerAdk = appsFlyerAdk;
+      _appsFlyerAdk = afSdkkkkkk;
       jcRizhi(
         "======initAppsFlyer===appsFlyerAdk.onInstallConversion==_appsFlyerAdk:$_appsFlyerAdk",
       );
@@ -195,15 +192,12 @@ class JCABluoji {
   static AppsflyerSdk? _appsFlyerAdk;
 
   static AppsflyerSdk? appsflyerSdk() => _appsFlyerAdk;
-
-  cloak({int count = 0}) async {
+  // 仅针对A包
+  cloakAAAA({int count = 0}) async {
     var data = await JCNet().cloak();
-    // auto patch 693
-    jcRizhi("package cloak data:$data");
+    jcRizhi("package cloak data:$data count:$count");
 
-    if (count == 10) {
-      data = cloakAData;
-    }
+
 
     _cloakData = data;
 
@@ -225,23 +219,25 @@ class JCABluoji {
     }
     // 其他数据则再次请求
     else {
+      if (count == 10) {
+        return cloakAData;
+      }
+
       await Future.delayed(Duration(milliseconds: 1000), () {});
       var nextCount = count + 1;
-      await cloak(count: nextCount);
+      return await cloakAAAA(count: nextCount);
     }
   }
 
   Future _initA() async {
-    // await TBDeviceManager.isLimitAdTrackingEnabled();
     // 广告初始化
     jcRizhi("===_initA==:GGCommonAds().init();==");
 
-
     jcRizhi("===_initA==:cloak();==");
-    var cloakData = await cloak();
+    var cloakData = await cloakAAAA();
     jcRizhi("===_initA=_initAppsFlyer=cloakData:$cloakData==");
+    await _chushiAF();
 
-    await _initAppsFlyer();
   }
 
   Future _initB() async {
@@ -255,7 +251,7 @@ class JCABluoji {
     var box = JCHive.box;
     box.put(kHivePackage, packageB);
     jcRizhi("==_initB===_initAppsFlyer() start==");
-    await _initAppsFlyer();
+    await _chushiAF();
     int time3 = DateTime.now().millisecondsSinceEpoch;
     jcRizhi("==_initB===_initAppsFlyer() end===耗时:${time3 - time2}");
     if(Platform.isAndroid){
@@ -283,11 +279,11 @@ class JCABluoji {
 
     // 初始化firebase
     await JCFbase().chushi();
-
+    await JCAdsTools().init();
     var box = JCHive.box;
 
     var packageName = box.get(kHivePackage) ?? packageA;
-    packageName = packageB;
+    // packageName = packageB;
 
     _name = packageName;
     jcRizhi("package==init:$packageName==");
@@ -300,17 +296,17 @@ class JCABluoji {
     return await initCompleter.future;
   }
 
-  bool isInitAppsFlyer = false;
+  bool sfChushiAF = false;
 
-  _initAppsFlyer() async {
-    if (!isInitAppsFlyer) {
-      isInitAppsFlyer = true;
-      String afKey ="XM9ua37BHJWBKq8jTYg74a";
-      if (afKey.isEmpty) {
+  _chushiAF() async {
+    if (!sfChushiAF) {
+      sfChushiAF = true;
+      String asdkasfdhka ="XM9ua37BHJWBKq8jTYg74a";
+      if (asdkasfdhka.isEmpty) {
         return;
       }
 
-      await initAppsFlyer(afDevKey: afKey, appId: "id6752763599");
+      await initAppsFlyer(afDevKey: asdkasfdhka, appId: "6752763599");
     }
   }
 }
