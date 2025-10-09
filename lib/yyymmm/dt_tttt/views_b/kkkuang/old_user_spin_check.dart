@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
@@ -22,22 +23,31 @@ showOldUserSpinAndCheckDialog(
   return jcKuang(
     context: context,
     child: OldUserSpinAndCheck(
-      onDouble: (dddmoney) {
+      onDouble: (dddmoney) async{
         jcRizhi("=OldUserSpinAndCheck=dddmoney:$dddmoney===");
-        MoneyDdd().show(
-          context: context,
-          onClose: (data) {
-            jcRizhi("==data:$data===");
-            DtController.to.addDatiCoin(dddmoney);
-          },
-          money: dddmoney,
-        );
+        bool result = await JCAdsTools().showRewardAd(adPosId: JCAdsPosId.kwsbc_olduser_wheel_rv);
+        if(result){
+          MoneyDdd().show(
+            context: context,
+            onClose: (data) {
+              jcRizhi("==data:$data===");
+              DtController.to.addDatiCoin(dddmoney);
+            },
+            money: dddmoney,
+          );
+        }
+
       },
       onClose: () {},
       spinMoney: spinMoney,
       checkMoney: money,
-      onClaim: (data) {
-        jcRizhi("=OldUserSpinAndCheck=onClaim:$data===");
+      onClaim: (data) async{
+
+        bool showI = ShuzhiShuju.intad_point();
+        if(showI){
+          await JCAdsTools().showInterstitialAd(adPosId: JCAdsPosId.kwsbc_wheel_int);
+        }
+        jcRizhi("=OldUserSpinAndCheck=onClaim:$data=showI:$showI==");
         MoneyDdd().show(
           context: context,
           onClose: (data) {

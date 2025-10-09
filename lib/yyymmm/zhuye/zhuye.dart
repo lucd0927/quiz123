@@ -40,6 +40,7 @@ class _ZhuyeState extends State<Zhuye> {
       jcRizhi("===JCABluoji().listen==packName:$packName");
       if(packName == JCABluoji.packageB){
         ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
+        DtController.to.resetAllDataB();
         // setState(() {
         //
         // });

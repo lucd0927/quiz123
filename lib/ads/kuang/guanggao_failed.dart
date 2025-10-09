@@ -73,8 +73,8 @@ class _GuangGaoFailViewState extends State<GuangGaoFailView> {
 
   content() {
     return Container(
-      width: 678.w,
-      height: 771.h,
+      width: 340.w,
+      height: 375.h,
       decoration: BoxDecoration(
         color: Color(0xff992D2E),
         borderRadius: BorderRadius.circular(16.w),
@@ -87,7 +87,7 @@ class _GuangGaoFailViewState extends State<GuangGaoFailView> {
               Container(
                 width: double.infinity,
                 // color: Colors.amber,
-                height: 60.h,
+                height: 30.h,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -96,7 +96,7 @@ class _GuangGaoFailViewState extends State<GuangGaoFailView> {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color(0xffffffff),
-                        fontSize: 42.sp,
+                        fontSize: 16.sp,
                       ),
                     ),
                   ],
@@ -104,14 +104,14 @@ class _GuangGaoFailViewState extends State<GuangGaoFailView> {
               ),
               Positioned(
                 top: 0,
-                right: 40.w,
+                right: 10.w,
                 bottom: 0,
                 child: GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
                     widget.onClose();
                   },
-                  child: Icon(Icons.close, size: 40.h, color: Colors.white),
+                  child: Icon(Icons.close, size: 20.h, color: Colors.white),
                 ),
               ),
             ],
@@ -119,8 +119,8 @@ class _GuangGaoFailViewState extends State<GuangGaoFailView> {
           Expanded(
             child: Center(
               child: Container(
-                width: 640.w,
-                height: 660.h,
+                width: 320.w,
+                height: 310.h,
                 decoration: BoxDecoration(
                   color: Color(0xffFBFBFF),
                   borderRadius: BorderRadius.circular(16.w),
@@ -128,10 +128,10 @@ class _GuangGaoFailViewState extends State<GuangGaoFailView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 150.h),
+                    SizedBox(height: 50.h),
                     Stack(
                       children: [
-                        Icon(Icons.add_chart_outlined,size: 288.h,),
+                        Icon(Icons.add_chart_outlined,size: 122.h,),
                       ],
                     ),
 
@@ -143,8 +143,8 @@ class _GuangGaoFailViewState extends State<GuangGaoFailView> {
                             widget.onBtn();
                           },
                           child: Container(
-                            width: 353.w,
-                            height: 80.h,
+                            width: 250.w,
+                            height: 40.h,
                             decoration: BoxDecoration(
                               color: Color(0xffF85823),
                               borderRadius: BorderRadius.circular(16.w),
@@ -160,7 +160,7 @@ class _GuangGaoFailViewState extends State<GuangGaoFailView> {
                                     "Try Again",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 42.sp,
+                                      fontSize: 22.sp,
                                       // foreground: Color(0xffD0871E),
                                       color: Color(0xffffffff),
                                     ),

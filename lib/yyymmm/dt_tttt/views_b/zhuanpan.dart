@@ -22,6 +22,7 @@ class ZhuanpanOverlay {
   void show({
     required BuildContext context,
     required DynamicCallback onSpin,
+    required EnumZhuanpanTTTT zpTTT,
     VoidCallback? onClose,
   }) {
     _xuanfu = null;
@@ -39,6 +40,7 @@ class ZhuanpanOverlay {
               onSpin(money);
               XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.zppppWheeeel);
             },
+            zpTTT: zpTTT,
           ),
         );
       },
@@ -53,11 +55,11 @@ class ZhuanpanOverlay {
 }
 
 class Zhuanpan extends StatefulWidget {
-  const Zhuanpan({super.key, required this.onClose, required this.onSpin});
+  const Zhuanpan({super.key, required this.onClose, required this.onSpin, required this.zpTTT});
 
   final VoidCallback onClose;
   final DynamicCallback onSpin;
-
+  final EnumZhuanpanTTTT zpTTT;
   @override
   State<Zhuanpan> createState() => _ZhuanpanState();
 }
@@ -70,6 +72,21 @@ class _ZhuanpanState extends State<Zhuanpan> {
   int milliseconds = 3000;
   bool sfDianji = true;
   ValueKey _zpVK = ValueKey("_ZhuanpanState");
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      if(widget.zpTTT == EnumZhuanpanTTTT.old){
+        _onSpin();
+      }
+    });
+
+
+  }
 
   @override
   Widget build(BuildContext context) {

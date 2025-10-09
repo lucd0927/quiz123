@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiz123/ads/adsid.dart';
+import 'package:quiz123/ads/jc_ads_tools.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
@@ -13,18 +15,25 @@ import '../../../../yy_gj/bbbb/vvvv/rotate.dart';
 
 showNewUserClaimDialog(
   BuildContext context, {
-  required VoidCallback onBtn,
+  required DynamicCallback onBtn,
+  required DynamicCallback onBtn2,
   required double money,
 }) {
   return jcKuang(
     context: context,
     child: NewUserClaim(
-      onBtn: (prize) {
+      onBtn: (prize) async {
+        bool result = await JCAdsTools().showRewardAd(
+          adPosId: JCAdsPosId.kwsbc_olduser_signin_rv,
+        );
+        if (!result) {
+          prize = money;
+        }
         MoneyDdd().show(
           context: context,
           onClose: (data) {
             DtController.to.addDatiCoin(prize);
-            onBtn();
+            onBtn(data);
           },
           money: prize * 1.0,
         );
@@ -34,7 +43,7 @@ showNewUserClaimDialog(
           context: context,
           onClose: (data) {
             DtController.to.addDatiCoin(prize);
-            onBtn();
+            onBtn2(data);
           },
           money: prize * 1.0,
         );

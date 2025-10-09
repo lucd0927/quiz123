@@ -131,7 +131,7 @@ class JCNet {
     }
   }
 
-  dynamic baseData() async {
+  Future<Map<String, Object>> baseData() async {
     DateTime dateTime = DateTime.now();
     int mill = dateTime.millisecondsSinceEpoch;
     var app_version = await FlutterTbaInfo.instance.getAppVersion();
@@ -167,51 +167,53 @@ class JCNet {
     // var channel = await FlutterTbaInfo.instance.getc();
     var client_ts = mill;
 
-    Map<String, Object> drainage = {
-      "guide": distinct_id,
-      // "reave": "",
-      // "zambia": "",
+    Map<String, Object> naughty = {
+      "teasel": operator,
+      "adoptive": brand,
+      "blouse": idfv,
+      "provoke": os_country,
+      "intrude": distinct_id,
+      // "blouse": idfv,
     };
 
-    Map<String, Object> delphine = {
-      "wingspan": app_version,
-      "swede": android_id,
-      // "conley":battery_left,
-      // "grandma": uid,
-      "warmup": idfa,
-      "poesy": os_version,
-      "stitch": network_type,
-      // "pat": zone_offset,
-      // "flathead": zone_offset,
+    Map<String, Object> bodleian = {
+      "downpour": bundle_id,
+      "casanova": device_model,
+      // "adlerian": type,
+      // "venom": channel,
+      "recusant": "",
+      "oleander": app_version,
+      "honeydew": "",
+      // "willis": sdk_ver,
+      "calico": "myroom",
+      // "target": zone_offset
     };
 
-    Map<String, Object> sundown = {
-      // "thickish": null,
-      "silk": brand,
-      "tenney": manufacturer,
-      "pith": client_ts,
-      "cyanide": operator,
-      "bound": log_id,
-      // "gold":channel,
-      // "testes": type,
-      // "holstein": device_model,
-      "ribosome": device_model,
-      "dungeon": os_country,
+    Map<String, Object> ackerman = {
+      // "heavy": ip,
+      // "codomain": "1.2.4",
+      "bile": manufacturer,
+      // "bestowal": ab_test,
+      "ariadne": idfa,
+      "esmark": Platform.isAndroid ? "yang" : "prong",
+      "microbe": "",
+      // "deafen": uid,
+      "bogging": os_version,
     };
-    Map<String, Object> jill = {
-      "recital": system_language,
-      "haploidy": gaid,
-      "foote": bundle_id,
-      "prowess": idfv,
-      // "persuade": "",
-      // "bock": "",
-      "u": Platform.isAndroid ? "teddy" : "goof",
+    Map<String, Object> pound = {
+      "deputy": network_type,
+      "airstrip": android_id,
+      // "dryad": battery_left,
+      "advance": log_id,
+      "humble": system_language,
+      "eardrum": client_ts,
+      "chile": "",
     };
     Map<String, Object> dataJson = {
-      "drainage": drainage,
-      "delphine": delphine,
-      "sundown": sundown,
-      "jill": jill,
+      "naughty": naughty,
+      "bodleian": bodleian,
+      "ackerman": ackerman,
+      "pound": pound,
     };
     return dataJson;
   }
@@ -276,31 +278,29 @@ class JCNet {
     var google_play_instant = tbaMap['google_play_instant'];
     var referrer_url = tbaMap['referrer_url'];
 
-    Map<String, Object> bismuth = {
-      "ares": build,
-      "nj": referrer_url,
-      "husky": install_version,
-      "testicle": user_agent,
-      "babcock": lat,
-      "gus": referrer_click_timestamp_seconds,
-      "plant": install_begin_timestamp_seconds,
-      "pelt": referrer_click_timestamp_server_seconds,
-      "progeny": install_begin_timestamp_server_seconds,
-      "augusta": install_first_seconds,
-      "hasty": last_update_seconds,
-      "egress": google_play_instant,
+    Map<String, Object> tmppppp = {
+      "whelk": build,
+      "estate": referrer_url,
+      "glycogen": install_version,
+      "syndrome": user_agent,
+      "meager": lat,
+      "cleft": referrer_click_timestamp_seconds,
+      "fend": install_begin_timestamp_seconds,
+      "acorn": referrer_click_timestamp_server_seconds,
+      "rosa": install_begin_timestamp_server_seconds,
+      "thomas": install_first_seconds,
+      "carrara": last_update_seconds,
+      // "egress": google_play_instant,
     };
 
-    dataJson['kudo'] = bismuth;
-    // dataJson.addAll(bismuth);
+    dataJson['variant'] = "butane";
+    dataJson.addAll(tmppppp);
     final Uri _url = Uri.parse(JCPzHuanjing.instance.jichuU());
 
     // Dio dio = Dio(
     //   BaseOptions(headers: {'nebulae': distinct_id, 'hair': bundle_id}),
     // );
-    // auto patch 799
-    //
-    _netDdd.options.headers['gaid'] = gaid;
+    // _netDdd.options.headers['gaid'] = gaid;
     // _netDdd.options.headers['hair'] = bundle_id;
     var data2 = jsonEncode(dataJson);
     jcRizhi("=========installJson:   $data2");
@@ -315,7 +315,7 @@ class JCNet {
   session() async {
     var dataJson = await baseData();
     var sessionJson = dataJson;
-    sessionJson['jonas'] = "whitman";
+    sessionJson['variant'] = "cryptic";
     // var distinct_id = await FlutterTbaInfo.instance.getDistinctId();
     // var bundle_id = await FlutterTbaInfo.instance.getBundleId();
     // _netDdd.options.headers['nebulae'] = distinct_id;
@@ -353,38 +353,21 @@ class JCNet {
     String ad_rit_id = "";
     String ad_format = format;
     Map<String, Object> stuntJson = {
-      "mosaic": ad_pre_ecpm,
-      "clear": currency,
-      "bromley": ad_network,
-      "nbc": ad_source_client,
-      "free": ad_code_id,
-      "hotelman": ad_pos_id,
-      "pedagogy": ad_rit_id,
-      "fool": "",
-      "slate": ad_format,
-      "acetone": "",
-
-      "margery": "",
-      "cheek": "",
+      "bannock": ad_pre_ecpm,
+      "emaciate": currency,
+      "lifespan": ad_network,
+      "stash": ad_source_client,
+      "topaz": ad_code_id,
+      "cahoot": ad_pos_id,
+      "wicket": ad_rit_id,
+      // "fool": "",
+      "sat": ad_format,
+      // "acetone": "",
+      //
+      // "margery": "",
+      // "cheek": "",
     };
-
-    adJson['brian'] = ad_pre_ecpm;
-    adJson['fruehauf'] = currency;
-    adJson['aurora'] = ad_network;
-    adJson['abbot'] = ad_source_client;
-    adJson['marco'] = ad_code_id;
-    adJson['hanukkah'] = ad_pos_id;
-    adJson['grayson'] = ad_rit_id;
-    // adJson['genera'] = "";
-    adJson['mandrake'] = ad_format;
-    adJson['lineage'] = precision_type;
-    adJson['tropic'] = "";
-    adJson['tadpole'] = "";
-    adJson['jonas'] = "occident";
-    // adJson[''] = ;
-
-    // adJson.addAll(stuntJson);
-    // adJson['scrawny'] = stuntJson;
+    adJson.addAll(stuntJson);
     var data = jsonEncode(adJson);
     jcRizhi("=========adJson:   $data");
 
@@ -396,39 +379,33 @@ class JCNet {
     );
   }
 
-  buryPoint({
-    required String moistValue,
-    String? veinKey,
-    dynamic veinKeyValue,
-    String? veinKey2,
-    dynamic veinKeyValue2,
-    String? veinKey3,
-    dynamic veinKeyValue3,
+  maidian({
+    required String eventName,
+    String? kkkkkey,
+    dynamic kkkkkeyVaaaaaa,
+    String? kkkkkey2,
+    dynamic kkkkkeyVaaaaaa2,
+    String? kkkkkey3,
+    dynamic kkkkkeyVaaaaaa3,
+
   }) async {
     // return;
     var dataJson = await baseData();
     // ggPrint("dataJaon:${dataJson is Map}");
-    dataJson["jonas"] = moistValue;
+    dataJson["variant"] = eventName;
     var json = {};
-    if (veinKey?.isNotEmpty ?? false) {
-      // auto patch 864
-      json['$veinKey'] = veinKeyValue;
+    if (kkkkkey?.isNotEmpty ?? false) {
+      dataJson['utter<$kkkkkey'] = kkkkkeyVaaaaaa;
     }
-    if (veinKey2?.isNotEmpty ?? false) {
-      // auto patch 864
-      json['$veinKey2'] = veinKeyValue2;
+    if (kkkkkey2?.isNotEmpty ?? false) {
+      dataJson['utter<$kkkkkey2'] = kkkkkeyVaaaaaa2;
     }
-    if (veinKey3?.isNotEmpty ?? false) {
-      // auto patch 864
-      json['$veinKey3'] = veinKeyValue3;
+    if (kkkkkey3?.isNotEmpty ?? false) {
+      dataJson['utter<$kkkkkey3'] = kkkkkeyVaaaaaa3;
     }
-    dataJson['$moistValue'] = json;
 
-    // var distinct_id = await FlutterTbaInfo.instance.getDistinctId();
-    // var bundle_id = await FlutterTbaInfo.instance.getBundleId();
-    // _netDdd.options.headers['nebulae'] = distinct_id;
-    // _netDdd.options.headers['hair'] = bundle_id;
-    // auto patch 104
+    // dataJson.addAll(dataJson);
+
     var data = jsonEncode(dataJson);
     jcRizhi("=========buryPoint:构造数据   $data");
     try {
@@ -436,7 +413,7 @@ class JCNet {
       var responseData = response?.data;
 
       jcRizhi(
-        "====url\n${_netDdd.options.baseUrl}\nstuntValue:$moistValue\ndata:$data\nburyPoint_responseData:$responseData",
+        "====url\n${_netDdd.options.baseUrl}\nstuntValue:$eventName\ndata:$data\nburyPoint_responseData:$responseData",
       );
     } catch (e) {
       jcRizhi("==埋点错误：$e==");

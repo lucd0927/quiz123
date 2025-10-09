@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/view/animated_scale.dart';
+import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 
 import '../../../../gen/assets.gen.dart';
@@ -8,7 +10,7 @@ import '../../../../jichu_kuang/jichu_kuang.dart';
 import '../../../../yy_gj/bbbb/vvvv/rotate.dart';
 import 'new_user_claim.dart';
 
-showNewUserDialog(BuildContext context, {required VoidCallback onBtn}) {
+showNewUserDialog(BuildContext context, {required DynamicCallback onBtn}) {
   return jcKuang(
     context: context,
     child: NewUser(
@@ -16,8 +18,12 @@ showNewUserDialog(BuildContext context, {required VoidCallback onBtn}) {
         double money = ShuzhiShuju.new_prize();
         showNewUserClaimDialog(
           context,
-          onBtn: () {
-            onBtn();
+          onBtn: (value) async{
+            onBtn(value);
+
+          },
+          onBtn2: (value) {
+            onBtn(value);
           },
           money: money,
         );

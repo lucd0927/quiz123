@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/tools/app_track_status.dart';
 import 'package:quiz123/tools/package.dart';
@@ -20,9 +21,8 @@ import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_star_zero.dart';
 import 'package:quiz123/yyymmm/dt_tttt/kkkk/dati_right.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/animated_float.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/guide_right2.dart';
+import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/old_user.dart';
 import 'package:quiz123/yyymmm/xxjj/xj_ddd_controller.dart';
-import 'package:spine_flutter/spine_flutter_bindings_generated.dart';
-import 'package:tuple/tuple.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../tools/event_bus.dart';
@@ -55,9 +55,16 @@ class DtController extends GetxController {
   static const String hCurDengji = "ekrhtkjasnkj";
   static const String hCurAllTime = "ksjtkhgkidskgn";
   static const String hCurStar = "iosdlksdfjgkldsj";
-  static const String hCurMoney = "lzjxcvoijsiovj";
-  static const String hCurRightNum = "lierilnmndfam";
-  static const String hCurAllNum = "lewrhtifdknmnfa";
+
+  static String get hCurMoney =>
+      JCABluoji.isPackageB() ? "ahsdfkjhaksjfdhkashkfhjadsf" : "lzjxcvoijsiovj";
+
+  static String get hCurRightNum =>
+      JCABluoji.isPackageB() ? "kjeirtihigkjdsh" : "lierilnmndfam";
+
+  static String get hCurAllNum => JCABluoji.isPackageB()
+      ? "kjshdfgiojewoirjtkljsadflkaf"
+      : "lewrhtifdknmnfa";
 
   static const int upgradeNum = 10;
   static const int initStarNum = 5;
@@ -146,6 +153,12 @@ class DtController extends GetxController {
     _hasLoadInit = true;
   }
 
+  resetAllDataB() {
+    resetAllDataA();
+    initB();
+    _hasLoadInit = true;
+  }
+
   changeLeixing(EnumLeixinType leixingType) {
     String leixing = leixingType.name;
     _changeLeixing(leixing);
@@ -174,6 +187,7 @@ class DtController extends GetxController {
     curAllDatiTime = tmpDatiTime.obs;
 
     double tmpMoney = box.get(hCurMoney) ?? 0.0;
+    jcRizhi("==curMoney==tmpMoney:$tmpMoney=hCurMoney:$hCurMoney");
     curMoney = tmpMoney.obs;
 
     int tmpStar = box.get(hCurStar) ?? initStarNum;
@@ -318,9 +332,7 @@ class DtController extends GetxController {
       if (JCABluoji.isPackageB()) {
         addDatiRightNum();
         XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.dtQuizzzz);
-        JCEventBus.fire(
-          LiwuEvent(type: EnumLiwuEvent.scroll),
-        );
+        JCEventBus.fire(LiwuEvent(type: EnumLiwuEvent.scroll));
         __onNext(showTryAgain: showTryAgain);
       } else {
         _onShowUpgrade(
@@ -466,23 +478,39 @@ class DtController extends GetxController {
   static const String hkGuideRight8 = "opidlknslkn";
 
   initB() {
-    if(JCABluoji.isPackageB()){
-      var tmpNewUser = box.get(hkNewUser);
-      jcRizhi("==tmpNewUser:$tmpNewUser===");
-      if (tmpNewUser == null) {
-        Future.delayed(Duration(milliseconds: 200), () {
-          showNewUserDialog(
-            Get.context!,
-            onBtn: () {
-              jcRizhi("==tmpNewUser:save 1===");
-              box.put(hkNewUser, 1);
-            },
-          );
-        });
-      }
+    if (JCABluoji.isPackageB()) {
+      WidgetsBinding.instance.addPostFrameCallback((_){
+        var tmpNewUser = box.get(hkNewUser);
+        jcRizhi("==tmpNewUser:$tmpNewUser===");
+        if (tmpNewUser == null) {
+          Future.delayed(Duration(milliseconds: 200), () {
+            showNewUserDialog(
+              Get.context!,
+              onBtn: (v) {
+                jcRizhi("==tmpNewUser:save 1===");
+                box.put(hkNewUser, 1);
+              },
+            );
+          });
+        }else{
+
+          if(JCAppTrackStatus.isFirstLoginToday){
+            showOldUserDialog( Get.context!,onBtn: (){});
+          }
+
+
+        }
+      });
+
+
     }
+  }
+
+  @override
+  onReady(){
 
   }
+
 
   QXuanfu _qXuanfu = QXuanfu();
 
@@ -496,20 +524,29 @@ class DtController extends GetxController {
       child: DatiFloating(
         onMoney: (data) async {
           _qXuanfu.close();
-          XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.qipaoo);
-
-          MoneyCcc().show(
-            context: Get.context!,
-            money: tmpXuanfu,
-            onClaimDouble:(dd) async {
-              await Future.delayed(Duration(milliseconds: 2000));
-              showXaunfu();
-            },
-            onClaim: (data)  async {
-              await Future.delayed(Duration(milliseconds: 2000));
-              showXaunfu();
-            },
+          bool result = await JCAdsTools().showRewardAd(
+            adPosId: JCAdsPosId.kwsbc_bubble_rv,
           );
+          jcRizhi("=showXaunfu===result:$result=");
+          if (result) {
+            XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.qipaoo);
+            MoneyCcc().show(
+              context: Get.context!,
+              money: tmpXuanfu,
+              onClaimDouble: (dd) async {
+                await Future.delayed(Duration(milliseconds: 2000));
+                showXaunfu();
+              },
+              onClaim: (data) async {
+                await Future.delayed(Duration(milliseconds: 2000));
+                showXaunfu();
+              },
+            );
+          }else{
+            showXaunfu();
+          }
+
+
 
           // onShowMoneyCcc(
           //   money: tmpXuanfu,

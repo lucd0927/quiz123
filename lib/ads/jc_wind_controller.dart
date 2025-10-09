@@ -303,24 +303,24 @@ class JCWindController {
   }
 
   static void session_custom({required String name, required String value}) {
-    JCNet().buryPoint(
-      moistValue: "session_custom",
-      veinKey: name,
-      veinKeyValue: value,
+    JCNet().maidian(
+      eventName: "session_custom",
+      kkkkkey: name,
+      kkkkkeyVaaaaaa: value,
     );
   }
 
   static void risk_chance({required String value}) {
     jcRizhi("===触发风控==$value==");
-    JCNet().buryPoint(
-      moistValue: "risk_chance",
-      veinKey: "risk_from",
-      veinKeyValue: value,
+    JCNet().maidian(
+      eventName: "risk_chance",
+      kkkkkey: "risk_from",
+      kkkkkeyVaaaaaa: value,
     );
   }
 
   static void see_you_tomorrow() {
-    JCNet().buryPoint(moistValue: "see_you_tommorow");
+    JCNet().maidian(eventName: "see_you_tommorow");
   }
 
   static Map<String, dynamic> __onlineJson() {

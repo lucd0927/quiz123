@@ -5,10 +5,10 @@ import 'dart:io';
 import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 
 import 'package:flutter_tba_info/flutter_tba_info.dart';
+import 'package:quiz123/ads/jc_ads_tools.dart';
 
 import 'package:rxdart/rxdart.dart';
 
-import '../ads//jc_ads_tools.dart';
 import '../ads/jc_wind_controller.dart';
 import '../hive/jc_hive.dart';
 import '../wangluo/wangluo.dart';
@@ -60,19 +60,26 @@ class JCABluoji {
       "ABPackage send: cloakData:$cloakData  ====afData:$afData entryBBB:$entryBBB",
     );
     if (entryBBB) {
-      _name = packageB;
       var box = JCHive.box;
+      var data = box.get(kHivePackage);
+      if(data == packageB){
+        return;
+      }
+      _name = packageB;
+
       box.put(kHivePackage, packageB);
       JCWindController.initNumberUnit();
 
-      initCompleter.complete(true);
+      initCompleter?.complete(true);
+      initCompleter = null;
+      subject.add(_name);
     } else {
       _name = packageA;
 
-      initCompleter.complete(false);
+      initCompleter?.complete(false);
     }
 
-    subject.add(_name);
+
   }
 
   void dispose() {
@@ -235,8 +242,6 @@ class JCABluoji {
 
   Future _initA() async {
     // 广告初始化
-    jcRizhi("===_initA==:GGCommonAds().init();==");
-
     jcRizhi("===_initA==:cloak();==");
     var cloakData = await cloakAAAA();
     jcRizhi("===_initA=_initAppsFlyer=cloakData:$cloakData==");
@@ -270,12 +275,12 @@ class JCABluoji {
       jcRizhi("==_initB===_cloakData():$_cloakData==");
     });
 
-    initCompleter.complete(true);
+    initCompleter?.complete(true);
   }
 
   // auto patch 285
 
-  late Completer<bool> initCompleter;
+  Completer<bool>? initCompleter;
 
   Future<bool> init() async {
     initCompleter = Completer<bool>();
@@ -286,7 +291,7 @@ class JCABluoji {
     var box = JCHive.box;
 
     var packageName = box.get(kHivePackage) ?? packageA;
-    // packageName = packageB;
+    packageName = packageB;
 
     _name = packageName;
     jcRizhi("package==init:$packageName==");
@@ -296,7 +301,7 @@ class JCABluoji {
       await _initA();
     }
 
-    return await initCompleter.future;
+    return (await initCompleter?.future)??false;
   }
 
   bool sfChushiAF = false;

@@ -665,6 +665,7 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
               },
             );
           },
+          zpTTT: EnumZhuanpanTTTT.gift_zp,
         );
       } else {
         double money = ShuzhiShuju.box_prize();

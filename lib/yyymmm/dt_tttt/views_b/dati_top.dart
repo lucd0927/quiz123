@@ -225,6 +225,14 @@ class _DatiTopState extends State<DatiTop> {
     // GuideRight2().show();
     // ZhuanpanOverlay().show(context: context);
     // showOldUserDialog(context,onBtn: (){});
-    showTxTaskkkkWanchengDialog(context,onBtn: (){});
+    // showTxTaskkkkWanchengDialog(context,onBtn: (){});
+
+    showNewUserDialog(
+      Get.context!,
+      onBtn: (v) {
+        jcRizhi("==tmpNewUser:save 1===");
+
+      },
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
@@ -18,8 +19,13 @@ showOldUserDialog(BuildContext context, {required VoidCallback onBtn}) {
       onOpen: () {
         ZhuanpanOverlay().show(
           context: Get.context!,
-          onSpin: (money) {
+          onSpin: (money) async{
             jcRizhi("==showOldUserSpinAndCheckDialog=money:$money===");
+            bool showI = ShuzhiShuju.intad_point();
+            if(showI){
+              await JCAdsTools().showInterstitialAd(adPosId: JCAdsPosId.kwsbc_olduser_wheelspin_int);
+            }
+            await Future.delayed(Duration(milliseconds: 300),);
             showOldUserSpinAndCheckDialog(
               context,
               onBtn: () {},
@@ -29,9 +35,11 @@ showOldUserDialog(BuildContext context, {required VoidCallback onBtn}) {
           onClose: () {
             showOldUserCheckDialog(context, onBtn: () {});
           },
+          zpTTT: EnumZhuanpanTTTT.old,
         );
       },
-      onClose: () {
+      onClose: () async{
+        await Future.delayed(Duration(milliseconds: 300),);
         showOldUserCheckDialog(context, onBtn: () {});
       },
     ),

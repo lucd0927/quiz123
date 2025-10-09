@@ -2,6 +2,8 @@ import 'package:auto_size_text_plus/auto_size_text_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/ads/adsid.dart';
+import 'package:quiz123/ads/jc_ads_tools.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
@@ -17,18 +19,27 @@ showOldUserCheckDialog(BuildContext context, {required VoidCallback onBtn}) {
   return jcKuang(
     context: context,
     child: OldUserCheck(
-      onDouble: (money) {
-        MoneyDdd().show(
-          context: context,
-          onClose: (data) {
-            DtController.to.addDatiCoin(data);
-          },
-          money: money,
-        );
+      onDouble: (money) async{
+        bool result = await JCAdsTools().showRewardAd(adPosId: JCAdsPosId.kwsbc_olduser_signin_rv);
+        if(result){
+          MoneyDdd().show(
+            context: context,
+            onClose: (data) {
+              DtController.to.addDatiCoin(data);
+            },
+            money: money,
+          );
+        }
+
       },
       onClose: () {},
       money: money,
-      onClaim: (data) {
+      onClaim: (data) async{
+        bool showI = ShuzhiShuju.intad_point();
+        if(showI){
+          bool result = await JCAdsTools().showRewardAd(adPosId: JCAdsPosId.kwsbc_olduser_signin_int);
+        }
+
         MoneyDdd().show(
           context: context,
           onClose: (data) {
