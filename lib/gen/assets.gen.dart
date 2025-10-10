@@ -458,6 +458,9 @@ class $AssetsSssGen {
 
   /// Directory path: assets/sss/lihua
   $AssetsSssLihuaGen get lihua => const $AssetsSssLihuaGen();
+
+  /// Directory path: assets/sss/newuser
+  $AssetsSssNewuserGen get newuser => const $AssetsSssNewuserGen();
 }
 
 class $AssetsTttGen {
@@ -819,6 +822,23 @@ class $AssetsSssLihuaGen {
 
   /// List of all assets
   List<dynamic> get values => [flyPokerAtlas, flyPokerJson, flyPokerPng];
+}
+
+class $AssetsSssNewuserGen {
+  const $AssetsSssNewuserGen();
+
+  /// File path: assets/sss/newuser/skeleton.json
+  String get skeleton => 'assets/sss/newuser/skeleton.json';
+
+  /// File path: assets/sss/newuser/skeletons.atlas
+  String get skeletonsAtlas => 'assets/sss/newuser/skeletons.atlas';
+
+  /// File path: assets/sss/newuser/skeletons.png
+  AssetGenImage get skeletonsPng =>
+      const AssetGenImage('assets/sss/newuser/skeletons.png');
+
+  /// List of all assets
+  List<dynamic> get values => [skeleton, skeletonsAtlas, skeletonsPng];
 }
 
 class Assets {

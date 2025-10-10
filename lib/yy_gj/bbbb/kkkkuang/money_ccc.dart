@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/ads/jc_ads_tools.dart';
 import 'package:quiz123/tools/rizhi.dart';
+import 'package:quiz123/view/animated_count.dart';
 import 'package:quiz123/view/jc_text_border.dart';
+import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/rotate.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
@@ -22,29 +25,47 @@ class MoneyCcc {
     required DynamicCallback onClaimDouble,
     required DynamicCallback onClaim,
   }) {
+
+    String adPosId = "";
+
+
     _xuanfu = null;
     _xuanfu = OverlayEntry(
       builder: (context) {
         return Material(
           color: Colors.transparent,
           child: QianKuang(
-            onBtn: (data) {
+            onBtn: (data) async{
+              close();
+              bool result = await JCAdsTools().showRewardAd(adPosId: adPosId);
+              if(result){
+                MoneyDdd().show(
+                  context: Get.context!,
+                  onClose: (data) {
+                    DtController.to.addDatiCoin(data);
+                    onClaimDouble(data);
+                  },
+                  money: data,
+                );
+              }else{
+                onClaimDouble(data);
+              }
+
+
+
+
+            },
+            onBtn2: (data) async{
               close();
 
-              MoneyDdd().show(
-                context: context,
-                onClose: (data) {
-                  DtController.to.addDatiCoin(data);
-                  onClaimDouble(data);
-                },
-                money: data,
-              );
-            },
-            onBtn2: (data) {
-              close();
+              bool showI = ShuzhiShuju.intad_point();
+              if(showI){
+                await JCAdsTools().showInterstitialAd(adPosId: adPosId);
+              }
+
               if (data is num && data > 0) {
                 MoneyDdd().show(
-                  context: context,
+                  context: Get.context!,
                   onClose: (data) {
                     DtController.to.addDatiCoin(data);
                     onClaim(data);
@@ -87,6 +108,22 @@ class QianKuang extends StatefulWidget {
 }
 
 class _QianKuangState extends State<QianKuang> {
+
+  double money = 0.0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      if(mounted){
+        setState(() {
+          money = widget.money;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -133,12 +170,24 @@ class _QianKuangState extends State<QianKuang> {
                     right: 0,
                     bottom: 10.h,
                     child: Center(
-                      child: JCTextBorder(
-                        text: "+\$${widget.money}",
-                        fontSize: 38.sp,
-                        fontWeight: FontWeight.w800,
-                        fontColor: Color(0xff6BFF70),
+                      child: JCAnimatedCount(
+                        value: money,
+                        duration: Duration(milliseconds: 500),
+                        fractionDigits: 2,
+                        prefix: "+\$",
+                        textStyle: TextStyle(
+                          fontSize: 38.sp,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xff6BFF70),
+                        ),
                       ),
+
+                      // child: JCTextBorder(
+                      //   text: "+\$${widget.money}",
+                      //   fontSize: 38.sp,
+                      //   fontWeight: FontWeight.w800,
+                      //   fontColor: Color(0xff6BFF70),
+                      // ),
                     ),
                   ),
                 ],
@@ -179,59 +228,6 @@ class _QianKuangState extends State<QianKuang> {
         jcRizhi("===_btnClaim====");
         widget.onBtn(money);
       },
-    );
-
-    return GestureDetector(
-      onTap: () {
-        jcRizhi("===_btnClaim====");
-        widget.onBtn(money);
-      },
-      child: Container(
-        width: 190.w,
-        height: 65.w,
-        color: Colors.transparent,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Image.asset(
-              Assets.bbb.btn.path,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.fill,
-            ),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  JCTextBorder(
-                    text: "Claim",
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.w900,
-                    foreground: Color(0xff891700),
-                  ),
-                  JCTextBorder(
-                    text: " \$${money}",
-                    fontSize: 22.sp,
-                    fontColor: Color(0xff6BFF70),
-                    fontWeight: FontWeight.w900,
-                    foreground: Color(0xff891700),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              right: -16.w,
-              top: -12.h,
-              child: Image.asset(
-                Assets.bbb.ad.path,
-                width: 47.w,
-                height: 37.w,
-                fit: BoxFit.fill,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

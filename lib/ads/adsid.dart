@@ -1,6 +1,7 @@
 class JCAdsPosId {
   static const String test = "test";
   static const String kwsbc_launch = "kwsbc_launch";
+  static const String kwsbc_newuser_rv = "kwsbc_newuser_rv";
   static const String kwsbc_olduser_wheelspin_int = "kwsbc_olduser_wheelspin_int";
   static const String kwsbc_olduser_wheel_rv = "kwsbc_olduser_wheel_rv";
   static const String kwsbc_olduser_wheel_int = "kwsbc_olduser_wheel_int";

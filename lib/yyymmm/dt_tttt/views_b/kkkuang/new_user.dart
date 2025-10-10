@@ -4,6 +4,7 @@ import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
+import 'package:quiz123/yy_gj/bbbb/vvvv/spine_newuser.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../jichu_kuang/jichu_kuang.dart';
@@ -14,13 +15,13 @@ showNewUserDialog(BuildContext context, {required DynamicCallback onBtn}) {
   return jcKuang(
     context: context,
     child: NewUser(
-      onOpen: () {
+      onOpen: () async{
+        await Future.delayed(Duration(milliseconds: 300));
         double money = ShuzhiShuju.new_prize();
         showNewUserClaimDialog(
           context,
-          onBtn: (value) async{
+          onBtn: (value) async {
             onBtn(value);
-
           },
           onBtn2: (value) {
             onBtn(value);
@@ -32,10 +33,17 @@ showNewUserDialog(BuildContext context, {required DynamicCallback onBtn}) {
   );
 }
 
-class NewUser extends StatelessWidget {
+class NewUser extends StatefulWidget {
   const NewUser({super.key, required this.onOpen});
 
   final VoidCallback onOpen;
+
+  @override
+  State<NewUser> createState() => _NewUserState();
+}
+
+class _NewUserState extends State<NewUser> {
+  bool hasOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -50,20 +58,46 @@ class NewUser extends StatelessWidget {
             height: 400.h,
             child: Stack(
               children: [
-                Column(
-                  children: [
-                    SizedBox(height: 10.h),
-                    Center(
-                      child: Image.asset(
-                        Assets.bbb.newBg.path,
-                        width: 300.h,
-                        height: 350.h,
-                        fit: BoxFit.fill,
-                      ),
+                Center(
+                  child: Container(
+                    width: 300.h,
+                    height: 350.h,
+                    margin: EdgeInsets.only(bottom: 20.h),
+                    child: Stack(
+                      children: [
+                        Image.asset(
+                          Assets.bbb.newBg2.path,
+                          width: double.infinity,
+                          height: double.infinity,
+                          fit: BoxFit.fill,
+                        ),
+                        Center(
+                          child: Container(
+                            width: 173.h,
+                            height: 155.h,
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                hasOpen
+                                    ? Container(
+                                        width: 173.h,
+                                        height: 155.h,
+                                        child: SpineNewUser(),
+                                      )
+                                    : Image.asset(
+                                        Assets.bbb.newGift.path,
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        fit: BoxFit.fill,
+                                      ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-
                 Positioned(
                   left: 0,
                   right: 0,
@@ -85,7 +119,6 @@ class NewUser extends StatelessWidget {
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
                         onOpen();
                       },
                       child: Container(
@@ -126,5 +159,18 @@ class NewUser extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  onOpen() async{
+    setState(() {
+      hasOpen = true;
+    });
+    await Future.delayed(Duration(milliseconds: 600));
+    // setState(() {
+    //   hasOpen = false;
+    // });
+    Navigator.pop(context);
+    widget.onOpen();
+
   }
 }

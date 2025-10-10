@@ -6,7 +6,7 @@ import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/hhhero.dart';
-import 'package:quiz123/yy_gj/bbbb/vvvv/lihua.dart';
+import 'package:quiz123/yy_gj/bbbb/vvvv/spine_lihua.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../gen/assets.gen.dart';
@@ -170,7 +170,7 @@ class _QianKuangDddState extends State<QianKuangDdd> {
               child: SizedBox(
                 width: ScreenUtil().screenWidth,
                 height: ScreenUtil().screenHeight,
-                child: SpinePigLihua(),
+                child: SpineJCLihua(),
               ),
             ),
           ],

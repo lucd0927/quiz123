@@ -43,7 +43,7 @@ class _ShakeWidgetState extends State<ShakeWidget>
       vsync: this,
     );
 
-    _animation = Tween(begin: -widget.offset, end: widget.offset)
+    _animation = Tween(begin: 0.0, end: widget.offset)
         .chain(CurveTween(curve: Curves.elasticIn))
         .animate(_controller);
 

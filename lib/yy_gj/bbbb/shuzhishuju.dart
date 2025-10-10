@@ -21,7 +21,7 @@ class ShuzhiShuju {
     if (tmpData.isEmpty) {
       return [800.0];
     }
-    tmpData.add(300.0);
+    // tmpData.add(300.0);
     tmpData.sort((a,b)=>a.compareTo(b));
     return tmpData;
   }
@@ -279,7 +279,7 @@ class ShuzhiShuju {
     }
     jcRizhi("===intad_point=$showIntad");
 
-    // showIntad = false;
+    showIntad = false;
     return showIntad;
   }
 

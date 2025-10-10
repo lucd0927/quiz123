@@ -473,13 +473,14 @@ class DtController extends GetxController {
 
   ///--------------------------------------------bbbbbb---------------------------------------------
   static const String hkNewUser = "asdfagsdrtru";
+  static const String hkFirstFloating = "ksdfjdshjksdhf";
   static const String hkWithdrawGuide = "ireoijflkdjlkdfjslkjg";
   static const String hkGuideRight2 = "oiweruuoiewruo";
   static const String hkGuideRight8 = "opidlknslkn";
 
   initB() {
     if (JCABluoji.isPackageB()) {
-      WidgetsBinding.instance.addPostFrameCallback((_){
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         var tmpNewUser = box.get(hkNewUser);
         jcRizhi("==tmpNewUser:$tmpNewUser===");
         if (tmpNewUser == null) {
@@ -492,25 +493,17 @@ class DtController extends GetxController {
               },
             );
           });
-        }else{
-
-          if(JCAppTrackStatus.isFirstLoginToday){
-            showOldUserDialog( Get.context!,onBtn: (){});
+        } else {
+          if (JCAppTrackStatus.isFirstLoginToday) {
+            showOldUserDialog(Get.context!, onBtn: () {});
           }
-
-
         }
       });
-
-
     }
   }
 
   @override
-  onReady(){
-
-  }
-
+  onReady() {}
 
   QXuanfu _qXuanfu = QXuanfu();
 
@@ -524,9 +517,16 @@ class DtController extends GetxController {
       child: DatiFloating(
         onMoney: (data) async {
           _qXuanfu.close();
-          bool result = await JCAdsTools().showRewardAd(
-            adPosId: JCAdsPosId.kwsbc_bubble_rv,
-          );
+          var firstFloat = box.get(hkFirstFloating);
+          bool result = true;
+          if(firstFloat == null){
+            result = true;
+            box.put(hkFirstFloating, 1);
+          }else{
+            result = await JCAdsTools().showRewardAd(
+              adPosId: JCAdsPosId.kwsbc_bubble_rv,
+            );
+          }
           jcRizhi("=showXaunfu===result:$result=");
           if (result) {
             XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.qipaoo);
@@ -534,19 +534,17 @@ class DtController extends GetxController {
               context: Get.context!,
               money: tmpXuanfu,
               onClaimDouble: (dd) async {
-                await Future.delayed(Duration(milliseconds: 2000));
+                await Future.delayed(Duration(milliseconds: 10000));
                 showXaunfu();
               },
               onClaim: (data) async {
-                await Future.delayed(Duration(milliseconds: 2000));
+                await Future.delayed(Duration(milliseconds: 10000));
                 showXaunfu();
               },
             );
-          }else{
+          } else {
             showXaunfu();
           }
-
-
 
           // onShowMoneyCcc(
           //   money: tmpXuanfu,
@@ -572,10 +570,11 @@ class DtController extends GetxController {
     curClickAnswer.value = click;
     curShowGesture.value = false;
     _curCurLeixingDatiLeftTimer?.cancel();
-    await Future.delayed(Duration(milliseconds: 1500));
+    bool hasR = click == right;
+    await Future.delayed(Duration(milliseconds: hasR ? 800 : 1200));
     // showDatiNextLevel(Get.context!, onBtn: (){}, onClose: (){});
 
-    if (click == right) {
+    if (hasR) {
       double tmpcoin = ShuzhiShuju.quiz_prize();
       var sfTixiGuide = box.get(hkWithdrawGuide);
 
@@ -609,24 +608,28 @@ class DtController extends GetxController {
       onClaimDouble: (data) {
         _onNext(hasClickRight: true);
 
-        int curNum = curRightNum.value;
-        if (curNum == 2) {
-          Future.delayed(Duration(milliseconds: 1000), () {
-            GuideRight2().show();
-          });
-        } else if (curNum == 8) {
-          Future.delayed(Duration(milliseconds: 1000), () {
-            GuideRight8().show();
-          });
-        }
-
+        _guide();
         onEnd?.call();
       },
       onClaim: (data) {
         _onNext(hasClickRight: true);
+        _guide();
         onEnd?.call();
       },
     );
+  }
+
+  _guide() {
+    int curNum = curRightNum.value;
+    if (curNum == 2) {
+      Future.delayed(Duration(milliseconds: 1000), () {
+        GuideRight2().show();
+      });
+    } else if (curNum == 8) {
+      Future.delayed(Duration(milliseconds: 1000), () {
+        GuideRight8().show();
+      });
+    }
   }
 
   hasGuideRight2() {

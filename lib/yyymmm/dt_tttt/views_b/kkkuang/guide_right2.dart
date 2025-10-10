@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/tools/event_bus.dart';
+import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/event_bus.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/money_box.dart';
 
 import '../../../../gen/assets.gen.dart';
+import '../../../../yy_gj/bbbb/vvvv/shake.dart';
 
 class GuideRight2 {
   static BuildContext? guideContext;
@@ -16,6 +18,7 @@ class GuideRight2 {
   OverlayEntry? _overlayEntry;
 
   void show() {
+    jcRizhi("==GuideRight2=show==");
     _overlayEntry = null;
 
     _overlayEntry = OverlayEntry(
@@ -46,9 +49,7 @@ class GuideRight2 {
                   //   onClaim: (value) {},
                   // );
 
-                  JCEventBus.fire(
-                    LiwuEvent(type: EnumLiwuEvent.updateRight2),
-                  );
+                  JCEventBus.fire(LiwuEvent(type: EnumLiwuEvent.updateRight2));
                   // HomeController.to.onClickDailyCash(showDouble: false);
                 },
               ),
@@ -142,7 +143,13 @@ class GuideWidget extends StatelessWidget {
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                IgnorePointer(child: guideChild),
+                IgnorePointer(
+                  child: ShakeWidget(
+                    mode: ShakeMode.rotate,
+                    offset: 8,
+                    child: guideChild,
+                  ),
+                ),
                 Positioned(
                   top: 10.h,
                   left: 0.w,

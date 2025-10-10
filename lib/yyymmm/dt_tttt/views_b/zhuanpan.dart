@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
@@ -35,8 +36,14 @@ class ZhuanpanOverlay {
               close();
               onClose?.call();
             },
-            onSpin: (money) {
+            onSpin: (money) async{
               close();
+              bool showI = ShuzhiShuju.intad_point();
+              if(showI){
+                await JCAdsTools().showInterstitialAd(adPosId: JCAdsPosId.kwsbc_wheelspin_int);
+              }
+
+
               onSpin(money);
               XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.zppppWheeeel);
             },

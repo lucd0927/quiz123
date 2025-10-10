@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/jc_text_border.dart';
+import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/rotate.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
@@ -22,27 +24,39 @@ class MoneyBox {
     required DynamicCallback onClaim,
   }) {
     _xuanfu = null;
+    String adPosId = "";
     _xuanfu = OverlayEntry(
       builder: (context) {
         return Material(
           color: Colors.transparent,
           child: QianKuang(
-            onBtn: (data) {
+            onBtn: (data)async {
               close();
-              MoneyDdd().show(
-                context: context,
-                onClose: (data) {
-                  DtController.to.addDatiCoin(data);
-                  onClaimDouble(data);
-                },
-                money: data,
-              );
+              bool result = await JCAdsTools().showRewardAd(adPosId: adPosId);
+              if(result){
+                MoneyDdd().show(
+                  context: Get.context!,
+                  onClose: (data) {
+                    DtController.to.addDatiCoin(data);
+                    onClaimDouble(data);
+                  },
+                  money: data,
+                );
+              }else{
+                onClaimDouble(data);
+              }
+
             },
-            onBtn2: (data) {
+            onBtn2: (data) async{
               close();
+              bool showI = ShuzhiShuju.intad_point();
+              if(showI){
+                await JCAdsTools().showInterstitialAd(adPosId: adPosId);
+              }
+
               if (data is num && data > 0) {
                 MoneyDdd().show(
-                  context: context,
+                  context: Get.context!,
                   onClose: (data) {
                     DtController.to.addDatiCoin(data);
                     onClaim(data);

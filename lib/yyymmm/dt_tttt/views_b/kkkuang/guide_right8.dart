@@ -34,9 +34,7 @@ class GuideRight8 {
                 guideContext: guideContext!,
                 onClose: () async {
                   close();
-                  JCEventBus.fire(
-                    LiwuEvent(type: EnumLiwuEvent.updateRight8),
-                  );
+                  JCEventBus.fire(LiwuEvent(type: EnumLiwuEvent.updateRight8));
                   // HomeController.to.onClickDailyCash(showDouble: false);
                 },
               ),
@@ -130,7 +128,13 @@ class GuideWidget extends StatelessWidget {
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                IgnorePointer(child: guideChild),
+                IgnorePointer(
+                  child: JcAnimatedScale(
+                    maxScale: 1.5,
+                    minScale: 1.0,
+                    child: guideChild,
+                  ),
+                ),
                 Positioned(
                   top: 10.h,
                   left: 0.w,
@@ -142,8 +146,6 @@ class GuideWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-
-
               ],
             ),
           ),
@@ -184,9 +186,7 @@ class GuideWidget extends StatelessWidget {
                         // text: " 1000.00",
                         style: TextStyle(color: Color(0xff009402)),
                       ),
-                      TextSpan(
-                        text: "questions to get a lucky spin!",
-                      ),
+                      TextSpan(text: "questions to get a lucky spin!"),
                     ],
                   ),
                   style: TextStyle(

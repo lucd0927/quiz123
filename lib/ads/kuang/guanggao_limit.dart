@@ -78,8 +78,8 @@ class _GuangGaoXianzhiViewState extends State<GuangGaoXianzhiView> {
 
   content() {
     return Container(
-      width: 678.w,
-      height: 771.h,
+      width: 330.w,
+      height: 350.h,
       decoration: BoxDecoration(
         color: Color(0xff992D2E),
         borderRadius: BorderRadius.circular(16.w),
@@ -101,7 +101,7 @@ class _GuangGaoXianzhiViewState extends State<GuangGaoXianzhiView> {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color(0xffffffff),
-                        fontSize: 42.sp,
+                        fontSize: 16.sp,
                       ),
                     ),
                   ],

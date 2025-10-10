@@ -12,6 +12,7 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../jichu_kuang/jichu_kuang.dart';
 import '../../../../yy_gj/bbbb/kkkkuang/money_ddd.dart';
 import '../../../../yy_gj/bbbb/vvvv/rotate.dart';
+import '../../../../yy_gj/bbbb/vvvv/shake.dart';
 
 showNewUserClaimDialog(
   BuildContext context, {
@@ -102,11 +103,15 @@ class NewUserClaim extends StatelessWidget {
                   top: 0,
                   bottom: 0,
                   child: Center(
-                    child: Image.asset(
-                      Assets.bbb.newOpen.path,
-                      width: 257.w,
-                      height: 195.w,
-                      fit: BoxFit.fill,
+                    child: ShakeWidget(
+                      mode: ShakeMode.rotate,
+                      // offset: 8,
+                      child: Image.asset(
+                        Assets.bbb.newOpen.path,
+                        width: 257.w,
+                        height: 195.w,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 ),

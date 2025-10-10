@@ -1,0 +1,84 @@
+{
+"skeleton": {
+	"hash": "/8flZB9QVDQ",
+	"spine": "4.2.43",
+	"x": -86.5,
+	"y": -77.5,
+	"width": 173,
+	"height": 155.33,
+	"images": "C:/Users/Administrator/Desktop/C123-Spine",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "box03", "parent": "root", "y": -34.53, "scaleX": 0.25, "scaleY": 0.25 },
+	{ "name": "box02", "parent": "root", "y": 22.33, "scaleX": 0.25, "scaleY": 0.25 },
+	{ "name": "box", "parent": "root", "scaleX": 0.25, "scaleY": 0.25 }
+],
+"slots": [
+	{ "name": "box", "bone": "box", "attachment": "box" },
+	{ "name": "box03", "bone": "box03", "attachment": "box03" },
+	{ "name": "box02", "bone": "box02", "attachment": "box02" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"box": {
+				"box": { "width": 692, "height": 620 }
+			},
+			"box02": {
+				"box02": { "width": 692, "height": 444 }
+			},
+			"box03": {
+				"box03": { "x": -0.72, "y": 4.84, "width": 496, "height": 348 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"slots": {
+			"box": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.3667, "color": "ffffff00" }
+				]
+			},
+			"box02": {
+				"rgba": [
+					{ "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3333, "color": "ffffff00" },
+					{ "time": 0.3667, "color": "ffffffff" }
+				]
+			},
+			"box03": {
+				"rgba": [
+					{ "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3333, "color": "ffffff00" },
+					{ "time": 0.3667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.8, "color": "ffffffff" }
+				]
+			}
+		},
+		"bones": {
+			"box": {
+				"scale": [
+					{},
+					{ "time": 0.1667, "y": 0.48 },
+					{ "time": 0.3333 }
+				]
+			},
+			"box02": {
+				"rotate": [
+					{ "time": 0.5333, "value": -35.33 }
+				],
+				"translate": [
+					{ "time": 0.3667 },
+					{ "time": 0.5333, "x": 63.89 }
+				]
+			}
+		}
+	}
+}
+}

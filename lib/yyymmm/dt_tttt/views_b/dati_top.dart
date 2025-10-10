@@ -15,6 +15,7 @@ import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../xxjj/kkkkuang/tx_taskkkk_wancheng.dart';
+import 'kkkuang/guide_right8.dart';
 import 'kkkuang/guide_withdraw.dart';
 import 'kkkuang/new_user_claim.dart';
 import 'kkkuang/old_user.dart';
@@ -66,6 +67,7 @@ class _DatiTopState extends State<DatiTop> {
                           ),
                           child: Center(
                             child: JCAnimatedCount(
+                              duration: Duration(milliseconds: 1000),
                               value: curMoney,
                               fractionDigits: 2,
                               prefix: "\$",
@@ -226,7 +228,7 @@ class _DatiTopState extends State<DatiTop> {
     // ZhuanpanOverlay().show(context: context);
     // showOldUserDialog(context,onBtn: (){});
     // showTxTaskkkkWanchengDialog(context,onBtn: (){});
-
+    // GuideRight8().show();
     showNewUserDialog(
       Get.context!,
       onBtn: (v) {
