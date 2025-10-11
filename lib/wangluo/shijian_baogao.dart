@@ -259,6 +259,7 @@ class JCShijianBaogao {
   // inform_from:fix、sign、quiz、paypel
 
   static inform_c(String type) async {
+    await Future.delayed(Duration(milliseconds: 1000));
     JCNet().maidian(
       eventName: "inform_c",
       kkkkkey: "inform_from",

@@ -48,13 +48,6 @@ class ZhuanpanOverlay {
             },
             onSpin: (money) async {
               close();
-              bool showI = ShuzhiShuju.intad_point();
-              if (showI) {
-                await JCAdsTools().showInterstitialAd(
-                  adPosId: JCAdsPosId.kwsbc_wheelspin_int,
-                );
-              }
-
               onSpin(money);
               XjDddController.to.jiluTxStageRenwuJindu(
                 type: EnumXjjjjLx.zppppWheeeel,

@@ -25,7 +25,7 @@ showNewUserClaimDialog(
     child: NewUserClaim(
       onBtn: (prize) async {
         bool result = await JCAdsTools().showRewardAd(
-          adPosId: JCAdsPosId.kwsbc_olduser_signin_rv,
+          adPosId: JCAdsPosId.kwsbc_newuser_rv,
         );
         if (!result) {
           prize = money;

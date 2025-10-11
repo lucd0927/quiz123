@@ -195,7 +195,7 @@ class XjDddController extends GetxController {
         return;
       }
 
-      if(hasCompletedAllTask()){
+      if (hasCompletedAllTask()) {
         showTxTaskkkkWanchengDialog(Get.context!, onBtn: () {});
         return;
       }
@@ -351,7 +351,7 @@ class XjDddController extends GetxController {
         "task_1": {
           "allCount": 388,
           "curCount": 30,
-          "type": "wheel",
+          "type": "rank",
           "text": ["${"Your Current rank"}: ", ""],
         },
         "now_task": "task_1",
@@ -499,6 +499,29 @@ class XjDddController extends GetxController {
     var stageData = data[curStage];
     String now_task_name = stageData['now_task'] ?? "";
     return now_task_name;
+  }
+  // last stage task
+  String curLastStageTaskTypeName(String curStage) {
+    String key = hkXjRenwu;
+    var data = box.get(key);
+    jcRizhi("========curStageTaskTypeName：data:${data}");
+
+    var stageData = data[curStage];
+    String now_task_name = stageData['now_task'] ?? "";
+    String type = "";
+    if (now_task_name == "task_1" ||
+        now_task_name == "task_5" ||
+        now_task_name == "task_9") {
+      type = "quiz";
+    } else if (now_task_name == "task_3" || now_task_name == "task_7") {
+      type = "wheel";
+    } else if (now_task_name == "task_2" || now_task_name == "task_6") {
+      type = "box";
+    } else if (now_task_name == "task_4" || now_task_name == "task_8") {
+      type = "pop";
+    }
+
+    return type;
   }
 
   // 记录不同层次money的进度

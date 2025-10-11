@@ -428,21 +428,28 @@ class DtController extends GetxController {
   }
 
   addDatiCoin(double coin) {
-    double tmpcoin = curMoney.value;
-    tmpcoin = tmpcoin + coin;
+    double tmpCurMmmmm = curMoney.value;
+    double tmpcoin = tmpCurMmmmm + coin;
     curMoney.value = tmpcoin;
     box.put(hCurMoney, tmpcoin);
 
-    if (JCABluoji.isPackageB() && tmpcoin >= minWithdrawJine) {
-      if (XjDddController.to.hasSsssavePayCardId()) {
-      } else {
-        double money = minWithdrawJine;
-        showInputPayCard(
-          Get.context!,
-          onBtn: () {},
-          onClose: () {},
-          money: money,
-        );
+    if (JCABluoji.isPackageB()) {
+      int pre = tmpCurMmmmm ~/ 100;
+      int nnnn = tmpcoin ~/ 100;
+      if (pre != nnnn) {
+        JCShijianBaogao.cash_money_detail("${nnnn * 100}");
+      }
+      if (tmpcoin >= minWithdrawJine) {
+        if (XjDddController.to.hasSsssavePayCardId()) {
+        } else {
+          double money = minWithdrawJine;
+          showInputPayCard(
+            Get.context!,
+            onBtn: () {},
+            onClose: () {},
+            money: money,
+          );
+        }
       }
     }
   }
@@ -581,7 +588,7 @@ class DtController extends GetxController {
 
             MoneyDdd().show(
               context: Get.context!,
-              onClose: (data)async {
+              onClose: (data) async {
                 DtController.to.addDatiCoin(data);
                 await Future.delayed(Duration(milliseconds: 10000));
                 showXaunfu();

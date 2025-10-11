@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
+import 'package:quiz123/ads/adsid.dart';
+import 'package:quiz123/ads/jc_ads_tools.dart';
 import 'package:quiz123/ads/jc_common_config.dart';
 import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/tools/event_bus.dart';
@@ -664,7 +666,13 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
       if (liwu == EnumLiwuLeixing.wheel) {
         ZhuanpanOverlay().show(
           context: context,
-          onSpin: (money) {
+          onSpin: (money) async{
+            bool showI = ShuzhiShuju.intad_point();
+            if (showI) {
+              await JCAdsTools().showInterstitialAd(
+                adPosId: JCAdsPosId.kwsbc_wheelspin_int,
+              );
+            }
             // DtController.to.onShowMoneyCcc(money: money);
             MoneyCcc().show(
               context: Get.context!,

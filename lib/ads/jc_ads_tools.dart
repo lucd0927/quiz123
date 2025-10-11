@@ -11,6 +11,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 
 import 'package:tuple/tuple.dart';
 
+import '../wangluo/shijian_baogao.dart';
 import 'ads_tips.dart';
 
 import 'jc_wind_controller.dart';
@@ -77,7 +78,7 @@ class JCAdsTools {
     if (result) {
       // todo:
       // SWEventReport.cash_ad_detail("$count");
-      // PBMaiDian.cash_ad_detail(veinKeyValue: "$count");
+      JCShijianBaogao.cash_ad_detail("$count");
     }
   }
 
@@ -197,11 +198,11 @@ class JCAdsTools {
       _hasFirstIntLoaded = false;
     }
 
-    // PBMaiDian.cdyun_ad_return(
-    //   ad_code_id: adsId,
-    //   ad_format: adsType.name,
-    //   ad_platform: platform.name,
-    // );
+    JCShijianBaogao.kwsbc_ad_return(
+      ad_code_id: adsId,
+      ad_format: adsType.name,
+      ad_platform: platform.name,
+    );
   }
 
   // 加载失败
@@ -767,11 +768,11 @@ class JCAdsTools {
       }
     }
 
-    // PBMaiDian.ad_request(
-    //   ad_code_id: adsId,
-    //   ad_format: adsType,
-    //   ad_platform: platform,
-    // );
+    JCShijianBaogao.ad_request(
+      ad_code_id: adsId,
+      ad_format: adsType,
+      ad_platform: platform,
+    );
   }
 
   // adPosId 场景
@@ -890,7 +891,7 @@ class JCAdsTools {
     _hasDisplayAd = true;
     _curAdPosId = adPosId;
 
-    // PBMaiDian.cdyun_ad_chance(veinKeyValue: adPosId);
+    JCShijianBaogao.kwsbc_ad_chance(adPosId);
     Completer<bool> completer = Completer();
 
     if (outCompleter != null) {
@@ -1030,9 +1031,6 @@ class JCAdsTools {
     );
     _hasDisplayAd = false;
     if (!result) {
-      // GGEventReport.glgns_ad_impression_fail(veinKeyValue: adPosId);
-      // GGAdsTips.noAds();
-
       if (firstRequestAdsId != null) {
         JCGuangGaoModel? adsJsonModel = adIdWithJsonModel[firstRequestAdsId];
         String? ad_platform = adsJsonModel?.adsPlatform;
@@ -1041,11 +1039,11 @@ class JCAdsTools {
         );
         _loadFailReason ??= AdLoadFailReason.notPrepared;
         if (ad_platform != null) {
-          // PBMaiDian.cdyun_ad_impression_fail(
-          //   ad_pos_id: firstRequestAdsId,
-          //   reason: _loadFailReason!.name,
-          //   ad_platform: ad_platform,
-          // );
+          JCShijianBaogao.kwsbc_ad_impression_fail(
+            ad_pos_id: firstRequestAdsId,
+            reason: _loadFailReason!.name,
+            ad_platform: ad_platform,
+          );
         }
       }
     }

@@ -35,7 +35,7 @@ class MoneyBox {
             onBtn: (data)async {
               close();
               JCShijianBaogao.box_double_pop_c();
-              bool result = await JCAdsTools().showRewardAd(adPosId: adPosId);
+              bool result = await JCAdsTools().showRewardAd(adPosId: JCAdsPosId.kwsbc_box_rv);
               if(result){
                 MoneyDdd().show(
                   context: Get.context!,
@@ -55,7 +55,7 @@ class MoneyBox {
               JCShijianBaogao.box_double_pop_close();
               bool showI = ShuzhiShuju.intad_point();
               if(showI){
-                await JCAdsTools().showInterstitialAd(adPosId: adPosId);
+                await JCAdsTools().showInterstitialAd(adPosId: JCAdsPosId.kwsbc_box_int);
               }
 
               if (data is num && data > 0) {

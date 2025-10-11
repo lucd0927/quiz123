@@ -11,17 +11,22 @@ import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../jichu_kuang/jichu_kuang.dart';
+import '../../../wangluo/shijian_baogao.dart';
 
 showBuzuCard(
   BuildContext context, {
   required VoidCallback onBtn,
   required VoidCallback onClose,
 }) {
+  JCShijianBaogao.cash_not_pop();
   return jcKuang(
     context: context,
     child: BuzuCard(
-      onClose: () {},
+      onClose: () {
+        JCShijianBaogao.cash_not_pop_c();
+      },
       onSubmit: (data) {
+        JCShijianBaogao.cash_not_pop_c();
         ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
       },
     ),

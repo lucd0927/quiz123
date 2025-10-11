@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/ads/adsid.dart';
 import 'package:quiz123/ads/jc_ads_tools.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_count.dart';
@@ -28,12 +29,17 @@ class MoneyCcc {
     required DynamicCallback onClaim,
     required EnumGetScene scene,
   }) {
-    String adPosId = "";
+    String adPosIdRv = "";
+    String adPosIdInt = "";
     String source = scene.name;
     if (scene == EnumGetScene.wheel) {
       source = "wheel";
+      adPosIdRv = JCAdsPosId.kwsbc_wheel_rv;
+      adPosIdInt = JCAdsPosId.kwsbc_wheel_int;
     } else if (scene == EnumGetScene.quiz) {
       source = "quiz";
+      adPosIdRv = JCAdsPosId.kwsbc_quiz_rv;
+      adPosIdInt = JCAdsPosId.kwsbc_quiz_int;
     }
     JCShijianBaogao.coin_pop(source);
     _xuanfu = null;
@@ -45,7 +51,7 @@ class MoneyCcc {
             onBtn: (data) async {
               close();
               JCShijianBaogao.coin_pop_c(source);
-              bool result = await JCAdsTools().showRewardAd(adPosId: adPosId);
+              bool result = await JCAdsTools().showRewardAd(adPosId: adPosIdRv);
               if (result) {
                 MoneyDdd().show(
                   context: Get.context!,
@@ -64,7 +70,7 @@ class MoneyCcc {
               JCShijianBaogao.coin_pop_close(source);
               bool showI = ShuzhiShuju.intad_point();
               if (showI) {
-                await JCAdsTools().showInterstitialAd(adPosId: adPosId);
+                await JCAdsTools().showInterstitialAd(adPosId: adPosIdInt);
               }
 
               if (data is num && data > 0) {

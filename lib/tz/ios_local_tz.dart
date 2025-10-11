@@ -8,6 +8,8 @@ import 'package:quiz123/huanjing/peizhi.dart';
 import 'package:quiz123/tools/package.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../wangluo/shijian_baogao.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 
 // 顶层方法（不能在类里）
@@ -18,9 +20,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 // }
 const local_ios = "tzios_count";
 
-const int dingshiTz = 5654;
-const int checkTz = 5655;
-const int datiTz = 5656;
+const int dingshiTz = 6876;
+const int checkTz = 6877;
+const int datiTz = 6878;
+const int paypalTz = 6879;
 
 @pragma('vm:entry-point')
 ntb(NotificationResponse notificationResponse) async {
@@ -96,7 +99,6 @@ class JCTzIossssss {
       onDidReceiveNotificationResponse: (NotificationResponse response) {
         // 点击通知回调
         jcRizhi("点击通知 onDidReceiveNotificationResponse: ${response.payload}");
-        String payload = response.payload ?? "local";
         tongsongdianji(response.id);
       },
       onDidReceiveBackgroundNotificationResponse: ntb,
@@ -129,15 +131,20 @@ class JCTzIossssss {
   tongsongdianji(int? tuisongid) {
     String payload = "";
     jcRizhi("====tongsongdianji==tzid:$tuisongid==");
-    if (tuisongid == unlockId) {
-      payload = "unlock";
-    } else if (tuisongid == dingshiTz ||
-        tuisongid == checkTz ||
-        tuisongid == datiTz) {
-      payload = "local";
+    if (tuisongid == dingshiTz) {
+      payload = "fix";
+    } else if (tuisongid == checkTz) {
+      payload = "sign";
+    } else if (tuisongid == datiTz) {
+      payload = "quiz";
+    } else if (tuisongid == paypalTz) {
+      payload = "paypel";
     } else {
-      payload = "fcm";
+      payload = "fix";
     }
+
+    JCShijianBaogao.inform_c(payload);
+
   }
 
   Future<bool> requestNotificationPermission() async {
@@ -180,9 +187,18 @@ class JCTzIossssss {
     );
     _plugin.periodicallyShowWithDuration(
       checkTz,
-      JCABluoji.isPackageB() ? "Cash in check daily " : "QuizSpark",
+      JCABluoji.isPackageB() ? "Cash in check daily" : "QuizSpark",
       JCABluoji.isPackageB()
           ? "Sign up now and start earning money effortlessly."
+          : "Come join the quiz!",
+      Duration(minutes: 2),
+    );
+
+    _plugin.periodicallyShowWithDuration(
+      paypalTz,
+      JCABluoji.isPackageB() ? "Pending withdraw amount" : "QuizSpark",
+      JCABluoji.isPackageB()
+          ? "\$100 has arrived in your account"
           : "Come join the quiz!",
       Duration(minutes: 2),
     );

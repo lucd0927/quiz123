@@ -50,7 +50,7 @@ showOldUserSpinAndCheckDialog(
         JCShijianBaogao.daily_pop_c("wheel");
         bool showI = ShuzhiShuju.intad_point();
         if(showI){
-          await JCAdsTools().showInterstitialAd(adPosId: JCAdsPosId.kwsbc_wheel_int);
+          await JCAdsTools().showInterstitialAd(adPosId: JCAdsPosId.kwsbc_olduser_wheel_int);
         }
         jcRizhi("=OldUserSpinAndCheck=onClaim:$data=showI:$showI==");
         MoneyDdd().show(

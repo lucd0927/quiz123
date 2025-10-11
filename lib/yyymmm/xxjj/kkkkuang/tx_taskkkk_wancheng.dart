@@ -16,18 +16,23 @@ import 'package:tuple/tuple.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../jichu_kuang/jichu_kuang.dart';
 import '../../../view/jc_jindutiao.dart';
+import '../../../wangluo/shijian_baogao.dart';
 
 showTxTaskkkkWanchengDialog(
   BuildContext context, {
   required VoidCallback onBtn,
 }) {
+  JCShijianBaogao.cash_suc_pop();
   return jcKuang(
     context: context,
     child: TxTaskkkkWancheng(
       onCashhhh: () {
+        JCShijianBaogao.cash_suc_pop_c();
         ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
       },
-      onClose: () {},
+      onClose: () {
+        JCShijianBaogao.cash_suc_pop_c();
+      },
     ),
   );
 }

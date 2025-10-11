@@ -24,23 +24,29 @@ showTxTaskkkkDialog(BuildContext context, {required VoidCallback onBtn}) {
   if (tmpNNNStage == "stage_1") {
     JCShijianBaogao.cash_task_pop();
   } else if (tmpNNNStage == "stage_3") {
+    String type = XjDddController.to.curLastStageTaskTypeName(tmpNNNStage);
+    JCShijianBaogao.one_last_step_pop(type);
+
     // JCShijianBaogao.cas();
   }
 
-
   return jcKuang(
     context: context,
-    child: TxTaskkkk(onCashhhh: () {
+    child: TxTaskkkk(
+      onCashhhh: () {
+        if (tmpNNNStage == "stage_1") {
+          JCShijianBaogao.cash_task_pop_c();
+        } else if (tmpNNNStage == "stage_3") {
+          String type = XjDddController.to.curLastStageTaskTypeName(
+            tmpNNNStage,
+          );
+          JCShijianBaogao.one_last_step_pop_c(type);
+        }
 
-
-      if (tmpNNNStage == "stage_1") {
-        JCShijianBaogao.cash_task_pop_c();
-      } else if (tmpNNNStage == "stage_3") {
-        // JCShijianBaogao.cas();
-      }
-
-      ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
-    }, onClose: () {}),
+        ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
+      },
+      onClose: () {},
+    ),
   );
 }
 
@@ -271,7 +277,7 @@ class TxTaskkkk extends StatelessWidget {
             children: [
               SizedBox(
                 width: tmpWidth,
-                child:  Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     JCTextBorder(
