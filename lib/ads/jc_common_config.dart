@@ -120,6 +120,7 @@ enum EnumGetScene {
 
   quiz(name: "quiz"),
   wheel(name: "wheel"),
+  floating(name: "floating"),
 
   unknow(name: "unknow");
 

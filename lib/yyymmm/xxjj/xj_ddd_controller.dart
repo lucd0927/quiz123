@@ -11,6 +11,7 @@ import 'package:quiz123/yyymmm/xxjj/kkkkuang/input_pay_card.dart';
 import 'package:quiz123/yyymmm/xxjj/kkkkuang/tx_taskkkk.dart';
 import 'package:tuple/tuple.dart';
 
+import '../../wangluo/shijian_baogao.dart';
 import 'kkkkuang/bu_zu.dart';
 import 'kkkkuang/rankkkkk.dart';
 import 'kkkkuang/tx_taskkkk_wancheng.dart';
@@ -181,7 +182,7 @@ class XjDddController extends GetxController {
     // showInputPayCard(Get.context!, onBtn: () {}, onClose: () {}, money: money);
     // showTixianPaimingDialog(Get.context!, withdrawMoney: money, );
     // showTxTaskkkkDialog(Get.context!, onBtn: (){});
-
+    JCShijianBaogao.cash_page_c();
     double tmpCurMmmmm = DtController.to.curMoney.value;
     bool tmpSfSaveCardId = sfSaveCardId();
     //保存了银行卡

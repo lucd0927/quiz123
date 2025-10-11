@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/jichu_kuang/jichu_kuang.dart';
 import 'package:quiz123/tools/num_floor.dart';
 import 'package:quiz123/view/jc_ts_kuang.dart';
@@ -18,14 +19,22 @@ import '../../../view/animated_count.dart';
 import '../../../view/animated_scale.dart';
 import '../../../view/jc_jindutiao.dart';
 import '../../../view/jc_text_border.dart';
+import '../../../wangluo/shijian_baogao.dart';
 
 showTxRankkkk(BuildContext context, {required double withdrawMoney}) {
+  JCShijianBaogao.cash_queue_pop();
   return jcKuang(
     context: context,
     child: TixianPaimingWidget(
       onClose: () {
       },
       onCashhhh: () async {
+        String adskipkeyyy = "ajsdlkjaslkjlkasf";
+        var box = JCHive.box;
+        int count = box.get(adskipkeyyy)??0;
+        count = count + 1;
+        box.put(adskipkeyyy, count);
+        JCShijianBaogao.cash_queue_po_c("$count");
         XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.rankkkkk);
         Tuple4 tmpTuple4 = XjDddController.to.stage_2();
         int curRRRR = tmpTuple4.item1;

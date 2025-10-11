@@ -10,8 +10,10 @@ import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/rotate.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
+import '../../../ads/jc_common_config.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../view/animated_scale.dart';
+import '../../../wangluo/shijian_baogao.dart';
 import 'money_ddd.dart';
 
 typedef DynamicCallback = void Function(dynamic data);
@@ -24,21 +26,27 @@ class MoneyCcc {
     required double money,
     required DynamicCallback onClaimDouble,
     required DynamicCallback onClaim,
+    required EnumGetScene scene,
   }) {
-
     String adPosId = "";
-
-
+    String source = scene.name;
+    if (scene == EnumGetScene.wheel) {
+      source = "wheel";
+    } else if (scene == EnumGetScene.quiz) {
+      source = "quiz";
+    }
+    JCShijianBaogao.coin_pop(source);
     _xuanfu = null;
     _xuanfu = OverlayEntry(
       builder: (context) {
         return Material(
           color: Colors.transparent,
           child: QianKuang(
-            onBtn: (data) async{
+            onBtn: (data) async {
               close();
+              JCShijianBaogao.coin_pop_c(source);
               bool result = await JCAdsTools().showRewardAd(adPosId: adPosId);
-              if(result){
+              if (result) {
                 MoneyDdd().show(
                   context: Get.context!,
                   onClose: (data) {
@@ -47,19 +55,15 @@ class MoneyCcc {
                   },
                   money: data,
                 );
-              }else{
+              } else {
                 onClaimDouble(data);
               }
-
-
-
-
             },
-            onBtn2: (data) async{
+            onBtn2: (data) async {
               close();
-
+              JCShijianBaogao.coin_pop_close(source);
               bool showI = ShuzhiShuju.intad_point();
-              if(showI){
+              if (showI) {
                 await JCAdsTools().showInterstitialAd(adPosId: adPosId);
               }
 
@@ -108,15 +112,14 @@ class QianKuang extends StatefulWidget {
 }
 
 class _QianKuangState extends State<QianKuang> {
-
   double money = 0.0;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_){
-      if(mounted){
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
         setState(() {
           money = widget.money;
         });

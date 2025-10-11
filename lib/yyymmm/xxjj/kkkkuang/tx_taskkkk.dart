@@ -16,11 +16,29 @@ import 'package:tuple/tuple.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../jichu_kuang/jichu_kuang.dart';
 import '../../../view/jc_jindutiao.dart';
+import '../../../wangluo/shijian_baogao.dart';
 
 showTxTaskkkkDialog(BuildContext context, {required VoidCallback onBtn}) {
+  String tmpNNNStage = XjDddController.to.now_stage();
+
+  if (tmpNNNStage == "stage_1") {
+    JCShijianBaogao.cash_task_pop();
+  } else if (tmpNNNStage == "stage_3") {
+    // JCShijianBaogao.cas();
+  }
+
+
   return jcKuang(
     context: context,
     child: TxTaskkkk(onCashhhh: () {
+
+
+      if (tmpNNNStage == "stage_1") {
+        JCShijianBaogao.cash_task_pop_c();
+      } else if (tmpNNNStage == "stage_3") {
+        // JCShijianBaogao.cas();
+      }
+
       ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
     }, onClose: () {}),
   );

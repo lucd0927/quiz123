@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 import 'package:flutter_tba_info/flutter_tba_info.dart';
+import 'package:quiz123/wangluo/shijian_baogao.dart';
 
 // auto patch 457
 import '../huanjing/peizhi.dart';
@@ -124,6 +125,7 @@ class JCNet {
         "=========:返回结果\n${_netDdd.options.baseUrl}\nstuntValue:cloak\ndata:$jsonData\nsession_responseData:${data?.data}",
       );
       String cl = data?.data?.toString() ?? "";
+
       return cl;
     } catch (e) {
       print("======cloak () error:${e}");
@@ -407,7 +409,7 @@ class JCNet {
     // dataJson.addAll(dataJson);
 
     var data = jsonEncode(dataJson);
-    jcRizhi("=========buryPoint:构造数据   $data");
+    jcRizhi("=========maidian:构造数据 url\n${_netDdd.options.baseUrl}  \n$data");
     try {
       Response? response = await post("", data: dataJson);
       var responseData = response?.data;

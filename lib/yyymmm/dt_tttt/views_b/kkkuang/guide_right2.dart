@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:quiz123/tools/event_bus.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_scale.dart';
+import 'package:quiz123/wangluo/shijian_baogao.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/event_bus.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/money_box.dart';
@@ -19,6 +20,7 @@ class GuideRight2 {
 
   void show() {
     jcRizhi("==GuideRight2=show==");
+    JCShijianBaogao.box_guide();
     _overlayEntry = null;
 
     _overlayEntry = OverlayEntry(
@@ -37,6 +39,7 @@ class GuideRight2 {
                 guideContext: guideContext!,
                 onClose: () async {
                   close();
+                  JCShijianBaogao.box_guide_c();
                   // double money = ShuzhiShuju.box_prize();
                   // MoneyBox().show(
                   //   context: context,

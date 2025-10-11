@@ -12,14 +12,17 @@ import 'package:quiz123/yyymmm/dt_tttt/views_b/zhuanpan.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../jichu_kuang/jichu_kuang.dart';
+import '../../../../wangluo/shijian_baogao.dart';
 import '../../../../yy_gj/bbbb/kkkkuang/money_ddd.dart';
 
 showOldUserCheckDialog(BuildContext context, {required VoidCallback onBtn}) {
   double money = ShuzhiShuju.check_prize();
+  JCShijianBaogao.daily_pop("check");
   return jcKuang(
     context: context,
     child: OldUserCheck(
       onDouble: (money) async{
+        JCShijianBaogao.daily_pop_c("check");
         bool result = await JCAdsTools().showRewardAd(adPosId: JCAdsPosId.kwsbc_olduser_signin_rv);
         if(result){
           MoneyDdd().show(
@@ -32,9 +35,12 @@ showOldUserCheckDialog(BuildContext context, {required VoidCallback onBtn}) {
         }
 
       },
-      onClose: () {},
+      onClose: () {
+        JCShijianBaogao.daily_pop_c("check");
+      },
       money: money,
       onClaim: (data) async{
+        JCShijianBaogao.daily_pop_c("check");
         bool showI = ShuzhiShuju.intad_point();
         if(showI){
           bool result = await JCAdsTools().showRewardAd(adPosId: JCAdsPosId.kwsbc_olduser_signin_int);

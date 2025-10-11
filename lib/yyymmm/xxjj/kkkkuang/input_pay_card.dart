@@ -10,6 +10,7 @@ import 'package:quiz123/yyymmm/xxjj/xj_ddd_controller.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../jichu_kuang/jichu_kuang.dart';
+import '../../../wangluo/shijian_baogao.dart';
 import 'tx_taskkkk.dart';
 
 showInputPayCard(
@@ -18,6 +19,7 @@ showInputPayCard(
   required VoidCallback onClose,
   required double money,
 }) {
+  JCShijianBaogao.cash_confirm_pop();
   return jcKuang(
     context: context,
     child: InputPayCard(
@@ -25,6 +27,7 @@ showInputPayCard(
         onClose();
       },
       onSubmit: (data) {
+        JCShijianBaogao.cash_confirm_pop_c();
         jcRizhi("===cardId:$data===");
         if (data is String && data.isNotEmpty) {
           jcTsDialog(text: "Congratulations on your successful withdrawal. Your money has arrived.");

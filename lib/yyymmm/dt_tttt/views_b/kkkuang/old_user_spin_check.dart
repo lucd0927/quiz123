@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_scale.dart';
+import 'package:quiz123/wangluo/shijian_baogao.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
 
 import 'package:quiz123/yyymmm/dt_tttt/views_b/zhuanpan.dart';
@@ -19,11 +20,13 @@ showOldUserSpinAndCheckDialog(
   required VoidCallback onBtn,
   required double spinMoney,
 }) {
+  JCShijianBaogao.daily_pop("wheel");
   double money = ShuzhiShuju.check_prize();
   return jcKuang(
     context: context,
     child: OldUserSpinAndCheck(
       onDouble: (dddmoney) async{
+        JCShijianBaogao.daily_pop_c("wheel");
         jcRizhi("=OldUserSpinAndCheck=dddmoney:$dddmoney===");
         bool result = await JCAdsTools().showRewardAd(adPosId: JCAdsPosId.kwsbc_olduser_wheel_rv);
         if(result){
@@ -38,11 +41,13 @@ showOldUserSpinAndCheckDialog(
         }
 
       },
-      onClose: () {},
+      onClose: () {
+        JCShijianBaogao.daily_pop_c("wheel");
+      },
       spinMoney: spinMoney,
       checkMoney: money,
       onClaim: (data) async{
-
+        JCShijianBaogao.daily_pop_c("wheel");
         bool showI = ShuzhiShuju.intad_point();
         if(showI){
           await JCAdsTools().showInterstitialAd(adPosId: JCAdsPosId.kwsbc_wheel_int);

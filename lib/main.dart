@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -7,7 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/tools/app_track_status.dart';
+import 'package:quiz123/tools/rizhi.dart';
+import 'package:quiz123/wangluo/shijian_baogao.dart';
 import 'package:quiz123/wangluo/wangluo_jiancha.dart';
 import 'package:spine_flutter/spine_flutter.dart';
 import 'package:toastification/toastification.dart';
@@ -32,6 +36,7 @@ void main() async {
   JCAppTrackStatus.init();
   pbWangluoCheck.isOnline();
   pbWangluoCheck.init();
+  lifecycleChange();
   runApp(const MyApp());
 }
 
@@ -81,4 +86,60 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+
+Timer? _houtaiTimer;
+bool sfXianshiAd = false;
+
+void lifecycleChange() {
+  SystemChannels.lifecycle.setMessageHandler((msg) async {
+    jcRizhi('lifecycle> $msg');
+    // if(!GGABPackage.isPackageB()){
+    //   return msg;
+    // }
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top,SystemUiOverlay.bottom]);
+    // msg是个字符串，是下面的值
+    // AppLifecycleState.resumed
+    // AppLifecycleState.inactive
+    // AppLifecycleState.paused
+    // AppLifecycleState.detached
+    if (msg == "AppLifecycleState.resumed") {
+      // bgGGAudioPlayer.resume();
+      JCShijianBaogao.session();
+      _houtaiTimer?.cancel();
+
+      if (sfXianshiAd) {
+        jcRizhi("===前后切换加载=GGCommonAds().showInterstitialAd=${JCAdsTools.hasDisplayAd()}=");
+        if (!JCAdsTools.hasDisplayAd()) {
+          jcRizhi("===前后切换加载=GGCommonAds().showInterstitialAd==");
+
+          if (true) {
+            JCAdsTools().showInterstitialAd(
+              adPosId: JCAdsPosId.kwsbc_launch,
+              ignored_hasDisplayAd: false,
+              canTryAgain: false,
+            );
+          }
+        }
+      }
+      sfXianshiAd = false;
+    } else {
+      // bgGGAudioPlayer.pause();
+      if (msg == "AppLifecycleState.paused") {
+        jcRizhi("====AppLifecycleState.paused===");
+        JCShijianBaogao.app_background();
+        sfXianshiAd = false;
+        _houtaiTimer?.cancel();
+        _houtaiTimer = Timer(Duration(seconds: 3), () {
+          sfXianshiAd = true;
+          jcRizhi("====AppLifecycleState.paused==showAd:$sfXianshiAd=");
+          _houtaiTimer?.cancel();
+        });
+      } else if (msg == "AppLifecycleState.detached") {
+      } else if (msg == "AppLifecycleState.inactive") {}
+    }
+
+    return msg;
+  });
 }

@@ -6,6 +6,7 @@ import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 
 import 'package:flutter_tba_info/flutter_tba_info.dart';
 import 'package:quiz123/ads/jc_ads_tools.dart';
+import 'package:quiz123/wangluo/shijian_baogao.dart';
 
 import 'package:rxdart/rxdart.dart';
 
@@ -62,7 +63,7 @@ class JCABluoji {
     if (entryBBB) {
       var box = JCHive.box;
       var data = box.get(kHivePackage);
-      if(data == packageB){
+      if (data == packageB) {
         return;
       }
       _name = packageB;
@@ -78,8 +79,6 @@ class JCABluoji {
 
       initCompleter?.complete(false);
     }
-
-
   }
 
   void dispose() {
@@ -113,7 +112,7 @@ class JCABluoji {
         timeToWaitForATTUserAuthorization: 10,
       );
       AppsflyerSdk afSdkkkkkk = AppsflyerSdk(dfghdfhdfhg);
-      // PBMaiDian.af_req();
+      JCShijianBaogao.af_req();
       await afSdkkkkkk.initSdk(
         registerOnDeepLinkingCallback: true,
         registerOnAppOpenAttributionCallback: true,
@@ -154,6 +153,7 @@ class JCABluoji {
               );
               // 4.满足买量用户的判断条件
               _appsFlyerData = af_status;
+              JCShijianBaogao.organic_to_buy();
             } else {
               // auto patch 567
               _appsFlyerData = afDataOrganic;
@@ -161,13 +161,15 @@ class JCABluoji {
                 "==========initAppsFlyer====appsFlyerAdk.onInstallConversionDat= zirang",
               );
             }
+            JCShijianBaogao.af_suc(_appsFlyerData == afDataOrganic ?"0":"1");
+            // int mill = 12000;
+            // Future.delayed(Duration(milliseconds: mill), () {
+            //   // todo: 测试代码
+            //   _appsFlyerData = "ddd";
+            //   sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
+            // });
 
-            int mill = 12000;
-            Future.delayed(Duration(milliseconds: mill), () {
-              // todo: 测试代码
-              _appsFlyerData = "ddd";
-              sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
-            });
+            sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
           } else {
             // todo: 测试代码
             // _appsFlyerData = "ddd";
@@ -184,7 +186,7 @@ class JCABluoji {
       afSdkkkkkk.startSDK(
         onSuccess: () {
           jcRizhi("=initAppsFlyer=appsFlyerAdk:onSuccess==初始化成功");
-          // PBMaiDian.af_suc();
+
         },
         onError: (int errorCode, String errorMessage) {
           jcRizhi(
@@ -207,11 +209,12 @@ class JCABluoji {
 
   // 仅针对A包
   cloakAAAA({int count = 0}) async {
+    JCShijianBaogao.cloak_req();
     var data = await JCNet().cloak();
     jcRizhi("package cloak data:$data count:$count");
 
     _cloakData = data;
-
+    JCShijianBaogao.cloak_suc(_cloakData == cloakBData ? "1" : "0");
     // 正常模式 B包
     if (data == cloakBData) {
       jcRizhi("====正常模式 B包==data:$data=");
@@ -268,9 +271,10 @@ class JCABluoji {
       jcRizhi("==_initB===SWFengKong() end===耗时:${time4 - time3}");
     }
 
-    // PBMaiDian.cloak_req();
+    JCShijianBaogao.cloak_req();
     JCNet().cloak().then((v) {
       _cloakData = v ?? "";
+      JCShijianBaogao.cloak_suc(_cloakData == cloakBData ? "1" : "0");
       // PBMaiDian.cloak_suc(veinKeyValue: _cloakData == cloakBData ? "1" : "0");
       jcRizhi("==_initB===_cloakData():$_cloakData==");
     });
@@ -301,7 +305,7 @@ class JCABluoji {
       await _initA();
     }
 
-    return (await initCompleter?.future)??false;
+    return (await initCompleter?.future) ?? false;
   }
 
   bool sfChushiAF = false;

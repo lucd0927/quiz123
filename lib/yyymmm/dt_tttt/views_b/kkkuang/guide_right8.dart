@@ -7,6 +7,7 @@ import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/money_box.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../tools/event_bus.dart';
+import '../../../../wangluo/shijian_baogao.dart';
 import '../../../../yy_gj/event_bus.dart';
 
 class GuideRight8 {
@@ -17,7 +18,7 @@ class GuideRight8 {
 
   void show() {
     _overlayEntry = null;
-
+    JCShijianBaogao.wheel_guide();
     _overlayEntry = OverlayEntry(
       builder: (context) {
         return Material(
@@ -34,6 +35,7 @@ class GuideRight8 {
                 guideContext: guideContext!,
                 onClose: () async {
                   close();
+                  JCShijianBaogao.wheel_guide_c();
                   JCEventBus.fire(LiwuEvent(type: EnumLiwuEvent.updateRight8));
                   // HomeController.to.onClickDailyCash(showDouble: false);
                 },

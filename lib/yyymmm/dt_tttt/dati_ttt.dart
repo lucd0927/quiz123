@@ -8,6 +8,7 @@ import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/view/jc_jindutiao.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/view/jc_text_jianbian_border.dart';
+import 'package:quiz123/wangluo/shijian_baogao.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/dati_gift.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/dati_top.dart';
@@ -30,14 +31,15 @@ class _DtPageState extends State<DtPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _floatViewB();
     });
-
-
   }
 
   _floatViewB() {
+    String type = "a";
     if (JCABluoji.isPackageB()) {
+      type = "b";
       DtController.to.showXaunfu();
     }
+    JCShijianBaogao.quiz_page(type);
   }
 
   @override

@@ -26,8 +26,11 @@ import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/old_user.dart';
 import 'package:quiz123/yyymmm/xxjj/xj_ddd_controller.dart';
 import 'package:quiz123/yyymmm/zhuye/views/nav_bottom.dart';
 
+import '../../ads/jc_common_config.dart';
 import '../../gen/assets.gen.dart';
 import '../../tools/event_bus.dart';
+import '../../wangluo/shijian_baogao.dart';
+import '../../yy_gj/bbbb/kkkkuang/money_ddd.dart';
 import '../../yy_gj/bbbb/shuzhishuju.dart';
 import '../../yy_gj/event_bus.dart';
 import '../xxjj/kkkkuang/input_pay_card.dart';
@@ -353,7 +356,6 @@ class DtController extends GetxController {
     _timerChange();
 
     jumpToAppStore();
-
   }
 
   subStar() {
@@ -463,6 +465,7 @@ class DtController extends GetxController {
       int cishu = timer.tick;
       addDatiAllTime();
       if (cishu >= datiMaxTime) {
+        JCShijianBaogao.quiz_guide();
         curDaTiTime.value = 0;
         curShowGesture.value = true;
         timer.cancel();
@@ -485,25 +488,25 @@ class DtController extends GetxController {
   static const String hkTodayAnswerNum = "sljldsjglisdjfglisjdflkjsdf";
   static const String hkCommitGoodReview = "afhklsdjslgjlkdsfjkl";
 
-  toAppStoreCommitReview(){
+  toAppStoreCommitReview() {
     box.put(hkCommitGoodReview, true);
   }
 
-  jumpToAppStore(){
-    bool hasCommit = box.get(hkCommitGoodReview)??false;
+  jumpToAppStore() {
+    bool hasCommit = box.get(hkCommitGoodReview) ?? false;
     jcRizhi("=====jumpToAppStore=hasCommit:$hasCommit=");
-    if(hasCommit){
+    if (hasCommit) {
       return;
     }
 
-    int num = box.get(hkTodayAnswerNum)??0;
+    int num = box.get(hkTodayAnswerNum) ?? 0;
 
     jcRizhi("=====jumpToAppStore=hasCommit:$hasCommit=num：$num");
-    if(num == 3 || num == 5 ){
+    if (num == 3 || num == 5) {
       // todo:
       show5StarHp(Get.context!);
     }
-    int value = num+1;
+    int value = num + 1;
     box.put(hkTodayAnswerNum, value);
   }
 
@@ -519,7 +522,7 @@ class DtController extends GetxController {
 
   initB() {
     if (JCABluoji.isPackageB()) {
-      if(JCAppTrackStatus.isFirstLoginToday){
+      if (JCAppTrackStatus.isFirstLoginToday) {
         box.put(hkTodayAnswerNum, 0);
       }
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -558,9 +561,12 @@ class DtController extends GetxController {
       context: Get.context!,
       child: DatiFloating(
         onMoney: (data) async {
+          JCShijianBaogao.float_c();
           _qXuanfu.close();
           var firstFloat = box.get(hkFirstFloating);
           bool result = true;
+
+          // firstFloat = null;
           if (firstFloat == null) {
             result = true;
             box.put(hkFirstFloating, 1);
@@ -572,18 +578,30 @@ class DtController extends GetxController {
           jcRizhi("=showXaunfu===result:$result=");
           if (result) {
             XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.qipaoo);
-            MoneyCcc().show(
+
+            MoneyDdd().show(
               context: Get.context!,
-              money: tmpXuanfu,
-              onClaimDouble: (dd) async {
+              onClose: (data)async {
+                DtController.to.addDatiCoin(data);
                 await Future.delayed(Duration(milliseconds: 10000));
                 showXaunfu();
               },
-              onClaim: (data) async {
-                await Future.delayed(Duration(milliseconds: 10000));
-                showXaunfu();
-              },
+              money: data,
             );
+
+            // MoneyCcc().show(
+            //   context: Get.context!,
+            //   money: tmpXuanfu,
+            //   onClaimDouble: (dd) async {
+            //     await Future.delayed(Duration(milliseconds: 10000));
+            //     showXaunfu();
+            //   },
+            //   onClaim: (data) async {
+            //     await Future.delayed(Duration(milliseconds: 10000));
+            //     showXaunfu();
+            //   },
+            //   scene: EnumGetScene.floating,
+            // );
           } else {
             showXaunfu();
           }
@@ -609,6 +627,7 @@ class DtController extends GetxController {
       return;
     }
 
+    JCShijianBaogao.quiz_guide_c(curAllDatiNum.value == 0 ? "new" : "other");
     curClickAnswer.value = click;
     curShowGesture.value = false;
     _curCurLeixingDatiLeftTimer?.cancel();
@@ -617,6 +636,7 @@ class DtController extends GetxController {
     // showDatiNextLevel(Get.context!, onBtn: (){}, onClose: (){});
 
     if (hasR) {
+      JCShijianBaogao.answer_true();
       double tmpcoin = ShuzhiShuju.quiz_prize();
       var sfTixiGuide = box.get(hkWithdrawGuide);
 
@@ -627,6 +647,7 @@ class DtController extends GetxController {
         onShowWithdrawGuide();
       }
     } else {
+      JCShijianBaogao.answer_wrong();
       _onNext(hasClickRight: false);
     }
   }
@@ -647,6 +668,7 @@ class DtController extends GetxController {
     MoneyCcc().show(
       context: Get.context!,
       money: money,
+      scene: EnumGetScene.quiz,
       onClaimDouble: (data) {
         _onNext(hasClickRight: true);
 

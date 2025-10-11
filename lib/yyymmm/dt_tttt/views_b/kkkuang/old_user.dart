@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_scale.dart';
+import 'package:quiz123/wangluo/shijian_baogao.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/old_user_check.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/old_user_spin_check.dart';
@@ -13,10 +14,12 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../jichu_kuang/jichu_kuang.dart';
 
 showOldUserDialog(BuildContext context, {required VoidCallback onBtn}) {
+  JCShijianBaogao.old_user_pop();
   return jcKuang(
     context: context,
     child: OldUser(
       onOpen: () {
+        JCShijianBaogao.old_user_pop_c();
         ZhuanpanOverlay().show(
           context: Get.context!,
           onSpin: (money) async{
@@ -39,6 +42,7 @@ showOldUserDialog(BuildContext context, {required VoidCallback onBtn}) {
         );
       },
       onClose: () async{
+        JCShijianBaogao.old_user_pop_c();
         await Future.delayed(Duration(milliseconds: 300),);
         showOldUserCheckDialog(context, onBtn: () {});
       },

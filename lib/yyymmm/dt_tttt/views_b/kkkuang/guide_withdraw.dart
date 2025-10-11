@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quiz123/view/animated_scale.dart';
+import 'package:quiz123/wangluo/shijian_baogao.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ddd.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
@@ -16,10 +17,12 @@ showGuideWithdrawDialog(
   required VoidCallback onBtn,
   required double money,
 }) {
+  JCShijianBaogao.quiz_guide_cash_pop();
   return jcKuang(
     context: context,
     child: GuideWithdraw(
       onOpen: () {
+        JCShijianBaogao.quiz_guide_cash_pop_c();
         MoneyDdd().show(
           context: context,
           money: money,

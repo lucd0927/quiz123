@@ -15,6 +15,8 @@ import 'package:shiny_striped_progress_bar/shiny_striped_progress_bar.dart';
 import '../../gen/assets.gen.dart';
 import '../../tools/package.dart';
 import '../../tools/rizhi.dart';
+import '../../tz/ios_local_tz.dart';
+import '../../wangluo/shijian_baogao.dart';
 import '../../yy_gj/jc_luy.dart';
 
 double scale = 2;
@@ -211,6 +213,9 @@ class _SplashProgressState extends State<SplashProgress> {
   }
 
   xiayigeyemina() {
+    JCShijianBaogao.session();
+    JCShijianBaogao.install();
+    JCShijianBaogao.launch_page(kv: JCTzIossssss.clickTz ? "push" : "icon");
     Get.offNamed(JcLuy.zhuye);
   }
 

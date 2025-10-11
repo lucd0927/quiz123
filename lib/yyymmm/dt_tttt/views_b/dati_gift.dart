@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
+import 'package:quiz123/ads/jc_common_config.dart';
 import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/tools/event_bus.dart';
 import 'package:quiz123/tools/rizhi.dart';
@@ -125,9 +126,19 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
     EnumLiwuEvent type = event.type;
     jcRizhi("====EnumLiwuEvent=type:$type=");
     if (type == EnumLiwuEvent.updateRight2) {
-      _onBox(liwu: EnumLiwuLeixing.box, canClick: true, index: 0);
+      _onBox(
+        liwu: EnumLiwuLeixing.box,
+        canClick: true,
+        index: 0,
+        hasGuide: true,
+      );
     } else if (type == EnumLiwuEvent.updateRight8) {
-      _onBox(liwu: EnumLiwuLeixing.wheel, canClick: true, index: 2);
+      _onBox(
+        liwu: EnumLiwuLeixing.wheel,
+        canClick: true,
+        index: 2,
+        hasGuide: true,
+      );
     } else if (type == EnumLiwuEvent.scroll) {
       int tmpRightNum = _innerRightCount;
       int index = (tmpRightNum / jumpCount).toInt();
@@ -630,6 +641,7 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
     required EnumLiwuLeixing liwu,
     required bool canClick,
     required int index,
+    bool hasGuide = false,
   }) {
     jcRizhi(
       "===canClick:$canClick==index:$index curAnswerCount:$curAnswerCount",
@@ -657,15 +669,12 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
             MoneyCcc().show(
               context: Get.context!,
               money: money,
-              onClaimDouble: (data) {
-
-              },
-              onClaim: (data) {
-
-              },
+              onClaimDouble: (data) {},
+              onClaim: (data) {},
+              scene: EnumGetScene.wheel,
             );
           },
-          zpTTT: EnumZhuanpanTTTT.gift_zp,
+          zpTTT: hasGuide ? EnumZhuanpanTTTT.guide : EnumZhuanpanTTTT.gift_zp,
         );
       } else {
         double money = ShuzhiShuju.box_prize();

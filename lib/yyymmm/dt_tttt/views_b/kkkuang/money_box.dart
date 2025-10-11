@@ -11,6 +11,7 @@ import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../view/animated_scale.dart';
+import '../../../../wangluo/shijian_baogao.dart';
 import '../../../../yy_gj/bbbb/kkkkuang/money_ccc.dart';
 import '../../../../yy_gj/bbbb/kkkkuang/money_ddd.dart';
 
@@ -23,6 +24,7 @@ class MoneyBox {
     required DynamicCallback onClaimDouble,
     required DynamicCallback onClaim,
   }) {
+    JCShijianBaogao.box_double_pop();
     _xuanfu = null;
     String adPosId = "";
     _xuanfu = OverlayEntry(
@@ -32,6 +34,7 @@ class MoneyBox {
           child: QianKuang(
             onBtn: (data)async {
               close();
+              JCShijianBaogao.box_double_pop_c();
               bool result = await JCAdsTools().showRewardAd(adPosId: adPosId);
               if(result){
                 MoneyDdd().show(
@@ -49,6 +52,7 @@ class MoneyBox {
             },
             onBtn2: (data) async{
               close();
+              JCShijianBaogao.box_double_pop_close();
               bool showI = ShuzhiShuju.intad_point();
               if(showI){
                 await JCAdsTools().showInterstitialAd(adPosId: adPosId);

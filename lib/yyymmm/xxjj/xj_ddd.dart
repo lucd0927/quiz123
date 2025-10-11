@@ -12,6 +12,7 @@ import 'package:tuple/tuple.dart';
 import '../../gen/assets.gen.dart';
 import '../../tools/rizhi.dart';
 import '../../view/jc_jindutiao.dart';
+import '../../wangluo/shijian_baogao.dart';
 
 class XjDdd extends StatefulWidget {
   const XjDdd({super.key});
@@ -21,6 +22,14 @@ class XjDdd extends StatefulWidget {
 }
 
 class _XjDddState extends State<XjDdd> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    JCShijianBaogao.cash_page();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {

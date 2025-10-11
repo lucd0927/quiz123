@@ -1,6 +1,7 @@
+import 'package:quiz123/tools/app_track_status.dart';
 import 'package:quiz123/wangluo/wangluo.dart';
 
-class ShijianBaogao {
+class JCShijianBaogao {
   static organic_to_buy() async {
     JCNet().maidian(eventName: "organic_to_buy");
   }
@@ -10,7 +11,9 @@ class ShijianBaogao {
   }
 
   static install() async {
-    JCNet().maidian(eventName: "install");
+    if (JCAppTrackStatus.launchNum() < 2) {
+      JCNet().maidian(eventName: "install");
+    }
   }
 
   // source_from: icon、push
@@ -27,7 +30,7 @@ class ShijianBaogao {
   }
 
   // cloak_user：【0】【1】，对应【黑名单用户】【自然量用户】
-  static cloak_suc(int type) async {
+  static cloak_suc(String type) async {
     JCNet().maidian(
       eventName: "cloak_suc",
       kkkkkey: "cloak_user",
@@ -40,7 +43,7 @@ class ShijianBaogao {
   }
 
   // adj_user:[0] [1]   【0】为A包用户、【1】为B包用户
-  static af_suc(int type) async {
+  static af_suc(String type) async {
     JCNet().maidian(
       eventName: "af_suc",
       kkkkkey: "adj_user",
@@ -209,6 +212,7 @@ class ShijianBaogao {
     JCNet().maidian(eventName: "cash_queue_pop");
   }
 
+
   // ad_number:1,2,...(记录用户看广告的次数，上不封顶）
   static cash_queue_po_c(String type) async {
     JCNet().maidian(
@@ -291,7 +295,7 @@ class ShijianBaogao {
     required String ad_code_id,
     required String ad_format,
     required String ad_platform,
-}) async {
+  }) async {
     JCNet().maidian(
       eventName: "ad_request",
       kkkkkey: "ad_code_id",
@@ -302,7 +306,6 @@ class ShijianBaogao {
       kkkkkeyVaaaaaa3: ad_platform,
     );
   }
-
 
   // "ad_code_id:广告位ID；
   // ad_format：广告位类型，rv/int；
@@ -353,6 +356,4 @@ class ShijianBaogao {
       kkkkkeyVaaaaaa3: ad_platform,
     );
   }
-
-
 }

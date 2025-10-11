@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/tools/rizhi.dart';
+import 'package:quiz123/wangluo/shijian_baogao.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
@@ -15,7 +16,15 @@ import '../../../gen/assets.gen.dart';
 import '../../../yy_gj/bbbb/vvvv/rotate.dart';
 import '../../xxjj/xj_ddd_controller.dart';
 
-enum EnumZhuanpanTTTT { old, gift_zp }
+enum EnumZhuanpanTTTT {
+  old("old"),
+  gift_zp("quiz"),
+  guide("guide");
+
+  const EnumZhuanpanTTTT(this.name);
+
+  final String name;
+}
 
 class ZhuanpanOverlay {
   OverlayEntry? _xuanfu;
@@ -26,6 +35,7 @@ class ZhuanpanOverlay {
     required EnumZhuanpanTTTT zpTTT,
     VoidCallback? onClose,
   }) {
+    JCShijianBaogao.wheel_pop(zpTTT.name);
     _xuanfu = null;
     _xuanfu = OverlayEntry(
       builder: (context) {
@@ -36,16 +46,19 @@ class ZhuanpanOverlay {
               close();
               onClose?.call();
             },
-            onSpin: (money) async{
+            onSpin: (money) async {
               close();
               bool showI = ShuzhiShuju.intad_point();
-              if(showI){
-                await JCAdsTools().showInterstitialAd(adPosId: JCAdsPosId.kwsbc_wheelspin_int);
+              if (showI) {
+                await JCAdsTools().showInterstitialAd(
+                  adPosId: JCAdsPosId.kwsbc_wheelspin_int,
+                );
               }
 
-
               onSpin(money);
-              XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.zppppWheeeel);
+              XjDddController.to.jiluTxStageRenwuJindu(
+                type: EnumXjjjjLx.zppppWheeeel,
+              );
             },
             zpTTT: zpTTT,
           ),
@@ -62,11 +75,17 @@ class ZhuanpanOverlay {
 }
 
 class Zhuanpan extends StatefulWidget {
-  const Zhuanpan({super.key, required this.onClose, required this.onSpin, required this.zpTTT});
+  const Zhuanpan({
+    super.key,
+    required this.onClose,
+    required this.onSpin,
+    required this.zpTTT,
+  });
 
   final VoidCallback onClose;
   final DynamicCallback onSpin;
   final EnumZhuanpanTTTT zpTTT;
+
   @override
   State<Zhuanpan> createState() => _ZhuanpanState();
 }
@@ -80,19 +99,16 @@ class _ZhuanpanState extends State<Zhuanpan> {
   bool sfDianji = true;
   ValueKey _zpVK = ValueKey("_ZhuanpanState");
 
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_){
-      if(widget.zpTTT == EnumZhuanpanTTTT.old){
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.zpTTT == EnumZhuanpanTTTT.old) {
         _onSpin();
       }
     });
-
-
   }
 
   @override
