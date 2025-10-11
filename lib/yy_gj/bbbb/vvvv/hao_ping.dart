@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:quiz123/jichu_kuang/jichu_kuang.dart';
 import 'package:quiz123/tools/ios_store.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/view/jc_text_border.dart';
+import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../gen/assets.gen.dart';
 
@@ -273,6 +275,7 @@ class _Give5HpState extends State<Give5Hp> {
               SizedBox(height: 14.h),
               InkWell(
                 onTap: () {
+                  star =5.0;
                   onGiveStar(context);
                 },
                 child: Stack(
@@ -315,9 +318,18 @@ class _Give5HpState extends State<Give5Hp> {
     );
   }
 
-  void onGiveStar(BuildContext context) {
+  onGiveStar(BuildContext context) async{
     Navigator.pop(context);
-    IosStore.to();
+    DtController.to.toAppStoreCommitReview();
+    if(star <= 4){
+      await Future.delayed(Duration(milliseconds: 300));
+      showFeedback(Get.context!);
+    }else{
+      DtController.to.addDatiCoin(5.0);
+      IosStore.to();
+    }
+
+
   }
 
   Widget _image(String asset) {

@@ -13,6 +13,7 @@ import 'package:quiz123/tools/package.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
+import 'package:quiz123/yy_gj/bbbb/vvvv/hao_ping.dart';
 import 'package:quiz123/yy_gj/shuju/daily_life.dart';
 import 'package:quiz123/yy_gj/shuju/data.dart';
 import 'package:quiz123/yy_gj/shuju/dati_model.dart';
@@ -484,8 +485,13 @@ class DtController extends GetxController {
   static const String hkTodayAnswerNum = "sljldsjglisdjfglisjdflkjsdf";
   static const String hkCommitGoodReview = "afhklsdjslgjlkdsfjkl";
 
+  toAppStoreCommitReview(){
+    box.put(hkCommitGoodReview, true);
+  }
+
   jumpToAppStore(){
     bool hasCommit = box.get(hkCommitGoodReview)??false;
+    jcRizhi("=====jumpToAppStore=hasCommit:$hasCommit=");
     if(hasCommit){
       return;
     }
@@ -495,8 +501,10 @@ class DtController extends GetxController {
       num = 0;
       box.put(hkTodayAnswerNum, num);
     }
-    if(num == 3 || num == 5){
+    jcRizhi("=====jumpToAppStore=hasCommit:$hasCommit=num：$num");
+    if(num == 3 || num == 5 ){
       // todo:
+      show5StarHp(Get.context!);
     }
     int value = num+1;
     box.put(hkTodayAnswerNum, value);
