@@ -418,7 +418,7 @@ class _DtPageState extends State<DtPage> {
                 top: 10.h,
                 // bottom: 0,
                 right: 0.w,
-                child: JcAnimatedScale(
+                child: JcDonghuaScale(
                   child: Image.asset(
                     Assets.ttt.gesture.path,
                     width: 70.w,

@@ -153,7 +153,7 @@ class GuideWidget extends StatelessWidget {
                 Positioned(
                   top: 10.h,
                   left: 0.w,
-                  child: JcAnimatedScale(
+                  child: JcDonghuaScale(
                     child: Image.asset(
                       Assets.ttt.gesture.path,
                       width: 95.w,

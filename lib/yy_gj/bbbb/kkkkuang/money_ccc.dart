@@ -156,7 +156,7 @@ class _QianKuangState extends State<QianKuang> {
                     ),
                   ),
                   Center(
-                    child: JcAnimatedScale(
+                    child: JcDonghuaScale(
                       child: Image.asset(
                         Assets.bbb.money.path,
                         width: 184.w,

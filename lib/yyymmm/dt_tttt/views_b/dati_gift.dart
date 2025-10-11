@@ -514,7 +514,7 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
       );
     }
     Widget gesture = IgnorePointer(
-      child: JcAnimatedScale(
+      child: JcDonghuaScale(
         minScale: 0.8,
         maxScale: 1,
         child: Image.asset(Assets.ttt.gesture.path, width: 70.w, height: 70.w),

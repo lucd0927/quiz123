@@ -23,6 +23,7 @@ import 'package:quiz123/yyymmm/dt_tttt/views_b/animated_float.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/guide_right2.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/old_user.dart';
 import 'package:quiz123/yyymmm/xxjj/xj_ddd_controller.dart';
+import 'package:quiz123/yyymmm/zhuye/views/nav_bottom.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../tools/event_bus.dart';
@@ -349,6 +350,9 @@ class DtController extends GetxController {
   __onNext({required bool showTryAgain}) {
     curClickAnswer.value = "";
     _timerChange();
+
+    jumpToAppStore();
+
   }
 
   subStar() {
@@ -477,6 +481,36 @@ class DtController extends GetxController {
   static const String hkWithdrawGuide = "ireoijflkdjlkdfjslkjg";
   static const String hkGuideRight2 = "oiweruuoiewruo";
   static const String hkGuideRight8 = "opidlknslkn";
+  static const String hkTodayAnswerNum = "sljldsjglisdjfglisjdflkjsdf";
+  static const String hkCommitGoodReview = "afhklsdjslgjlkdsfjkl";
+
+  jumpToAppStore(){
+    bool hasCommit = box.get(hkCommitGoodReview)??false;
+    if(hasCommit){
+      return;
+    }
+
+    int num = box.get(hkTodayAnswerNum)??0;
+    if(JCAppTrackStatus.isFirstLoginToday){
+      num = 0;
+      box.put(hkTodayAnswerNum, num);
+    }
+    if(num == 3 || num == 5){
+      // todo:
+    }
+    int value = num+1;
+    box.put(hkTodayAnswerNum, value);
+  }
+
+  bool todayAnswer3() {
+    int count = box.get(hkTodayAnswerNum) ?? 0;
+    return count == 3;
+  }
+
+  bool todayAnswer5() {
+    int count = box.get(hkTodayAnswerNum) ?? 0;
+    return count == 5;
+  }
 
   initB() {
     if (JCABluoji.isPackageB()) {
@@ -519,10 +553,10 @@ class DtController extends GetxController {
           _qXuanfu.close();
           var firstFloat = box.get(hkFirstFloating);
           bool result = true;
-          if(firstFloat == null){
+          if (firstFloat == null) {
             result = true;
             box.put(hkFirstFloating, 1);
-          }else{
+          } else {
             result = await JCAdsTools().showRewardAd(
               adPosId: JCAdsPosId.kwsbc_bubble_rv,
             );

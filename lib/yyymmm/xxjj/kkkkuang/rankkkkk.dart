@@ -221,7 +221,7 @@ class TixianPaimingWidget extends StatelessWidget {
                             Positioned(
                               top: 20.h,
                               right: 0.w,
-                              child: JcAnimatedScale(
+                              child: JcDonghuaScale(
                                 child: Image.asset(
                                   Assets.ttt.gesture.path,
                                   width: 95.w,

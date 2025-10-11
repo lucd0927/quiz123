@@ -162,7 +162,7 @@ class OldUser extends StatelessWidget {
                               right: 10.w,
                               top: 10.h,
                               child: IgnorePointer(
-                                child: JcAnimatedScale(
+                                child: JcDonghuaScale(
                                   child: Image.asset(
                                     Assets.ttt.gesture.path,
                                     width: 95.h,

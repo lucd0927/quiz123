@@ -17,6 +17,9 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/ad.png
   AssetGenImage get ad => const AssetGenImage('assets/bbb/ad.png');
 
+  /// File path: assets/bbb/adfailed.png
+  AssetGenImage get adfailed => const AssetGenImage('assets/bbb/adfailed.png');
+
   /// File path: assets/bbb/box_open.png
   AssetGenImage get boxOpen => const AssetGenImage('assets/bbb/box_open.png');
 
@@ -40,6 +43,9 @@ class $AssetsBbbGen {
 
   /// File path: assets/bbb/btn_spin.png
   AssetGenImage get btnSpin => const AssetGenImage('assets/bbb/btn_spin.png');
+
+  /// File path: assets/bbb/btn_try.png
+  AssetGenImage get btnTry => const AssetGenImage('assets/bbb/btn_try.png');
 
   /// File path: assets/bbb/close.png
   AssetGenImage get close => const AssetGenImage('assets/bbb/close.png');
@@ -70,6 +76,18 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/guide_tips.png
   AssetGenImage get guideTips =>
       const AssetGenImage('assets/bbb/guide_tips.png');
+
+  /// File path: assets/bbb/hp_5_f.png
+  AssetGenImage get hp5F => const AssetGenImage('assets/bbb/hp_5_f.png');
+
+  /// File path: assets/bbb/hp_5_un.png
+  AssetGenImage get hp5Un => const AssetGenImage('assets/bbb/hp_5_un.png');
+
+  /// File path: assets/bbb/hp_logo.png
+  AssetGenImage get hpLogo => const AssetGenImage('assets/bbb/hp_logo.png');
+
+  /// File path: assets/bbb/hp_ok.png
+  AssetGenImage get hpOk => const AssetGenImage('assets/bbb/hp_ok.png');
 
   /// File path: assets/bbb/main_cash.png
   AssetGenImage get mainCash => const AssetGenImage('assets/bbb/main_cash.png');
@@ -356,6 +374,7 @@ class $AssetsBbbGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     ad,
+    adfailed,
     boxOpen,
     btn,
     btnCashout,
@@ -363,6 +382,7 @@ class $AssetsBbbGen {
     btnIknow,
     btnSkipwait,
     btnSpin,
+    btnTry,
     close,
     congratulations,
     dailyAdd,
@@ -372,6 +392,10 @@ class $AssetsBbbGen {
     dailyTop,
     dailyZp,
     guideTips,
+    hp5F,
+    hp5Un,
+    hpLogo,
+    hpOk,
     mainCash,
     mainQuiz,
     mainSetting,

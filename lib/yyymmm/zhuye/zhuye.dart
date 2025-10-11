@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:quiz123/tools/package.dart';
+import 'package:quiz123/tz/ios_local_tz.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dati_ttt.dart';
 import 'package:quiz123/yyymmm/sz_page/sz_page.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
@@ -45,9 +48,11 @@ class _ZhuyeState extends State<Zhuye> {
         //
         // });
       }
-
-
     });
+
+    if(Platform.isIOS){
+      JCTzIossssss().init();
+    }
   }
 
   List<Widget> pages() {

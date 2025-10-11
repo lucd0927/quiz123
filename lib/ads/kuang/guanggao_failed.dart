@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../jichu_kuang/jichu_kuang.dart';
+import '../../gen/assets.gen.dart';
 
 showAdFailedDialog(
   BuildContext context, {
@@ -22,7 +23,11 @@ showAdFailedDialog(
 }
 
 class GuangGaoFailView extends StatefulWidget {
-  const GuangGaoFailView({super.key, required this.onClose, required this.onBtn});
+  const GuangGaoFailView({
+    super.key,
+    required this.onClose,
+    required this.onBtn,
+  });
 
   final VoidCallback onClose;
   final VoidCallback onBtn;
@@ -75,104 +80,80 @@ class _GuangGaoFailViewState extends State<GuangGaoFailView> {
     return Container(
       width: 340.w,
       height: 375.h,
-      decoration: BoxDecoration(
-        color: Color(0xff992D2E),
-        borderRadius: BorderRadius.circular(16.w),
-      ),
+
       child: Column(
         children: [
           SizedBox(height: 10.h),
-          Stack(
-            children: [
-              Container(
-                width: double.infinity,
-                // color: Colors.amber,
-                height: 30.h,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Ad loading failed",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xffffffff),
-                        fontSize: 16.sp,
-                      ),
+          Container(
+            width: double.infinity,
+            color: Colors.indigo.withValues(alpha: 0),
+            child: Stack(
+              children: [
+                Center(
+                  child: Container(
+                    width: 165.h,
+                    // color: Colors.amber,
+                    height: 171.h,
+                    child: Image.asset(
+                      Assets.bbb.adfailed.path,
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.fill,
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              Positioned(
-                top: 0,
-                right: 10.w,
-                bottom: 0,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                    widget.onClose();
-                  },
-                  child: Icon(Icons.close, size: 20.h, color: Colors.white),
+                Positioned(
+                  top: 0,
+                  right: 20.w,
+                  // bottom: 0,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                      widget.onClose();
+                    },
+                    child: Icon(
+                      Icons.close,
+                      size: 20.h,
+                      color: Colors.white.withValues(alpha: 0.7),
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          Expanded(
-            child: Center(
+          Padding(
+            padding: EdgeInsets.only(
+              top: 10.h,
+              bottom: 20.h,
+              left: 20.w,
+              right: 20.w,
+            ),
+            child: Text(
+              "Ads are loading, please try again later",
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 16.sp,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+                widget.onBtn();
+              },
               child: Container(
-                width: 320.w,
-                height: 310.h,
-                decoration: BoxDecoration(
-                  color: Color(0xffFBFBFF),
-                  borderRadius: BorderRadius.circular(16.w),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 50.h),
-                    Stack(
-                      children: [
-                        Icon(Icons.add_chart_outlined,size: 122.h,),
-                      ],
-                    ),
-
-                    Expanded(
-                      child: Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                            widget.onBtn();
-                          },
-                          child: Container(
-                            width: 250.w,
-                            height: 40.h,
-                            decoration: BoxDecoration(
-                              color: Color(0xffF85823),
-                              borderRadius: BorderRadius.circular(16.w),
-                              border: Border.all(
-                                color: Color(0xffD04A1E),
-                                width: 2.w,
-                              ),
-                            ),
-                            child: Stack(
-                              children: [
-                                Center(
-                                  child: Text(
-                                    "Try Again",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 22.sp,
-                                      // foreground: Color(0xffD0871E),
-                                      color: Color(0xffffffff),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                width: 190.h,
+                height: 65.h,
+                color: Colors.green.withValues(alpha: 0.0),
+                child: Center(
+                  child: Image.asset(
+                    Assets.bbb.btnTry.path,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
                 ),
               ),
             ),

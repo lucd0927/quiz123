@@ -31,10 +31,10 @@ class JCFbase {
   Future<void> chushi() async {
 
     try {
-      jcRizhi("==PBFireBbbbbb==initFirebase====");
+      jcRizhi("==JCFbase==initFirebase====");
       FirebaseApp firebaseApp = await Firebase.initializeApp();
       jcRizhi(
-        "==PBFireBbbbbb==initFirebase===firebaseApp:${firebaseApp.toString()}=",
+        "==JCFbase==initFirebase===firebaseApp:${firebaseApp.toString()}=",
       );
       FlutterError.onError =
           FirebaseCrashlytics.instance.recordFlutterFatalError;
@@ -47,22 +47,22 @@ class JCFbase {
       FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
         await FirebaseRemoteConfig.instance.activate();
         jcRizhi(
-          "===PBFireBbbbbb.instance.onConfigUpdated.listen=====$event=",
+          "===JCFbase.instance.onConfigUpdated.listen=====$event=",
         );
         // Use the new huanjing values here.
       });
       await _yuancheng();
     } catch (e) {
-      jcRizhi("==PBFireBbbbbb==initFirebase===error:$e");
+      jcRizhi("==JCFbase==initFirebase===error:$e");
     }
   }
 
   _yuancheng() async {
     try {
-      jcRizhi("==PBFireBbbbbb=====remote ensureInitialized");
+      jcRizhi("==JCFbase=====remote ensureInitialized");
       await FirebaseRemoteConfig.instance.ensureInitialized();
       // auto patch 99
-      jcRizhi("==PBFireBbbbbb=====remote fetchAndActivate");
+      jcRizhi("==JCFbase=====remote fetchAndActivate");
       await FirebaseRemoteConfig.instance.fetchAndActivate();
       // auto patch 393
       // AbaoUtils().runme();
@@ -70,6 +70,6 @@ class JCFbase {
     } catch (e) {
       // FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     }
-    jcRizhi("==PBFireBbbbbb=====remote end");
+    jcRizhi("==JCFbase=====remote end");
   }
 }

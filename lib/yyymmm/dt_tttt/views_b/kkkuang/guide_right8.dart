@@ -129,7 +129,7 @@ class GuideWidget extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 IgnorePointer(
-                  child: JcAnimatedScale(
+                  child: JcDonghuaScale(
                     maxScale: 1.5,
                     minScale: 1.0,
                     child: guideChild,
@@ -138,7 +138,7 @@ class GuideWidget extends StatelessWidget {
                 Positioned(
                   top: 10.h,
                   left: 0.w,
-                  child: JcAnimatedScale(
+                  child: JcDonghuaScale(
                     child: Image.asset(
                       Assets.ttt.gesture.path,
                       width: 95.w,

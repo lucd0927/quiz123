@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/tools/ios_store.dart';
 import 'package:quiz123/tools/num_floor.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_count.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ddd.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
+import 'package:quiz123/yy_gj/bbbb/vvvv/hao_ping.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/hhhero.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/guide_right2.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/kkkuang/new_user.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
+import '../../../ads/kuang/guanggao_failed.dart';
 import '../../../gen/assets.gen.dart';
 import '../../xxjj/kkkkuang/tx_taskkkk_wancheng.dart';
 import 'kkkuang/guide_right8.dart';
@@ -229,12 +232,25 @@ class _DatiTopState extends State<DatiTop> {
     // showOldUserDialog(context,onBtn: (){});
     // showTxTaskkkkWanchengDialog(context,onBtn: (){});
     // GuideRight8().show();
-    showNewUserDialog(
-      Get.context!,
-      onBtn: (v) {
-        jcRizhi("==tmpNewUser:save 1===");
+    // showNewUserDialog(
+    //   Get.context!,
+    //   onBtn: (v) {
+    //     jcRizhi("==tmpNewUser:save 1===");
+    //
+    //   },
+    // );
 
-      },
-    );
+    // IosStore.to();
+    show5StarHp(context);
+    // showFeedback(context);
+    // showAdFailedDialog(
+    //   Get.context!,
+    //   onFunc: () {
+    //
+    //   },
+    //   onFunc2: () {
+    //
+    //   },
+    // );
   }
 }
