@@ -497,10 +497,7 @@ class DtController extends GetxController {
     }
 
     int num = box.get(hkTodayAnswerNum)??0;
-    if(JCAppTrackStatus.isFirstLoginToday){
-      num = 0;
-      box.put(hkTodayAnswerNum, num);
-    }
+
     jcRizhi("=====jumpToAppStore=hasCommit:$hasCommit=num：$num");
     if(num == 3 || num == 5 ){
       // todo:
@@ -522,6 +519,9 @@ class DtController extends GetxController {
 
   initB() {
     if (JCABluoji.isPackageB()) {
+      if(JCAppTrackStatus.isFirstLoginToday){
+        box.put(hkTodayAnswerNum, 0);
+      }
       WidgetsBinding.instance.addPostFrameCallback((_) {
         var tmpNewUser = box.get(hkNewUser);
         jcRizhi("==tmpNewUser:$tmpNewUser===");
