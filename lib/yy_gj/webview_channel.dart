@@ -12,35 +12,35 @@ class WebviewChannelIos {
 
   static final WebviewChannelIos _instance = WebviewChannelIos._internal();
 
-  static const MethodChannel _rightAnsChannel = MethodChannel('com.quizspark.web123view');
+  static const MethodChannel _askfChhh = MethodChannel('com.quizspark.web123view');
 
   /// 此处代码需在main文件中调用（只调用一次）
   Future<void> nbaIosChan(BuildContext context) async {
     jcRizhi("====rightAnsConfigIOSChannel=");
-    _rightAnsChannel.setMethodCallHandler((MethodCall call) async {
+    _askfChhh.setMethodCallHandler((MethodCall call) async {
     });
   }
   /// 进入A面时就调用（只调用一次）
   Future<void> asdfAnsRAaaaVi1111() async {
     jcRizhi("==rightAnsRemoveView1====");
-    _rightAnsChannel.invokeMethod('sldkflkjadfkljd');
+    _askfChhh.invokeMethod('sldkflkjadfkljd');
   }
 
   /// 进入B面时就调用（只调用一次）
   Future<void> asfdasfLoadCcccc() async {
     jcRizhi("==rightAnsLoadConfig====");
-    _rightAnsChannel.invokeMethod('knzcvxnakjhfksdhgkjd');
+    _askfChhh.invokeMethod('knzcvxnakjhfksdhgkjd');
   }
 
   /// 进入B面时就调用（只调用一次)
   Future<void> lasflkafAnsGetaldsjlkasfBbbb() async {
     jcRizhi("==rightAnsGetOffer====");
-    _rightAnsChannel.invokeMethod('jaroiusnflksd');
+    _askfChhh.invokeMethod('jaroiusnflksd');
   }
 
   /// 点击项目右上角或其他地方打开web游戏调用（每次点击按钮调用）
   Future<void> alsdjklsfShowWvvvv() async {
     jcRizhi("==rightAnsShowWebview====");
-    _rightAnsChannel.invokeMethod('anskjdshgkjsdfhk');
+    _askfChhh.invokeMethod('anskjdshgkjsdfhk');
   }
 }

@@ -411,7 +411,7 @@ class XjDddController extends GetxController {
       "now_stage": "stage_1",
     };
 
-    box.put(key, testdddd);
+    box.put(key, sdfgdsgsdsdf);
     jcRizhi("initQuestionProcessWithMoneyLevel key:$key");
   }
 

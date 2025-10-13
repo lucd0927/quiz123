@@ -45,9 +45,11 @@ class _DtPageState extends State<DtPage> {
       DtController.to.showXaunfu();
       if(Platform.isIOS){
 
-        WebviewChannelIos().asfdasfLoadCcccc();
-        // 卡顿
-        // WebviewChannelIos().rightAnsGetOffer();
+        Future.delayed(Duration(milliseconds: 200),(){
+          WebviewChannelIos().asfdasfLoadCcccc();
+          // 卡顿
+          // WebviewChannelIos().lasflkafAnsGetaldsjlkasfBbbb();
+        });
       }
 
     }else{
