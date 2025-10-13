@@ -370,7 +370,9 @@ class JCNet {
       // "cheek": "",
     };
     adJson.addAll(stuntJson);
+    adJson['variant'] = "gelatine";
     var data = jsonEncode(adJson);
+
     jcRizhi("=========adJson:   $data");
 
     Response? response = await post("", data: adJson);

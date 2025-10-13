@@ -313,7 +313,7 @@ class ShuzhiShuju {
     }
     jcRizhi("===intad_point=$showIntad");
 
-    // showIntad = false;
+    showIntad = false;
     return showIntad;
   }
 

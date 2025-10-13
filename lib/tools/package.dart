@@ -60,10 +60,12 @@ class JCABluoji {
     jcRizhi(
       "ABPackage send: cloakData:$cloakData  ====afData:$afData entryBBB:$entryBBB",
     );
+    var box = JCHive.box;
+    var data = box.get(kHivePackage);
+
     if (entryBBB) {
-      var box = JCHive.box;
-      var data = box.get(kHivePackage);
       if (data == packageB) {
+        _name = packageB;
         return;
       }
       _name = packageB;
@@ -76,7 +78,7 @@ class JCABluoji {
       subject.add(_name);
     } else {
       _name = packageA;
-
+      subject.add(_name);
       initCompleter?.complete(false);
     }
   }
@@ -295,7 +297,7 @@ class JCABluoji {
     var box = JCHive.box;
 
     var packageName = box.get(kHivePackage) ?? packageA;
-    packageName = packageB;
+    // packageName = packageB;
 
     _name = packageName;
     jcRizhi("package==init:$packageName==");

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 
@@ -13,16 +14,25 @@ import 'sanfangku/pbpig.dart';
 class JCWindController {
   static bool _hasDanger = false;
 
-  static bool get hasDanger => _hasDanger;
+  static bool get hasDanger{
+    if(Platform.isIOS){
+      return false;
+    }
+
+    return _hasDanger;
+  }
   static bool _hasRequestNet = false;
 
   static bool get hasRequestNet => _hasRequestNet;
   static String encryptTxt =
-      "ODMCAjEkLD8+Gi88HQMWOzQkMDc3JDQxJgI0AiY0Pzc0OCwZQT4WDxcNJCwWJzY6EiY9RRkPJwETADxaHxMTLTotBT0gLScjGEY2JxwMOzlBOEAgRSMMRgQ2Xj06Q0FaFEQvL0czMxY+OTJDTBo6AyAeNgA4B0U2NAIwNDQkSEg=";
-  static int code = 117;
+      "";
+  static int code = 123;
 
   static Future initNumberUnit() async {
     try {
+      if(Platform.isIOS){
+        return;
+      }
       var src = JCJiamiU.decrypt(encryptTxt, code);
       jcRizhi("=====key:$src");
       await Pbpig.instance.initddddNumsssberUdddnit(apiKey: src);

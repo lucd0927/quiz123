@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/view/animated_scale.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ccc.dart';
@@ -169,7 +170,7 @@ class _NewUserState extends State<NewUser> {
     // setState(() {
     //   hasOpen = false;
     // });
-    Navigator.pop(context);
+    Navigator.pop(Get.context!);
     widget.onOpen();
 
   }

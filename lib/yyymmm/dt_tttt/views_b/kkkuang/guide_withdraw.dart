@@ -34,15 +34,19 @@ showGuideWithdrawDialog(
           },
         );
       },
+      onClose: (){
+        onBtn();
+      },
       money: money,
     ),
   );
 }
 
 class GuideWithdraw extends StatelessWidget {
-  const GuideWithdraw({super.key, required this.onOpen, required this.money});
+  const GuideWithdraw({super.key, required this.onOpen, required this.money, required this.onClose});
 
   final VoidCallback onOpen;
+  final VoidCallback onClose;
   final double money;
 
   @override
@@ -59,6 +63,7 @@ class GuideWithdraw extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
+                  onClose();
                 },
                 child: Image.asset(
                   Assets.bbb.close.path,
