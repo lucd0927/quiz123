@@ -500,6 +500,11 @@ class DtController extends GetxController {
   }
 
   jumpToAppStore() {
+
+    if(!JCABluoji.isPackageB()){
+      return;
+    }
+
     bool hasCommit = box.get(hkCommitGoodReview) ?? false;
     jcRizhi("=====jumpToAppStore=hasCommit:$hasCommit=");
     if (hasCommit) {
@@ -582,6 +587,11 @@ class DtController extends GetxController {
   QXuanfu _qXuanfu = QXuanfu();
 
   showXaunfu() {
+    if(!JCABluoji.isPackageB()){
+      return;
+    }
+
+
     _qXuanfu.close();
 
     double tmpXuanfu = ShuzhiShuju.float_prize();

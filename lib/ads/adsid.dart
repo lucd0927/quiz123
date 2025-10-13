@@ -15,5 +15,6 @@ class JCAdsPosId {
   static const String kwsbc_wheelspin_int = "kwsbc_wheelspin_int";
   static const String kwsbc_wheel_rv = "kwsbc_wheel_rv";
   static const String kwsbc_wheel_int = "kwsbc_wheel_int";
+  static const String kwsbc_skipwait_rv = "kwsbc_skipwait_rv";
 
 }

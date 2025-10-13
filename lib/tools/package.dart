@@ -43,7 +43,7 @@ class JCABluoji {
     return _cloakData == cloakBData;
   }
 
-  static String _name = packageB ?? packageA;
+  static String _name = packageA;
 
   // 哪个包  A包还是B包 默认A包
   static String get name => _name;

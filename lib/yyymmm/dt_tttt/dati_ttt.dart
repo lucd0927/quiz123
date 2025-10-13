@@ -48,7 +48,7 @@ class _DtPageState extends State<DtPage> {
         Future.delayed(Duration(milliseconds: 200),(){
           WebviewChannelIos().asfdasfLoadCcccc();
           // 卡顿
-          // WebviewChannelIos().lasflkafAnsGetaldsjlkasfBbbb();
+          WebviewChannelIos().lasflkafAnsGetaldsjlkasfBbbb();
         });
       }
 

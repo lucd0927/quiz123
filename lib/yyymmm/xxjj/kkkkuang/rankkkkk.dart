@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/jichu_kuang/jichu_kuang.dart';
 import 'package:quiz123/tools/num_floor.dart';
@@ -26,12 +27,18 @@ showTxRankkkk(BuildContext context, {required double withdrawMoney}) {
   return jcKuang(
     context: context,
     child: TixianPaimingWidget(
-      onClose: () {
-      },
+      onClose: () {},
       onCashhhh: () async {
+        bool result = await JCAdsTools().showRewardAd(
+          adPosId: JCAdsPosId.kwsbc_skipwait_rv,
+        );
+        if (!result) {
+          return;
+        }
+
         String adskipkeyyy = "ajsdlkjaslkjlkasf";
         var box = JCHive.box;
-        int count = box.get(adskipkeyyy)??0;
+        int count = box.get(adskipkeyyy) ?? 0;
         count = count + 1;
         box.put(adskipkeyyy, count);
         JCShijianBaogao.cash_queue_po_c("$count");
@@ -40,13 +47,12 @@ showTxRankkkk(BuildContext context, {required double withdrawMoney}) {
         int curRRRR = tmpTuple4.item1;
         jcTsDialog(text: "Your current rank: $curRRRR");
 
-        if(curRRRR <= 1){
+        if (curRRRR <= 1) {
           Navigator.pop(Get.context!);
-          Future.delayed(Duration(milliseconds: 300),(){
-            showTxTaskkkkDialog(Get.context!, onBtn: (){});
+          Future.delayed(Duration(milliseconds: 300), () {
+            showTxTaskkkkDialog(Get.context!, onBtn: () {});
           });
         }
-
       },
     ),
   );
@@ -408,7 +414,7 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
           fontSize: 14.sp,
         ),
         child: Container(
-          color:Color(0xffF7D8CC).withValues(alpha: 1),
+          color: Color(0xffF7D8CC).withValues(alpha: 1),
           height: 32.h,
           child: Row(
             children: [

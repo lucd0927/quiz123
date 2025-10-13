@@ -76,9 +76,9 @@ class _SzPageState extends State<SzPage> {
         ),
       ],
     );
-    if (widget.showBack) {
-      return child;
-    }
+    // if (widget.showBack) {
+    //   return child;
+    // }
     return Scaffold(body: child);
   }
 
