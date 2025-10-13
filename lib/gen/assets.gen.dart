@@ -73,6 +73,9 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/daily_zp.png
   AssetGenImage get dailyZp => const AssetGenImage('assets/bbb/daily_zp.png');
 
+  /// File path: assets/bbb/fun.png
+  AssetGenImage get fun => const AssetGenImage('assets/bbb/fun.png');
+
   /// File path: assets/bbb/guide_tips.png
   AssetGenImage get guideTips =>
       const AssetGenImage('assets/bbb/guide_tips.png');
@@ -177,6 +180,10 @@ class $AssetsBbbGen {
   /// File path: assets/bbb/quiz_money.png
   AssetGenImage get quizMoney =>
       const AssetGenImage('assets/bbb/quiz_money.png');
+
+  /// File path: assets/bbb/quiz_question_bg.png
+  AssetGenImage get quizQuestionBg =>
+      const AssetGenImage('assets/bbb/quiz_question_bg.png');
 
   /// File path: assets/bbb/quiz_tips.png
   AssetGenImage get quizTips => const AssetGenImage('assets/bbb/quiz_tips.png');
@@ -391,6 +398,7 @@ class $AssetsBbbGen {
     dailyCheck,
     dailyTop,
     dailyZp,
+    fun,
     guideTips,
     hp5F,
     hp5Un,
@@ -422,6 +430,7 @@ class $AssetsBbbGen {
     quizGiftWheel2,
     quizHelp,
     quizMoney,
+    quizQuestionBg,
     quizTips,
     quizXuanguang,
     tixianAmazon,

@@ -218,9 +218,9 @@ class _DatiTopState extends State<DatiTop> {
   }
 
   void onWithDraw() {
-    // ZhuyeController.to.resetIndex(
-    //   ZhuyeController.cashIndex,
-    // );
+    ZhuyeController.to.resetIndex(
+      ZhuyeController.cashIndexB,
+    );
 
     // MoneyDdd().show(context: context, money: 20, onClose: (d){});
     // showNewUserDialog(context, onBtn: (){});
@@ -241,7 +241,7 @@ class _DatiTopState extends State<DatiTop> {
     // );
 
     // IosStore.to();
-    show5StarHp(context);
+    // show5StarHp(context);
     // showFeedback(context);
     // showAdFailedDialog(
     //   Get.context!,

@@ -1,6 +1,0 @@
-framework module MatrixGuard {
-  umbrella header "MatrixGuard.h"
-  export *
-
-  module * { export * }
-}

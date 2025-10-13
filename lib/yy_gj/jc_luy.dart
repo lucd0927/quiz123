@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:quiz123/yyymmm/sz_page/sz_page.dart';
 
 import '../yyymmm/kaiping/kaiping.dart';
+import '../yyymmm/wwvv.dart';
 import '../yyymmm/zhuye/zhuye.dart';
 
 class JcLuy {
@@ -19,5 +20,6 @@ class JcLuy {
     GetPage(name: splash, page: () => JCKaiping()),
     GetPage(name: zhuye, page: () => Zhuye()),
     GetPage(name: shezhi, page: () => SzPage(showBack: true)),
+    GetPage(name: wwvv, page: () => JCWebviewPage()),
   ];
 }

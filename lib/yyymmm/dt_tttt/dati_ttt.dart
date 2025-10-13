@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_size_text_plus/auto_size_text_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +11,8 @@ import 'package:quiz123/view/jc_jindutiao.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/view/jc_text_jianbian_border.dart';
 import 'package:quiz123/wangluo/shijian_baogao.dart';
+import 'package:quiz123/yy_gj/jc_luy.dart';
+import 'package:quiz123/yy_gj/webview_channel.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/dati_gift.dart';
 import 'package:quiz123/yyymmm/dt_tttt/views_b/dati_top.dart';
@@ -35,9 +39,19 @@ class _DtPageState extends State<DtPage> {
 
   _floatViewB() {
     String type = "a";
+    WebviewChannelIos().nbaIosChan(context);
     if (JCABluoji.isPackageB()) {
       type = "b";
       DtController.to.showXaunfu();
+      if(Platform.isIOS){
+
+        WebviewChannelIos().asfdasfLoadCcccc();
+        // 卡顿
+        // WebviewChannelIos().rightAnsGetOffer();
+      }
+
+    }else{
+      WebviewChannelIos().asdfAnsRAaaaVi1111();
     }
     JCShijianBaogao.quiz_page(type);
   }
@@ -67,7 +81,7 @@ class _DtPageState extends State<DtPage> {
           // SizedBox(height: 10.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: datiView(),
+            child: datiViewB(),
           ),
           SizedBox(height: 5.h),
           Expanded(child: answerWidget()),
@@ -212,57 +226,74 @@ class _DtPageState extends State<DtPage> {
     if (JCABluoji.isPackageB()) {
       return Container(
         width: double.infinity,
-        height: 66.h,
+        height: 94.h,
         color: Colors.green.withValues(alpha: 0.0),
-        child: Column(
+        child: Stack(
           children: [
-            SizedBox(height: 12.h),
-            Center(
-              child: JCTextJianbianBorder(
-                text: DtController.to.curLeixing.value,
-                fontSize: 22.sp,
-                strokeColor: Color(0xff801E11),
-                fontWeight: FontWeight.w700,
-                showShadow: true,
-              ),
-            ),
-            SizedBox(height: 5.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 28.w),
-              child: Row(
-                children: [
-                  JCTextBorder(
-                    text: "Level ${DtController.to.curLevel()}",
-                    fontSize: 18.sp,
-
+            Column(
+              children: [
+                SizedBox(height: 22.h),
+                Center(
+                  child: JCTextJianbianBorder(
+                    text: DtController.to.curLeixing.value,
+                    fontSize: 22.sp,
+                    strokeColor: Color(0xff801E11),
                     fontWeight: FontWeight.w700,
+                    showShadow: true,
                   ),
-                  Spacer(),
-                  Text(
-                    "Question:",
-                    style: TextStyle(
-                      color: Color(0xff873400),
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
+                ),
+                SizedBox(height: 15.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
+                  child: Row(
+                    children: [
+                      JCTextBorder(
+                        text: "Level ${DtController.to.curLevel()}",
+                        fontSize: 18.sp,
+                        foreground: Color(0xff873400),
+                        fontWeight: FontWeight.w700,
+                      ),
+                      Spacer(),
+                      Text(
+                        "Question:",
+                        style: TextStyle(
+                          color: Color(0xff873400),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "${DtController.to.levelNum()}",
+                        style: TextStyle(
+                          color: Color(0xffCD00DB),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "/${DtController.upgradeNum}",
+                        style: TextStyle(
+                          color: Color(0xff873400),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "${DtController.to.levelNum()}",
-                    style: TextStyle(
-                      color: Color(0xffCD00DB),
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Text(
-                    "/${DtController.upgradeNum}",
-                    style: TextStyle(
-                      color: Color(0xff873400),
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
+                ),
+              ],
+            ),
+
+           if(JCABluoji.isPackageB()) Positioned(
+              top: 18.h,
+              right: 28.w,
+              child: GestureDetector(
+                onTap:onFun,
+                child: Image.asset(
+                  Assets.bbb.fun.path,
+                  width: 32.w,
+                  height: 32.w,
+                ),
               ),
             ),
           ],
@@ -286,6 +317,11 @@ class _DtPageState extends State<DtPage> {
     );
   }
 
+  void onFun() {
+      // Get.toNamed(JcLuy.wwvv);
+    WebviewChannelIos().alsdjklsfShowWvvvv();
+  }
+
   datiView() {
     return Column(
       children: [
@@ -296,6 +332,53 @@ class _DtPageState extends State<DtPage> {
             children: [
               Image.asset(
                 Assets.ttt.quizQuestionBg.path,
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              ),
+              Column(
+                children: [
+                  _titleView(),
+
+                  Container(
+                    width: double.infinity,
+                    height: 210.h,
+                    color: Colors.green.withValues(alpha: 0.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 32.w,
+                      vertical: 16.h,
+                    ),
+                    child: Center(
+                      child: AutoSizeText(
+                        "${DtController.to.datiModel.question}",
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          color: Color(0xff6A0000),
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  datiViewB() {
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 320.h,
+          child: Stack(
+            children: [
+              Image.asset(
+                Assets.bbb.quizQuestionBg.path,
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill,
