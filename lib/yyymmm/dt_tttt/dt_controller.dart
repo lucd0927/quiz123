@@ -546,11 +546,33 @@ class DtController extends GetxController {
             );
           });
         } else {
+          loadInter();
           if (JCAppTrackStatus.isFirstLoginToday) {
             showOldUserDialog(Get.context!, onBtn: () {});
           }
         }
       });
+    }
+  }
+
+  loadInter() async {
+    int load = 1;
+    while (true) {
+      await Future.delayed(Duration(seconds: 1));
+      bool hasFirstIntLoaded = JCAdsTools.hasFirstIntLoaded;
+      if (!hasFirstIntLoaded) {
+        JCAdsTools().showInterstitialAd(
+          adPosId: JCAdsPosId.kwsbc_launch,
+          ignored_hasDisplayAd: false,
+          canTryAgain: false,
+        );
+        break;
+      } else {
+        load = load + 1;
+        if (load >= 10) {
+          break;
+        }
+      }
     }
   }
 

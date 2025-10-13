@@ -13,6 +13,7 @@ import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../gen/assets.gen.dart';
+import '../../../view/animated_scale.dart';
 import '../../../yy_gj/bbbb/vvvv/rotate.dart';
 import '../../xxjj/xj_ddd_controller.dart';
 
@@ -158,12 +159,31 @@ class _ZhuanpanState extends State<Zhuanpan> {
 
                 zhuanpan(context),
                 SizedBox(height: 20.w),
-                JcBtn(
-                  text: "Spin",
-                  showVideo: false,
-                  onBtn: (d) {
-                    _onSpin();
-                  },
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    JcBtn(
+                      text: "Spin",
+                      showVideo: false,
+                      onBtn: (d) {
+                        _onSpin();
+                      },
+                    ),
+                    if (sfDianji)
+                      Positioned(
+                        right: 10.w,
+                        top: 10.h,
+                        child: IgnorePointer(
+                          child: JcDonghuaScale(
+                            child: Image.asset(
+                              Assets.ttt.gesture.path,
+                              width: 95.h,
+                              height: 87.h,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ],
             ),

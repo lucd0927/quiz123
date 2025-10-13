@@ -170,7 +170,7 @@ class _BuzuCardState extends State<BuzuCard> {
         ),
 
         child: Text(
-          "Submit",
+          "Earn More Cash",
           style: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.w700,

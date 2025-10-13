@@ -167,6 +167,40 @@ class ShuzhiShuju {
     return _inner_prize("box_prize", coin);
   }
 
+
+  static double box_prize_max() {
+    _onlineJson();
+    _lastdata ??= _bendiData;
+    double asdfjlkasjfdlas = Random().nextDouble().toAsFixedFloor(2);
+    double coin = DtController.to.curMoney.value;
+    String key = "box_prize";
+    var sfjdlajsfldkPrize = _lastdata!["$key"];
+    jcRizhi("=$key==quizPrizeData:${sfjdlajsfldkPrize is List}=");
+    if (sfjdlajsfldkPrize is List) {
+      double tmpCurMoney = coin;
+      for (var action in sfjdlajsfldkPrize) {
+        double asdfasfdafs0 = (action['first_number'] ?? 0.0) * 1.0;
+        double ghjfghjfgj1 = (action['end_number'] ?? 0.0) * 1.0;
+        // jcRizhi("=$key==tmpCurMoney:$tmpCurMoney=diyi:$asdfasfdafs0=dier:$ghjfghjfgj1=",);
+        if (asdfasfdafs0 <= tmpCurMoney && tmpCurMoney < ghjfghjfgj1) {
+          var prize = action['prize'];
+          if (prize is List && prize.isNotEmpty) {
+            double ertwert0 = (prize[0] ?? 0) * 1.0;
+            double tyuhfjhfj1 = ertwert0;
+            if (prize.length > 1) {
+              tyuhfjhfj1 = (prize[1] ?? 0) * 1.0;
+            }
+            asdfjlkasjfdlas = tyuhfjhfj1;
+          }
+          break;
+        }
+      }
+    }
+    jcRizhi("=$key===tmpPrize:$asdfjlkasjfdlas=");
+
+    return asdfjlkasjfdlas;
+  }
+
   static double check_prize() {
     double coin = DtController.to.curMoney.value;
     return _inner_prize("check_prize", coin);

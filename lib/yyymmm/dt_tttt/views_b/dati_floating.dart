@@ -35,9 +35,10 @@ class _DatiFloatingState extends State<DatiFloating>with JCEventBusMixin {
           widget.onMoney(money);
         },
         child: Container(
-          width: 62.w,
-          height: 62.w,
+          width: 70.w,
+          height: 70.w,
           child: Stack(
+            clipBehavior: Clip.none,
             children: [
               Image.asset(
                 Assets.bbb.quizFloatMoney.path,
@@ -45,6 +46,18 @@ class _DatiFloatingState extends State<DatiFloating>with JCEventBusMixin {
                 height: double.infinity,
                 fit: BoxFit.fill,
               ),
+
+              Positioned(
+                top: -10.h,
+                right: -10.w,
+                child: Image.asset(
+                  Assets.bbb.ad.path,
+                  width: 47.h*0.8,
+                  height: 37.h*0.8,
+                  fit: BoxFit.fill,
+                ),
+              ),
+
               Positioned(
                 left: 0,
                 right: 0,

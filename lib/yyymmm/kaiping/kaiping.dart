@@ -199,7 +199,7 @@ class _SplashProgressState extends State<SplashProgress> {
     jcRizhi(
       "==JCABluoji().init end==canGoToMain:$canGoToMain=result:$result=耗时:${time2 - time}",
     );
-    // await Future.delayed(Duration(milliseconds: 3000));
+    await Future.delayed(Duration(milliseconds: 3000));
     _timer.cancel();
     if (canGoToMain) {
       jcRizhi("==JCABluoji().init 等待进入main page====");

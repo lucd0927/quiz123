@@ -15,7 +15,10 @@ import flutter_local_notifications
       if #available(iOS 10.0, *) {
           UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
       }
-    
+      #if targetEnvironment(simulator)
+      print("Running on Simulator")
+      #else
+      print("Running on Real Device")
       if let flutterController = window?.rootViewController as? FlutterViewController {
           let methodChannel = FlutterMethodChannel(name: "com.quizspark.web123view", binaryMessenger:flutterController.binaryMessenger)
           let flutterView = flutterController.view;
@@ -41,7 +44,7 @@ import flutter_local_notifications
               
           }
       }
-      
+      #endif
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

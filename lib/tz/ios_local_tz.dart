@@ -171,7 +171,7 @@ class JCTzIossssss {
       dingshiTz,
       JCABluoji.isPackageB() ? baioti : "QuizSpark",
       JCABluoji.isPackageB() ? neirong : "Come join the quiz!",
-      Duration(minutes: 1),
+      Duration(minutes: 30),
     );
     var datiC = [
       "💰Someone just made a successful withdrawal on QuizMind！",
@@ -183,7 +183,7 @@ class JCTzIossssss {
       JCABluoji.isPackageB()
           ? datiC[Random.secure().nextInt(2)]
           : "Come join the quiz!",
-      Duration(minutes: 1),
+      Duration(minutes: 60),
     );
     _plugin.periodicallyShowWithDuration(
       checkTz,
@@ -191,7 +191,7 @@ class JCTzIossssss {
       JCABluoji.isPackageB()
           ? "Sign up now and start earning money effortlessly."
           : "Come join the quiz!",
-      Duration(minutes: 2),
+      Duration(minutes: 45),
     );
 
     _plugin.periodicallyShowWithDuration(
@@ -200,7 +200,7 @@ class JCTzIossssss {
       JCABluoji.isPackageB()
           ? "\$100 has arrived in your account"
           : "Come join the quiz!",
-      Duration(minutes: 2),
+      Duration(minutes: 30),
     );
   }
 

@@ -145,7 +145,7 @@ class GuideWithdraw extends StatelessWidget {
                           ),
                           SizedBox(width: 10.w),
                           Text(
-                            "\$${money}",
+                            "\$${DtController.to.curMoney.value.toStringAsFixed(2)}",
                             style: TextStyle(
                               fontSize: 19.sp,
                               color: Color(0xff36841C),

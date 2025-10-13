@@ -415,6 +415,11 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
 
   // giftCategory: 1 转盘，2 金蛋，3 可以打开的
 
+  double maxBoxValue(){
+    double v = ShuzhiShuju.box_prize_max();
+    return v;
+  }
+
   liwuBgView({
     required double width,
     bool hasLastOpened = false, // 是否是进度条已经打开的最后一个
@@ -564,7 +569,7 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
             ),
             if (canOpen && !clickGift && !hasOpened)
               Positioned(bottom: -12.h, right: -40.w, child: gesture),
-            if (canOpen && !hasOpened)
+            if (canOpen && !hasOpened && heziLeixing)
               Positioned(
                 right: -18.w,
                 top: -5.h,
@@ -594,7 +599,7 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
                               color: Colors.red.withValues(alpha: 0.0),
                               child: Center(
                                 child: Text(
-                                  "Max \$40",
+                                  "Max \$${maxBoxValue().toStringAsFixed(0)}",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 12.sp,

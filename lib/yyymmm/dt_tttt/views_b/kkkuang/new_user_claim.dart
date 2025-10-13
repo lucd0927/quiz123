@@ -115,10 +115,24 @@ class NewUserClaim extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 20.h,
+                  child: Center(
+                    child: JCTextBorder(
+                      text: "+\$${money}",
+                      fontSize: 38.sp,
+                      fontWeight: FontWeight.w800,
+                      fontColor: Color(0xff6BFF70),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
-
+          SizedBox(height: 10.h),
           JcBtn(
             text: "Double Claim",
             showVideo: true,
@@ -128,7 +142,7 @@ class NewUserClaim extends StatelessWidget {
             },
           ),
 
-          SizedBox(height: 10.w),
+          SizedBox(height: 10.h),
           InkWell(
             onTap: () {
               Navigator.pop(context);
