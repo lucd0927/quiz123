@@ -16,8 +16,8 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		F002DEEE2E9DDDD000C3E5C5 /* MatrixGuard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F002DEED2E9DDDD000C3E5C5 /* MatrixGuard.framework */; };
 		F02D30942E98FD9400FBA2CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F02D30932E98FD9400FBA2CA /* GoogleService-Info.plist */; };
-		F02D30A12E9A602400FBA2CA /* MatrixGuard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02D30A02E9A602400FBA2CA /* MatrixGuard.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,9 +66,9 @@
 		AFBFDCBC46A6DAA732A882F5 /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C565CEF73BE05F03BA816E93 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		E7E3E97BB8A55F9B3CC2BF12 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F002DEED2E9DDDD000C3E5C5 /* MatrixGuard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MatrixGuard.framework; sourceTree = "<group>"; };
 		F02D30932E98FD9400FBA2CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F02D30952E98FDC800FBA2CA /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
-		F02D30A02E9A602400FBA2CA /* MatrixGuard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MatrixGuard.framework; sourceTree = "<group>"; };
 		F7AEBEAF881B065D044BBDDA /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				831B09E62324C2373E50AA31 /* Pods_Runner.framework in Frameworks */,
-				F02D30A12E9A602400FBA2CA /* MatrixGuard.framework in Frameworks */,
+				F002DEEE2E9DDDD000C3E5C5 /* MatrixGuard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +146,7 @@
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 				F02D30932E98FD9400FBA2CA /* GoogleService-Info.plist */,
-				F02D30A02E9A602400FBA2CA /* MatrixGuard.framework */,
+				F002DEED2E9DDDD000C3E5C5 /* MatrixGuard.framework */,
 			);
 			path = Runner;
 			sourceTree = "<group>";

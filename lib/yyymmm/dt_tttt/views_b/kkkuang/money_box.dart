@@ -7,6 +7,7 @@ import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/jc_btn.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/rotate.dart';
+import 'package:quiz123/yy_gj/bbbb/vvvv/spine_box.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 
 import '../../../../gen/assets.gen.dart';
@@ -32,11 +33,13 @@ class MoneyBox {
         return Material(
           color: Colors.transparent,
           child: QianKuang(
-            onBtn: (data)async {
+            onBtn: (data) async {
               close();
               JCShijianBaogao.box_double_pop_c();
-              bool result = await JCAdsTools().showRewardAd(adPosId: JCAdsPosId.kwsbc_box_rv);
-              if(result){
+              bool result = await JCAdsTools().showRewardAd(
+                adPosId: JCAdsPosId.kwsbc_box_rv,
+              );
+              if (result) {
                 MoneyDdd().show(
                   context: Get.context!,
                   onClose: (data) {
@@ -45,17 +48,18 @@ class MoneyBox {
                   },
                   money: data,
                 );
-              }else{
+              } else {
                 onClaimDouble(data);
               }
-
             },
-            onBtn2: (data) async{
+            onBtn2: (data) async {
               close();
               JCShijianBaogao.box_double_pop_close();
               bool showI = ShuzhiShuju.intad_point();
-              if(showI){
-                await JCAdsTools().showInterstitialAd(adPosId: JCAdsPosId.kwsbc_box_int);
+              if (showI) {
+                await JCAdsTools().showInterstitialAd(
+                  adPosId: JCAdsPosId.kwsbc_box_int,
+                );
               }
 
               if (data is num && data > 0) {
@@ -77,7 +81,7 @@ class MoneyBox {
         );
       },
     );
-    Overlay.of(context).insert(_xuanfu!);
+    Overlay.of(Get.context!).insert(_xuanfu!);
   }
 
   void close() {
@@ -134,12 +138,20 @@ class _QianKuangState extends State<QianKuang> {
                       fit: BoxFit.fill,
                     ),
                   ),
+
+                  // Center(
+                  //   child: Image.asset(
+                  //     Assets.bbb.boxOpen.path,
+                  //     width: 241.w,
+                  //     height: 206.w,
+                  //     fit: BoxFit.contain,
+                  //   ),
+                  // ),
                   Center(
-                    child: Image.asset(
-                      Assets.bbb.boxOpen.path,
-                      width: 241.w,
-                      height: 206.w,
-                      fit: BoxFit.contain,
+                    child: Container(
+                      width: 300.w,
+                      height: 300.w,
+                      child: SpineBox(),
                     ),
                   ),
                   Positioned(

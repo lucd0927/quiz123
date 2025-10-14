@@ -1,0 +1,16 @@
+box.png
+size:1142,674
+filter:Linear,Linear
+pma:true
+box-close
+bounds:680,15,324,262
+box-open
+bounds:680,279,460,393
+offsets:5,6,482,412
+light
+bounds:2,2,670,676
+offsets:1,1,672,677
+rotate:90
+light2
+bounds:1006,153,110,124
+offsets:45,38,200,200

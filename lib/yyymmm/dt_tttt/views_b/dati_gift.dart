@@ -654,8 +654,8 @@ class _DatiGiftState extends State<DatiGift> with JCEventBusMixin {
       "===canClick:$canClick==index:$index curAnswerCount:$curAnswerCount",
     );
     bool sfDakai = hasIndexOpen(index);
-    // sfDakai = false;
-    // canClick = true;
+    sfDakai = false;
+    canClick = true;
 
     if (sfDakai) {
       String text = "Today’s treasure chest reward has been collected";

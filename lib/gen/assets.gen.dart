@@ -489,6 +489,9 @@ class $AssetsBbbGen {
 class $AssetsSssGen {
   const $AssetsSssGen();
 
+  /// Directory path: assets/sss/box
+  $AssetsSssBoxGen get box => const $AssetsSssBoxGen();
+
   /// Directory path: assets/sss/lihua
   $AssetsSssLihuaGen get lihua => const $AssetsSssLihuaGen();
 
@@ -838,6 +841,22 @@ class $AssetsTttGen {
     starStar,
     zhuyeBg,
   ];
+}
+
+class $AssetsSssBoxGen {
+  const $AssetsSssBoxGen();
+
+  /// File path: assets/sss/box/box.atlas
+  String get boxAtlas => 'assets/sss/box/box.atlas';
+
+  /// File path: assets/sss/box/box.png
+  AssetGenImage get boxPng => const AssetGenImage('assets/sss/box/box.png');
+
+  /// File path: assets/sss/box/skeleton.json
+  String get skeleton => 'assets/sss/box/skeleton.json';
+
+  /// List of all assets
+  List<dynamic> get values => [boxAtlas, boxPng, skeleton];
 }
 
 class $AssetsSssLihuaGen {

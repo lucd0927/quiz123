@@ -10,6 +10,7 @@ import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:quiz123/ads/index.dart';
 import 'package:quiz123/tools/app_track_status.dart';
+import 'package:quiz123/tools/package.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/wangluo/shijian_baogao.dart';
 import 'package:quiz123/wangluo/wangluo_jiancha.dart';
@@ -114,7 +115,7 @@ void lifecycleChange() {
         if (!JCAdsTools.hasDisplayAd()) {
           jcRizhi("===前后切换加载=GGCommonAds().showInterstitialAd==");
 
-          if (true) {
+          if (JCABluoji.isPackageB()) {
             JCAdsTools().showInterstitialAd(
               adPosId: JCAdsPosId.kwsbc_launch,
               ignored_hasDisplayAd: false,

@@ -223,7 +223,7 @@ class _DatiTopState extends State<DatiTop> {
     );
 
     // MoneyDdd().show(context: context, money: 20, onClose: (d){});
-    // showNewUserDialog(context, onBtn: (){});
+    // showNewUserDialog(context, onBtn: (v){});
     // showGuideWithdrawDialog(context, onBtn: (){},money: 20);
     // showNewUserClaimDialog(context, onBtn: (){},money: 100);
 

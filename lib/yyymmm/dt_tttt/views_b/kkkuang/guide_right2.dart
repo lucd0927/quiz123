@@ -61,7 +61,7 @@ class GuideRight2 {
         );
       },
     );
-    Overlay.of(guideContext!).insert(_overlayEntry!);
+    Overlay.of(Get.context!).insert(_overlayEntry!);
   }
 
   void close() {

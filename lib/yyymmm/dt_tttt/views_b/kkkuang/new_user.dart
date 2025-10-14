@@ -13,10 +13,18 @@ import '../../../../yy_gj/bbbb/vvvv/rotate.dart';
 import 'new_user_claim.dart';
 
 showNewUserDialog(BuildContext context, {required DynamicCallback onBtn}) {
+  NewUserOverlay().show(
+    context: Get.context!,
+    onBtn: (v) {
+      onBtn(v);
+    },
+  );
+  return;
+
   return jcKuang(
     context: context,
     child: NewUser(
-      onOpen: () async{
+      onOpen: () async {
         await Future.delayed(Duration(milliseconds: 300));
         double money = ShuzhiShuju.new_prize();
         showNewUserClaimDialog(
@@ -34,6 +42,41 @@ showNewUserDialog(BuildContext context, {required DynamicCallback onBtn}) {
   );
 }
 
+class NewUserOverlay {
+  OverlayEntry? _xuanfu;
+
+  void show({required BuildContext context, required DynamicCallback onBtn}) {
+    _xuanfu = null;
+    _xuanfu = OverlayEntry(
+      builder: (context) {
+        return NewUser(
+          onOpen: () async {
+            close();
+            await Future.delayed(Duration(milliseconds: 300));
+            double money = ShuzhiShuju.new_prize();
+            showNewUserClaimDialog(
+              Get.context!,
+              onBtn: (value) async {
+                onBtn(value);
+              },
+              onBtn2: (value) {
+                onBtn(value);
+              },
+              money: money,
+            );
+          },
+        );
+      },
+    );
+    Overlay.of(context).insert(_xuanfu!);
+  }
+
+  void close() {
+    _xuanfu?.remove();
+    _xuanfu = null;
+  }
+}
+
 class NewUser extends StatefulWidget {
   const NewUser({super.key, required this.onOpen});
 
@@ -48,9 +91,10 @@ class _NewUserState extends State<NewUser> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: ScreenUtil().screenWidth,
       height: ScreenUtil().screenHeight,
+      color: Colors.black.withValues(alpha: 0.8),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -162,7 +206,7 @@ class _NewUserState extends State<NewUser> {
     );
   }
 
-  onOpen() async{
+  onOpen() async {
     setState(() {
       hasOpen = true;
     });
@@ -170,8 +214,7 @@ class _NewUserState extends State<NewUser> {
     // setState(() {
     //   hasOpen = false;
     // });
-    Navigator.pop(Get.context!);
+    // Navigator.pop(Get.context!);
     widget.onOpen();
-
   }
 }

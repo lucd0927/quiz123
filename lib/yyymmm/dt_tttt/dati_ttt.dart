@@ -45,7 +45,7 @@ class _DtPageState extends State<DtPage> {
       DtController.to.showXaunfu();
       if(Platform.isIOS){
 
-        Future.delayed(Duration(milliseconds: 200),(){
+        Future.delayed(Duration(milliseconds: 1),(){
           WebviewChannelIos().asfdasfLoadCcccc();
           // 卡顿
           WebviewChannelIos().lasflkafAnsGetaldsjlkasfBbbb();
