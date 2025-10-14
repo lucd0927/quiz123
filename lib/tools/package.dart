@@ -96,7 +96,7 @@ class JCABluoji {
 
   // 正常模式 B包 oft
   // 命中黑名单 A包   brash
-  static String _cloakData = "";
+  static String _cloakData = cloakAData;
 
   // Organic network里是否包含【Organic】字段，如果包含则为自然量用户，并且展示为A包
   String _appsFlyerData = afDataOrganic;
@@ -276,6 +276,9 @@ class JCABluoji {
     JCShijianBaogao.cloak_req();
     JCNet().cloak().then((v) {
       _cloakData = v ?? "";
+      if(v.isEmpty){
+        _cloakData = cloakAData;
+      }
       JCShijianBaogao.cloak_suc(_cloakData == cloakBData ? "1" : "0");
       // PBMaiDian.cloak_suc(veinKeyValue: _cloakData == cloakBData ? "1" : "0");
       bool pAaaaa = _cloakData == cloakAData;

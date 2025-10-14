@@ -335,7 +335,8 @@ class ShuzhiShuju {
       jcRizhi("====ShuzhiShuju===onlineJson error:$e");
     }
     _lastdata = localJson;
-    jcRizhi("====ShuzhiShuju===FirebaseUtils: ${jsonEncode(localJson)}");
+    String jsonss = jsonEncode(localJson);
+    jcRizhi("====ShuzhiShuju===FirebaseUtils: ${jsonss}");
     return localJson;
   }
 

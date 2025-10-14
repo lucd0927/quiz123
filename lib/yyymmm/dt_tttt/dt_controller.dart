@@ -552,7 +552,7 @@ class DtController extends GetxController {
           });
         } else {
           jiazaiChaping();
-          if (JCAppTrackStatus.isFirstLoginToday || true) {
+          if (JCAppTrackStatus.isFirstLoginToday) {
             showOldUserDialog(Get.context!, onBtn: () {});
           }
         }
