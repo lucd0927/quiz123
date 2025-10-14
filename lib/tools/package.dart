@@ -278,7 +278,15 @@ class JCABluoji {
       _cloakData = v ?? "";
       JCShijianBaogao.cloak_suc(_cloakData == cloakBData ? "1" : "0");
       // PBMaiDian.cloak_suc(veinKeyValue: _cloakData == cloakBData ? "1" : "0");
-      jcRizhi("==_initB===_cloakData():$_cloakData==");
+      bool pAaaaa = _cloakData == cloakAData;
+      jcRizhi("==_initB===_cloakData():$_cloakData=cloakAData:$cloakAData=pAaaaa:$pAaaaa");
+      // pAaaaa = true;
+      if(pAaaaa){
+        _name = packageA;
+        box.put(kHivePackage, packageA);
+        subject.add(_name);
+      }
+
     });
 
     initCompleter?.complete(true);

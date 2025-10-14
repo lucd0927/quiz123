@@ -189,6 +189,16 @@ class OldUserSpinAndCheck extends StatelessWidget {
                               fit: BoxFit.fill,
                             ),
                             Positioned(
+                              top: -8.h,
+                              right: -10.w,
+                              child: Image.asset(
+                                Assets.bbb.ad.path,
+                                width: 47.h*0.8,
+                                height: 37.h*0.8,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            Positioned(
                               right: 10.w,
                               top: 10.h,
                               child: IgnorePointer(

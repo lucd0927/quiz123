@@ -551,8 +551,8 @@ class DtController extends GetxController {
             );
           });
         } else {
-          loadInter();
-          if (JCAppTrackStatus.isFirstLoginToday) {
+          jiazaiChaping();
+          if (JCAppTrackStatus.isFirstLoginToday || true) {
             showOldUserDialog(Get.context!, onBtn: () {});
           }
         }
@@ -560,7 +560,7 @@ class DtController extends GetxController {
     }
   }
 
-  loadInter() async {
+  jiazaiChaping() async {
     int load = 1;
     while (true) {
       await Future.delayed(Duration(seconds: 1));

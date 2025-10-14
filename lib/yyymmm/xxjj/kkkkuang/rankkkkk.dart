@@ -21,6 +21,7 @@ import '../../../view/animated_scale.dart';
 import '../../../view/jc_jindutiao.dart';
 import '../../../view/jc_text_border.dart';
 import '../../../wangluo/shijian_baogao.dart';
+import '../../../yy_gj/bbbb/shuzhishuju.dart';
 
 showTxRankkkk(BuildContext context, {required double withdrawMoney}) {
   JCShijianBaogao.cash_queue_pop();
@@ -381,7 +382,9 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
       int pre = Random().nextInt(9);
       int next = Random().nextInt(90) + 10;
       var item = {
-        kWithdraw: DtController.to.minWithdrawJine,
+        kWithdraw: next > 20
+            ? DtController.to.minWithdrawJine
+            : ShuzhiShuju.eq_range()[1],
         kWithdrawId: "$pre***$next",
       };
       tmp.add(item);

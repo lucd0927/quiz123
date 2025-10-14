@@ -48,6 +48,9 @@ class _ZhuyeState extends State<Zhuye> {
         // setState(() {
         //
         // });
+      }else{
+        ZhuyeController.to.resetIndex(ZhuyeController.quizIndex);
+        DtController.to.resetAllDataA();
       }
     });
 
