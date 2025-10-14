@@ -223,7 +223,11 @@ class _DatiTopState extends State<DatiTop> {
     ZhuyeController.to.resetIndex(
       ZhuyeController.cashIndexB,
     );
-
+    //
+    // JCShijianBaogao.cash_suc_pop();
+    // JCShijianBaogao.cash_suc_pop_c();
+    // JCShijianBaogao.inform_c("fixxx");
+    // JCShijianBaogao.inform_c("fixxx");
 
     // AppLovinMAX.showMediationDebugger();
     // DtController.to.addDatiCoin(800.0);

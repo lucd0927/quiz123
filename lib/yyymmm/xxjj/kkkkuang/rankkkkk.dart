@@ -46,7 +46,7 @@ showTxRankkkk(BuildContext context, {required double withdrawMoney}) {
         XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.rankkkkk);
         Tuple4 tmpTuple4 = XjDddController.to.stage_2();
         int curRRRR = tmpTuple4.item1;
-        jcTsDialog(text: "Your current rank: $curRRRR");
+        jcTsDialog(text: "Your current rank: $curRRRR", alignment: Alignment.center);
 
         if (curRRRR <= 1) {
           Navigator.pop(Get.context!);
@@ -348,7 +348,7 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
-                      fontSize: 14.sp,
+                      fontSize: 12.sp,
                     ),
                     child: Container(
                       color: Color(0xffF2ECDB),
@@ -356,7 +356,8 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
                       child: Row(
                         children: [
                           Expanded(child: Center(child: Text("User ID"))),
-                          Expanded(child: Center(child: Text("Account"))),
+                          Container(
+                              width: width,child: Center(child: Text("Account"))),
                           Expanded(child: Center(child: Text("Money"))),
                         ],
                       ),
@@ -372,20 +373,35 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
     );
   }
 
+  double width = 130.w;
+
   static const String kWithdraw = "cash_money";
   static const String kWithdrawId = "cash_id";
 
   List piahangshuju() {
     List tmp = [];
 
-    for (int i = 0; i < 50; i++) {
-      int pre = Random().nextInt(9);
+    for (int i = 0; i < 388; i++) {
+      int pre = Random().nextInt(9)+1;
       int next = Random().nextInt(90) + 10;
+      String _ddd = next.toString();
+      if(next > 70){
+        _ddd = "@gmail.com";
+      }else if(next > 50){
+        _ddd = "@outlook.com";
+      }else if(next > 50){
+        _ddd = "@yahoo.com";
+      }else if(next > 50){
+        _ddd = "@yahoo.fr";
+      }else if(next > 50){
+        _ddd = "@hotmail.com";
+      }
+
       var item = {
         kWithdraw: next > 20
             ? DtController.to.minWithdrawJine
             : ShuzhiShuju.eq_range()[1],
-        kWithdrawId: "$pre***$next",
+        kWithdrawId: "$pre***$_ddd",
       };
       tmp.add(item);
     }
@@ -414,7 +430,7 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
         style: TextStyle(
           fontWeight: FontWeight.w700,
           color: Color(0xffF70E0E),
-          fontSize: 14.sp,
+          fontSize: 12.sp,
         ),
         child: Container(
           color: Color(0xffF7D8CC).withValues(alpha: 1),
@@ -422,7 +438,8 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
           child: Row(
             children: [
               Expanded(child: Center(child: Text("0${ertsdgdf + 1}"))),
-              Expanded(child: Center(child: Text(Sdfgfsghdfh))),
+              Container(
+                  width: width,child: Center(child: Text(Sdfgfsghdfh))),
               Expanded(child: Center(child: Text("\$$hgfjgktrwtry"))),
             ],
           ),
@@ -430,15 +447,24 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
       );
     }
 
-    return Container(
-      color: ertsdgdf % 2 == 0 ? Color(0xffFBF7EE) : Color(0xffF2ECDB),
-      height: 32.h,
-      child: Row(
-        children: [
-          Expanded(child: Center(child: Text("0${ertsdgdf + 1}"))),
-          Expanded(child: Center(child: Text(Sdfgfsghdfh))),
-          Expanded(child: Center(child: Text("\$$hgfjgktrwtry"))),
-        ],
+    return DefaultTextStyle(
+      style: TextStyle(
+        // fontWeight: FontWeight.w700,
+        color: Color(0xff131010),
+        fontSize: 12.sp,
+      ),
+      child: Container(
+        color: ertsdgdf % 2 == 0 ? Color(0xffFBF7EE) : Color(0xffF2ECDB),
+        height: 32.h,
+        child: Row(
+          children: [
+            Expanded(child: Center(child: Text("0${ertsdgdf + 1}"))),
+            Container(
+                width: width,
+                child: Center(child: Text(Sdfgfsghdfh))),
+            Expanded(child: Center(child: Text("\$$hgfjgktrwtry"))),
+          ],
+        ),
       ),
     );
   }

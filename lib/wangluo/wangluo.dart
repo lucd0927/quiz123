@@ -183,11 +183,11 @@ class JCNet {
       "casanova": device_model,
       // "adlerian": type,
       // "venom": channel,
-      "recusant": "",
+      // "recusant": "",
       "oleander": app_version,
       "honeydew": "",
       // "willis": sdk_ver,
-      "calico": "myroom",
+      // "calico": "myroom",
       // "target": zone_offset
     };
 
@@ -198,7 +198,7 @@ class JCNet {
       // "bestowal": ab_test,
       "ariadne": idfa,
       "esmark": Platform.isAndroid ? "yang" : "prong",
-      "microbe": "",
+      // "microbe": "",
       // "deafen": uid,
       "bogging": os_version,
     };

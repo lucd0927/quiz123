@@ -11,6 +11,7 @@ import 'package:quiz123/view/jc_jindutiao.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/view/jc_text_jianbian_border.dart';
 import 'package:quiz123/wangluo/shijian_baogao.dart';
+import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/jc_luy.dart';
 import 'package:quiz123/yy_gj/webview_channel.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
@@ -321,6 +322,7 @@ class _DtPageState extends State<DtPage> {
 
   void onFun() {
       // Get.toNamed(JcLuy.wwvv);
+    JCShijianBaogao.home_page_h5();
     WebviewChannelIos().alsdjklsfShowWvvvv();
   }
 

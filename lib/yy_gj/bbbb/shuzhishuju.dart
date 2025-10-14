@@ -337,7 +337,7 @@ class ShuzhiShuju {
     }
     _lastdata = localJson;
     String jsonss = jsonEncode(localJson);
-    jcRizhi("====ShuzhiShuju===FirebaseUtils: ${jsonss}");
+    jcRizhi("====ShuzhiShuju===FirebaseUtils: ${_lastdata?['tixian_task']}");
     return localJson;
   }
 
