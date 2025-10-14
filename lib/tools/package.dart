@@ -163,7 +163,7 @@ class JCABluoji {
                 "==========initAppsFlyer====appsFlyerAdk.onInstallConversionDat= zirang",
               );
             }
-            JCShijianBaogao.af_suc(_appsFlyerData == afDataOrganic ?"0":"1");
+            JCShijianBaogao.af_suc(_appsFlyerData == afDataOrganic ? "0" : "1");
             // int mill = 12000;
             // Future.delayed(Duration(milliseconds: mill), () {
             //   // todo: 测试代码
@@ -188,7 +188,6 @@ class JCABluoji {
       afSdkkkkkk.startSDK(
         onSuccess: () {
           jcRizhi("=initAppsFlyer=appsFlyerAdk:onSuccess==初始化成功");
-
         },
         onError: (int errorCode, String errorMessage) {
           jcRizhi(
@@ -274,22 +273,23 @@ class JCABluoji {
     }
 
     JCShijianBaogao.cloak_req();
-    JCNet().cloak().then((v) {
+    await JCNet().cloak().then((v) {
       _cloakData = v ?? "";
-      if(v.isEmpty){
+      if (v.isEmpty) {
         _cloakData = cloakAData;
       }
       JCShijianBaogao.cloak_suc(_cloakData == cloakBData ? "1" : "0");
       // PBMaiDian.cloak_suc(veinKeyValue: _cloakData == cloakBData ? "1" : "0");
       bool pAaaaa = _cloakData == cloakAData;
-      jcRizhi("==_initB===_cloakData():$_cloakData=cloakAData:$cloakAData=pAaaaa:$pAaaaa");
+      jcRizhi(
+        "==_initB===_cloakData():$_cloakData=cloakAData:$cloakAData=pAaaaa:$pAaaaa",
+      );
       // pAaaaa = true;
-      if(pAaaaa){
+      if (pAaaaa) {
         _name = packageA;
         box.put(kHivePackage, packageA);
         subject.add(_name);
       }
-
     });
 
     initCompleter?.complete(true);

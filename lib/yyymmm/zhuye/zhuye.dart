@@ -45,9 +45,7 @@ class _ZhuyeState extends State<Zhuye> {
       if (packName == JCABluoji.packageB) {
         ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
         DtController.to.resetAllDataB();
-        // setState(() {
-        //
-        // });
+        setState(() {});
       }else{
         ZhuyeController.to.resetIndex(ZhuyeController.quizIndex);
         DtController.to.resetAllDataA();
