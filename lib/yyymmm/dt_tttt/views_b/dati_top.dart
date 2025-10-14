@@ -1,3 +1,4 @@
+import 'package:applovin_max/applovin_max.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,7 @@ import 'package:quiz123/tools/num_floor.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/view/animated_count.dart';
 import 'package:quiz123/view/jc_text_border.dart';
+import 'package:quiz123/wangluo/shijian_baogao.dart';
 import 'package:quiz123/yy_gj/bbbb/kkkkuang/money_ddd.dart';
 import 'package:quiz123/yy_gj/bbbb/shuzhishuju.dart';
 import 'package:quiz123/yy_gj/bbbb/vvvv/hao_ping.dart';
@@ -222,6 +224,11 @@ class _DatiTopState extends State<DatiTop> {
       ZhuyeController.cashIndexB,
     );
 
+
+    // AppLovinMAX.showMediationDebugger();
+    // DtController.to.addDatiCoin(800.0);
+    // int a = ShuzhiShuju.tixian_task()[0];
+    // jcRizhi("======aaa:$a");
     // MoneyDdd().show(context: context, money: 20, onClose: (d){});
     // showNewUserDialog(context, onBtn: (v){});
     // showGuideWithdrawDialog(context, onBtn: (){},money: 20);

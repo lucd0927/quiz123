@@ -211,6 +211,7 @@ class ShuzhiShuju {
     _onlineJson();
     _lastdata ??= _bendiData;
     var tmp_card_range = _lastdata!["tixian_task"];
+    jcRizhi("==tixian_task:$tmp_card_range===");
     if (tmp_card_range is List) {
       tmp_card_range.forEach((value) {
         int number = value['data'];
