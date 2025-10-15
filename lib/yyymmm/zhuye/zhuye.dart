@@ -46,6 +46,9 @@ class _ZhuyeState extends State<Zhuye> {
         ZhuyeController.to.resetIndex(ZhuyeController.quizIndexB);
         DtController.to.resetAllDataB();
         setState(() {});
+        if (Platform.isIOS) {
+          JCTzIossssss().init();
+        }
       }else{
         ZhuyeController.to.resetIndex(ZhuyeController.quizIndex);
         DtController.to.resetAllDataA();

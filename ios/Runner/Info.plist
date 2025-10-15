@@ -41,7 +41,7 @@
 		<true/>
 	</dict>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>This identifier will be used to deliver personalized ads to you.</string>
+	<string>To give you a better user experience, please enable access to tracking data. We only use your tracking data when necessary. Click "Allow"</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

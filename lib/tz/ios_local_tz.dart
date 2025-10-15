@@ -84,6 +84,9 @@ class JCTzIossssss {
   int huoquTzCount(SharedPreferences sp) => sp.getInt(local_ios) ?? 0;
 
   init() async {
+    if(!JCABluoji.isPackageB()){
+      return;
+    }
     await requestNotificationPermission();
 
     initNotificationCount();
@@ -162,6 +165,7 @@ class JCTzIossssss {
   String pushIcon = "tzimg1";
 
   Future<void> dingshi() async {
+
     jcRizhi("==initNotification=_repeatNotification=");
     int length = contents.length;
     int random = Random().nextInt(length);
