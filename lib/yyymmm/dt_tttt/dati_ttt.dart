@@ -50,6 +50,7 @@ class _DtPageState extends State<DtPage> {
           WebviewChannelIos().asfdasfLoadCcccc();
           // 卡顿
           WebviewChannelIos().lasflkafAnsGetaldsjlkasfBbbb();
+          WebviewChannelIos().idfaaaaaaa();
         });
       }
 

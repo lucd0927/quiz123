@@ -8,13 +8,16 @@ import 'package:quiz123/hive/jc_hive.dart';
 import 'package:quiz123/jichu_kuang/jichu_kuang.dart';
 import 'package:quiz123/tools/num_floor.dart';
 import 'package:quiz123/view/jc_ts_kuang.dart';
+import 'package:quiz123/yy_gj/event_bus.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/xxjj/kkkkuang/tx_taskkkk.dart';
 import 'package:quiz123/yyymmm/xxjj/xj_ddd_controller.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 import 'package:tuple/tuple.dart';
 
 import '../../../gen/assets.gen.dart';
+import '../../../tools/event_bus.dart';
 import '../../../tools/rizhi.dart';
 import '../../../view/animated_count.dart';
 import '../../../view/animated_scale.dart';
@@ -25,6 +28,10 @@ import '../../../yy_gj/bbbb/shuzhishuju.dart';
 
 showTxRankkkk(BuildContext context, {required double withdrawMoney}) {
   JCShijianBaogao.cash_queue_pop();
+
+  RankkkkkOverlay().show(context, withdrawMoney: withdrawMoney);
+  return ;
+
   return jcKuang(
     context: context,
     child: TixianPaimingWidget(
@@ -46,7 +53,10 @@ showTxRankkkk(BuildContext context, {required double withdrawMoney}) {
         XjDddController.to.jiluTxStageRenwuJindu(type: EnumXjjjjLx.rankkkkk);
         Tuple4 tmpTuple4 = XjDddController.to.stage_2();
         int curRRRR = tmpTuple4.item1;
-        jcTsDialog(text: "Your current rank: $curRRRR", alignment: Alignment.center);
+        jcTsDialog(
+          text: "Your current rank: $curRRRR",
+          alignment: Alignment.center,
+        );
 
         if (curRRRR <= 1) {
           Navigator.pop(Get.context!);
@@ -57,6 +67,69 @@ showTxRankkkk(BuildContext context, {required double withdrawMoney}) {
       },
     ),
   );
+}
+
+class RankkkkkOverlay {
+  OverlayEntry? _xuanfu;
+
+  void show(BuildContext context, {required double withdrawMoney}) {
+    _xuanfu = null;
+    String adPosId = "";
+    _xuanfu = OverlayEntry(
+      builder: (context) {
+        return Material(
+          color: Colors.transparent,
+          child: Container(
+            color: Colors.black.withValues(alpha: 0.8),
+            child: TixianPaimingWidget(
+              onClose: () {
+                close();
+              },
+              onCashhhh: () async {
+                bool result = await JCAdsTools().showRewardAd(
+                  adPosId: JCAdsPosId.kwsbc_skipwait_rv,
+                );
+                if (!result) {
+                  return;
+                }
+
+
+
+                String adskipkeyyy = "ajsdlkjaslkjlkasf";
+                var box = JCHive.box;
+                int count = box.get(adskipkeyyy) ?? 0;
+                count = count + 1;
+                box.put(adskipkeyyy, count);
+                JCShijianBaogao.cash_queue_po_c("$count");
+                XjDddController.to.jiluTxStageRenwuJindu(
+                  type: EnumXjjjjLx.rankkkkk,
+                );
+                Tuple4 tmpTuple4 = XjDddController.to.stage_2();
+                int curRRRR = tmpTuple4.item1;
+                jcTsDialog(
+                  text: "Your current rank: $curRRRR",
+                  alignment: Alignment.center,
+                );
+                JCEventBus.fire(RankkkkEvent());
+                if (curRRRR <= 1) {
+                  close();
+                  Future.delayed(Duration(milliseconds: 300), () {
+                    showTxTaskkkkDialog(Get.context!, onBtn: () {});
+                  });
+                }
+              },
+            ),
+          ),
+        );
+      },
+    );
+    Overlay.of(Get.context!).insert(_xuanfu!);
+  }
+
+  void close() {
+    _xuanfu?.remove();
+    _xuanfu = null;
+  }
 }
 
 class TixianPaimingWidget extends StatelessWidget {
@@ -84,7 +157,7 @@ class TixianPaimingWidget extends StatelessWidget {
               Spacer(),
               GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
                   onClose();
                 },
                 child: Image.asset(
@@ -267,16 +340,41 @@ class PbPaihangWidget extends StatefulWidget {
   State<PbPaihangWidget> createState() => _PbPaihangWidgetState();
 }
 
-class _PbPaihangWidgetState extends State<PbPaihangWidget> {
+class _PbPaihangWidgetState extends State<PbPaihangWidget>  with JCEventBusMixin {
   int curPaiming = 99;
   List paidata = [];
+  late AutoScrollController controller;
+  final scrollDirection = Axis.vertical;
+
+  Future scrollToCounter() async {
+    Tuple4 tmpTuple4 = XjDddController.to.stage_2();
+    int index = tmpTuple4.item1;
+    await controller.scrollToIndex(
+      index,
+      preferPosition: AutoScrollPosition.middle,
+    );
+    controller.highlight(index);
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    controller = AutoScrollController(
+      viewportBoundaryGetter: () =>
+          Rect.fromLTRB(0, 0, 0, MediaQuery.of(context).padding.bottom),
+      axis: scrollDirection,
+    );
     paidata = piahangshuju();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+      scrollToCounter();
+    });
+
+    register<RankkkkEvent>((v){
+      scrollToCounter();
+    });
   }
 
   @override
@@ -340,32 +438,38 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
           borderRadius: BorderRadius.circular(16.w),
           child: SizedBox(
             height: 220.h,
-            child: SingleChildScrollView(
-              // padding: EdgeInsets.symmetric(horizontal: 48.w),
-              child: Column(
-                children: [
-                  DefaultTextStyle(
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                      fontSize: 12.sp,
-                    ),
-                    child: Container(
-                      color: Color(0xffF2ECDB),
-                      height: 32.h,
-                      child: Row(
-                        children: [
-                          Expanded(child: Center(child: Text("User ID"))),
-                          Container(
-                              width: width,child: Center(child: Text("Account"))),
-                          Expanded(child: Center(child: Text("Money"))),
-                        ],
-                      ),
+            child: Column(
+              children: [
+                DefaultTextStyle(
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                    fontSize: 12.sp,
+                  ),
+                  child: Container(
+                    color: Color(0xffF2ECDB),
+                    height: 32.h,
+                    child: Row(
+                      children: [
+                        Expanded(child: Center(child: Text("User ID"))),
+                        Container(
+                          width: width,
+                          child: Center(child: Text("Account")),
+                        ),
+                        Expanded(child: Center(child: Text("Money"))),
+                      ],
                     ),
                   ),
-                  ...itemsWidget,
-                ],
-              ),
+                ),
+                Expanded(
+                  child: ListView(
+                    // padding: EdgeInsets.symmetric(horizontal: 48.w),
+                    scrollDirection: scrollDirection,
+                    controller: controller,
+                    children: itemsWidget,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -382,18 +486,18 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
     List tmp = [];
 
     for (int i = 0; i < 388; i++) {
-      int pre = Random().nextInt(9)+1;
+      int pre = Random().nextInt(9) + 1;
       int next = Random().nextInt(90) + 10;
       String _ddd = next.toString();
-      if(next > 70){
+      if (next > 80) {
         _ddd = "@gmail.com";
-      }else if(next > 50){
+      } else if (next > 70) {
         _ddd = "@outlook.com";
-      }else if(next > 50){
+      } else if (next > 60) {
         _ddd = "@yahoo.com";
-      }else if(next > 50){
+      } else if (next > 50) {
         _ddd = "@yahoo.fr";
-      }else if(next > 50){
+      } else if (next > 40) {
         _ddd = "@hotmail.com";
       }
 
@@ -415,6 +519,7 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
     required double hgfjgktrwtry,
   }) {
     int tmpRank = ertsdgdf + 1;
+    Widget child;
     if (tmpRank == curPaiming) {
       Sdfgfsghdfh = "12****54";
       String cardId = XjDddController.to.sssavePayCardId;
@@ -426,7 +531,7 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
       }
 
       hgfjgktrwtry = XjDddController.to.sssavemoney;
-      return DefaultTextStyle(
+      child = DefaultTextStyle(
         style: TextStyle(
           fontWeight: FontWeight.w700,
           color: Color(0xffF70E0E),
@@ -439,7 +544,31 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
             children: [
               Expanded(child: Center(child: Text("0${ertsdgdf + 1}"))),
               Container(
-                  width: width,child: Center(child: Text(Sdfgfsghdfh))),
+                width: width,
+                child: Center(child: Text(Sdfgfsghdfh)),
+              ),
+              Expanded(child: Center(child: Text("\$$hgfjgktrwtry"))),
+            ],
+          ),
+        ),
+      );
+    } else {
+      child = DefaultTextStyle(
+        style: TextStyle(
+          // fontWeight: FontWeight.w700,
+          color: Color(0xff131010),
+          fontSize: 12.sp,
+        ),
+        child: Container(
+          color: ertsdgdf % 2 == 0 ? Color(0xffFBF7EE) : Color(0xffF2ECDB),
+          height: 32.h,
+          child: Row(
+            children: [
+              Expanded(child: Center(child: Text("0${ertsdgdf + 1}"))),
+              Container(
+                width: width,
+                child: Center(child: Text(Sdfgfsghdfh)),
+              ),
               Expanded(child: Center(child: Text("\$$hgfjgktrwtry"))),
             ],
           ),
@@ -447,25 +576,12 @@ class _PbPaihangWidgetState extends State<PbPaihangWidget> {
       );
     }
 
-    return DefaultTextStyle(
-      style: TextStyle(
-        // fontWeight: FontWeight.w700,
-        color: Color(0xff131010),
-        fontSize: 12.sp,
-      ),
-      child: Container(
-        color: ertsdgdf % 2 == 0 ? Color(0xffFBF7EE) : Color(0xffF2ECDB),
-        height: 32.h,
-        child: Row(
-          children: [
-            Expanded(child: Center(child: Text("0${ertsdgdf + 1}"))),
-            Container(
-                width: width,
-                child: Center(child: Text(Sdfgfsghdfh))),
-            Expanded(child: Center(child: Text("\$$hgfjgktrwtry"))),
-          ],
-        ),
-      ),
+    return AutoScrollTag(
+      key: ValueKey(ertsdgdf),
+      controller: controller,
+      index: ertsdgdf,
+      highlightColor: Colors.black.withOpacity(0.1),
+      child: child,
     );
   }
 }

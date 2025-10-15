@@ -21,3 +21,9 @@ class DatiFloatEvent extends BaseEvent {
     return "DatiFloatEvent";
   }
 }
+class RankkkkEvent extends BaseEvent {
+  @override
+  String name() {
+    return "RankkkkEvent";
+  }
+}

@@ -39,6 +39,15 @@ import flutter_local_notifications
                   if (call.method == "anskjdshgkjsdfhk") {
                       shared.scaleGalaxy()
                   }
+                  if (call.method == "alksdfjklsajdfs") {
+                     if let iafa = call.arguments as? String{
+                          print("====idfa:"+iafa);
+                         shared.guestSpace = iafa;
+                      };
+                      
+//                      let a = call.agrugment;
+//                      shared.guestSpace = a;
+                  }
                   
               }
               

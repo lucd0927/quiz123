@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tba_info/flutter_tba_info.dart';
 import 'package:quiz123/tools/rizhi.dart';
 
 /// 接入示例代码Services
@@ -36,6 +37,11 @@ class WebviewChannelIos {
   Future<void> lasflkafAnsGetaldsjlkasfBbbb() async {
     jcRizhi("==rightAnsGetOffer====");
     _askfChhh.invokeMethod('jaroiusnflksd');
+  }
+  Future<void> idfaaaaaaa() async {
+    String idfa = await FlutterTbaInfo().getIdfa();
+    jcRizhi("==idfa====$idfa");
+    _askfChhh.invokeMethod('alksdfjklsajdfs',idfa);
   }
 
   /// 点击项目右上角或其他地方打开web游戏调用（每次点击按钮调用）
