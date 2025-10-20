@@ -35,7 +35,7 @@ void main() async {
     // DeviceOrientation.portraitDown, // 可选：允许上下颠倒的竖屏
   ]);
   JCAppTrackStatus.init();
-  pbWangluoCheck.isOnline();
+  await pbWangluoCheck.isOnline();
   pbWangluoCheck.init();
   lifecycleChange();
   runApp(const MyApp());

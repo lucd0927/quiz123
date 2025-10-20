@@ -39,6 +39,8 @@ class GGMaxAdsNew {
         '=======GGMaxAdsNew initMax Initialized in ${configuration.toString()}',
       );
 
+
+
       // Optionally preload widget-based banner and MREC ads. Comment out if preloading isn't needed.
       initInterstitialAds(interstitialListener);
       initializeRewardedAd(rewardedAdListener);

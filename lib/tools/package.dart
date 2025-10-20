@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 
 import 'package:flutter_tba_info/flutter_tba_info.dart';
+import 'package:quiz123/ads/guiyin/adjust.dart';
 import 'package:quiz123/ads/jc_ads_tools.dart';
 import 'package:quiz123/wangluo/shijian_baogao.dart';
 
@@ -204,6 +205,45 @@ class JCABluoji {
     }
   }
 
+  guiyin(String source) {
+    if (isPackageB()) {
+      return;
+    }
+
+    String qs_af_on123 = JCFbase().by(name: "qs_af_on");
+    jcRizhi("=guiyin=pre==qs_af_on123:$qs_af_on123==");
+    if (qs_af_on123.isEmpty) {
+      qs_af_on123 = "1";
+    }
+    jcRizhi("=guiyin=now==qs_af_on123:$qs_af_on123==");
+
+    if (qs_af_on123 == "1") {
+      jcRizhi("=guiyin=now==qm_af_on: 返回1 需要判断af的数据");
+      if (source.isNotEmpty && !source.contains("Organic")) {
+        jcRizhi("==========guiyin= mailiang");
+        // 4.满足买量用户的判断条件
+        _appsFlyerData = source;
+        JCShijianBaogao.organic_to_buy();
+      } else {
+        _appsFlyerData = afDataOrganic;
+        jcRizhi("==========guiyin= zirang");
+      }
+      JCShijianBaogao.adjust_suc(_appsFlyerData == afDataOrganic ? "0" : "1");
+      // int mill = 12000;
+      // Future.delayed(Duration(milliseconds: mill), () {
+      //   // todo: 测试代码
+      //   _appsFlyerData = "ddd";
+      //   sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
+      // });
+
+      sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
+    } else if (qs_af_on123 == "0") {
+      jcRizhi("==now==qm_af_on: 返回0 不需要判断af的数据");
+      _appsFlyerData = "qs_af_on123";
+      sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
+    }
+  }
+
   static AppsflyerSdk? _appsFlyerAdk;
 
   static AppsflyerSdk? appsflyerSdk() => _appsFlyerAdk;
@@ -249,7 +289,7 @@ class JCABluoji {
     jcRizhi("===_initA==:cloak();==");
     var cloakData = await cloakAAAA();
     jcRizhi("===_initA=_initAppsFlyer=cloakData:$cloakData==");
-    await _chushiAF();
+    await _chushiGuiyin();
   }
 
   Future _initB() async {
@@ -263,7 +303,7 @@ class JCABluoji {
     var box = JCHive.box;
     box.put(kHivePackage, packageB);
     jcRizhi("==_initB===_initAppsFlyer() start==");
-    await _chushiAF();
+    await _chushiGuiyin();
     int time3 = DateTime.now().millisecondsSinceEpoch;
     jcRizhi("==_initB===_initAppsFlyer() end===耗时:${time3 - time2}");
     if (Platform.isAndroid) {
@@ -273,23 +313,22 @@ class JCABluoji {
     }
 
     JCShijianBaogao.cloak_req();
-    await JCNet().cloak().then((v) {
-      _cloakData = v ?? "";
-      if (v.isEmpty) {
-        _cloakData = cloakAData;
-      }
+    JCNet().cloak().then((v) {
+      // _cloakData = v ?? "";
+      // if (v.isEmpty) {
+      //   _cloakData = cloakAData;
+      // }
       JCShijianBaogao.cloak_suc(_cloakData == cloakBData ? "1" : "0");
-      // PBMaiDian.cloak_suc(veinKeyValue: _cloakData == cloakBData ? "1" : "0");
-      bool pAaaaa = _cloakData == cloakAData;
-      jcRizhi(
-        "==_initB===_cloakData():$_cloakData=cloakAData:$cloakAData=pAaaaa:$pAaaaa",
-      );
-      // pAaaaa = true;
-      if (pAaaaa) {
-        _name = packageA;
-        box.put(kHivePackage, packageA);
-        subject.add(_name);
-      }
+      // bool pAaaaa = _cloakData == cloakAData;
+      // jcRizhi(
+      //   "==_initB===_cloakData():$_cloakData=cloakAData:$cloakAData=pAaaaa:$pAaaaa",
+      // );
+      // // pAaaaa = true;
+      // if (pAaaaa) {
+      //   _name = packageA;
+      //   box.put(kHivePackage, packageA);
+      //   subject.add(_name);
+      // }
     });
 
     initCompleter?.complete(true);
@@ -322,16 +361,25 @@ class JCABluoji {
   }
 
   bool sfChushiAF = false;
-
-  _chushiAF() async {
+  bool hasAdjust = true;
+  _chushiGuiyin() async {
     if (!sfChushiAF) {
       sfChushiAF = true;
-      String asdkasfdhka = "XM9ua37BHJWBKq8jTYg74a";
-      if (asdkasfdhka.isEmpty) {
-        return;
-      }
+      
 
-      await initAppsFlyer(afDevKey: asdkasfdhka, appId: "6752763599");
+      if(hasAdjust){
+        JcAdjust().initSdk("JcAdjust");
+      }else{
+        String asdkasfdhka = "XM9ua37BHJWBKq8jTYg74a";
+        if (asdkasfdhka.isEmpty) {
+          return;
+        }
+
+        await initAppsFlyer(afDevKey: asdkasfdhka, appId: "6752763599");
+      }
+      
+      
+
     }
   }
 }

@@ -17,6 +17,9 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		F002DEEE2E9DDDD000C3E5C5 /* MatrixGuard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F002DEED2E9DDDD000C3E5C5 /* MatrixGuard.framework */; };
+		F012089C2EA60E800099B48E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F012089B2EA60E800099B48E /* AdSupport.framework */; };
+		F012089E2EA60E9F0099B48E /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F012089D2EA60E9F0099B48E /* AppTrackingTransparency.framework */; };
+		F01208A02EA60EB40099B48E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F012089F2EA60EB40099B48E /* StoreKit.framework */; };
 		F02D30942E98FD9400FBA2CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F02D30932E98FD9400FBA2CA /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +70,9 @@
 		C565CEF73BE05F03BA816E93 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		E7E3E97BB8A55F9B3CC2BF12 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F002DEED2E9DDDD000C3E5C5 /* MatrixGuard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MatrixGuard.framework; sourceTree = "<group>"; };
+		F012089B2EA60E800099B48E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		F012089D2EA60E9F0099B48E /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		F012089F2EA60EB40099B48E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F02D30932E98FD9400FBA2CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F02D30952E98FDC800FBA2CA /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		F7AEBEAF881B065D044BBDDA /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
@@ -85,6 +91,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01208A02EA60EB40099B48E /* StoreKit.framework in Frameworks */,
+				F012089E2EA60E9F0099B48E /* AppTrackingTransparency.framework in Frameworks */,
+				F012089C2EA60E800099B48E /* AdSupport.framework in Frameworks */,
 				831B09E62324C2373E50AA31 /* Pods_Runner.framework in Frameworks */,
 				F002DEEE2E9DDDD000C3E5C5 /* MatrixGuard.framework in Frameworks */,
 			);
@@ -154,6 +163,9 @@
 		CC2690FB3DDF14C92A4686AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F012089F2EA60EB40099B48E /* StoreKit.framework */,
+				F012089D2EA60E9F0099B48E /* AppTrackingTransparency.framework */,
+				F012089B2EA60E800099B48E /* AdSupport.framework */,
 				E7E3E97BB8A55F9B3CC2BF12 /* Pods_Runner.framework */,
 				2572FA3514B142B729CCF9B7 /* Pods_RunnerTests.framework */,
 			);

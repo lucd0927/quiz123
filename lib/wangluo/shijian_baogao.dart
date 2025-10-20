@@ -357,4 +357,36 @@ class JCShijianBaogao {
       kkkkkeyVaaaaaa3: ad_platform,
     );
   }
+
+
+  static adjust_req() async {
+    JCNet().maidian(eventName: "adjust_req");
+  }
+
+
+  static adjust_suc(String type) async {
+    JCNet().maidian(
+      eventName: "adjust_suc",
+      kkkkkey: "adj_user",
+      kkkkkeyVaaaaaa: "$type",
+    );
+  }
+  // 0 失败 1 成功
+  static en_user(String type) async {
+    JCNet().maidian(
+      eventName: "en_user",
+      kkkkkey: "adj_user",
+      kkkkkeyVaaaaaa: "$type",
+    );
+  }  static ad_privacypop_fail(String type) async {
+    JCNet().maidian(
+      eventName: "ad_privacypop_fail",
+      kkkkkey: "reason",
+      kkkkkeyVaaaaaa: "$type",
+    );
+  }
+
+  static ad_privacypop_suc() async {
+    JCNet().maidian(eventName: "ad_privacypop_suc");
+  }
 }

@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.61"
+  adjust_sdk:
+    dependency: "direct main"
+    description:
+      name: adjust_sdk
+      sha256: "213faa84c7ddd1e34de52bc2a4b90c5b0ac331ea6e8b1c0edee94eb27360ef36"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.4"
   analyzer:
     dependency: transitive
     description:
@@ -568,6 +576,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
+  google_mobile_ads:
+    dependency: "direct main"
+    description:
+      name: google_mobile_ads
+      sha256: a4f59019f2c32769fb6c60ed8aa321e9c21a36297e2c4f23452b3e779a3e7a26
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.0"
   graphs:
     dependency: transitive
     description:
@@ -632,6 +648,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.2"
+  iabtcf_consent_info:
+    dependency: "direct main"
+    description:
+      name: iabtcf_consent_info
+      sha256: "9a6e24dc1577140368ff53c2ad705e926c2a19f0128261741717b23aebfaa0ca"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.0+1"
+  iabtcf_consent_info_platform_interface:
+    dependency: transitive
+    description:
+      name: iabtcf_consent_info_platform_interface
+      sha256: "394ea3742bc4edc42ce6350ea038ab43e7f43841c47eeba1c735a46651e679bb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
+  iabtcf_consent_info_web:
+    dependency: transitive
+    description:
+      name: iabtcf_consent_info_web
+      sha256: d088d4726fcfb78adbf36ce74f993aefbdd8d8fe4082b2160217304cce34780a
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   iconsax_flutter:
     dependency: transitive
     description:
