@@ -13,7 +13,8 @@ import '../../../../yy_gj/bbbb/vvvv/rotate.dart';
 import 'new_user_claim.dart';
 
 showNewUserDialog(BuildContext context, {required DynamicCallback onBtn}) {
-  NewUserOverlay().show(
+  NewUserOverlay.close();
+  NewUserOverlay.show(
     context: Get.context!,
     onBtn: (v) {
       onBtn(v);
@@ -43,9 +44,9 @@ showNewUserDialog(BuildContext context, {required DynamicCallback onBtn}) {
 }
 
 class NewUserOverlay {
-  OverlayEntry? _xuanfu;
+  static OverlayEntry? _xuanfu;
 
-  void show({required BuildContext context, required DynamicCallback onBtn}) {
+  static void show({required BuildContext context, required DynamicCallback onBtn}) {
     _xuanfu = null;
     _xuanfu = OverlayEntry(
       builder: (context) {
@@ -71,7 +72,7 @@ class NewUserOverlay {
     Overlay.of(context).insert(_xuanfu!);
   }
 
-  void close() {
+  static void close() {
     _xuanfu?.remove();
     _xuanfu = null;
   }

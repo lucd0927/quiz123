@@ -2,6 +2,8 @@ import 'package:adjust_sdk/adjust.dart';
 import 'package:adjust_sdk/adjust_ad_revenue.dart';
 import 'package:adjust_sdk/adjust_attribution.dart';
 import 'package:adjust_sdk/adjust_config.dart';
+import 'package:adjust_sdk/adjust_event_failure.dart';
+import 'package:adjust_sdk/adjust_event_success.dart';
 import 'package:flutter_tba_info/flutter_tba_info.dart';
 import 'package:quiz123/tools/package.dart';
 import 'package:quiz123/tools/rizhi.dart';
@@ -49,7 +51,6 @@ class JcAdjust {
       String? network = attributionChangedData.network;
       if (network != null) {
         jcRizhi('$TGA: Network: ${network}');
-
         if (network != JCABluoji.afDataOrganic) {
           JCABluoji().guiyin(network);
         }
@@ -73,7 +74,7 @@ class JcAdjust {
       }
     };
 
-    Adjust.initSdk(config);
+    Adjust.initSdk(config,);
     JCShijianBaogao.adjust_req();
   }
 

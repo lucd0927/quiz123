@@ -41,7 +41,7 @@ class JCABluoji {
   // static String _clockData = "";
 
   static bool showH5() {
-    jcRizhi("===showH5=_cloakData:$_cloakData==cloakBData:$cloakBData");
+    jcRizhi("$TGA====showH5=_cloakData:$_cloakData==cloakBData:$cloakBData");
     return _cloakData == cloakBData;
   }
 
@@ -55,14 +55,16 @@ class JCABluoji {
     return packageB == name;
   }
 
+  var box = JCHive.box;
+
   void sendAAA({required String cloakData, required String afData}) {
     bool entryBBB =
         cloakData == cloakBData &&
         (afData.isNotEmpty && afData != afDataOrganic);
     jcRizhi(
-      "ABPackage send: cloakData:$cloakData  ====afData:$afData entryBBB:$entryBBB",
+      "$TGA=ABPackage send: cloakData:$cloakData  ====afData:$afData entryBBB:$entryBBB",
     );
-    var box = JCHive.box;
+
     var data = box.get(kHivePackage);
 
     if (entryBBB) {
@@ -91,7 +93,7 @@ class JCABluoji {
 
   void listen(void Function(String packageName) update) {
     subject.stream.listen((String a) {
-      jcRizhi("ABPackage: update packageName:$a");
+      jcRizhi("$TGA=ABPackage: update packageName:$a");
       update(a);
     });
   }
@@ -102,28 +104,31 @@ class JCABluoji {
 
   // Organic network里是否包含【Organic】字段，如果包含则为自然量用户，并且展示为A包
   String _appsFlyerData = afDataOrganic;
+
+  static const String kkGuiyin = "sdfjkdshfgkj";
+
   guiyin(String source) {
     if (isPackageB()) {
       return;
     }
-
+    box.put(kkGuiyin, source);
     String qs_af_on123 = JCFbase().by(name: "qs_af_on");
-    jcRizhi("=guiyin=pre==qs_af_on123:$qs_af_on123==");
+    jcRizhi("$TGA==guiyin=pre==qs_af_on123:$qs_af_on123==");
     if (qs_af_on123.isEmpty) {
       qs_af_on123 = "1";
     }
-    jcRizhi("=guiyin=now==qs_af_on123:$qs_af_on123==");
+    jcRizhi("$TGA==guiyin=now==qs_af_on123:$qs_af_on123==");
 
     if (qs_af_on123 == "1") {
-      jcRizhi("=guiyin=now==qm_af_on: 返回1 需要判断af的数据");
+      jcRizhi("$TGA==guiyin=now==qm_af_on: 返回1 需要判断af的数据");
       if (source.isNotEmpty && source != afDataOrganic) {
-        jcRizhi("==========guiyin= mailiang");
+        jcRizhi("$TGA===========guiyin= mailiang");
         // 4.满足买量用户的判断条件
         _appsFlyerData = source;
         JCShijianBaogao.organic_to_buy();
       } else {
         _appsFlyerData = afDataOrganic;
-        jcRizhi("==========guiyin= zirang");
+        jcRizhi("$TGA===========guiyin= zirang");
       }
       JCShijianBaogao.adjust_suc(_appsFlyerData == afDataOrganic ? "0" : "1");
       // int mill = 12000;
@@ -135,138 +140,22 @@ class JCABluoji {
 
       sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
     } else if (qs_af_on123 == "0") {
-      jcRizhi("==now==qm_af_on: 返回0 不需要判断af的数据");
+      jcRizhi("$TGA===now==qm_af_on: 返回0 不需要判断af的数据");
       _appsFlyerData = "qs_af_on123";
       sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
     }
   }
 
-  // // afDevKey : asdasf1122xadfaf
-  // // appId: 56564645
-  // initAppsFlyer({required String afDevKey, required String appId}) async {
-  //   jcRizhi("======initAppsFlyer====afDevKey:$afDevKey appId:$appId");
-  //   try {
-  //     AppsFlyerOptions dfghdfhdfhg = AppsFlyerOptions(
-  //       afDevKey: afDevKey ?? "应用识别码，产品经理提供",
-  //       appId: appId ?? "iOS平台的 app id （10位数字），产品经理提供，Android应用不传",
-  //       showDebug: true,
-  //       manualStart: true,
-  //       timeToWaitForATTUserAuthorization: 10,
-  //     );
-  //     AppsflyerSdk afSdkkkkkk = AppsflyerSdk(dfghdfhdfhg);
-  //     JCShijianBaogao.af_req();
-  //     await afSdkkkkkk.initSdk(
-  //       registerOnDeepLinkingCallback: true,
-  //       registerOnAppOpenAttributionCallback: true,
-  //       registerConversionDataCallback: true,
-  //     );
-  //     // auto patch 552
-  //     var distinct_id = await FlutterTbaInfo.instance.getDistinctId();
-  //
-  //     // 1.AppsFlyer与TBA平台对接
-  //     afSdkkkkkk.setCustomerUserId(distinct_id);
-  //     // 2.应用归因监听
-  //
-  //     afSdkkkkkk.onInstallConversionData((p) {
-  //       jcRizhi(
-  //         "==========initAppsFlyer=进入回调===appsFlyerAdk.onInstallConversionData= data$p",
-  //       );
-  //       if (isPackageB()) {
-  //         return;
-  //       }
-  //
-  //       final payload = p["payload"];
-  //       if (payload is Map && payload.containsKey("af_status")) {
-  //         String af_status = payload["af_status"] ?? "";
-  //         guiyin(af_status);
-  //         return;
-  //       }
-  //       //
-  //       // String qs_af_on123 = JCFbase().by(name: "qs_af_on");
-  //       // jcRizhi("==pre==qs_af_on123:$qs_af_on123==");
-  //       // if (qs_af_on123.isEmpty) {
-  //       //   qs_af_on123 = "1";
-  //       // }
-  //       // jcRizhi("==now==qs_af_on123:$qs_af_on123==");
-  //       //
-  //       // if (qs_af_on123 == "1" && p is Map) {
-  //       //   jcRizhi("==now==qm_af_on: 返回1 需要判断af的数据");
-  //       //   final payload = p["payload"];
-  //       //   if (payload is Map && payload.containsKey("af_status")) {
-  //       //     String af_status = payload["af_status"] ?? "";
-  //       //     // 3.买量用户判断
-  //       //
-  //       //     if (af_status.isNotEmpty && !af_status.contains("Organic")) {
-  //       //       jcRizhi(
-  //       //         "==========initAppsFlyer====appsFlyerAdk.onInstallConversionDat= mailiang",
-  //       //       );
-  //       //       // 4.满足买量用户的判断条件
-  //       //       _appsFlyerData = af_status;
-  //       //       JCShijianBaogao.organic_to_buy();
-  //       //     } else {
-  //       //       // auto patch 567
-  //       //       _appsFlyerData = afDataOrganic;
-  //       //       jcRizhi(
-  //       //         "==========initAppsFlyer====appsFlyerAdk.onInstallConversionDat= zirang",
-  //       //       );
-  //       //     }
-  //       //     JCShijianBaogao.af_suc(_appsFlyerData == afDataOrganic ? "0" : "1");
-  //       //     // int mill = 12000;
-  //       //     // Future.delayed(Duration(milliseconds: mill), () {
-  //       //     //   // todo: 测试代码
-  //       //     //   _appsFlyerData = "ddd";
-  //       //     //   sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
-  //       //     // });
-  //       //
-  //       //     sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
-  //       //   } else {
-  //       //     // todo: 测试代码
-  //       //     // _appsFlyerData = "ddd";
-  //       //     jcRizhi("==now==qm_af_on: 返回1 但是结构不含有af_status字段");
-  //       //     sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
-  //       //   }
-  //       // } else if (qs_af_on123 == "0") {
-  //       //   jcRizhi("==now==qm_af_on: 返回0 不需要判断af的数据");
-  //       //   _appsFlyerData = "qs_af_on123";
-  //       //   sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
-  //       // }
-  //     });
-  //
-  //     afSdkkkkkk.startSDK(
-  //       onSuccess: () {
-  //         jcRizhi("=initAppsFlyer=appsFlyerAdk:onSuccess==初始化成功");
-  //       },
-  //       onError: (int errorCode, String errorMessage) {
-  //         jcRizhi(
-  //           "=initAppsFlyer=appsFlyerAdk:onError=初始化失败=errorCode:$errorCode errorMessage:$errorMessage ",
-  //         );
-  //       },
-  //     );
-  //     _appsFlyerAdk = afSdkkkkkk;
-  //     jcRizhi(
-  //       "======initAppsFlyer===appsFlyerAdk.onInstallConversion==_appsFlyerAdk:$_appsFlyerAdk",
-  //     );
-  //   } catch (e) {
-  //     jcRizhi("======initAppsFlyer===error:$e");
-  //   }
-  // }
-
-
-  // static AppsflyerSdk? _appsFlyerAdk;
-  //
-  // static AppsflyerSdk? appsflyerSdk() => _appsFlyerAdk;
-
-  // 仅针对A包
   cloakAAAA({int count = 0}) async {
     JCShijianBaogao.cloak_req();
     var data = await JCNet().cloak();
-    jcRizhi("package cloak data:$data count:$count");
+    jcRizhi("$TGA=package cloak data:$data count:$count");
 
     _cloakData = data;
     JCShijianBaogao.cloak_suc(_cloakData == cloakBData ? "1" : "0");
     // 正常模式 B包
     if (data == cloakBData) {
-      jcRizhi("====正常模式 B包==data:$data=");
+      jcRizhi("$TGA=====正常模式 B包==data:$data=");
       _cloakData = data;
       // send(cloakData: _cloakData, afData: _appsFlyerData);
       // await _initAppsFlyer();
@@ -274,7 +163,7 @@ class JCABluoji {
     }
     // 命中黑名单 A包
     else if (data == cloakAData) {
-      jcRizhi("====命中黑名单 A包==data:$data=");
+      jcRizhi("$TGA=====命中黑名单 A包==data:$data=");
       _cloakData = data;
       // send(cloakData: _cloakData, afData: _appsFlyerData);
       // await _initAppsFlyer();
@@ -294,38 +183,38 @@ class JCABluoji {
 
   Future _initA() async {
     // 广告初始化
-    jcRizhi("===_initA==:cloak();==");
+    jcRizhi("$TGA====_initA==:cloak();==");
     var cloakData = await cloakAAAA();
-    jcRizhi("===_initA=_initAppsFlyer=cloakData:$cloakData==");
+    jcRizhi("$TGA====_initA=_initAppsFlyer=cloakData:$cloakData==");
     await _chushiGuiyin();
   }
 
   Future _initB() async {
     // await TBDeviceManager.isLimitAdTrackingEnabled();
     // 广告初始化
-    jcRizhi("==_initB===GGCommonAds().init start==");
+    jcRizhi("$TGA===_initB===GGCommonAds().init start==");
     int time = DateTime.now().millisecondsSinceEpoch;
     // await GGCommonAds().init();
     int time2 = DateTime.now().millisecondsSinceEpoch;
-    jcRizhi("==_initB===GGCommonAds().init end===耗时:${time2 - time}");
+    jcRizhi("$TGA===_initB===GGCommonAds().init end===耗时:${time2 - time}");
     var box = JCHive.box;
     box.put(kHivePackage, packageB);
-    jcRizhi("==_initB===_initAppsFlyer() start==");
+    jcRizhi("$TGA===_initB===_initAppsFlyer() start==");
     await _chushiGuiyin();
     int time3 = DateTime.now().millisecondsSinceEpoch;
-    jcRizhi("==_initB===_initAppsFlyer() end===耗时:${time3 - time2}");
+    jcRizhi("$TGA===_initB===_initAppsFlyer() end===耗时:${time3 - time2}");
     if (Platform.isAndroid) {
       await JCWindController.initNumberUnit();
       int time4 = DateTime.now().millisecondsSinceEpoch;
-      jcRizhi("==_initB===SWFengKong() end===耗时:${time4 - time3}");
+      jcRizhi("$TGA===_initB===SWFengKong() end===耗时:${time4 - time3}");
     }
 
     JCShijianBaogao.cloak_req();
     JCNet().cloak().then((v) {
-      // _cloakData = v ?? "";
-      // if (v.isEmpty) {
-      //   _cloakData = cloakAData;
-      // }
+      _cloakData = v ?? "";
+      if (v.isEmpty) {
+        _cloakData = cloakAData;
+      }
       JCShijianBaogao.cloak_suc(_cloakData == cloakBData ? "1" : "0");
       // bool pAaaaa = _cloakData == cloakAData;
       // jcRizhi(
@@ -345,48 +234,71 @@ class JCABluoji {
   // auto patch 285
 
   Completer<bool>? initCompleter;
+  static const String TGA = "QuizPackage:";
 
   Future<bool> init() async {
     initCompleter = Completer<bool>();
-
+    DateTime dateTime = DateTime.now();
+    jcRizhi("$TGA===JCFbase==${dateTime.millisecondsSinceEpoch}");
     // 初始化firebase
     await JCFbase().chushi();
-    await JCAdsTools().init();
+    DateTime dateTime2 = DateTime.now();
+    jcRizhi(
+      "$TGA===JCFbase==${dateTime2.millisecondsSinceEpoch - dateTime.millisecondsSinceEpoch}",
+    );
+
     var box = JCHive.box;
 
     var packageName = box.get(kHivePackage) ?? packageA;
     // packageName = packageB;
 
     _name = packageName;
-    jcRizhi("package==init:$packageName==");
+    jcRizhi("$TGA=package==init:$packageName==");
     if (packageName == packageB) {
       await _initB();
     } else {
       await _initA();
     }
 
-    return (await initCompleter?.future) ?? false;
+    bool result = (await initCompleter?.future) ?? false;
+    jcRizhi("$TGA=package==result:$result==isPackageB:${isPackageB()}");
+    if (isPackageB()) {
+      DateTime dd = DateTime.now();
+      jcRizhi(
+        "$TGA===JCAdsTools==${dd.millisecondsSinceEpoch - dateTime.millisecondsSinceEpoch}",
+      );
+      // 初始化firebase
+      await JCAdsTools().init();
+      DateTime dddd = DateTime.now();
+      jcRizhi(
+        "$TGA===JCAdsTools==${dddd.millisecondsSinceEpoch - dd.millisecondsSinceEpoch}",
+      );
+    }
+
+    return result;
   }
 
   bool sfChushiAF = false;
   bool hasAdjust = true;
+
   _chushiGuiyin() async {
     if (!sfChushiAF) {
       sfChushiAF = true;
-      
 
-      if(hasAdjust){
-        JcAdjust().initSdk("d1x71jap6eio");
-      }else{
+      if (hasAdjust) {
+        await JcAdjust().initSdk("d1x71jap6eio");
+      } else {
         String asdkasfdhka = "XM9ua37BHJWBKq8jTYg74a";
         if (asdkasfdhka.isEmpty) {
           return;
         }
         await JcAF().initAppsFlyer(afDevKey: asdkasfdhka, appId: "6752763599");
       }
-      
-      
 
+      var data = box.get(kkGuiyin);
+      if (data != null && data != afDataOrganic) {
+        guiyin(data);
+      }
     }
   }
 }

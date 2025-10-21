@@ -152,7 +152,7 @@ class DtController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-
+    jcRizhi("=dt controller==onInit==");
     resetAllDataA();
     initB();
     _hasLoadInit = true;

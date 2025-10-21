@@ -372,9 +372,9 @@ class JCShijianBaogao {
     );
   }
   // 0 失败 1 成功
-  static en_user(String type) async {
+  static eu_user(String type) async {
     JCNet().maidian(
-      eventName: "en_user",
+      eventName: "eu_user",
       kkkkkey: "adj_user",
       kkkkkeyVaaaaaa: "$type",
     );

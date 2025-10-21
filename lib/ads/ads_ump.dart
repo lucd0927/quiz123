@@ -58,7 +58,7 @@ class JcAdsUMP {
   bool sfUMP() {
     Locale adsasdf = WidgetsBinding.instance.platformDispatcher.locale;
     String cccccc = adsasdf.countryCode ?? "789";
-    // cccccc = "CH";
+    cccccc = "CH";
     bool tmjjjj = guojiaLanguageUmp.contains(cccccc);
     return tmjjjj;
   }
@@ -68,7 +68,7 @@ class JcAdsUMP {
     Completer<bool> tmpCccccc = Completer();
     bool sfGDPR = sfUMP();
     jcRizhi("$TGA==_huoquGuojia==hasUmp:${sfGDPR}");
-    JCShijianBaogao.en_user(sfGDPR ? "1" : "0");
+    JCShijianBaogao.eu_user(sfGDPR ? "1" : "0");
     if (sfGDPR) {
       // ConsentInformation.instance.reset();
       InitializationStatus status = await MobileAds.instance.initialize();
@@ -85,7 +85,7 @@ class JcAdsUMP {
           debugGeography: DebugGeography.debugGeographyEea,
         );
         final params = ConsentRequestParameters(
-          // consentDebugSettings: consentDebugSettings,
+          consentDebugSettings: consentDebugSettings,
         );
 
         // Request an update to consent information on every app launch.
