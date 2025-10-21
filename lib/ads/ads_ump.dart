@@ -9,16 +9,16 @@ import 'package:iabtcf_consent_info/iabtcf_consent_info.dart';
 import 'package:quiz123/tools/rizhi.dart';
 import 'package:quiz123/wangluo/shijian_baogao.dart';
 
-class JcAdsUmp {
+class JcAdsUMP {
   static const TGA = "JcAdsUmp:";
 
-  static final JcAdsUmp _instance = JcAdsUmp._();
+  static final JcAdsUMP _instance = JcAdsUMP._();
 
-  factory JcAdsUmp() {
+  factory JcAdsUMP() {
     return _instance;
   }
 
-  JcAdsUmp._();
+  JcAdsUMP._();
 
   final guojiaLanguageUmp = [
     "AT",
@@ -55,34 +55,29 @@ class JcAdsUmp {
     "GB",
   ];
 
-  bool hasUmp() {
-    Locale locale = WidgetsBinding.instance.platformDispatcher.locale;
-    print(locale.languageCode); // 输出语言代码，如 "en"、"zh"
-    print(locale.countryCode); // 输出国家代码，如 "US"、"CN"
-    String countryCode = locale.countryCode ?? "789";
-    // countryCode = "CH";
-    bool tmjjjj = guojiaLanguageUmp.contains(countryCode);
+  bool sfUMP() {
+    Locale adsasdf = WidgetsBinding.instance.platformDispatcher.locale;
+    String cccccc = adsasdf.countryCode ?? "789";
+    // cccccc = "CH";
+    bool tmjjjj = guojiaLanguageUmp.contains(cccccc);
     return tmjjjj;
   }
 
 
   init() async {
-    Completer<bool> result = Completer();
-    bool hsEeee = hasUmp();
-
-    jcRizhi("$TGA==_huoquGuojia==hasUmp:${hsEeee}");
-    JCShijianBaogao.en_user(hsEeee ? "1" : "0");
-    if (hsEeee) {
+    Completer<bool> tmpCccccc = Completer();
+    bool sfGDPR = sfUMP();
+    jcRizhi("$TGA==_huoquGuojia==hasUmp:${sfGDPR}");
+    JCShijianBaogao.en_user(sfGDPR ? "1" : "0");
+    if (sfGDPR) {
       // ConsentInformation.instance.reset();
-
       InitializationStatus status = await MobileAds.instance.initialize();
       ConsentStatus consentStatus = await ConsentInformation.instance
           .getConsentStatus();
       jcRizhi("$TGA====hasUmp:  consentStatus$consentStatus");
-
-      if (consentStatus == ConsentStatus.obtained ||
+      if (
           consentStatus == ConsentStatus.notRequired) {
-        result.complete(true);
+        tmpCccccc.complete(true);
       } else {
         jcRizhi("$TGA==InitializationStatus==status:${status.adapterStatuses}");
         // Create a ConsentRequestParameters object.
@@ -90,10 +85,9 @@ class JcAdsUmp {
           debugGeography: DebugGeography.debugGeographyEea,
         );
         final params = ConsentRequestParameters(
-          consentDebugSettings: consentDebugSettings,
+          // consentDebugSettings: consentDebugSettings,
         );
-        params.consentDebugSettings?.debugGeography =
-            DebugGeography.debugGeographyEea;
+
         // Request an update to consent information on every app launch.
         ConsentInformation.instance.requestConsentInfoUpdate(
           params,
@@ -108,10 +102,10 @@ class JcAdsUmp {
                 jcRizhi("$TGA==loadAndShowConsentFormIfRequired error==");
                 // Consent gathering failed.
 
-                result.complete(false);
+                tmpCccccc.complete(false);
               } else {
                 jcRizhi("$TGA==loadAndShowConsentFormIfRequired success==");
-                result.complete(true);
+                tmpCccccc.complete(true);
               }
 
               // Consent has been gathered.
@@ -122,7 +116,7 @@ class JcAdsUmp {
             jcRizhi("$TGA==requestConsentInfoUpdate error==${reason}");
             // Called when there's an error updating consent information.
             JCShijianBaogao.ad_privacypop_fail(reason);
-            result.complete(false);
+            tmpCccccc.complete(false);
           },
         );
       }
@@ -130,12 +124,12 @@ class JcAdsUmp {
       // await ConsentInformation.instance.reset();
     } else {
       AppLovinMAX.setHasUserConsent(true);
-      result.complete(true);
+      tmpCccccc.complete(true);
     }
-    AppLovinMAX.setDoNotSell(false);
-    bool tttt = await result.future;
 
-    if (hsEeee) {
+    await tmpCccccc.future;
+
+    if (sfGDPR) {
       ConsentStatus consentStatus = await ConsentInformation.instance
           .getConsentStatus();
       jcRizhi("$TGA==consentStatus:${consentStatus}===");
@@ -155,7 +149,7 @@ class JcAdsUmp {
         AppLovinMAX.setHasUserConsent(true);
       }
     }
-
+    AppLovinMAX.setDoNotSell(false);
     return;
   }
 }

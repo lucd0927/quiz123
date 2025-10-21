@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:quiz123/ads/ads_ump.dart';
 import 'package:quiz123/ads/guiyin/adjust.dart';
+import 'package:quiz123/ads/guiyin/af.dart';
 import 'package:quiz123/view/jc_ts_kuang.dart';
 import 'package:thinkup_sdk/at_index.dart';
 import 'package:applovin_max/applovin_max.dart';
@@ -141,7 +142,7 @@ class JCAdsTools {
     );
     if (mediationNetwork.isEmpty) return;
 
-    AppsflyerSdk? appsflyerSdk = JCABluoji.appsflyerSdk();
+    AppsflyerSdk? appsflyerSdk = JcAF.appsflyerSdk();
     jcRizhi(
       "==logRevenue ===network:$network currency:$currency value:$value source:$source   appsflyerSdk:$appsflyerSdk",
     );
@@ -709,7 +710,7 @@ class JCAdsTools {
     jcRizhi("====init==firebaseJson");
     firebaseJson = _onlineJson();
     jcRizhi("====init==JcAdsUmp");
-    await JcAdsUmp().init();
+    await JcAdsUMP().init();
     _interstitialAdsModel();
     jcRizhi("====init=hashCode:${hashCode}=_interstitialData:$chapingAdsModel");
 

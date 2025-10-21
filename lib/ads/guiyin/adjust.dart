@@ -4,11 +4,13 @@ import 'package:adjust_sdk/adjust_attribution.dart';
 import 'package:adjust_sdk/adjust_config.dart';
 import 'package:flutter_tba_info/flutter_tba_info.dart';
 import 'package:quiz123/tools/package.dart';
+import 'package:quiz123/tools/rizhi.dart';
 
 import '../../wangluo/shijian_baogao.dart';
 import '../jc_common_config.dart';
 
 class JcAdjust {
+  static const String TGA = "JcAdjust";
   static final JcAdjust _instance = JcAdjust._();
 
   factory JcAdjust() {
@@ -27,49 +29,47 @@ class JcAdjust {
     config.logLevel = AdjustLogLevel.verbose;
     var distinct_id = await FlutterTbaInfo.instance.getDistinctId();
     // config.externalDeviceId =distinct_id;
-
+    jcRizhi("$TGA===initSdk=");
     _config = config;
     Adjust.addGlobalCallbackParameter("customer_user_id", distinct_id);
     config.attributionCallback = (AdjustAttribution attributionChangedData) {
-      print('[Adjust]: Attribution changed!');
+      jcRizhi('$TGA: Attribution changed!');
 
       if (attributionChangedData.trackerToken != null) {
-        print(
-          '[Adjust]: Tracker token: ${attributionChangedData!.trackerToken ?? ""}',
+        jcRizhi(
+          '$TGA: Tracker token: ${attributionChangedData!.trackerToken ?? ""}',
         );
       }
       if (attributionChangedData.trackerName != null) {
-        print('[Adjust]: Tracker name: ${attributionChangedData.trackerName}');
+        jcRizhi('$TGA: Tracker name: ${attributionChangedData.trackerName}');
       }
       if (attributionChangedData.campaign != null) {
-        print('[Adjust]: Campaign: ${attributionChangedData.campaign}');
+        jcRizhi('$TGA: Campaign: ${attributionChangedData.campaign}');
       }
       String? network = attributionChangedData.network;
       if (network != null) {
-        print('[Adjust]: Network: ${network}');
+        jcRizhi('$TGA: Network: ${network}');
 
         if (network != JCABluoji.afDataOrganic) {
           JCABluoji().guiyin(network);
         }
       }
       if (attributionChangedData.creative != null) {
-        print('[Adjust]: Creative: ${attributionChangedData.creative}');
+        jcRizhi('$TGA: Creative: ${attributionChangedData.creative}');
       }
       if (attributionChangedData.adgroup != null) {
-        print('[Adjust]: Adgroup: ${attributionChangedData.adgroup}');
+        jcRizhi('$TGA: Adgroup: ${attributionChangedData.adgroup}');
       }
       if (attributionChangedData.clickLabel != null) {
-        print('[Adjust]: Click label: ${attributionChangedData.clickLabel}');
+        jcRizhi('$TGA: Click label: ${attributionChangedData.clickLabel}');
       }
       if (attributionChangedData.fbInstallReferrer != null) {
-        print(
-          '[Adjust]: facebook install referrer: ${attributionChangedData.fbInstallReferrer}',
+        jcRizhi(
+          '$TGA: facebook install referrer: ${attributionChangedData.fbInstallReferrer}',
         );
       }
       if (attributionChangedData.jsonResponse != null) {
-        print(
-          '[Adjust]: JSON Response: ${attributionChangedData.jsonResponse}',
-        );
+        jcRizhi('$TGA: JSON Response: ${attributionChangedData.jsonResponse}');
       }
     };
 
@@ -77,19 +77,18 @@ class JcAdjust {
     JCShijianBaogao.adjust_req();
   }
 
-
   adjustRevenue({
     required final String network,
     required final String currency,
     required final double value,
     required final EnumAdsPlatform source,
-  }){
+  }) {
     String adSource = "applovin_max_sdk";
 
-    if(source == EnumAdsPlatform.max){
+    if (source == EnumAdsPlatform.max) {
       adSource = "applovin_max_sdk";
-    }else if(source == EnumAdsPlatform.topon){
-    adSource = "topon_sdk";
+    } else if (source == EnumAdsPlatform.topon) {
+      adSource = "topon_sdk";
     }
 
     AdjustAdRevenue adjustAdRevenue = AdjustAdRevenue(adSource);
@@ -97,5 +96,4 @@ class JcAdjust {
     adjustAdRevenue.adRevenueNetwork = network;
     Adjust.trackAdRevenue(adjustAdRevenue);
   }
-
 }
