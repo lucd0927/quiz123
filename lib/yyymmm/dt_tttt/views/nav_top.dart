@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:quiz123/tools/jc_fbase.dart';
 import 'package:quiz123/view/jc_text_border.dart';
 import 'package:quiz123/yy_gj/jc_luy.dart';
 import 'package:quiz123/yyymmm/dt_tttt/dt_controller.dart';
 import 'package:quiz123/yyymmm/zhuye/zhuye_controller.dart';
 
 import '../../../gen/assets.gen.dart';
+import '../../../tools/rizhi.dart';
 
 double navTopRealHeight = 120.h;
 
@@ -57,7 +59,9 @@ class _NavTopState extends State<NavTop> {
   shezhiWidget() {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(JcLuy.shezhi);
+        String qs_af_on123 = JCFbase().by(name: "qs_adjust_on");
+        jcRizhi("==qs_af_on123==$qs_af_on123");
+        // Get.toNamed(JcLuy.shezhi);
       },
       child: Image.asset(
         Assets.ttt.quizTopSetting.path,

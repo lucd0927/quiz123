@@ -58,7 +58,8 @@ class JcAdsUMP {
   bool sfUMP() {
     Locale adsasdf = WidgetsBinding.instance.platformDispatcher.locale;
     String cccccc = adsasdf.countryCode ?? "789";
-    cccccc = "CH";
+    // todo: 去掉
+    // cccccc = "CH";
     bool tmjjjj = guojiaLanguageUmp.contains(cccccc);
     return tmjjjj;
   }
@@ -81,11 +82,12 @@ class JcAdsUMP {
       } else {
         jcRizhi("$TGA==InitializationStatus==status:${status.adapterStatuses}");
         // Create a ConsentRequestParameters object.
-        ConsentDebugSettings consentDebugSettings = ConsentDebugSettings(
-          debugGeography: DebugGeography.debugGeographyEea,
-        );
+        // ConsentDebugSettings consentDebugSettings = ConsentDebugSettings(
+          // debugGeography: DebugGeography.debugGeographyEea,
+        // );
         final params = ConsentRequestParameters(
-          consentDebugSettings: consentDebugSettings,
+          // todo: 去掉
+          // consentDebugSettings: consentDebugSettings,
         );
 
         // Request an update to consent information on every app launch.

@@ -8,6 +8,7 @@ import 'package:flutter_tba_info/flutter_tba_info.dart';
 import 'package:quiz123/ads/guiyin/adjust.dart';
 import 'package:quiz123/ads/guiyin/af.dart';
 import 'package:quiz123/ads/jc_ads_tools.dart';
+import 'package:quiz123/tools/jc_fbase.dart';
 import 'package:quiz123/wangluo/shijian_baogao.dart';
 
 import 'package:rxdart/rxdart.dart';
@@ -15,7 +16,7 @@ import 'package:rxdart/rxdart.dart';
 import '../ads/jc_wind_controller.dart';
 import '../hive/jc_hive.dart';
 import '../wangluo/wangluo.dart';
-import 'jc_fbase.dart';
+
 import 'rizhi.dart';
 
 class JCABluoji {
@@ -82,8 +83,10 @@ class JCABluoji {
       subject.add(_name);
     } else {
       _name = packageA;
-      subject.add(_name);
+      box.put(kHivePackage, packageA);
       initCompleter?.complete(false);
+      initCompleter = null;
+      subject.add(_name);
     }
   }
 
@@ -107,12 +110,16 @@ class JCABluoji {
 
   static const String kkGuiyin = "sdfjkdshfgkj";
 
+  hasSaveGuiyinData(){
+
+  }
+
   guiyin(String source) {
     if (isPackageB()) {
       return;
     }
     box.put(kkGuiyin, source);
-    String qs_af_on123 = JCFbase().by(name: "qs_af_on");
+    String qs_af_on123 = JCFbase().by(name: "qs_adjust_on");
     jcRizhi("$TGA==guiyin=pre==qs_af_on123:$qs_af_on123==");
     if (qs_af_on123.isEmpty) {
       qs_af_on123 = "1";
@@ -183,10 +190,21 @@ class JCABluoji {
 
   Future _initA() async {
     // 广告初始化
-    jcRizhi("$TGA====_initA==:cloak();==");
+    jcRizhi("$TGA====_initA==cloak();==");
     var cloakData = await cloakAAAA();
-    jcRizhi("$TGA====_initA=_initAppsFlyer=cloakData:$cloakData==");
+    jcRizhi("$TGA====_initA==cloakData:$cloakData==");
+    DateTime dateTime = DateTime.now();
+    jcRizhi("$TGA===JCFbase==${dateTime.millisecondsSinceEpoch}");
+    // 初始化firebase
+    await JCFbase().chushi();
+    DateTime dateTime2 = DateTime.now();
+    jcRizhi(
+      "$TGA===JCFbase==${dateTime2.millisecondsSinceEpoch - dateTime.millisecondsSinceEpoch}",
+    );
     await _chushiGuiyin();
+
+
+
   }
 
   Future _initB() async {
@@ -238,23 +256,22 @@ class JCABluoji {
 
   Future<bool> init() async {
     initCompleter = Completer<bool>();
-    DateTime dateTime = DateTime.now();
-    jcRizhi("$TGA===JCFbase==${dateTime.millisecondsSinceEpoch}");
-    // 初始化firebase
-    await JCFbase().chushi();
-    DateTime dateTime2 = DateTime.now();
-    jcRizhi(
-      "$TGA===JCFbase==${dateTime2.millisecondsSinceEpoch - dateTime.millisecondsSinceEpoch}",
-    );
-
     var box = JCHive.box;
-
     var packageName = box.get(kHivePackage) ?? packageA;
     // packageName = packageB;
 
     _name = packageName;
     jcRizhi("$TGA=package==init:$packageName==");
     if (packageName == packageB) {
+      DateTime dateTime = DateTime.now();
+      jcRizhi("$TGA===JCFbase==${dateTime.millisecondsSinceEpoch}");
+      // 初始化firebase
+      await JCFbase().chushi();
+      DateTime dateTime2 = DateTime.now();
+      jcRizhi(
+        "$TGA===JCFbase==${dateTime2.millisecondsSinceEpoch - dateTime.millisecondsSinceEpoch}",
+      );
+
       await _initB();
     } else {
       await _initA();
@@ -264,9 +281,6 @@ class JCABluoji {
     jcRizhi("$TGA=package==result:$result==isPackageB:${isPackageB()}");
     if (isPackageB()) {
       DateTime dd = DateTime.now();
-      jcRizhi(
-        "$TGA===JCAdsTools==${dd.millisecondsSinceEpoch - dateTime.millisecondsSinceEpoch}",
-      );
       // 初始化firebase
       await JCAdsTools().init();
       DateTime dddd = DateTime.now();
@@ -294,11 +308,21 @@ class JCABluoji {
         }
         await JcAF().initAppsFlyer(afDevKey: asdkasfdhka, appId: "6752763599");
       }
+      String qs_af_on123 = JCFbase().by(name: "qs_adjust_on");
+      jcRizhi("==qs_af_on123==$qs_af_on123");
+      //
+      // String qs_af_on123 = JCFbase().by(name: "qs_adjust_on");
+      // jcRizhi("$TGA==guiyin=pre==qs_af_on123:$qs_af_on123==");
+      // if (qs_af_on123.isEmpty) {
+      //   qs_af_on123 = "1";
+      // }
+      //
+      // if(qs_af_on123 == "0"){
+      //   _appsFlyerData = "qs_af_on123";
+      //   sendAAA(cloakData: _cloakData, afData: _appsFlyerData);
+      // }
+      //
 
-      var data = box.get(kkGuiyin);
-      if (data != null && data != afDataOrganic) {
-        guiyin(data);
-      }
     }
   }
 }

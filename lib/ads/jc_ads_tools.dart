@@ -25,9 +25,7 @@ import 'model/guanggao_model.dart';
 import 'topon.dart';
 import '../../hive/jc_hive.dart';
 import '../../wangluo/wangluo.dart';
-import '../../tools/app_track_status.dart';
-import '../../tools/package.dart';
-import '../../tools/jc_fbase.dart';
+import 'package:quiz123/tools/jc_fbase.dart';
 import '../../tools/rizhi.dart';
 
 class JCAdsTools {

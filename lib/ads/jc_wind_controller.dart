@@ -7,7 +7,7 @@ import 'package:tuple/tuple.dart';
 
 import '../../wangluo/wangluo.dart';
 import '../../tools/base_utils.dart';
-import '../../tools/jc_fbase.dart';
+import 'package:quiz123/tools/jc_fbase.dart';
 import '../../tools/rizhi.dart';
 import 'sanfangku/pbpig.dart';
 
