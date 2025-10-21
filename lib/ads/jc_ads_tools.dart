@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:quiz123/ads/ads_ump.dart';
+import 'package:quiz123/ads/guiyin/adjust.dart';
 import 'package:quiz123/view/jc_ts_kuang.dart';
 import 'package:thinkup_sdk/at_index.dart';
 import 'package:applovin_max/applovin_max.dart';
@@ -151,6 +152,13 @@ class JCAdsTools {
         currencyIso4217Code: currency,
         revenue: value,
       ),
+    );
+
+    JcAdjust().adjustRevenue(
+      network: network,
+      currency: currency,
+      value: value,
+      source: source,
     );
   }
 
@@ -503,7 +511,7 @@ class JCAdsTools {
             jcRizhi(
               "=======topon激励====rewardedVideoDidFailToLoad ---- placementID: ${value.placementID} ---- errStr:${value.requestMessage}",
             );
-            Future.delayed(Duration(seconds: 10), () {
+            Future.delayed(Duration(seconds: 1), () {
               onAdLoadFailedCallback(
                 EnumAdsPlatform.topon,
                 EnumAdsType.reward,
@@ -600,7 +608,7 @@ class JCAdsTools {
             jcRizhi(
               "=======topon插屏====interstitialAdFailToLoadAD ---- placementID: ${value.placementID} ---- errStr:${value.requestMessage}",
             );
-            Future.delayed(Duration(seconds: 10), () {
+            Future.delayed(Duration(seconds: 1), () {
               onAdLoadFailedCallback(
                 EnumAdsPlatform.topon,
                 EnumAdsType.interstitial,
@@ -696,9 +704,6 @@ class JCAdsTools {
   }
 
   init() async {
-
-
-
     jcRizhi("====init==_initListener");
     _initListener();
     jcRizhi("====init==firebaseJson");

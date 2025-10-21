@@ -55,32 +55,25 @@ class JcAdsUmp {
     "GB",
   ];
 
-  static String _huoquGuojia() {
-    String name = Platform.localeName.toUpperCase(); // e.g. "en_US", "pt_BR"
-
-    jcRizhi("==_huoquGuojia==name:$name");
-
-    return name;
-  }
-
   bool hasUmp() {
     Locale locale = WidgetsBinding.instance.platformDispatcher.locale;
     print(locale.languageCode); // 输出语言代码，如 "en"、"zh"
     print(locale.countryCode); // 输出国家代码，如 "US"、"CN"
     String countryCode = locale.countryCode ?? "789";
-    countryCode = "CH";
+    // countryCode = "CH";
     bool tmjjjj = guojiaLanguageUmp.contains(countryCode);
     return tmjjjj;
   }
+
 
   init() async {
     Completer<bool> result = Completer();
     bool hsEeee = hasUmp();
 
     jcRizhi("$TGA==_huoquGuojia==hasUmp:${hsEeee}");
-    JCShijianBaogao.en_user(hsEeee?"1":"0");
+    JCShijianBaogao.en_user(hsEeee ? "1" : "0");
     if (hsEeee) {
-      ConsentInformation.instance.reset();
+      // ConsentInformation.instance.reset();
 
       InitializationStatus status = await MobileAds.instance.initialize();
       ConsentStatus consentStatus = await ConsentInformation.instance
@@ -117,10 +110,6 @@ class JcAdsUmp {
 
                 result.complete(false);
               } else {
-                ConsentInformation.instance.canRequestAds().then((value) {
-                  jcRizhi("$TGA==canRequestAds==:$value");
-                });
-
                 jcRizhi("$TGA==loadAndShowConsentFormIfRequired success==");
                 result.complete(true);
               }
@@ -160,14 +149,11 @@ class JcAdsUmp {
           AppLovinMAX.setHasUserConsent(hasSelect);
           jcRizhi("$TGA==hasSelect:${hasSelect}===");
         }
-      }else if (consentStatus == ConsentStatus.unknown){
+      } else if (consentStatus == ConsentStatus.unknown) {
         AppLovinMAX.setHasUserConsent(false);
-
-      }
-      else{
+      } else {
         AppLovinMAX.setHasUserConsent(true);
       }
-
     }
 
     return;

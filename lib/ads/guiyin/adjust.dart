@@ -1,10 +1,12 @@
 import 'package:adjust_sdk/adjust.dart';
+import 'package:adjust_sdk/adjust_ad_revenue.dart';
 import 'package:adjust_sdk/adjust_attribution.dart';
 import 'package:adjust_sdk/adjust_config.dart';
 import 'package:flutter_tba_info/flutter_tba_info.dart';
 import 'package:quiz123/tools/package.dart';
 
 import '../../wangluo/shijian_baogao.dart';
+import '../jc_common_config.dart';
 
 class JcAdjust {
   static final JcAdjust _instance = JcAdjust._();
@@ -74,4 +76,26 @@ class JcAdjust {
     Adjust.initSdk(config);
     JCShijianBaogao.adjust_req();
   }
+
+
+  adjustRevenue({
+    required final String network,
+    required final String currency,
+    required final double value,
+    required final EnumAdsPlatform source,
+  }){
+    String adSource = "applovin_max_sdk";
+
+    if(source == EnumAdsPlatform.max){
+      adSource = "applovin_max_sdk";
+    }else if(source == EnumAdsPlatform.topon){
+    adSource = "topon_sdk";
+    }
+
+    AdjustAdRevenue adjustAdRevenue = AdjustAdRevenue(adSource);
+    adjustAdRevenue.setRevenue(value, currency);
+    adjustAdRevenue.adRevenueNetwork = network;
+    Adjust.trackAdRevenue(adjustAdRevenue);
+  }
+
 }
