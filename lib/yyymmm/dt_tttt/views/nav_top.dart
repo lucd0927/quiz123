@@ -61,7 +61,7 @@ class _NavTopState extends State<NavTop> {
       onTap: () {
         String qs_af_on123 = JCFbase().by(name: "qs_adjust_on");
         jcRizhi("==qs_af_on123==$qs_af_on123");
-        // Get.toNamed(JcLuy.shezhi);
+        Get.toNamed(JcLuy.shezhi);
       },
       child: Image.asset(
         Assets.ttt.quizTopSetting.path,
