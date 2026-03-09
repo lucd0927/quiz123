@@ -125,8 +125,8 @@ class InitTool{
   }) async {
       try{
         String result = await ATInitManger.initAnyThinkSDK(
-            appidStr:"h68ad7ba66635c",
-            appidkeyStr: "aa25858a3da423bc9ff10facbbeed3794");
+            appidStr:"h69a7d96ea0328",
+            appidkeyStr: "a9a53af223b26add90eb17e29ba20faa8");
         interstitialListener(atInterstitialResponse);
         rewardListener(atRewardResponse);
         jcRizhi("==initTopon====result:$result");

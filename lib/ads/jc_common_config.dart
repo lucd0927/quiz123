@@ -95,6 +95,28 @@ class GGCommonJson {
     ]
   };
 
+  static var localTopon = {
+    "cblhygrw": 100,
+    "hjioqwvw": 100,
+    "kwsbc_switch": false,
+    "kwsbc_int": [
+      {
+        "swxklbap": "n1h6chejmdltaa",
+        "ggatjmdl": "topon",
+        "swyhrkjr": "interstitial",
+        "mzfedhwo": 3000
+      }
+    ],
+    "kwsbc_rv": [
+      {
+        "swxklbap": "n1h6chejmdlkn6",
+        "ggatjmdl": "topon",
+        "swyhrkjr": "reward",
+        "mzfedhwo": 3000
+      }
+    ]
+  };
+
 
 
   static var local =localB;
