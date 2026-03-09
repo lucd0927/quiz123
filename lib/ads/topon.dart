@@ -130,8 +130,10 @@ class InitTool{
         interstitialListener(atInterstitialResponse);
         rewardListener(atRewardResponse);
         jcRizhi("==initTopon====result:$result");
+        return true;
       }catch(e){
         jcRizhi("==initTopon====error:$e");
+        return false;
       }
   }
 

@@ -19,8 +19,27 @@ A new Flutter project.
   s.dependency 'Flutter'
   s.static_framework = true
   s.platform = :ios, '12.0'
-  s.dependency 'TPNiOS','6.4.92'
-  s.dependency 'TPNApplovinSDKAdapter','6.4.92.1'
+#   s.dependency 'TPNiOS','6.5.43'
+#   #TPN Adx SDK(necessary)
+#   s.dependency 'TPNMediationAdxSmartdigimktAdapter','6.5.45.0'
+#   s.dependency 'TPNMediationAdmobAdapter','12.14.0.0'
+#   s.dependency 'TPNMediationUnityAdsAdapter','4.16.6.0'
+
+  s.dependency 'TPNiOS','6.4.93'
+#   s.dependency 'TPNApplovinSDKAdapter','6.4.93.1'
+#   s.dependency 'TPNiOS','6.4.93'
+  s.dependency 'TPNVungleSDKAdapter','6.4.93'
+  s.dependency 'TPNUnityAdsSDKAdapter','6.4.93.5'
+  s.dependency 'TPNIronSourceSDKAdapter','6.4.93.1'
+  s.dependency 'TPNBigoSDKAdapter','6.4.93.1'
+  s.dependency 'TPNPangleSDKAdapter','6.4.93.6'
+  s.dependency 'TPNKwaiSDKAdapter','6.4.93.1'
+  s.dependency 'TPNFacebookSDKAdapter','6.4.93.8'
+  s.dependency 'TPNAdmobSDKAdapter','6.4.93.1'
+  s.dependency 'TPNInmobiSDKAdapter','6.4.93'
+  s.dependency 'TPNMintegralSDKAdapter','6.4.93'
+  s.dependency 'TPNChartboostSDKAdapter','6.4.93'
+  s.dependency 'TPNFyberSDKAdapter','6.4.93.1'
   #************************* Manual import ******************************#
 # s.frameworks = 'SystemConfiguration', 'CoreGraphics','Foundation','UIKit','AVFoundation','AdSupport','AudioToolbox','CoreMedia','StoreKit','SystemConfiguration','WebKit','AppTrackingTransparency','CoreMotion','CoreTelephony','MessageUI','SafariServices','WebKit','CoreMotion','JavaScriptCore','CoreLocation','MediaPlayer'
 

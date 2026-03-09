@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:quiz123/ads/ads_ump.dart';
 import 'package:quiz123/ads/guiyin/adjust.dart';
 import 'package:quiz123/ads/guiyin/af.dart';
+import 'package:quiz123/huanjing/peizhi.dart';
 import 'package:quiz123/view/jc_ts_kuang.dart';
 import 'package:thinkup_sdk/at_index.dart';
 import 'package:applovin_max/applovin_max.dart';
@@ -702,35 +703,118 @@ class JCAdsTools {
     );
   }
 
+  // init() async {
+  //   jcRizhi("====init==_initListener");
+  //   _initListener();
+  //   jcRizhi("====init==firebaseJson");
+  //   firebaseJson = _onlineJson();
+  //   jcRizhi("====init==JcAdsUmp");
+  //   await JcAdsUMP().init();
+  //   _interstitialAdsModel();
+  //   jcRizhi("====init=hashCode:${hashCode}=_interstitialData:$chapingAdsModel");
+  //
+  //   _rewardAdsModel();
+  //   jcRizhi("====init=hashCode:${hashCode}=_rewardData:$jiliAdsModel");
+  //   jcRizhi("====init==initMax");
+  //
+  //   bool result = await GGMaxAdsNew.initMax(
+  //     encodeKey: GGCommonJson.maxkeyEncode,
+  //     cacheAdsData: cacheAdsData,
+  //     interstitialListener: _ggCommonAdsListener!.interstitialListener,
+  //     rewardedAdListener: _ggCommonAdsListener!.rewardedAdListener,
+  //   );
+  //   if (!result) {
+  //     _loadFailReason = AdLoadFailReason.uninitialized;
+  //   }
+  //   jcRizhi("====init==initTopon");
+  //   // await InitManger.initTopon(
+  //   //   atInterstitialResponse: _ggCommonAdsListener!.atInterstitialResponse,
+  //   //   atRewardResponse: _ggCommonAdsListener!.atRewardResponse,
+  //   // );
+  //   // InitManger.setLogEnabled();
+  //   jcRizhi("====init==end");
+  //   _scheme =
+  //       firebaseJson[GGCommonJson.k_which_scheme] ?? GGCommonJson.scheme_A;
+  //
+  //   chapingAdsModel.forEach((key, value) {
+  //     _loadAd(value);
+  //   });
+  //   jiliAdsModel.forEach((key, value) {
+  //     _loadAd(value);
+  //   });
+  //   // 执行A方案
+  //   if (_scheme == GGCommonJson.scheme_A) {
+  //   }
+  //   // 执行B方案
+  //   else {
+  //     jiliAdsModel.addAll(chapingAdsModel);
+  //   }
+  //   jcRizhi("====init==end:$jiliAdsModel");
+  // }
+
   init() async {
     jcRizhi("====init==_initListener");
     _initListener();
     jcRizhi("====init==firebaseJson");
     firebaseJson = _onlineJson();
-    jcRizhi("====init==JcAdsUmp");
-    await JcAdsUMP().init();
+
     _interstitialAdsModel();
     jcRizhi("====init=hashCode:${hashCode}=_interstitialData:$chapingAdsModel");
 
     _rewardAdsModel();
     jcRizhi("====init=hashCode:${hashCode}=_rewardData:$jiliAdsModel");
-    jcRizhi("====init==initMax");
 
-    bool result = await GGMaxAdsNew.initMax(
-      encodeKey: GGCommonJson.maxkeyEncode,
-      cacheAdsData: cacheAdsData,
-      interstitialListener: _ggCommonAdsListener!.interstitialListener,
-      rewardedAdListener: _ggCommonAdsListener!.rewardedAdListener,
+    final Set<String> adPlatforms = <String>{};
+    chapingAdsModel.forEach((_, value) {
+      adPlatforms.add(value.adsPlatform);
+    });
+    jiliAdsModel.forEach((_, value) {
+      adPlatforms.add(value.adsPlatform);
+    });
+    bool needInitMax = adPlatforms.contains(GGCommonJson.ad_platfrom_max);
+    bool needInitTopon = adPlatforms.contains(
+      GGCommonJson.ad_platfrom_topon,
     );
-    if (!result) {
-      _loadFailReason = AdLoadFailReason.uninitialized;
+    jcRizhi(
+      "====init==adPlatforms:$adPlatforms needInitMax:$needInitMax needInitTopon:$needInitTopon",
+    );
+    if (needInitMax && needInitTopon) {
+      jcRizhi(
+        "====init==Both MAX and TopOn are enabled. If Moloco is configured on both sides with different app keys, Moloco may fail to initialize.",
+      );
     }
-    jcRizhi("====init==initTopon");
-    // await InitManger.initTopon(
-    //   atInterstitialResponse: _ggCommonAdsListener!.atInterstitialResponse,
-    //   atRewardResponse: _ggCommonAdsListener!.atRewardResponse,
-    // );
-    // InitManger.setLogEnabled();
+
+    jcRizhi("====init==PbUuuump start");
+    await JcAdsUMP().init();
+    jcRizhi("====init==PbUuuump end");
+    needInitMax = true;
+    needInitTopon = true;
+    if (needInitMax) {
+      jcRizhi("====init==initMax");
+      bool result = await GGMaxAdsNew.initMax(
+        encodeKey: GGCommonJson.maxkeyEncode,
+        cacheAdsData: cacheAdsData,
+        interstitialListener: _ggCommonAdsListener!.interstitialListener,
+        rewardedAdListener: _ggCommonAdsListener!.rewardedAdListener,
+      );
+      if (!result) {
+        _loadFailReason = AdLoadFailReason.uninitialized;
+      }
+    }
+
+    if (needInitTopon) {
+      jcRizhi("====init==initTopon");
+      bool result = await InitManger.initTopon(
+        atInterstitialResponse: _ggCommonAdsListener!.atInterstitialResponse,
+        atRewardResponse: _ggCommonAdsListener!.atRewardResponse,
+      );
+      if (!result) {
+        _loadFailReason = AdLoadFailReason.uninitialized;
+      }
+      if (JCPzHuanjing.hasKaifa()) {
+        InitManger.setLogEnabled();
+      }
+    }
     jcRizhi("====init==end");
     _scheme =
         firebaseJson[GGCommonJson.k_which_scheme] ?? GGCommonJson.scheme_A;
