@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:quiz123/ads/index.dart';
+import 'package:quiz123/huanjing/peizhi.dart';
+import 'package:quiz123/huanjing/peizhi_env.dart';
 import 'package:quiz123/tools/app_track_status.dart';
 import 'package:quiz123/tools/package.dart';
 import 'package:quiz123/tools/rizhi.dart';
@@ -24,7 +26,7 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // // 1 设置环境
-
+  JCPzHuanjing.initEvn(JCPzHuanjingEnv.prod);
   // // 2 本地存储
   await Hive.initFlutter();
   await Hive.openBox(JCHive.hKeyBox);

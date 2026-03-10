@@ -22,7 +22,7 @@ abstract class JCPzHuanjing {
   }
   static JCPzHuanjingEnv? _env;
 
-  static JCPzHuanjingEnv get env => _env ?? JCPzHuanjingEnv.dev;
+  static JCPzHuanjingEnv get env => _env ?? JCPzHuanjingEnv.prod;
   static bool hasKaifa(){
     return env == JCPzHuanjingEnv.dev;
   }
