@@ -787,8 +787,6 @@ class JCAdsTools {
     jcRizhi("====init==PbUuuump start");
     await JcAdsUMP().init();
     jcRizhi("====init==PbUuuump end");
-    needInitMax = true;
-    needInitTopon = true;
     if (needInitMax) {
       jcRizhi("====init==initMax");
       bool result = await GGMaxAdsNew.initMax(
