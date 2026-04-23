@@ -118,8 +118,29 @@ class GGCommonJson {
   };
 
 
+  static var localToponIOsTest = {
+    "cblhygrw": 100,
+    "hjioqwvw": 100,
+    "kwsbc_switch": false,
+    "kwsbc_int": [
+      {
+        "swxklbap": "n69e97c359e59f",
+        "ggatjmdl": "topon",
+        "swyhrkjr": "interstitial",
+        "mzfedhwo": 3000
+      }
+    ],
+    "kwsbc_rv": [
+      {
+        "swxklbap": "n69e97dcee016e",
+        "ggatjmdl": "topon",
+        "swyhrkjr": "reward",
+        "mzfedhwo": 3000
+      }
+    ]
+  };
 
-  static var local =localB;
+  static var local =localTopon;
 }
 enum EnumAdsPlatform {
   max("max"),

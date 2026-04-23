@@ -258,7 +258,7 @@ class JCABluoji {
     initCompleter = Completer<bool>();
     var box = JCHive.box;
     var packageName = box.get(kHivePackage) ?? packageA;
-    packageName = packageB;
+    // packageName = packageB;
 
     _name = packageName;
     jcRizhi("$TGA=package==init:$packageName==");

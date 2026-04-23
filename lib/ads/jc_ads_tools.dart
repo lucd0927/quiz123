@@ -162,11 +162,11 @@ class JCAdsTools {
     );
   }
 
-  void onAdLoadedCallback(
+  onAdLoadedCallback(
     EnumAdsPlatform platform,
     EnumAdsType adsType,
     dynamic data,
-  ) {
+  ) async{
     DateTime curDateTime = DateTime.now();
     int curTime = curDateTime.millisecondsSinceEpoch;
     String adsId = "";
@@ -188,10 +188,34 @@ class JCAdsTools {
       if (data is ATInterstitialResponse || data is ATRewardResponse) {
         adsId = data.placementID;
         var extraMap = data.extraMap;
-        ecpm = extraMap['publisher_revenue'] ?? 0;
-        jcRizhi(
-          "==onAdLoadedCallback===platform adsId topon:$adsId data:${data.extraMap}",
-        );
+        ecpm = extraMap['adsource_price'] ?? 0.0;
+        try {
+          String jsonTxt = "{}";
+          if (adsType == EnumAdsType.reward) {
+            jsonTxt = await ATRewardedManager.getRewardedVideoValidAds(
+              placementID: adsId,
+            );
+          } else if (adsType == EnumAdsType.interstitial) {
+            jsonTxt = await ATInterstitialManager.getInterstitialValidAds(
+              placementID: adsId,
+            );
+          }
+          var tmpCacheData = jsonDecode(jsonTxt);
+          if (tmpCacheData is List && tmpCacheData.isNotEmpty) {
+            var tmpCache2 = tmpCacheData[0];
+            jcRizhi(
+              "==onAdLoadedCallback===platform adsId topon:$adsId   tmpCacheData length:${tmpCacheData.length}",
+            );
+            if (tmpCache2 is Map) {
+              ecpm = tmpCache2['adsource_price'] ?? 0.0;
+            }
+          }
+          jcRizhi(
+            "==onAdLoadedCallback===platform adsId topon:$adsId ecpm:$ecpm  tmpCacheData:${tmpCacheData} ",
+          );
+        } catch (e) {
+          jcRizhi("==onAdLoadedCallback===platform adsId topon:$adsId 解析出错");
+        }
       }
     }
     cacheAdsData[adsId] = {
@@ -996,7 +1020,7 @@ class JCAdsTools {
     jcRizhi(
       "$text=======adPosId:$adPosId _scheme:$_scheme adsModel:$adIdWithJsonModel",
     );
-    if (_scheme == GGCommonJson.scheme_A) {
+    if (_scheme == GGCommonJson.scheme_A || hasInter) {
       for (var action in adIdWithJsonModel.keys) {
         String adsId = action;
         // 记录第一个广告id情况
