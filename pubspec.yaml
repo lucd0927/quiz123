@@ -68,7 +68,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   scroll_to_index: ^3.0.1
   thinkup_sdk:
-    path: ./sanfangku/thinkup_sdk-1.0.8/
+    path: ./sanfangku/thinkup_sdk-1.0.12
   adjust_sdk: ^5.4.4
   google_mobile_ads:
     path: ./sanfangku/google_mobile_ads-6.0.0/

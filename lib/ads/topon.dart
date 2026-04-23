@@ -124,7 +124,7 @@ class InitTool{
     required void Function(ATInterstitialResponse)? atInterstitialResponse,
   }) async {
       try{
-        String result = await ATInitManger.initAnyThinkSDK(
+        String result = await ATInitManger.initThinkUpSDK(
             appidStr:"h69a7d96ea0328",
             appidkeyStr: "a9a53af223b26add90eb17e29ba20faa8");
         interstitialListener(atInterstitialResponse);

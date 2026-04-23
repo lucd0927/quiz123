@@ -541,6 +541,11 @@ class JCAdsTools {
               EnumAdsType.reward,
               value,
             );
+            onAdRevenuePaidCallback(
+              EnumAdsPlatform.topon,
+              EnumAdsType.reward,
+              value,
+            );
             break;
           //广告结束播放
           case RewardedStatus.rewardedVideoDidEndPlaying:
@@ -564,11 +569,7 @@ class JCAdsTools {
             jcRizhi(
               "=======topon激励====rewardedVideoDidRewardSuccess ---- placementID: ${value.placementID} ---- extra:${value.extraMap}",
             );
-            onAdRevenuePaidCallback(
-              EnumAdsPlatform.topon,
-              EnumAdsType.reward,
-              value,
-            );
+
             break;
           //广告被点击
           case RewardedStatus.rewardedVideoDidClick:
