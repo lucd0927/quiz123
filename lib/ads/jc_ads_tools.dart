@@ -1142,10 +1142,7 @@ class JCAdsTools {
     }
 
     bool result = await completer.future;
-    jcRizhi(
-      "$text=====回调成功 result：$result  firstRequestAdsId:$firstRequestAdsId",
-    );
-    _hasDisplayAd = false;
+
     if (!result) {
       if (firstRequestAdsId != null) {
         JCGuangGaoModel? adsJsonModel = adIdWithJsonModel[firstRequestAdsId];
@@ -1163,6 +1160,15 @@ class JCAdsTools {
         }
       }
     }
+    JCGuangGaoModel? adsJsonModel = adIdWithJsonModel[firstRequestAdsId];
+    String? ad_platform222 = adsJsonModel?.adsPlatform;
+    if (ad_platform222 == null ||
+        ad_platform222 == EnumAdsPlatform.topon.name) {}
+    await Future.delayed(Duration(milliseconds: 100));
+    resetDisplayAd();
+    jcRizhi(
+      "$text=====回调成功 result：$result ad_platform222:$ad_platform222 firstRequestAdsId:$firstRequestAdsId",
+    );
     return result;
   }
 

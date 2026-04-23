@@ -134,11 +134,14 @@ void lifecycleChange() {
         JCShijianBaogao.app_background();
         sfXianshiAd = false;
         _houtaiTimer?.cancel();
-        _houtaiTimer = Timer(Duration(seconds: 3), () {
-          sfXianshiAd = true;
-          jcRizhi("====AppLifecycleState.paused==showAd:$sfXianshiAd=");
-          _houtaiTimer?.cancel();
-        });
+        if(!JCAdsTools.hasDisplayAd()){
+          _houtaiTimer = Timer(Duration(seconds: 3), () {
+            sfXianshiAd = true;
+            jcRizhi("====AppLifecycleState.paused==showAd:$sfXianshiAd=");
+            _houtaiTimer?.cancel();
+          });
+        }
+
       } else if (msg == "AppLifecycleState.detached") {
       } else if (msg == "AppLifecycleState.inactive") {}
     }
